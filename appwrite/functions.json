@@ -1,0 +1,67 @@
+[
+    {
+        "$id": "profile-upsert",
+        "name": "profile-upsert",
+        "enabled": true,
+        "logging": true,
+        "runtime": "node-20.0",
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 7,
+        "execute": [
+            "users",
+            "guests",
+            "any"
+        ],
+        "scopes": [],
+        "events": [],
+        "schedule": "",
+        "timeout": 15,
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "ignore": "node_modules\n.tmp",
+        "path": "./functions/profile-upsert"
+    },
+    {
+        "$id": "session-join",
+        "name": "session-join",
+        "enabled": true,
+        "logging": true,
+        "runtime": "node-20.0",
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 7,
+        "scopes": [],
+        "events": [],
+        "schedule": "",
+        "timeout": 15,
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "ignore": "node_modules\n.tmp",
+        "path": "./functions/session-join"
+    },
+    {
+        "$id": "user-provision",
+        "name": "user-provision",
+        "enabled": true,
+        "logging": true,
+        "runtime": "node-20.0",
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 7,
+        "execute": [],
+        "scopes": [
+            "users.read",
+            "users.write"
+        ],
+        "events": [
+            "users.*.create"
+        ],
+        "schedule": "",
+        "timeout": 15,
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "ignore": "node_modules\n.tmp",
+        "path": "./functions/user-provision"
+    }
+]

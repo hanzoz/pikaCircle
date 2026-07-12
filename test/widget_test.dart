@@ -1,0 +1,125 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:pikacircle/app/app.dart';
+import 'package:pikacircle/core/result/result.dart';
+import 'package:pikacircle/features/auth/domain/entities/auth_user.dart';
+import 'package:pikacircle/features/auth/domain/entities/oauth_provider.dart';
+import 'package:pikacircle/features/auth/domain/repositories/auth_repository.dart';
+import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/user_role.dart';
+import 'package:pikacircle/features/profile/domain/entities/wallet.dart';
+import 'package:pikacircle/features/profile/domain/repositories/profile_repository.dart';
+import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
+
+/// Auth repo that reports a signed-in user without touching Appwrite.
+class _FakeAuthRepository implements AuthRepository {
+  const _FakeAuthRepository(this._user);
+
+  final AuthUser _user;
+
+  @override
+  Future<Result<AuthUser?>> currentUser() async => Right(_user);
+
+  @override
+  Future<Result<AuthUser>> signInWithEmail({
+    required String email,
+    required String password,
+  }) async => Right(_user);
+
+  @override
+  Future<Result<AuthUser>> signUpWithEmail({
+    required String name,
+    required String email,
+    required String password,
+  }) async => Right(_user);
+
+  @override
+  Future<Result<AuthUser>> completeOAuthSession({
+    required String userId,
+    required String secret,
+  }) async => Right(_user);
+
+  @override
+  Future<Result<AuthUser>> signInWithOAuth(OAuthProvider provider) async =>
+      Right(_user);
+
+  @override
+  Future<Result<Unit>> sendPasswordRecovery(String email) async =>
+      const Right(unit);
+
+  @override
+  Future<Result<Unit>> signOut() async => const Right(unit);
+}
+
+/// Profile repo returning a fixed host profile.
+class _FakeProfileRepository implements ProfileRepository {
+  const _FakeProfileRepository(this._profile);
+
+  final AccountProfile _profile;
+
+  @override
+  Future<Result<AccountProfile>> loadProfile(String userId) async =>
+      Right(_profile);
+
+  @override
+  Future<Result<UserProfile>> upsertProfile({
+    required String userId,
+    required Map<String, Object?> editableFields,
+    String? skillLevel,
+  }) async => Right(_profile.user);
+}
+
+void main() {
+  const user = AuthUser(
+    id: 'user-1',
+    name: 'Alex',
+    email: 'alex@example.com',
+    emailVerified: true,
+  );
+
+  const profile = AccountProfile(
+    user: UserProfile(
+      id: 'user-1',
+      name: 'Alex',
+      email: 'alex@example.com',
+      jobTitleVerified: false,
+      roles: [UserRole.user, UserRole.host],
+    ),
+    wallet: Wallet(id: 'user-1', freeCredits: 10, paidCredits: 0),
+  );
+
+  Widget bootstrap() {
+    return ProviderScope(
+      overrides: [
+        authRepositoryProvider.overrideWithValue(
+          const _FakeAuthRepository(user),
+        ),
+        profileRepositoryProvider.overrideWithValue(
+          const _FakeProfileRepository(profile),
+        ),
+      ],
+      child: const PikaCircleApp(),
+    );
+  }
+
+  testWidgets('authenticated shell renders welcome + primary tabs', (
+    tester,
+  ) async {
+    await tester.pumpWidget(bootstrap());
+    await tester.pumpAndSettle();
+
+    // Greets the signed-in user (name comes from the fake profile).
+    expect(find.textContaining('Alex'), findsWidgets);
+
+    // Primary navigation destinations are present.
+    expect(find.text('Home'), findsWidgets);
+    expect(find.text('Wallet'), findsWidgets);
+
+    // Host workflow relabels the third tab.
+    expect(find.text('My Sessions'), findsWidgets);
+  });
+}

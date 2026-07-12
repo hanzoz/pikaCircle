@@ -1,0 +1,5501 @@
+{
+  "tableId": "venues",
+  "rows": [
+    {
+      "id": "arena_pb_ultimate",
+      "data": {
+        "name": "Arena PB Ultimate",
+        "address": "Unit 1-01, 1-02, Wisma UOA Damansara II, No. 6, Changkat Semantan, Bukit Damansara, 50490 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.13875,
+        "longitude": 101.66768
+      }
+    },
+    {
+      "id": "arena_pickleball_putra_heights",
+      "data": {
+        "name": "Arena Pickleball Putra Heights",
+        "address": "12 Jalan Putra Mahkota 7/6b, Putra Point, 47650 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.99338,
+        "longitude": 101.57434
+      }
+    },
+    {
+      "id": "bangsar_pickleball",
+      "data": {
+        "name": "Bangsar Pickleball",
+        "address": "28A, Jalan Telawi, Bangsar, 59100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.13193,
+        "longitude": 101.67104
+      }
+    },
+    {
+      "id": "bukit_jalil_pickleball_club",
+      "data": {
+        "name": "Bukit Jalil Pickleball Club",
+        "address": "C-08-01, Block C, Somerset, Jalil Link, Jalan 3/155a, Bukit Jalil, 57000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.05323,
+        "longitude": 101.68205
+      }
+    },
+    {
+      "id": "bukit_rimau_pickleball_centre",
+      "data": {
+        "name": "Bukit Rimau Pickleball Centre",
+        "address": "No 1, Jalan Sungai Burong E, Seksyen U16, Bukit Rimau, 40160 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00156,
+        "longitude": 101.52842
+      }
+    },
+    {
+      "id": "cave_by_pp_club",
+      "data": {
+        "name": "Cave by PP Club",
+        "address": "198A, Jalan Sultan Abdul Samad, Brickfields, 50470 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.16092,
+        "longitude": 101.73821
+      }
+    },
+    {
+      "id": "dink_chill_kl",
+      "data": {
+        "name": "Dink & Chill KL",
+        "address": "21A, Jalan Tuanku Abdul Rahman, Chow Kit, 50100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.151466,
+        "longitude": 101.722767
+      }
+    },
+    {
+      "id": "dink_chill_subang",
+      "data": {
+        "name": "Dink & Chill Subang",
+        "address": "28-1, Jalan SS 15/8, Subang Jaya, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.131,
+        "longitude": 101.588
+      }
+    },
+    {
+      "id": "dink_20_pickleball_centre",
+      "data": {
+        "name": "Dink 2.0 Pickleball Centre",
+        "address": "31, Jalan 5/62a, Bandar Menjalara, 52200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.18738,
+        "longitude": 101.72516
+      }
+    },
+    {
+      "id": "dink_bros",
+      "data": {
+        "name": "Dink Bros",
+        "address": "1st Floor, 5, Jalan Manis 6, Taman Segar, 56100 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.04984,
+        "longitude": 101.78636
+      }
+    },
+    {
+      "id": "dink_central",
+      "data": {
+        "name": "Dink Central",
+        "address": "19A, Jalan 3/106, Taman Berkeley, 58200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.08376,
+        "longitude": 101.68494
+      }
+    },
+    {
+      "id": "dink_kingdom_cheras",
+      "data": {
+        "name": "Dink Kingdom Cheras",
+        "address": "72A, Jalan 1/92c, Taman Gembira, 56000 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.047,
+        "longitude": 101.731
+      }
+    },
+    {
+      "id": "dink_kingdom_old_klang_road",
+      "data": {
+        "name": "Dink Kingdom Old Klang Road",
+        "address": "55A, Jalan 3/137c, Batu 5, Jalan Klang Lama, 58000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.089,
+        "longitude": 101.669
+      }
+    },
+    {
+      "id": "dink_kingdom_puchong",
+      "data": {
+        "name": "Dink Kingdom Puchong",
+        "address": "25, Jalan Kenari 17, Bandar Puchong Jaya, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00071,
+        "longitude": 101.61492
+      }
+    },
+    {
+      "id": "dink_pro_pickleball",
+      "data": {
+        "name": "Dink Pro Pickleball",
+        "address": "B-01-01, Jalan Sg Burong Wira, Sek 32, Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.10855,
+        "longitude": 101.5276
+      }
+    },
+    {
+      "id": "dink_realm_ampang",
+      "data": {
+        "name": "Dink Realm Ampang",
+        "address": "28A, Jalan Sulaiman 1, Taman Putra Sulaiman, 68000 Ampang, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.15011,
+        "longitude": 101.75872
+      }
+    },
+    {
+      "id": "dink_realm_bangsar_south",
+      "data": {
+        "name": "Dink Realm Bangsar South",
+        "address": "Unit 8-01, Verve 8, Jalan Kerinchi, Bangsar South, 59200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.111,
+        "longitude": 101.669
+      }
+    },
+    {
+      "id": "dink_realm_cheras",
+      "data": {
+        "name": "Dink Realm Cheras",
+        "address": "68A, Jalan 1/92c, Taman Gembira, 56000 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.04678,
+        "longitude": 101.73098
+      }
+    },
+    {
+      "id": "dink_realm_damansara",
+      "data": {
+        "name": "Dink Realm Damansara",
+        "address": "D-8-1, Jalan PJU 8/1, Damansara Perdana, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1551,
+        "longitude": 101.6086
+      }
+    },
+    {
+      "id": "dink_realm_kl",
+      "data": {
+        "name": "Dink Realm KL",
+        "address": "15A, Jalan Tuanku Abdul Rahman, Chow Kit, 50100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.151,
+        "longitude": 101.72
+      }
+    },
+    {
+      "id": "dink_realm_pandan_indah",
+      "data": {
+        "name": "Dink Realm Pandan Indah",
+        "address": "18-1, Jalan Pandan Indah 4/1, Pandan Indah, 55100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.134918,
+        "longitude": 101.75871
+      }
+    },
+    {
+      "id": "dink_realm_setapak",
+      "data": {
+        "name": "Dink Realm Setapak",
+        "address": "28A, Jalan Danau Saujana, Setapak, 53300 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.19,
+        "longitude": 101.729
+      }
+    },
+    {
+      "id": "dink_realm_sri_petaling",
+      "data": {
+        "name": "Dink Realm Sri Petaling",
+        "address": "29A, Jalan 3/149l, Taman Bukit Sri Petaling, 57000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.071668,
+        "longitude": 101.688271
+      }
+    },
+    {
+      "id": "dinkbox",
+      "data": {
+        "name": "Dinkbox",
+        "address": "19A, Jalan SS 21/39, Damansara Utama, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13141,
+        "longitude": 101.61701
+      }
+    },
+    {
+      "id": "dinkchatz_damansara",
+      "data": {
+        "name": "Dinkchatz (Damansara)",
+        "address": "B-16-1, Jalan PJU 8/1, Damansara Perdana, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.15787,
+        "longitude": 101.60666
+      }
+    },
+    {
+      "id": "dinkin_pickleball_centre",
+      "data": {
+        "name": "Dinkin Pickleball Centre",
+        "address": "92-1, Jalan SS 21/62, Damansara Utama, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.12598,
+        "longitude": 101.61019
+      }
+    },
+    {
+      "id": "dinkov_pickleball",
+      "data": {
+        "name": "Dinkov Pickleball",
+        "address": "22-1, Jalan SS 21/37, Damansara Utama, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13024,
+        "longitude": 101.61051
+      }
+    },
+    {
+      "id": "dinkov_pickleball_damansara",
+      "data": {
+        "name": "Dinkov Pickleball Damansara",
+        "address": "A-16-1, Jalan PJU 8/1, Damansara Perdana, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.155,
+        "longitude": 101.609
+      }
+    },
+    {
+      "id": "dinkov_pickleball_puchong",
+      "data": {
+        "name": "Dinkov Pickleball Puchong",
+        "address": "31-1, Jalan Kenari 22b, Bandar Puchong Jaya, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.003,
+        "longitude": 101.618
+      }
+    },
+    {
+      "id": "dinkx_puchong",
+      "data": {
+        "name": "Dinkx Puchong",
+        "address": "22A, Jalan BP 7/2, Bandar Bukit Puchong, 47120 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.004773,
+        "longitude": 101.614355
+      }
+    },
+    {
+      "id": "empire_damansara_pickleball_club",
+      "data": {
+        "name": "Empire Damansara Pickleball Club",
+        "address": "Lot C-8-01, Empire Damansara, Jalan Sinar, Damansara, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.15733,
+        "longitude": 101.6086
+      }
+    },
+    {
+      "id": "golden_pickleball",
+      "data": {
+        "name": "Golden Pickleball",
+        "address": "18A, Jalan SS 21/58, Damansara Utama, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13511,
+        "longitude": 101.61174
+      }
+    },
+    {
+      "id": "goodminton",
+      "data": {
+        "name": "Goodminton",
+        "address": "51, Jalan Seterjang, Seksyen 22, 40300 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0855,
+        "longitude": 101.53294
+      }
+    },
+    {
+      "id": "gravity_x_pickleball_ara_damansara",
+      "data": {
+        "name": "Gravity X Pickleball (Ara Damansara)",
+        "address": "B-7-1, Jalan PJU 1a/3, Ara Damansara, 47301 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11171,
+        "longitude": 101.57733
+      }
+    },
+    {
+      "id": "gravity_x_pickleball_bangsar_south",
+      "data": {
+        "name": "Gravity X Pickleball (Bangsar South)",
+        "address": "Unit 7-01, Verve 7, Jalan Kerinchi, Bangsar South, 59200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.11007,
+        "longitude": 101.66991
+      }
+    },
+    {
+      "id": "gravity_x_pickleball_damansara",
+      "data": {
+        "name": "Gravity X Pickleball (Damansara)",
+        "address": "6-1, Jalan SS 20/11, Damansara Intan, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.12084,
+        "longitude": 101.62744
+      }
+    },
+    {
+      "id": "gravity_x_pickleball_old_klang_road",
+      "data": {
+        "name": "Gravity X Pickleball (Old Klang Road)",
+        "address": "26, Jalan 3/137c, Batu 5, Jalan Klang Lama, 58000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.09034,
+        "longitude": 101.66728
+      }
+    },
+    {
+      "id": "gravity_x_pickleball_shah_alam",
+      "data": {
+        "name": "Gravity X Pickleball (Shah Alam)",
+        "address": "10, Jalan Pelukis, Kawasan 16, 40000 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.114,
+        "longitude": 101.531
+      }
+    },
+    {
+      "id": "karisma_selangor",
+      "data": {
+        "name": "Karisma Selangor",
+        "address": "PT 4, Jalan Jubli Perak 22/1, Seksyen 22, 40300 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11369,
+        "longitude": 101.55095
+      }
+    },
+    {
+      "id": "one_sports_hub",
+      "data": {
+        "name": "One Sports Hub",
+        "address": "2, Jalan Pelukis, Kawasan 16, 40000 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11694,
+        "longitude": 101.53248
+      }
+    },
+    {
+      "id": "pb_cheras",
+      "data": {
+        "name": "PB Cheras",
+        "address": "56A, Jalan 1/92c, Taman Gembira, 56000 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.04562,
+        "longitude": 101.73276
+      }
+    },
+    {
+      "id": "pb_puchong",
+      "data": {
+        "name": "PB Puchong",
+        "address": "45-1, Jalan Kenari 19c, Bandar Puchong Jaya, 47170 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9978,
+        "longitude": 101.61705
+      }
+    },
+    {
+      "id": "pj_genesis",
+      "data": {
+        "name": "PJ Genesis",
+        "address": "12A, Jalan SS 22/23, Damansara Jaya, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11793,
+        "longitude": 101.61608
+      }
+    },
+    {
+      "id": "pj_pickleball_central",
+      "data": {
+        "name": "PJ Pickleball Central",
+        "address": "Jalan 52/16, PJ New Town, 46200 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11153,
+        "longitude": 101.63834
+      }
+    },
+    {
+      "id": "pickle_chill",
+      "data": {
+        "name": "Pickle & Chill",
+        "address": "43A, Jalan SS 18/6, Subang Jaya, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.10777,
+        "longitude": 101.59163
+      }
+    },
+    {
+      "id": "pickle_chill_cheras",
+      "data": {
+        "name": "Pickle & Chill Cheras",
+        "address": "60A, Jalan 1/92c, Taman Gembira, 56000 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.046,
+        "longitude": 101.733
+      }
+    },
+    {
+      "id": "pickle_chill_kepong",
+      "data": {
+        "name": "Pickle & Chill Kepong",
+        "address": "88, Jalan Metro Perdana 5, Taman Usahawan, 51200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.215,
+        "longitude": 101.648
+      }
+    },
+    {
+      "id": "pickle_chill_puchong",
+      "data": {
+        "name": "Pickle & Chill Puchong",
+        "address": "27-1, Jalan Kenari 19b, Bandar Puchong Jaya, 47170 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.002,
+        "longitude": 101.615
+      }
+    },
+    {
+      "id": "pickle_ksl",
+      "data": {
+        "name": "Pickle @ KSL",
+        "address": "KSL Sports Hub, 8, Jalan KSL, Bandar Sunway, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06965,
+        "longitude": 101.59244
+      }
+    },
+    {
+      "id": "pickle_dynamic",
+      "data": {
+        "name": "Pickle Dynamic",
+        "address": "29A, Jalan SS 24/8, Taman Megah, 47301 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1049,
+        "longitude": 101.61661
+      }
+    },
+    {
+      "id": "pickle_kingdom_bangsar",
+      "data": {
+        "name": "Pickle Kingdom Bangsar",
+        "address": "28A, Jalan Telawi 3, Bangsar, 59100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.132,
+        "longitude": 101.671
+      }
+    },
+    {
+      "id": "pickle_kingdom_damansara",
+      "data": {
+        "name": "Pickle Kingdom Damansara",
+        "address": "C-8-1, Jalan PJU 8/1, Damansara Perdana, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.156,
+        "longitude": 101.607
+      }
+    },
+    {
+      "id": "pickle_kingdom_kepong",
+      "data": {
+        "name": "Pickle Kingdom Kepong",
+        "address": "95, Jalan Metro Perdana 7, Taman Usahawan, 51200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.216,
+        "longitude": 101.647
+      }
+    },
+    {
+      "id": "pickle_kingdom_old_klang_road",
+      "data": {
+        "name": "Pickle Kingdom Old Klang Road",
+        "address": "48, Jalan 3/137c, Batu 5, Jalan Klang Lama, 58000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.09267,
+        "longitude": 101.66788
+      }
+    },
+    {
+      "id": "pickle_kingdom_puchong",
+      "data": {
+        "name": "Pickle Kingdom Puchong",
+        "address": "38-1, Jalan Puteri 2/5, Bandar Puteri, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01901,
+        "longitude": 101.61811
+      }
+    },
+    {
+      "id": "pickle_kingdom_subang",
+      "data": {
+        "name": "Pickle Kingdom Subang",
+        "address": "12-1, Jalan SS 15/4, Subang Jaya, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13,
+        "longitude": 101.589
+      }
+    },
+    {
+      "id": "pickle_masters",
+      "data": {
+        "name": "Pickle Masters",
+        "address": "78-1, Jalan Puteri 2/3, Bandar Puteri, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01929,
+        "longitude": 101.61796
+      }
+    },
+    {
+      "id": "pickle_paradise",
+      "data": {
+        "name": "Pickle Paradise",
+        "address": "5-1, Jalan Puteri 2/2, Bandar Puteri, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02173,
+        "longitude": 101.61597
+      }
+    },
+    {
+      "id": "pickle_republic",
+      "data": {
+        "name": "Pickle Republic",
+        "address": "40-1, Jalan Jalil Perkasa 3, Bukit Jalil, 57000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.04831,
+        "longitude": 101.68842
+      }
+    },
+    {
+      "id": "pickle_sphere",
+      "data": {
+        "name": "Pickle Sphere",
+        "address": "7A, Jalan PJS 11/28, Bandar Sunway, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06643,
+        "longitude": 101.6172
+      }
+    },
+    {
+      "id": "pickle_sphere_sunway",
+      "data": {
+        "name": "Pickle Sphere Sunway",
+        "address": "9A, Jalan PJS 11/28, Bandar Sunway, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.067,
+        "longitude": 101.616
+      }
+    },
+    {
+      "id": "pickleball_hub_kepong",
+      "data": {
+        "name": "Pickleball Hub Kepong",
+        "address": "1104, Jalan Batu Caves, 68100 Batu Caves, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.21824,
+        "longitude": 101.64342
+      }
+    },
+    {
+      "id": "pickleball_hub_puchong",
+      "data": {
+        "name": "Pickleball Hub Puchong",
+        "address": "56, Jalan Kenari 17b, Bandar Puchong Jaya, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.99961,
+        "longitude": 101.61479
+      }
+    },
+    {
+      "id": "pickleball_hub_seri_kembangan",
+      "data": {
+        "name": "Pickleball Hub Seri Kembangan",
+        "address": "Jalan BS 2/2, Taman Bukit Serdang, 43300 Seri Kembangan, Selangor",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0237,
+        "longitude": 101.70244
+      }
+    },
+    {
+      "id": "pickleball_reborn_bukit_bintang",
+      "data": {
+        "name": "Pickleball Reborn Bukit Bintang",
+        "address": "12, Jalan Solaris, Mont Kiara, 50480 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.145,
+        "longitude": 101.71
+      }
+    },
+    {
+      "id": "pickleball_reborn_damansara",
+      "data": {
+        "name": "Pickleball Reborn Damansara",
+        "address": "E-16-1, Jalan PJU 8/1, Damansara Perdana, 47820 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.158,
+        "longitude": 101.605
+      }
+    },
+    {
+      "id": "pickleball_reborn_kepong",
+      "data": {
+        "name": "Pickleball Reborn Kepong",
+        "address": "73, Jalan Metro Perdana 3, Taman Usahawan, 51200 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.21482,
+        "longitude": 101.64933
+      }
+    },
+    {
+      "id": "pickleball_reborn_old_klang_road",
+      "data": {
+        "name": "Pickleball Reborn Old Klang Road",
+        "address": "52A, Jalan 3/137c, Batu 5, Jalan Klang Lama, 58000 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.09114,
+        "longitude": 101.66848
+      }
+    },
+    {
+      "id": "pickleball_reborn_puchong",
+      "data": {
+        "name": "Pickleball Reborn Puchong",
+        "address": "37-1, Jalan Kenari 22b, Bandar Puchong Jaya, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00182,
+        "longitude": 101.61879
+      }
+    },
+    {
+      "id": "pickleball_reborn_sri_petaling",
+      "data": {
+        "name": "Pickleball Reborn Sri Petaling",
+        "address": "5, Jalan 7/108, Taman Sungai Besi, 57100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.06856,
+        "longitude": 101.68648
+      }
+    },
+    {
+      "id": "pickleball_reborn_subang",
+      "data": {
+        "name": "Pickleball Reborn Subang",
+        "address": "38-1, Jalan SS 15/4, Subang Jaya, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13132,
+        "longitude": 101.58731
+      }
+    },
+    {
+      "id": "picklebar_salak_south",
+      "data": {
+        "name": "Picklebar Salak South",
+        "address": "37A, Jalan 2/108, Taman Salak Selatan, 57100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.08365,
+        "longitude": 101.67598
+      }
+    },
+    {
+      "id": "pickleblock_setapak",
+      "data": {
+        "name": "Pickleblock Setapak",
+        "address": "26A, Jalan Danau Saujana, Setapak, 53300 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.189774,
+        "longitude": 101.728955
+      }
+    },
+    {
+      "id": "picklehub_cheras",
+      "data": {
+        "name": "Picklehub Cheras",
+        "address": "32-1, Jalan 2/92c, Taman Gembira, 56000 Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.045,
+        "longitude": 101.734
+      }
+    },
+    {
+      "id": "setia_pickleball",
+      "data": {
+        "name": "Setia Pickleball",
+        "address": "No 10, Jalan Pahat E 15/E, Seksyen 15, 40200 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.10322,
+        "longitude": 101.51936
+      }
+    },
+    {
+      "id": "spicy_pickleball_bukit_bintang",
+      "data": {
+        "name": "Spicy Pickleball Bukit Bintang",
+        "address": "Arcoris, 10, Jalan Solaris, Mont Kiara, 50480 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.14416,
+        "longitude": 101.70818
+      }
+    },
+    {
+      "id": "spicy_pickleball_sunway",
+      "data": {
+        "name": "Spicy Pickleball Sunway",
+        "address": "42A, Jalan PJS 11/7, Bandar Sunway, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.073397,
+        "longitude": 101.605675
+      }
+    },
+    {
+      "id": "sunsuria_forum_pickleball",
+      "data": {
+        "name": "Sunsuria Forum Pickleball",
+        "address": "A-01-11, Sunsuria Forum @ Sunway, Jalan PJ 5/1, Sunway City, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06687,
+        "longitude": 101.60447
+      }
+    },
+    {
+      "id": "the_cc_dinks",
+      "data": {
+        "name": "The C&C Dinks",
+        "address": "No.7, Jalan SS 23/11, Taman SEA, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08205,
+        "longitude": 101.63302
+      }
+    },
+    {
+      "id": "urban_pickleball_club",
+      "data": {
+        "name": "Urban Pickleball Club",
+        "address": "Lot 2-1, Wisma Central, Jalan Ampang, 50450 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1362519,
+        "longitude": 101.7463463
+      }
+    },
+    {
+      "id": "urbanspin_kl",
+      "data": {
+        "name": "Urbanspin KL",
+        "address": "G-01, Wisma Laxton, Jalan Desa, Taman Desa, 58100 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.11677,
+        "longitude": 101.66541
+      }
+    },
+    {
+      "id": "wangsa_walk_pickleball",
+      "data": {
+        "name": "Wangsa Walk Pickleball",
+        "address": "Wangsa Walk Mall, Wangsa Avenue, Jalan Wan Kadir 3, Wangsa Maju, 53300 Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.19697,
+        "longitude": 101.74069
+      }
+    },
+    {
+      "id": "one_badminton_academy",
+      "data": {
+        "name": "One Badminton Academy",
+        "address": "Lot 24391-B, Jalan 3/32A, Batu 6, 1/2, Jln Kepong, 52000 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.22177,
+        "longitude": 101.65336
+      }
+    },
+    {
+      "id": "one_badminton_hall_taman_ehsan",
+      "data": {
+        "name": "One Badminton Hall Taman Ehsan",
+        "address": "Lot 20, Level 8, Jalan E 1/5, Jalan, Taman Perindustrian Ehsan Jaya, 52100 Kuala Lumpur",
+        "city": "Kepong",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.21842,
+        "longitude": 101.61791
+      }
+    },
+    {
+      "id": "racquet_rojak",
+      "data": {
+        "name": "Racquet Rojak",
+        "address": "Racquet Rojak @ PJ Damansara-Puchong Expressway Kampung Sungai Kayu Ara",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13374,
+        "longitude": 101.60924
+      }
+    },
+    {
+      "id": "setapak_pickleball",
+      "data": {
+        "name": "Setapak Pickleball",
+        "address": "Setapak Pickleball, Setapak Pickleball, Taman Setapak Indah Jaya, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.19524,
+        "longitude": 101.71187
+      }
+    },
+    {
+      "id": "andalas_sports_complex",
+      "data": {
+        "name": "Andalas Sports Complex",
+        "address": "Andalas Sports Complex, Jalan Tun Abdul Razak, Taman Sri Andalas, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01489,
+        "longitude": 101.45075
+      }
+    },
+    {
+      "id": "setia_sport_arena",
+      "data": {
+        "name": "Setia Sport Arena",
+        "address": "Setia Sport Arena (Shah Alam) Jalan Batu Tiga Lama Batu Tiga",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.07649,
+        "longitude": 101.55813
+      }
+    },
+    {
+      "id": "bubble_sports_complex_cheras",
+      "data": {
+        "name": "Bubble Sports Complex Cheras",
+        "address": "Lot 44621, Jalan Perdana 1, Taman Segar Perdana, 43200 Cheras, Selangor",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.09103,
+        "longitude": 101.76309
+      }
+    },
+    {
+      "id": "futureproof_physio_and_rehab",
+      "data": {
+        "name": "FUTUREPROOF PHYSIO AND REHAB",
+        "address": "2A, Jalan Desa 2/7, Desa Aman Puri, 52100 Kuala Lumpur, Wilayah Persekutuan, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.20915,
+        "longitude": 101.61678
+      }
+    },
+    {
+      "id": "pick_the_ball_klang",
+      "data": {
+        "name": "Pick The Ball @ Klang",
+        "address": "2, Jalan Sungai Chadong, Kampung Batu Empat, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08635,
+        "longitude": 101.39999
+      }
+    },
+    {
+      "id": "picklechill",
+      "data": {
+        "name": "PickleChill",
+        "address": "South City Plaza, Taman Serdang Perdana, Seri Kembangan, Selangor, Malaysia",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02876,
+        "longitude": 101.70932
+      }
+    },
+    {
+      "id": "yosin_court_1",
+      "data": {
+        "name": "Yosin Court 1",
+        "address": "Lot PT78, sekyen 40160, Jln. Pekan Subang",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.13872,
+        "longitude": 101.5284
+      }
+    },
+    {
+      "id": "prima_badminton_centre",
+      "data": {
+        "name": "Prima Badminton Centre",
+        "address": "Lorong Aman 3, Kampung Seri Aman, 47100 Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.98377,
+        "longitude": 101.58879
+      }
+    },
+    {
+      "id": "oh_my_belly_x_pickle_space",
+      "data": {
+        "name": "OH MY BELLY x PICKLE SPACE",
+        "address": "Pickle Space Jalan Subang 4 TMN.INDUSTRI SG.PENAGA",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04556,
+        "longitude": 101.59725
+      }
+    },
+    {
+      "id": "pickle_hive",
+      "data": {
+        "name": "Pickle Hive",
+        "address": "No.4, Jalan Lada Hitam Satu 16/12a, Seksyen 16, 40200 Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05785,
+        "longitude": 101.50092
+      }
+    },
+    {
+      "id": "9_pickle_mines_2",
+      "data": {
+        "name": "9 Pickle @ Mines 2",
+        "address": "Level 2, Mines 2, Jalan Mines 2, Mines Wellness City, Seri Kembangan, Selangor, Malaysia",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02741,
+        "longitude": 101.71666
+      }
+    },
+    {
+      "id": "new_vision_badminton_court",
+      "data": {
+        "name": "New Vision Badminton Court",
+        "address": "3, Jalan 13/1, Seksyen 13, 46200 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11265,
+        "longitude": 101.6371
+      }
+    },
+    {
+      "id": "balakong_badminton_sports_centre",
+      "data": {
+        "name": "Balakong Badminton Sports Centre",
+        "address": "no.154, Jalan Besar, Kampung Baru Balakong, 43300 Seri Kembangan, Selangor, Malaysia",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02955,
+        "longitude": 101.74574
+      }
+    },
+    {
+      "id": "medalist_international_sports_centre",
+      "data": {
+        "name": "Medalist International Sports Centre",
+        "address": "5, Jalan TPP 6/6, Taman Perindustrian Puchong, Puchong, Selangor, Malaysia",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02478,
+        "longitude": 101.60192
+      }
+    },
+    {
+      "id": "picklehall_center",
+      "data": {
+        "name": "Picklehall Center",
+        "address": "Lot 1690, Kampung Kelanang, Banting, Selangor, Malaysia0123075078",
+        "city": "Banting",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.79965,
+        "longitude": 101.44318
+      }
+    },
+    {
+      "id": "asc_pickle_hall",
+      "data": {
+        "name": "ASC PICKLE HALL",
+        "address": "ASC Pickle Hall Lorong 16/3d Seksyen 16",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11978,
+        "longitude": 101.64118
+      }
+    },
+    {
+      "id": "victor_arena_rawang",
+      "data": {
+        "name": "Victor Arena Rawang",
+        "address": "Jalan Lks 1, Kampung Dato' Lee Kim Sai, 48000 Rawang, Selangor",
+        "city": "Rawang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.31074,
+        "longitude": 101.57903
+      }
+    },
+    {
+      "id": "premier_pickleball",
+      "data": {
+        "name": "Premier Pickleball",
+        "address": "No. 2, Jalan SS13/3F, 47500 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.07009,
+        "longitude": 101.59677
+      }
+    },
+    {
+      "id": "dinkit_banting",
+      "data": {
+        "name": "DINKiT Banting",
+        "address": "Banting Centro Mall (BCM) Jalan Beringin 3 Plaza Banting Sentral",
+        "city": "Banting",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.81477,
+        "longitude": 101.50302
+      }
+    },
+    {
+      "id": "oncourt",
+      "data": {
+        "name": "OnCourt",
+        "address": "Jalan Lapangan Terbang Lama Pengkalan Tentera Udara Diraja Malaysia 50460",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.11923,
+        "longitude": 101.70248
+      }
+    },
+    {
+      "id": "dewan_sri_qamaria",
+      "data": {
+        "name": "Dewan Sri Qamaria",
+        "address": "Dewan Sri Qamaria Klang Kampung Sungai Udang",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04115,
+        "longitude": 101.42351
+      }
+    },
+    {
+      "id": "the_pickle_tree",
+      "data": {
+        "name": "The Pickle Tree",
+        "address": "Lot 5639-A, Jalan Bangau 10 Bandar Puchong Jaya",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05032,
+        "longitude": 101.62794
+      }
+    },
+    {
+      "id": "pickle_x",
+      "data": {
+        "name": "Pickle X",
+        "address": "Lot PT 1168, Jalan Plumbum Ac 7/Ac Seksyen 7",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06377,
+        "longitude": 101.48875
+      }
+    },
+    {
+      "id": "repick_pickleball",
+      "data": {
+        "name": "REPICK PICKLEBALL",
+        "address": "Lot 47-1, Jalan Tiga, Off Jalan Chan Sow Lin, Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.11947,
+        "longitude": 101.71357
+      }
+    },
+    {
+      "id": "pickle_with_me",
+      "data": {
+        "name": "Pickle With Me",
+        "address": "Lot 764, Jalan Subang 4, Taman Industri Sungai Penaga, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04699,
+        "longitude": 101.59609
+      }
+    },
+    {
+      "id": "pickle_alley",
+      "data": {
+        "name": "Pickle Alley",
+        "address": "C-1-01, First Floor, Ritze Perdana 2, Jalan PJU 8/1, Damansara Perdana, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.16438,
+        "longitude": 101.61083
+      }
+    },
+    {
+      "id": "kas_kepong_arena_sports",
+      "data": {
+        "name": "KAS Kepong Arena Sports",
+        "address": "KAS Kepong Arena Sports Jalan Kepong Kawasan Perusahaan Kepong",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.20373,
+        "longitude": 101.65096
+      }
+    },
+    {
+      "id": "sky_pickleball",
+      "data": {
+        "name": "Sky Pickleball",
+        "address": "Jalan Anggerik Vanilla BE 31/BE, Kota Kemuning, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00455,
+        "longitude": 101.53591
+      }
+    },
+    {
+      "id": "pickle_zone",
+      "data": {
+        "name": "Pickle Zone",
+        "address": "14, Jalan Teknologi, Taman Sains Selangor, Kota Damansara",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.15312,
+        "longitude": 101.5669
+      }
+    },
+    {
+      "id": "pikapika_mytown_level_7",
+      "data": {
+        "name": "PikaPika Mytown @ Level 7",
+        "address": "Level 7, KL MYTOWN 6, Jalan Cochrane Seksyen 90 55100",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.13436,
+        "longitude": 101.72296
+      }
+    },
+    {
+      "id": "threewolves_sports_one_city",
+      "data": {
+        "name": "Threewolves Sports @ One City",
+        "address": "6, Jalan USJ 25/1A, One City, 47100 Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02118,
+        "longitude": 101.58156
+      }
+    },
+    {
+      "id": "pad_pickleball_paddle_and_dink",
+      "data": {
+        "name": "PAD Pickleball - Paddle and Dink",
+        "address": "Level 1, Premi\u00e8re Hotel, Jalan Langat, Bandar Bukit Tinggi, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00718,
+        "longitude": 101.44132
+      }
+    },
+    {
+      "id": "the_pickle_hub",
+      "data": {
+        "name": "The Pickle Hub",
+        "address": "Batu 10 Jalan Cheras",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05286,
+        "longitude": 101.77375
+      }
+    },
+    {
+      "id": "picklefy",
+      "data": {
+        "name": "Picklefy",
+        "address": "Picklefy Jalan Tudm Kampung Subang Baru",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14166,
+        "longitude": 101.53772
+      }
+    },
+    {
+      "id": "all_star_pickle",
+      "data": {
+        "name": "All-Star Pickle",
+        "address": "ST Rosyam Mall @ Jalan Kebun, Klang Jalan Kebun",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02367,
+        "longitude": 101.47914
+      }
+    },
+    {
+      "id": "demo_please_do_not_book",
+      "data": {
+        "name": "Demo (Please Do Not Book)",
+        "address": "Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.14992,
+        "longitude": 101.69446
+      }
+    },
+    {
+      "id": "dewan_badminton_ko",
+      "data": {
+        "name": "Dewan Badminton Ko",
+        "address": "Jln Sungai Bertih, Taman Sri Gadong, 41100 Klang, Selangor",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.03021,
+        "longitude": 101.42387
+      }
+    },
+    {
+      "id": "pickleball_playground",
+      "data": {
+        "name": "Pickleball Playground",
+        "address": "Pickleball Playground Jalan Padang Jawa Seksyen 16",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06088,
+        "longitude": 101.49137
+      }
+    },
+    {
+      "id": "pickleball_centrus_courtyard",
+      "data": {
+        "name": "Pickleball @ Centrus Courtyard",
+        "address": "CBD Perdana 3 Jalan Perdana",
+        "city": "Cyberjaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9257,
+        "longitude": 101.64999
+      }
+    },
+    {
+      "id": "the_moochi_club_pickleball_court",
+      "data": {
+        "name": "The Moochi Club Pickleball Court",
+        "address": "10 Jalan TP 5 Taman Perindustrian Uep 47600",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04308,
+        "longitude": 101.56279
+      }
+    },
+    {
+      "id": "gio_me_pickle_eco_majestic",
+      "data": {
+        "name": "Gio Me Pickle @ Eco Majestic",
+        "address": "Gio Me Pickle @ Eco Majestic Eco Majestic City",
+        "city": "Semenyih",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.89981,
+        "longitude": 101.83284
+      }
+    },
+    {
+      "id": "yosin_court_2_elite_sports",
+      "data": {
+        "name": "Yosin Court 2 (Previously known as Elite Sports)",
+        "address": "Lrg 2D, Kampung Melayu Subang, 40150 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14402,
+        "longitude": 101.53103
+      }
+    },
+    {
+      "id": "spin_city",
+      "data": {
+        "name": "Spin City",
+        "address": "Level 4, Great Eastern Mall, Jalan Ampang",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.16082,
+        "longitude": 101.73716
+      }
+    },
+    {
+      "id": "dstar_arena_challenger_ampang",
+      "data": {
+        "name": "DStar Arena Challenger Sports Centre Ampang",
+        "address": "No. 1, Kompleks Destar Arena, Jalan Putra, Taman Dagang Permai, 68000 Ampang, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14044,
+        "longitude": 101.781
+      }
+    },
+    {
+      "id": "pickle_world_titan_ball_machine",
+      "data": {
+        "name": "Pickle World (Titan Ball Machine)",
+        "address": "Pickle World, Lorong Tandang B, Pjs 51, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08557,
+        "longitude": 101.62663
+      }
+    },
+    {
+      "id": "younique_sports_pudu_plaza",
+      "data": {
+        "name": "Younique Sports-Pudu Plaza",
+        "address": "Pudu Plaza Shopping Centre Level 4.51, No. 2, Jalan Landak, Pudu, 55100 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.13674,
+        "longitude": 101.71352
+      }
+    },
+    {
+      "id": "ag_pickleball_balakong_titan",
+      "data": {
+        "name": "AG Pickleball Balakong (Titan Ball Machine)",
+        "address": "AG Pickleball \u2022 Balakong, Kawasan Perindustrian Balakong, Selangor, Malaysia",
+        "city": "Selangor",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.03218,
+        "longitude": 101.74195
+      }
+    },
+    {
+      "id": "dinkit_pickleball_sg_besar",
+      "data": {
+        "name": "DINKiT Pickleball SG Besar",
+        "address": "25093 , Jalan PPP 1 Taman Perdana",
+        "city": "Sungai Besar",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.6661,
+        "longitude": 100.98856
+      }
+    },
+    {
+      "id": "sportheroes",
+      "data": {
+        "name": "SPORTHEROES",
+        "address": "Sport Heroes Kota Damansara",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1615,
+        "longitude": 101.56946
+      }
+    },
+    {
+      "id": "pickle_padel_pop",
+      "data": {
+        "name": "Pickle Padel Pop",
+        "address": "Pickle Padel Pop (Balakong Branch) Jalan KPB 1 Kawasan Perindustrian Balakong",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0264,
+        "longitude": 101.73455
+      }
+    },
+    {
+      "id": "playbkgcr",
+      "data": {
+        "name": "Play@BKGCR",
+        "address": "Play@BKGCR, 6031, 7, Jalan Bukit Kemuning, Seksyen 32, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.98553,
+        "longitude": 101.52476
+      }
+    },
+    {
+      "id": "the_paddlers_club",
+      "data": {
+        "name": "The Paddlers Club",
+        "address": "Jalan Tiaj 2/3, Taman Industri Alam Jaya, Puncak Alam, Selangor, Malaysia",
+        "city": "Kuala Selangor",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.24204,
+        "longitude": 101.45054
+      }
+    },
+    {
+      "id": "pickle_park_titan_ball_machine",
+      "data": {
+        "name": "Pickle Park (Titan Ball Machine)",
+        "address": "Pickle Park @ Flour, Fire & Stone Jalan Professor Khoo Kay Kim Pjs 13",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1161,
+        "longitude": 101.63185
+      }
+    },
+    {
+      "id": "matrik_shuttle_court",
+      "data": {
+        "name": "Matrik Shuttle Court",
+        "address": "315-6 Jalan Sungai Besi, &, Jalan Foss, 55200 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.12921,
+        "longitude": 101.71548
+      }
+    },
+    {
+      "id": "dink2_titan_ball_machine",
+      "data": {
+        "name": "DINK2 (Titan Ball Machine)",
+        "address": "The Paddock PJ X-Park Sunway Serene Jalan SS 8/6 Sungai Way Free Trade Industrial Zone",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.09037,
+        "longitude": 101.60952
+      }
+    },
+    {
+      "id": "pickletown_x_uptown_puchong",
+      "data": {
+        "name": "PickleTown X Uptown Puchong",
+        "address": "Uptown Puchong Night Bazaar- Entrance B, Jalan Puchong, Taman Meranti Jaya, Puchong, Selangor, Malaysia",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9796,
+        "longitude": 101.61222
+      }
+    },
+    {
+      "id": "srgc_subang_racquet_golf_centre",
+      "data": {
+        "name": "SRGC - Subang Racquet & Golf Centre",
+        "address": "9578, Jalan SS 16/1, Ss 16, 47500 Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08129,
+        "longitude": 101.57868
+      }
+    },
+    {
+      "id": "ampang_jaya_badminton_club",
+      "data": {
+        "name": "Ampang Jaya Badminton Club",
+        "address": "16, Jalan Kencana 22, Taman Kencana,16, Jalan Kencana 22, Taman Kencana, 68000 Ampang, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11657,
+        "longitude": 101.74782
+      }
+    },
+    {
+      "id": "denai_alam_table_tennis_centre",
+      "data": {
+        "name": "Denai Alam Table Tennis Centre",
+        "address": "Denai Alam Table Tennis Centre (DATTC) Jalan Elektron U16/E Denai Alam",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.16249,
+        "longitude": 101.51288
+      }
+    },
+    {
+      "id": "pickle_fun_park",
+      "data": {
+        "name": "Pickle Fun Park",
+        "address": "Pickle Fun Park Jalan 6/37a Kawasan Perusahaan Taman Bukit MaluriKepong",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.19977,
+        "longitude": 101.63835
+      }
+    },
+    {
+      "id": "embassy_villa_by_cobnb",
+      "data": {
+        "name": "Embassy Villa by COBNB",
+        "address": "4, Persiaran Ampang Hilir Taman U Thant",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.15765,
+        "longitude": 101.72988
+      }
+    },
+    {
+      "id": "go_rock_pickleball",
+      "data": {
+        "name": "Go Rock Pickleball",
+        "address": "G-1-B, The Scott Garden Old Klang Road",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.09472,
+        "longitude": 101.67509
+      }
+    },
+    {
+      "id": "jomplay_arena",
+      "data": {
+        "name": "JOMPLAY ARENA",
+        "address": "Bangi Gateway Street Mall, Jalan Gerbang Wawasan 1, Seksyen 15, Bandar Baru Bangi, Selangor, Malaysia",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.93176,
+        "longitude": 101.76488
+      }
+    },
+    {
+      "id": "megah_rise_badminton_club",
+      "data": {
+        "name": "Megah Rise Badminton Club",
+        "address": "L3-23, Megah Rise Mall, Jln SS 24/8, Taman Megah, 47301 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11436,
+        "longitude": 101.6117
+      }
+    },
+    {
+      "id": "arena_sukan_kuala_lumpur",
+      "data": {
+        "name": "Arena Sukan Kuala Lumpur",
+        "address": "No 210, Jalan Air Jernih, Mukim, Setapak, 53200 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.21785,
+        "longitude": 101.71455
+      }
+    },
+    {
+      "id": "pickle_junction",
+      "data": {
+        "name": "Pickle Junction",
+        "address": "Pickle Junction Jalan Cipta Serenia 1 Bandar Serenia",
+        "city": "Sepang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.84074,
+        "longitude": 101.69258
+      }
+    },
+    {
+      "id": "dewan_badminton_sjkc_puay_chai_2",
+      "data": {
+        "name": "Dewan Badminton SJK(C) Puay Chai 2",
+        "address": "Jln BU 3/1, Bandar Utama, 47800 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14813,
+        "longitude": 101.61066
+      }
+    },
+    {
+      "id": "pool_room_shamelin",
+      "data": {
+        "name": "Pool Room @ Shamelin",
+        "address": "Pool Room @Shamelin, DB-C5, Jalan 4/91, Taman Shamelin Perkasa, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.12411,
+        "longitude": 101.73642
+      }
+    },
+    {
+      "id": "spbc_training_centre",
+      "data": {
+        "name": "SPBC Training Centre",
+        "address": "SPBC Training Centre 356 Jalan 2c Kampung Subang Baru (Behind Subang Airport)\nNote : Waze SPBC Training Centre",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14084,
+        "longitude": 101.5356
+      }
+    },
+    {
+      "id": "psc_parkcity_sports_centre",
+      "data": {
+        "name": "PSC Parkcity Sports Centre",
+        "address": "1, Jalan Sri Bintang Utama, Desa Parkcity, 52200 Kepong, Federal Territory of Kuala Lumpur",
+        "city": "Kepong",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.18897,
+        "longitude": 101.64039
+      }
+    },
+    {
+      "id": "sjkc_stteresa",
+      "data": {
+        "name": "SJK(C) St.Teresa",
+        "address": "SJK(C) St. Teresa \u5409\u9686\u5761\u5723\u5fb7\u534e\u5c0f Brickfields",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.12759,
+        "longitude": 101.68484
+      }
+    },
+    {
+      "id": "bukit_serdang_alpha_badminton",
+      "data": {
+        "name": "Bukit Serdang-Alpha Badminton Complex",
+        "address": "Jalan BS 5/18, Taman Bukit Serdang, 43300 Seri Kembangan, Selangor",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0243,
+        "longitude": 101.69326
+      }
+    },
+    {
+      "id": "younique_sports_semenyih",
+      "data": {
+        "name": "Younique Sports-Semenyih",
+        "address": "Lot. 29952, Jln Bangi, Bt. 1 1/2",
+        "city": "Semenyih",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.92807,
+        "longitude": 101.77472
+      }
+    },
+    {
+      "id": "pickle_pop_club",
+      "data": {
+        "name": "Pickle Pop Club",
+        "address": "Level 4, Aurora Place Bukit Jalil Persiaran Jalil 1 Bukit Jalil",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.05395,
+        "longitude": 101.6697
+      }
+    },
+    {
+      "id": "sjkc_tanjong_karang",
+      "data": {
+        "name": "SJK(C) Tanjong Karang",
+        "address": ", Jalan Dewan Dato Hormat Rafie",
+        "city": "Tanjong Karang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.42544,
+        "longitude": 101.17254
+      }
+    },
+    {
+      "id": "p4_pickleball_sport_bukit_jalil",
+      "data": {
+        "name": "P4 Pickleball Sport (Bukit Jalil)",
+        "address": "P4 Pickleball Sports (Bukit Jalil) Jalan Tekno Usahawan 1 MRANTI Park",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.04701,
+        "longitude": 101.68463
+      }
+    },
+    {
+      "id": "pickle_haven",
+      "data": {
+        "name": "Pickle Haven",
+        "address": "763 Jalan Subang 4 Ultramine Industrial Park",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04692,
+        "longitude": 101.59583
+      }
+    },
+    {
+      "id": "sports_barn",
+      "data": {
+        "name": "Sports Barn",
+        "address": "Bangunan Basic 8 Lorong 19/1a Seksyen 19",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11454,
+        "longitude": 101.62939
+      }
+    },
+    {
+      "id": "lavista_arena",
+      "data": {
+        "name": "LaVista Arena",
+        "address": "Bangi Resort Hotel, Off, Persiaran Bandar",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.95503,
+        "longitude": 101.76472
+      }
+    },
+    {
+      "id": "ancubic_pickleclub",
+      "data": {
+        "name": "ANCUBIC PICKLECLUB",
+        "address": "Ancubic Harmoni Sales Gallery, Persiaran Aman Perdana 3, tropicana Aman, Telok Panglima Garang, Selangor, Malaysia",
+        "city": "Telok Panglima Garang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.95135,
+        "longitude": 101.54591
+      }
+    },
+    {
+      "id": "rcp_puchong_pro_one_badminton",
+      "data": {
+        "name": "RCP Racquet Club Puchong (Pro One Badminton Centre Puchong)",
+        "address": "1295, Jalan Pipit, Batu 8 1/2, kg Bukit Tandang, Bandar Puchong Jaya, 47100 Puchong, Selangor, Malaysia",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05919,
+        "longitude": 101.63131
+      }
+    },
+    {
+      "id": "reskills_satellite_sports_pj",
+      "data": {
+        "name": "Reskills Sports Arena @ Satellite Sports PJ",
+        "address": "Lot 3, Jalan 51/203",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08825,
+        "longitude": 101.63348
+      }
+    },
+    {
+      "id": "m_sports_arena",
+      "data": {
+        "name": "M Sports Arena",
+        "address": "33A,Jalan 5/32a",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.20335,
+        "longitude": 101.65184
+      }
+    },
+    {
+      "id": "talent_champs_sports_complex",
+      "data": {
+        "name": "Talent Champs Sports Complex",
+        "address": "Talent Champs Sports Complex, Taman Eko Langat, Kampung Sg Balak, 43000 Kajang, Selangor",
+        "city": "Kajang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00772,
+        "longitude": 101.7741
+      }
+    },
+    {
+      "id": "premierstar_badminton_academy",
+      "data": {
+        "name": "PremierStar Badminton Academy",
+        "address": "9th Floor, Boustead Parking Building, Lorong Ceylon, Bukit Ceylon, 50200 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.15001,
+        "longitude": 101.7087
+      }
+    },
+    {
+      "id": "goteam_sports_complex",
+      "data": {
+        "name": "GoTeam Sports Complex",
+        "address": "20, Persiaran Astana / KU 2, Bandar Bukit Raja, 41050 Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08047,
+        "longitude": 101.45583
+      }
+    },
+    {
+      "id": "kemuning_lakeside_badminton_centre",
+      "data": {
+        "name": "Kemuning Lakeside Badminton Centre",
+        "address": "Jalan Anggerik Vanilla BE 31/BE Kota Kemuning",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00455,
+        "longitude": 101.53591
+      }
+    },
+    {
+      "id": "smk_la_salle_pj_sports_facilities",
+      "data": {
+        "name": "SMK La Salle PJ Sports Facilities",
+        "address": "Jalan Chantek 5/13, Bukit Gasing, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.10074,
+        "longitude": 101.65443
+      }
+    },
+    {
+      "id": "badminton_batu_10_sports_complex",
+      "data": {
+        "name": "Badminton Batu 10 Sports Complex",
+        "address": "Wai Badminton Court (For Public Booking) Jalan Cheras BATU 10",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05281,
+        "longitude": 101.7736
+      }
+    },
+    {
+      "id": "dinkit_picklecourts",
+      "data": {
+        "name": "DINKiT PICKLECOURTS",
+        "address": "Jalan Anggerik Vanilla BE 31/BE Kota Kemuning 40460",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00455,
+        "longitude": 101.53591
+      }
+    },
+    {
+      "id": "plan_b_physiotherapy_training",
+      "data": {
+        "name": "Plan B Physiotherapy and Training Centre",
+        "address": "Plan B Physiotherapy & Training Centre, Jalan Kemajuan, Seksyen 13, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.11381,
+        "longitude": 101.63995
+      }
+    },
+    {
+      "id": "tcm_body_mind_wei_kang",
+      "data": {
+        "name": "TCM Body & Mind Wei Kang",
+        "address": "Emporis Persiaran Surian Kota Damansara",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.15643,
+        "longitude": 101.57143
+      }
+    },
+    {
+      "id": "dink2_the_paddock_pj",
+      "data": {
+        "name": "DINK2 @ The Paddock PJ",
+        "address": "DINK2 @ The Paddock PJ, Jln SS 8/6, Sungai Way Free Trade Industrial Zone, 47300 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.09037,
+        "longitude": 101.60952
+      }
+    },
+    {
+      "id": "setia_alam_badminton_arena",
+      "data": {
+        "name": "Setia Alam Badminton Arena",
+        "address": "Setia Alam Badminton Arena, Seksyen U13, Setia Eco-park, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.10457,
+        "longitude": 101.47764
+      }
+    },
+    {
+      "id": "picklefunkec",
+      "data": {
+        "name": "Picklefun@KEC",
+        "address": "Persiaran Bukit Raja 2 Bandar Baru Klang 41150",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06014,
+        "longitude": 101.47117
+      }
+    },
+    {
+      "id": "m_field_play_unikl_miat",
+      "data": {
+        "name": "M-Field Play @ UniKL MIAT",
+        "address": "University Kuala Lumpur Malaysian Institute of Aviation Technology (UniKL MIAT) Jalan Jenderam Hulu Kampung Jenderam Hulu",
+        "city": "Dengkil",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.85131,
+        "longitude": 101.73626
+      }
+    },
+    {
+      "id": "pickle_drive_talent_champs",
+      "data": {
+        "name": "Pickle Drive @ Talent Champs Sports Complex",
+        "address": "Talent Champs Sports Complex, Kampung Sungai Balak, Kajang, Selangor, Malaysia",
+        "city": "Kajang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.00786,
+        "longitude": 101.77396
+      }
+    },
+    {
+      "id": "dewan_serbaguna_mph",
+      "data": {
+        "name": "Dewan Serbaguna MPH",
+        "address": "Masjid Putra Heights, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.99759,
+        "longitude": 101.57627
+      }
+    },
+    {
+      "id": "d3srgc",
+      "data": {
+        "name": "D3@SRGC",
+        "address": "Subang Racquet & Golf Center, Jalan SS 16/1, Ss 16, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08099,
+        "longitude": 101.57761
+      }
+    },
+    {
+      "id": "91_pickleball_club",
+      "data": {
+        "name": "91 Pickleball Club",
+        "address": "Giant USJ, Persiaran Subang Permai, Subang Light Industrial Park, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05829,
+        "longitude": 101.59492
+      }
+    },
+    {
+      "id": "pickle_nation_malaysia",
+      "data": {
+        "name": "Pickle Nation Malaysia",
+        "address": "5, Jalan Kontraktor U1/14, Hicom-glenmarie Industrial Park, 40150 Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08853,
+        "longitude": 101.56072
+      }
+    },
+    {
+      "id": "paddle_paradise",
+      "data": {
+        "name": "Paddle Paradise",
+        "address": "Paddle Paradise (OKR) Pickleball Old Klang Road",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.09537,
+        "longitude": 101.6771
+      }
+    },
+    {
+      "id": "courtsite_playpoint_sport_centre_cheras",
+      "data": {
+        "name": "Playpoint Sport Centre (Cheras)",
+        "address": "Playpoint Sport Centre (Cheras), Jalan Megah 20, Taman Megah, Cheras, Selangor",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0540796,
+        "longitude": 101.771198
+      }
+    },
+    {
+      "id": "courtsite_pickletime_subang_7",
+      "data": {
+        "name": "Pickletime @ Subang 7",
+        "address": "PickleTime, Jalan Subang 7, Taman Indah Subang Uep, Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0318275,
+        "longitude": 101.5959751
+      }
+    },
+    {
+      "id": "courtsite_starling_pickl3_town",
+      "data": {
+        "name": "Starling Pickl3 Town",
+        "address": "UPTOWN 7 Parking, Jalan SS 21/39, Damansara Utama, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1345367,
+        "longitude": 101.6221615
+      }
+    },
+    {
+      "id": "courtsite_pickle_world_amp_jalan_ampang",
+      "data": {
+        "name": "Pickle World @ AMP (Jalan Ampang)",
+        "address": "Pickle World @AMP, Jalan Ampang, Desa Pahlawan, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1597837,
+        "longitude": 101.7350918
+      }
+    },
+    {
+      "id": "courtsite_dms_sports",
+      "data": {
+        "name": "DMS Sports",
+        "address": "Dataran Dato\u2019 Mohd Said, Lot 897 Rinching Tengah, KM 23.5 Jalan Semenyih, 43700 Beranang, Selangor Darul Ehsan",
+        "city": "Beranang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9172866444127337,
+        "longitude": 101.86416586788273
+      }
+    },
+    {
+      "id": "courtsite_spin_city_courts_great_eastern_mall_ampang",
+      "data": {
+        "name": "Spin City Courts @ Great Eastern Mall, Ampang",
+        "address": "Spin City Courts, Jalan Ampang, Desa Pahlawan, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1600725,
+        "longitude": 101.7369013
+      }
+    },
+    {
+      "id": "courtsite_pickle_first_club",
+      "data": {
+        "name": "Pickle First Club",
+        "address": "15, Jalan Kelapa, Taman Palm Groove, Klang, Selangor",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.031198,
+        "longitude": 101.4347856
+      }
+    },
+    {
+      "id": "courtsite_pickle_garden",
+      "data": {
+        "name": "Pickle Garden",
+        "address": "Pickle Garden, Jalan 51a/225, Seksyen 51a, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0950028,
+        "longitude": 101.6323727
+      }
+    },
+    {
+      "id": "courtsite_bounze_pickleball",
+      "data": {
+        "name": "Bounze Pickleball",
+        "address": "BOUNZE PICKLEBALL @ JALAN OKR, Jalan Puchong, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0682482,
+        "longitude": 101.6547741
+      }
+    },
+    {
+      "id": "courtsite_xpickle_pj",
+      "data": {
+        "name": "xpickle @ PJ",
+        "address": "19, Jalan 51a/223, Seksyen 51a, 46100 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.098754,
+        "longitude": 101.6332879
+      }
+    },
+    {
+      "id": "courtsite_the_ball_house",
+      "data": {
+        "name": "The Ball House",
+        "address": "26, Jalan Kilang Midah, Taman Midah, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0885614,
+        "longitude": 101.7267629
+      }
+    },
+    {
+      "id": "courtsite_rock_7_pickle_and_rumbia",
+      "data": {
+        "name": "Rock 7 Pickle & Rumbia",
+        "address": "Jalan Rumbia, Kampung Sijangkang, 42500 Telok Panglima Garang, Selangor",
+        "city": "Telok Panglima Garang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9438167,
+        "longitude": 101.4659353
+      }
+    },
+    {
+      "id": "courtsite_pickle_by_the_lake",
+      "data": {
+        "name": "Pickle By The Lake",
+        "address": "Pickle by the Lake, Jalan Putra Perdana, Taman Putra Perdana, Puchong, Selangor",
+        "city": "South Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9312093,
+        "longitude": 101.6072915
+      }
+    },
+    {
+      "id": "courtsite_mosaic_pickleball_nadayu_801",
+      "data": {
+        "name": "Mosaic Pickleball @ Nadayu 801",
+        "address": "Mosaic @ Nadayu 801 by Taipanika Development Sdn Bhd, U5, Seksyen, Taman Subang Murni, Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1652768,
+        "longitude": 101.5463677
+      }
+    },
+    {
+      "id": "courtsite_port_klang_pickleball_centre",
+      "data": {
+        "name": "Port Klang Pickleball Centre",
+        "address": "24, Persiaran Raja Muda Musa, 42000 Port Klang, Selangor",
+        "city": "Pelabuhan Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0080517,
+        "longitude": 101.4055805
+      }
+    },
+    {
+      "id": "courtsite_mypicklecourt",
+      "data": {
+        "name": "MyPickleCourt",
+        "address": "1-2, Jalan Metro 2, Metro Prima, 52100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2134023,
+        "longitude": 101.6369285
+      }
+    },
+    {
+      "id": "courtsite_pickle_forest",
+      "data": {
+        "name": "Pickle Forest",
+        "address": "Pickle Forest, Nur Laman Bestari Eco Resort, Jalan Sungai Tua, Kampung Batang Batu, Batu Caves, Selangor",
+        "city": "Batu Caves",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.2993096,
+        "longitude": 101.6957595
+      }
+    },
+    {
+      "id": "courtsite_the_pickle_fence",
+      "data": {
+        "name": "The Pickle Fence",
+        "address": "The Pickle Fence \u2013 Indoor Pickleball Court in Subang Jaya, Jalan Subang 9, Taman Perindustrian Subang, Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0254244,
+        "longitude": 101.5907042
+      }
+    },
+    {
+      "id": "courtsite_house_of_champ",
+      "data": {
+        "name": "House of Champ",
+        "address": "House of Champ, Jalan Seri Aman Mas 2, Kampung Seri Aman, Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9771535,
+        "longitude": 101.5776213
+      }
+    },
+    {
+      "id": "courtsite_jompickleball_mcis_pj",
+      "data": {
+        "name": "Jompickleball @ MCIS PJ",
+        "address": "Wisma Mcis Zurich, Jalan Barat, Pjs 52, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1012711,
+        "longitude": 101.6418221
+      }
+    },
+    {
+      "id": "courtsite_pickle_world_pj_jalan_tandang",
+      "data": {
+        "name": "Pickle World @ PJ (Jalan Tandang)",
+        "address": "Pickle World, Lorong Tandang B, Pjs 51, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.085567,
+        "longitude": 101.6266321
+      }
+    },
+    {
+      "id": "courtsite_urban_pickle",
+      "data": {
+        "name": "Urban Pickle",
+        "address": "Urban Pickle, Jalan Tun Razak, Taman U Thant, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1560055,
+        "longitude": 101.7228836
+      }
+    },
+    {
+      "id": "courtsite_hyprground_pickleball_sg_buloh",
+      "data": {
+        "name": "Hyprground Pickleball - Sg Buloh",
+        "address": "Hyprground Sungai Buloh, Jalan Welfare, Kampung Baru Sungai Buloh, Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1981043,
+        "longitude": 101.5721046
+      }
+    },
+    {
+      "id": "courtsite_sports_seven_setapak_pickleball_and_futsal",
+      "data": {
+        "name": "Sports Seven Setapak - Pickleball and Futsal",
+        "address": "Sports Seven Wangsa Maju, Seksyen 1 Wangsa Maju, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2002646,
+        "longitude": 101.725177
+      }
+    },
+    {
+      "id": "courtsite_flex_arena",
+      "data": {
+        "name": "Flex Arena",
+        "address": "Wisma Minlon, Batu 12, Bukit Gita Bayu, Balakong, Selangor",
+        "city": "Balakong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0085257,
+        "longitude": 101.7241409
+      }
+    },
+    {
+      "id": "courtsite_pickle_wave",
+      "data": {
+        "name": "Pickle Wave",
+        "address": "Lot I And J at, Lot 5639 & 5656, Jalan Bangau, Bandar Puchong Jaya, 47100, Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0505625,
+        "longitude": 101.6264375
+      }
+    },
+    {
+      "id": "courtsite_the_lawn",
+      "data": {
+        "name": "The Lawn",
+        "address": "PR-01, Lumi Tropicana, 2, Persiaran Tropicana, Pju 3 Tropicana, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1294232,
+        "longitude": 101.5939108
+      }
+    },
+    {
+      "id": "courtsite_one_picca_pickleball_court",
+      "data": {
+        "name": "One Picca Pickleball Court",
+        "address": "1 Shamelin Mall, Level 3A, Jalan 4/91, Taman Shamelin Perkasa, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1227265,
+        "longitude": 101.7401395
+      }
+    },
+    {
+      "id": "courtsite_alpha_genz_club_taman_connaught_cheras",
+      "data": {
+        "name": "Alpha Genz Club @ Taman Connaught, Cheras",
+        "address": "Alpha Genz Club ( Pickleball Sports Centre ), Next to Mr DIY, Cheras, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Cheras",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0808828,
+        "longitude": 101.7304918
+      }
+    },
+    {
+      "id": "courtsite_pickle_pong_club",
+      "data": {
+        "name": "Pickle Pong Club",
+        "address": "Pickle Pong Club, Persiaran You City, Taman Suntex, Cheras, Selangor",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0732295,
+        "longitude": 101.7625525
+      }
+    },
+    {
+      "id": "courtsite_game_point_avia_plus",
+      "data": {
+        "name": "Game Point @ Avia Plus",
+        "address": "Game Point @ Avia Plus, Avia Plus, Jalan Desa Utama, Bandar Country Homes, Rawang, Selangor",
+        "city": "Rawang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.3237004,
+        "longitude": 101.5269037
+      }
+    },
+    {
+      "id": "courtsite_p3_courts_midah",
+      "data": {
+        "name": "P3 Courts @ Midah",
+        "address": "P3 Midah, Jalan Kilang Midah, Taman Midah, WP, Federal Territory of Kuala Lumpur",
+        "city": "Cheras",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0888262,
+        "longitude": 101.7290358
+      }
+    },
+    {
+      "id": "courtsite_embassy_villa_pickleball_by_cobnb_kl",
+      "data": {
+        "name": "Embassy Villa Pickleball By Cobnb (KL)",
+        "address": "Embassy Villa By Cobnb, Persiaran Ampang Hilir, Taman U Thant, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1576,
+        "longitude": 101.7298367
+      }
+    },
+    {
+      "id": "courtsite_pine_hills_sports_centre_kuala_lumpur",
+      "data": {
+        "name": "Pine Hills Sports Centre Kuala Lumpur",
+        "address": "185, Jalan Puchong, Taman Angkasa, 58200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0694947,
+        "longitude": 101.6555379
+      }
+    },
+    {
+      "id": "courtsite_11pikelbola_danau_golf_ukm",
+      "data": {
+        "name": "11Pikelbola Danau Golf UKM",
+        "address": "11PIKELBOLA, DANAU GOLF UKM, Kelab Golf Danau, Universiti Kebangsaan Malaysia, 43600 Bandar Baru Bangi, Selangor, Malaysia",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9178088,
+        "longitude": 101.7884795
+      }
+    },
+    {
+      "id": "courtsite_las_palmas_pickleball_club",
+      "data": {
+        "name": "Las Palmas Pickleball Club",
+        "address": "Las Palmas Pickleball Club, Universiti Malaya, Pantai Dalam, Kuala Lumpur, Selangor",
+        "city": "Kuala Lumpur",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1201412,
+        "longitude": 101.6581578
+      }
+    },
+    {
+      "id": "courtsite_pickle_and_co_kl_eco_city_klec",
+      "data": {
+        "name": "Pickle & Co @ KL Eco City (KLEC)",
+        "address": "Mercu 3 Corporate Tower, KL Eco City, Jalan Bangsar, KL Eco City, 59200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1172927,
+        "longitude": 101.6736472
+      }
+    },
+    {
+      "id": "courtsite_dka_pickleball_club",
+      "data": {
+        "name": "DKA Pickleball Club",
+        "address": "DKA Pickleball Club, Jalan Seroja, Kampung Sungai Kayu Ara, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1286058,
+        "longitude": 101.610637
+      }
+    },
+    {
+      "id": "courtsite_jc_pickleball_centre_cyberjaya_union",
+      "data": {
+        "name": "JC Pickleball Centre @ Cyberjaya Union",
+        "address": "SJKC Union, Cyberjaya, Jalan Union, Cyberjaya, 63000 Cyberjaya, Selangor, Malaysia",
+        "city": "Cyberjaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9256237,
+        "longitude": 101.6301401
+      }
+    },
+    {
+      "id": "courtsite_picklehaus",
+      "data": {
+        "name": "PickleHaus",
+        "address": "23A, Jalan 8/152, Taman Perindustrian Oug, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0681182,
+        "longitude": 101.6604127
+      }
+    },
+    {
+      "id": "courtsite_pickle_valley_2_balakong",
+      "data": {
+        "name": "Pickle Valley 2 @ Balakong",
+        "address": "64959, Jalan CJ 15, Kawasan Perindustrian Cheras Jaya, 43200 Seri Kembangan, Selangor",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0193343,
+        "longitude": 101.7648269
+      }
+    },
+    {
+      "id": "courtsite_kl_pickleball_club_tbg_mall",
+      "data": {
+        "name": "KL Pickleball Club @ TBG Mall",
+        "address": "KL Pickleball Club, Jalan TBG, Kampung Tengah Tambahan Mrr2, Batu Caves, Selangor",
+        "city": "Batu Caves",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.2315007,
+        "longitude": 101.7249329
+      }
+    },
+    {
+      "id": "courtsite_hyprground_pickleball_kuchai",
+      "data": {
+        "name": "Hyprground Pickleball - Kuchai",
+        "address": "Hyprground Kuchai Lama, Jalan Kuchai Lama, Kuchai Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.093194,
+        "longitude": 101.6848547
+      }
+    },
+    {
+      "id": "courtsite_kingscourt_ttdi",
+      "data": {
+        "name": "Kingscourt TTDI",
+        "address": "Kings Court @ TTDI, Jalan Datuk Sulaiman, Sungai Penchala, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1602812,
+        "longitude": 101.6266812
+      }
+    },
+    {
+      "id": "courtsite_tropickle_club",
+      "data": {
+        "name": "Tropickle Club",
+        "address": "Tropickle Club, Jalan Ampang, Kampung Melayu Ampang, Ampang Jaya, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1599183,
+        "longitude": 101.7381174
+      }
+    },
+    {
+      "id": "courtsite_p_ker_park",
+      "data": {
+        "name": "P'ker Park",
+        "address": "P'ker Park, Jalan Dagang B/3a, Taman Dagang, Ampang Jaya, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1489407,
+        "longitude": 101.7537311
+      }
+    },
+    {
+      "id": "courtsite_pickle_minded_pj",
+      "data": {
+        "name": "Pickle Minded PJ",
+        "address": "40, Jalan Penchala, Pjs 51, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0915819,
+        "longitude": 101.6400925
+      }
+    },
+    {
+      "id": "courtsite_pickleball_valley",
+      "data": {
+        "name": "Pickleball Valley",
+        "address": "Pickleball Valley, Jalan Kebun Tambahan, Kampung Batu Tujuh, Klang, Selangor",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9509416,
+        "longitude": 101.5232185
+      }
+    },
+    {
+      "id": "courtsite_athlon_sports_centre",
+      "data": {
+        "name": "Athlon Sports Centre",
+        "address": "Athlon Sports@Broga, Jalan Broga, Semenyih, Selangor",
+        "city": "Semenyih",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9451235,
+        "longitude": 101.851265
+      }
+    },
+    {
+      "id": "courtsite_lakeside_pickle_d_network",
+      "data": {
+        "name": "Lakeside Pickle @ D' Network",
+        "address": "LAKESIDE PICKLE @ D NETWORK, PETANQUE COURT, Jalan Setia Nusantara U13/17, Setia Eco-park, Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1086563,
+        "longitude": 101.4771995
+      }
+    },
+    {
+      "id": "courtsite_racket_reserved_club_rrc",
+      "data": {
+        "name": "Racket Reserved Club (RRC)",
+        "address": "Lot 1, Jalan Kilang 51/206, Pjs 51, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0912642,
+        "longitude": 101.6359363
+      }
+    },
+    {
+      "id": "courtsite_pickle_lane_society",
+      "data": {
+        "name": "Pickle Lane Society",
+        "address": "Pickle Lane Society, Jalan BPP 5/7, Pusat Bandar Putra Permai, Seri Kembangan, Selangor",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9816596,
+        "longitude": 101.6652348
+      }
+    },
+    {
+      "id": "courtsite_jc_pickleball_centre_pj_ss2",
+      "data": {
+        "name": "JC Pickleball Centre @ PJ SS2",
+        "address": "SJK (C) Puay Chai, Jalan SS 2/54, SS 2, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.117002,
+        "longitude": 101.6256449
+      }
+    },
+    {
+      "id": "courtsite_pickle_royal",
+      "data": {
+        "name": "Pickle Royal",
+        "address": "Tropicana Golf & Country Resort, Jalan Kelab Tropicana, 47410 Petaling Jaya, Selangor Darul Ehsan",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1298925,
+        "longitude": 101.5841925
+      }
+    },
+    {
+      "id": "courtsite_pro_one_badminton_centre_wangsa_maju",
+      "data": {
+        "name": "Pro One Badminton Centre Wangsa Maju",
+        "address": "Pusat Badminton Pro One, Seksyen 1 Wangsa Maju, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2006753,
+        "longitude": 101.7256123
+      }
+    },
+    {
+      "id": "courtsite_yuk_chyun_badminton_and_pickleball_centre_pj",
+      "data": {
+        "name": "Yuk Chyun Badminton and Pickleball Centre (PJ)",
+        "address": "SJK(C) Yuk Chyun, Jalan PJS 1/52, Pjs 1, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0774714,
+        "longitude": 101.6516628
+      }
+    },
+    {
+      "id": "courtsite_first_pick_pickleball",
+      "data": {
+        "name": "First Pick Pickleball",
+        "address": "Aeon Mall AU2 Setiawangsa, 6, Jalan Taman Setiawangsa, Taman Keramat, 54200 Kuala Lumpur",
+        "city": "Setiawangsa",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1794933,
+        "longitude": 101.7380701
+      }
+    },
+    {
+      "id": "courtsite_the_hideout_the_linc_kuala_lumpur",
+      "data": {
+        "name": "The Hideout @ The Linc Kuala Lumpur",
+        "address": "The LINC KL, 360, Jln Tun Razak, Taman U Thant, Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1589303,
+        "longitude": 101.7209621
+      }
+    },
+    {
+      "id": "courtsite_pickle_date_club",
+      "data": {
+        "name": "Pickle Date Club",
+        "address": "Pickle Date Club, Jalan Teknologi 3/1, Kota Damansara, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.163042,
+        "longitude": 101.5728286
+      }
+    },
+    {
+      "id": "courtsite_taylor_s_international_school_puchong",
+      "data": {
+        "name": "Taylor's International School Puchong",
+        "address": "Taylor\u2019s International School Puchong, Kampung Batu Sembilan, Puchong, Selangor",
+        "city": "South Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.977935,
+        "longitude": 101.6332182
+      }
+    },
+    {
+      "id": "courtsite_pickle_power_ampang",
+      "data": {
+        "name": "Pickle Power Ampang",
+        "address": "Pickle Power Club @ Ampang, Lot 1153, Jalan, Jln Lingkaran Tengah 2, 68000 Ampang, Selangor",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.201917899999999,
+        "longitude": 101.759389
+      }
+    },
+    {
+      "id": "courtsite_tomaz_pickleball_club",
+      "data": {
+        "name": "Tomaz Pickleball Club",
+        "address": "Tomaz Pickleball Club @ Subang Jaya, Jalan USJ 1/6, Usj 1, Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0582225,
+        "longitude": 101.5973508
+      }
+    },
+    {
+      "id": "courtsite_the_pickleplay_club_bangi",
+      "data": {
+        "name": "The PicklePlay Club @ Bangi",
+        "address": "THE PICKLEPLAY CLUB, Persiaran Kemajuan, SEKSYEN 6, Bandar Baru Bangi, Selangor, Malaysia",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9541129,
+        "longitude": 101.7578347
+      }
+    },
+    {
+      "id": "courtsite_mypickle_lifetime",
+      "data": {
+        "name": "Mypickle Lifetime",
+        "address": "Strand Mall, Pju 5 Kota Damansara, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.155067,
+        "longitude": 101.593697
+      }
+    },
+    {
+      "id": "courtsite_sjk_c_chen_moh_pickleball_and_badminton_hall",
+      "data": {
+        "name": "SJK (C) Chen Moh Pickleball and Badminton Hall",
+        "address": "SJK (C) Chen Moh, Jalan 2/32, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0848046,
+        "longitude": 101.6442182
+      }
+    },
+    {
+      "id": "courtsite_ecosega_pickleball_park",
+      "data": {
+        "name": "Ecosega Pickleball Park",
+        "address": "ecosega pickleball park, Jalan E1/6, Taman Ehsan, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2181689,
+        "longitude": 101.6189588
+      }
+    },
+    {
+      "id": "courtsite_sportizza_pickleball_home_of_sports_petaling_jaya",
+      "data": {
+        "name": "Sportizza Pickleball - Home of Sports Petaling Jaya",
+        "address": "Sportizza- Home of Sports Petaling Jaya, Lorong Tandang B, Pjs 51, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0853277,
+        "longitude": 101.6275736
+      }
+    },
+    {
+      "id": "courtsite_flying_pickle",
+      "data": {
+        "name": "Flying Pickle",
+        "address": "Flying Sport Stadium, Jalan Koop Cuepacs 3f, Taman Cuepacs, Cheras, Selangor",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0765699,
+        "longitude": 101.759381
+      }
+    },
+    {
+      "id": "courtsite_bounce_and_rally_elevate_social_club",
+      "data": {
+        "name": "Bounce And Rally @ Elevate Social Club",
+        "address": "Bounce And Rally @ Elevate Social Club, Opera house, Symphony hills, Cyberjaya, Selangor",
+        "city": "Cyberjaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9153601,
+        "longitude": 101.6442117
+      }
+    },
+    {
+      "id": "courtsite_pickld",
+      "data": {
+        "name": "PICKLD",
+        "address": "1831-D1, Jalan KPB 1, Kawasan Perindustrian Balakong, Seri Kembangan, Selangor",
+        "city": "Balakong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0269479,
+        "longitude": 101.7345827
+      }
+    },
+    {
+      "id": "courtsite_ajak_pickleground",
+      "data": {
+        "name": "Ajak Pickleground",
+        "address": "Ajak PickleGround, Jalan 19/1b, Seksyen 19, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1138746,
+        "longitude": 101.6273801
+      }
+    },
+    {
+      "id": "courtsite_pickleboo",
+      "data": {
+        "name": "Pickleboo",
+        "address": "Pickleboo, Jalan Sungai Long, Cheras 11 Miles, Cheras, Selangor",
+        "city": "Sungai Long",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0346366,
+        "longitude": 101.7766206
+      }
+    },
+    {
+      "id": "courtsite_time_to_tennis_3_damansara",
+      "data": {
+        "name": "Time to Tennis @ 3 Damansara",
+        "address": "1f, 3, Jalan SS 20/27, Damansara Intan, 47400 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1304749,
+        "longitude": 101.6269411
+      }
+    },
+    {
+      "id": "courtsite_seven_fit_sports_centre",
+      "data": {
+        "name": "Seven Fit Sports Centre",
+        "address": "Seven Fit Sports, ECO BUSINESS PARK V, JALAN EKO PERINDUSTRIAN 5/3, Puncak Alam, Selangor",
+        "city": "Puncak Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.2482591,
+        "longitude": 101.4591731
+      }
+    },
+    {
+      "id": "courtsite_pickletime_pj_section_51a",
+      "data": {
+        "name": "Pickletime PJ - Section 51a",
+        "address": "lot 1, no 9, Jalan 51a/225, Seksyen 51a, 46100 Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0943268,
+        "longitude": 101.6321609
+      }
+    },
+    {
+      "id": "courtsite_hevea_pickleball_arena",
+      "data": {
+        "name": "Hevea Pickleball Arena",
+        "address": "Hevea Pickleball Arena, Jalan Hevea, Pju 4, Petaling Jaya, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1621536,
+        "longitude": 101.5583374
+      }
+    },
+    {
+      "id": "courtsite_playpoint_sport_centre_bk",
+      "data": {
+        "name": "Playpoint Sport Centre (BK)",
+        "address": "Playpoint Sport Center, Playpoint Sport Center, Jalan BK 1/10, Bandar Kinrara 1, Puchong, Selangor, Malaysia",
+        "city": "North Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0533022,
+        "longitude": 101.6511337
+      }
+    },
+    {
+      "id": "courtsite_9pickle_setia_alam",
+      "data": {
+        "name": "9Pickle Setia Alam",
+        "address": "16, Persiaran Setia Dagang, Alam Nusantara, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1084074,
+        "longitude": 101.4604922
+      }
+    },
+    {
+      "id": "courtsite_lavana_3_pickleball_centre_kepong",
+      "data": {
+        "name": "Lavana 3 Pickleball Centre @ Kepong",
+        "address": "686, Jalan Kuang Bertam, Taman Kepong, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2061531,
+        "longitude": 101.6406427
+      }
+    },
+    {
+      "id": "courtsite_pickle_bros_segambut",
+      "data": {
+        "name": "Pickle Bros @ Segambut",
+        "address": "Pickle Bros Segambut, Jalan Segambut, Kampung Pasir Segambut, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1868653,
+        "longitude": 101.6661008
+      }
+    },
+    {
+      "id": "courtsite_base_pickleball_and_padel_section_51_petaling_jaya",
+      "data": {
+        "name": "Base Pickleball & Padel - Section 51, Petaling Jaya",
+        "address": "Base - Pickleball & Padel Club, Lorong Tandang 51/204b, Seksyen 51, Petaling Jaya, Selangor, Malaysia",
+        "city": "Section 51",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0868378,
+        "longitude": 101.6351375
+      }
+    },
+    {
+      "id": "courtsite_picklehub_twentyfive_7",
+      "data": {
+        "name": "Picklehub @ Twentyfive.7",
+        "address": "Picklehub @ Twentyfive.7, Persiaran Oleander, TwentyFive.7, Telok Panglima Garang, Selangor, Malaysia",
+        "city": "Telok Panglima Garang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9546049,
+        "longitude": 101.5525021
+      }
+    },
+    {
+      "id": "courtsite_australian_international_school_malaysia_aism",
+      "data": {
+        "name": "Australian International School Malaysia (AISM)",
+        "address": "Australian International School Malaysia, Jalan Anggerik, Mines Wellness City, Seri Kembangan, Selangor, Malaysia",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0204628,
+        "longitude": 101.7233599
+      }
+    },
+    {
+      "id": "courtsite_bb_smash_badminton_and_pickleball_centre",
+      "data": {
+        "name": "BB Smash Badminton & Pickleball Centre",
+        "address": "BB SMASH BADMINTON AND PICKLEBALL CENTRE, Bukit Beruntung, Rawang, Selangor, Malaysia",
+        "city": "Rawang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.4165091,
+        "longitude": 101.5828668
+      }
+    },
+    {
+      "id": "courtsite_pickleworks",
+      "data": {
+        "name": "Pickleworks",
+        "address": "Lot 2, Lorong 51a/227b, Seksyen 51a, 46100 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0990706,
+        "longitude": 101.6320495
+      }
+    },
+    {
+      "id": "courtsite_the_roof_meru_pickleball",
+      "data": {
+        "name": "The Roof Meru Pickleball",
+        "address": "Lot 2127, Jalan Meru Batu 6, 41050, Klang, Selangor",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1281618,
+        "longitude": 101.4403717
+      }
+    },
+    {
+      "id": "courtsite_pickle_crown_tropicana_sports_center",
+      "data": {
+        "name": "Pickle Crown @ Tropicana Sports Center",
+        "address": "Tropicana Sports Center, Jalan Nautika B U20/B, TSB Pusat Kommersial Seksyen U20, Sungai Buloh, Selangor, Malaysia",
+        "city": "Sungai Buloh",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.209368,
+        "longitude": 101.5714333
+      }
+    },
+    {
+      "id": "courtsite_the_pickle_vibe_kinrara_puchong",
+      "data": {
+        "name": "The Pickle Vibe @ Kinrara, Puchong",
+        "address": "The Pickle Vibe @ Kinrara, Puchong, Jalan Puchong Mesra 2, Kampung Muhibbah, Kuala Lumpur, Federal Territory of Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0631574,
+        "longitude": 101.6493254
+      }
+    },
+    {
+      "id": "courtsite_the_pickle_vibe_seri_kembangan",
+      "data": {
+        "name": "The Pickle Vibe @ Seri Kembangan",
+        "address": "The Atmosphere, Pusat Perniagaan, Jalan Atmosphere 5, The Atmosphere, 43300 Seri Kembangan, Selangor, Malaysia",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9818198,
+        "longitude": 101.662005
+      }
+    },
+    {
+      "id": "courtsite_pickle_valley_palette_2_setapak",
+      "data": {
+        "name": "Pickle Valley @ Palette 2 Setapak",
+        "address": "Pickle Valley @ Palette 2 Setapak, Pusat Perniagaan Palet, Jalan 3/23a, Setapak, Kuala Lumpur, Wilayah Persekutuan",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.201372,
+        "longitude": 101.7225891
+      }
+    },
+    {
+      "id": "courtsite_grand_rally_pickleball_shah_alam_klang",
+      "data": {
+        "name": "Grand Rally Pickleball @ Shah Alam, Klang",
+        "address": "Rooftop (5th Floor), Pusat Komersial A, Jalan Plumbum T 7/T, Seksyen 7, 40000 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0656988,
+        "longitude": 101.4888718
+      }
+    },
+    {
+      "id": "courtsite_ucsi_schools_kl_campus",
+      "data": {
+        "name": "UCSI Schools KL Campus",
+        "address": "12734, Jalan Choo Lip Kung, Taman Taynton View, 56000 Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Cheras",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0850107,
+        "longitude": 101.7380793
+      }
+    },
+    {
+      "id": "courtsite_ultra_sports_center",
+      "data": {
+        "name": "Ultra Sports Center",
+        "address": "1st & 3rd floor, 168 Park Selayang Jalan kuching Batu Caves, 68100 Selayang, Selangor, Malaysia",
+        "city": "Selayang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.2492923,
+        "longitude": 101.6494422
+      }
+    },
+    {
+      "id": "courtsite_dink_avenue_avenue_25_usj",
+      "data": {
+        "name": "Dink Avenue @ Avenue 25, USJ",
+        "address": "Dink Avenue@Avenue 25, Jalan USJ 25, Jalan Makmur, Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0278718,
+        "longitude": 101.5795811
+      }
+    },
+    {
+      "id": "courtsite_forum_btp",
+      "data": {
+        "name": "Forum BTP",
+        "address": "Forum BTP, Jalan Tasik Puteri, Bandar Tasik Puteri, Rawang, Selangor, Malaysia",
+        "city": "Rawang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.2965805,
+        "longitude": 101.4854895
+      }
+    },
+    {
+      "id": "courtsite_re_serve_sport",
+      "data": {
+        "name": "Re Serve Sport",
+        "address": "LOT 9B, JALAN FIMAS, OFF JALAN SIMPANG BALAK KAWASAN PERINDUSTRIAN FIMAS , 43000",
+        "city": "Kajang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0147028,
+        "longitude": 101.7632769
+      }
+    },
+    {
+      "id": "courtsite_yak_chee_sports_complex_jalan_puchong",
+      "data": {
+        "name": "Yak Chee Sports Complex @ Jalan Puchong",
+        "address": "Yak Chee Sports Complex, Jalan 12, Taman Bukit Kuchai, Puchong, Selangor, Malaysia",
+        "city": "North Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0550911,
+        "longitude": 101.6420383
+      }
+    },
+    {
+      "id": "courtsite_ac_sports_arena",
+      "data": {
+        "name": "AC Sports Arena",
+        "address": "AC Sports Arena, KAW Perusahaan, Mukim, Sungai Bakau, Rawang, Selangor, Malaysia",
+        "city": "Rawang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.3232026,
+        "longitude": 101.5189303
+      }
+    },
+    {
+      "id": "courtsite_89_arena",
+      "data": {
+        "name": "89 Arena",
+        "address": "89 Arena Klang, Jalan Sungai Jati, Taman Sungai Jati Permai, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0190911,
+        "longitude": 101.4581287
+      }
+    },
+    {
+      "id": "courtsite_nzx_pickleball_club_and_sports_arena",
+      "data": {
+        "name": "NZX Pickleball Club & Sports Arena",
+        "address": "NZX Sports Arena, Ara Damansara, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1150132,
+        "longitude": 101.5901839
+      }
+    },
+    {
+      "id": "courtsite_forum_sba",
+      "data": {
+        "name": "Forum SBA",
+        "address": "4, Persiaran Setia Murni, Setia Alam, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1140038,
+        "longitude": 101.4521548
+      }
+    },
+    {
+      "id": "courtsite_hyprground_pickleball_s19",
+      "data": {
+        "name": "Hyprground Pickleball - S19",
+        "address": "116, Jalan Professor Khoo Kay Kim, Seksyen 19, 46300 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1144843,
+        "longitude": 101.6322641
+      }
+    },
+    {
+      "id": "courtsite_kl_city_pickleball_zebra_square",
+      "data": {
+        "name": "KL City Pickleball @ Zebra Square",
+        "address": "18 & 20, Jalan Kampung Pandan, Off Jalan Tun Razak, 55100 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1380527,
+        "longitude": 101.7244399
+      }
+    },
+    {
+      "id": "courtsite_confucian_kl_badminton_and_pickleball_centre",
+      "data": {
+        "name": "Confucian KL Badminton & Pickleball Centre",
+        "address": "Confucian KL Badminton Centre, Jalan 3/108a, Salak South, Kuala Lumpur, W.P Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1105807,
+        "longitude": 101.7042692
+      }
+    },
+    {
+      "id": "courtsite_rks_sports_centre_ara_damansara",
+      "data": {
+        "name": "RKS Sports Centre (Ara Damansara)",
+        "address": "Evolve Concept Mall, Jalan PJU 1a/4, Ara Damansara, 47301 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.110051,
+        "longitude": 101.586496
+      }
+    },
+    {
+      "id": "courtsite_x_park_pickleball_sunway_south_quay",
+      "data": {
+        "name": "X Park Pickleball Sunway South Quay",
+        "address": "X Park Pickleball Sunway South Quay, Jalan Tasik Selatan, Subang Jaya, Selangor",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0606725,
+        "longitude": 101.6014975
+      }
+    },
+    {
+      "id": "courtsite_pickle_bros_kuchai_lama",
+      "data": {
+        "name": "Pickle Bros @ Kuchai Lama",
+        "address": "Pickle Bros Ventures @ Kuchai Lama, Jalan Kuchai Lama, Taman Continental, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.091879800000001,
+        "longitude": 101.6930997
+      }
+    },
+    {
+      "id": "courtsite_the_pickle_vibe_kepong",
+      "data": {
+        "name": "The Pickle Vibe @ Kepong",
+        "address": "12, Jalan Helang Bukit, Kepong Baru Tambahan, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1965037,
+        "longitude": 101.6432552
+      }
+    },
+    {
+      "id": "courtsite_sports_a_plus_port_klang_badminton_and_pickleball_centre",
+      "data": {
+        "name": "Sports A Plus (Port Klang) Badminton and Pickleball Centre",
+        "address": "Sports A Plus, Taman Kota Pendamar, Port Klang, Selangor, Malaysia",
+        "city": "Port Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9846519,
+        "longitude": 101.4170974
+      }
+    },
+    {
+      "id": "courtsite_dinkerbelle",
+      "data": {
+        "name": "Dinkerbelle",
+        "address": "525, Jalan Tudm, Kampung Subang Baru, 40150 Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1340772,
+        "longitude": 101.5444394
+      }
+    },
+    {
+      "id": "courtsite_double_bounce_balakong",
+      "data": {
+        "name": "Double Bounce Balakong",
+        "address": "Double Bounce Balakong (DBB), Kg, Kawasan Perindustrian Balakong, Balakong, Selangor, Malaysia",
+        "city": "Balakong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0272079,
+        "longitude": 101.7346517
+      }
+    },
+    {
+      "id": "courtsite_picklestop",
+      "data": {
+        "name": "Picklestop",
+        "address": "Picklestop, jalan balakong, Cheras, Selangor, Malaysia",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0331333,
+        "longitude": 101.7608631
+      }
+    },
+    {
+      "id": "courtsite_white_fairy_badminton_court",
+      "data": {
+        "name": "White Fairy Badminton Court",
+        "address": "White Fairy Futsal & Badminton Court, Jalan Taman Kinrara, Taman Kinrara, Puchong, Selangor, Malaysia",
+        "city": "North Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0596978,
+        "longitude": 101.6369138
+      }
+    },
+    {
+      "id": "courtsite_x_park_pj_south_multisports",
+      "data": {
+        "name": "X Park PJ South (Multisports)",
+        "address": "X Park PJ South (Taman Medan), PJ South, Jalan Sri Manja, Taman Medan, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0769296,
+        "longitude": 101.6395707
+      }
+    },
+    {
+      "id": "courtsite_club_360_setia_ecohill",
+      "data": {
+        "name": "Club 360 @ Setia Ecohill",
+        "address": "Club 360 No 1, Persiaran Ecohill Barat Setia Ecohill 43500 Semenyih Selangor Darul Ehsan",
+        "city": "Semenyih",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.925699,
+        "longitude": 101.8396805
+      }
+    },
+    {
+      "id": "courtsite_lakepoint_club_setia_alam_impian",
+      "data": {
+        "name": "LakePoint Club @ Setia Alam Impian",
+        "address": "LakePoint Club, 1, Jalan Panglima Hitam 35/26, Seksyen 35, Alam Impian, 40470 Shah Alam, Selangor",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.024238,
+        "longitude": 101.5128705
+      }
+    },
+    {
+      "id": "courtsite_thomas_cupper_badminton_club",
+      "data": {
+        "name": "Thomas Cupper Badminton Club",
+        "address": "Thomas Cupper Badminton Club, SJK (C) Imbi, Jalan 39/119, Taman Taynton View, Cheras, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Cheras",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0890633,
+        "longitude": 101.7299806
+      }
+    },
+    {
+      "id": "courtsite_sportizza_home_of_sports_batu_tiga",
+      "data": {
+        "name": "Sportizza - Home of Sports Batu Tiga",
+        "address": "Sportizza Shah Alam, Batu 3, Batu Tiga Lama, Seksyen U1, Shah Alam, Selangor, Malaysia",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0763868,
+        "longitude": 101.5581941
+      }
+    },
+    {
+      "id": "courtsite_sportizza_home_of_sports_petaling_jaya",
+      "data": {
+        "name": "Sportizza - Home of Sports Petaling Jaya",
+        "address": "Sportizza- Home of Sports Petaling Jaya, Lorong Tandang B, Pjs 51, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0853277,
+        "longitude": 101.6275736
+      }
+    },
+    {
+      "id": "courtsite_sportizza_home_of_sports_setapak",
+      "data": {
+        "name": "Sportizza - Home of Sports Setapak",
+        "address": "Jalan Usahawan 6, 53200, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Setapak",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1960943,
+        "longitude": 101.7226848
+      }
+    },
+    {
+      "id": "courtsite_usj23_badminton_court_and_pickleball_centre",
+      "data": {
+        "name": "USJ23 Badminton Court & Pickleball Centre",
+        "address": "USJ 23 Badminton Court, Jalan Subang 9, Taman Indah Subang Uep, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0248751,
+        "longitude": 101.5884908
+      }
+    },
+    {
+      "id": "courtsite_brainy_bunch_sports_park",
+      "data": {
+        "name": "Brainy Bunch Sports Park",
+        "address": "BB Sports Park, Brainy Bunch International School, Jalan Melawati 3, Taman Melawati 53100 Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2200448,
+        "longitude": 101.7415221
+      }
+    },
+    {
+      "id": "courtsite_pickle_power_puchong",
+      "data": {
+        "name": "Pickle Power Puchong",
+        "address": "Pickle Power Puchong, Jalan Kampung Baru, Puchong Batu 14, Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9887886,
+        "longitude": 101.6216992
+      }
+    },
+    {
+      "id": "courtsite_han_ming_pickleball_centre_bandar_puteri_puchong",
+      "data": {
+        "name": "Han Ming Pickleball Centre @ Bandar Puteri Puchong",
+        "address": "Han Ming Pickleball Centre @ Bandar Puteri Puchong, Jalan Puchong Batu 14, Bandar Puchong Utama, Puchong, Selangor",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.996491,
+        "longitude": 101.6214855
+      }
+    },
+    {
+      "id": "courtsite_jc_pickleball_centre_naam_kheung_cheras",
+      "data": {
+        "name": "JC Pickleball Centre @ Naam Kheung Cheras",
+        "address": "SJKC Naam Kheung, Jalan Cheras, Taman Pertama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1185722,
+        "longitude": 101.7245999
+      }
+    },
+    {
+      "id": "courtsite_jompickle_icon_city_pj",
+      "data": {
+        "name": "Jompickle @ Icon City PJ",
+        "address": "JomPickle Sports Club, Icon City, 47300 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.086366,
+        "longitude": 101.6138819
+      }
+    },
+    {
+      "id": "courtsite_lavista_arena_bandar_baru_bangi",
+      "data": {
+        "name": "LaVista Arena, Bandar Baru Bangi",
+        "address": "LaVista Arena, Bangi Resort Hotel, Bangi Golf Club, Bandar Baru Bangi, Selangor, Malaysia",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9550413,
+        "longitude": 101.7664637
+      }
+    },
+    {
+      "id": "courtsite_let_s_pickleball_the_starling_mall",
+      "data": {
+        "name": "Let's Pickleball @ The Starling Mall",
+        "address": "The Starling Mall ( Level 4 Car Park), 6, Jalan SS 21/37, Damansara Utama, 47400 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1352052,
+        "longitude": 101.6230055
+      }
+    },
+    {
+      "id": "courtsite_pad_pickleball_gravit8",
+      "data": {
+        "name": "PAD Pickleball @ Gravit8",
+        "address": "Gravit8 @ Klang South, Jalan Bayu Laut/KS 9, Kota Bayuemas, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.9832326,
+        "longitude": 101.4438734
+      }
+    },
+    {
+      "id": "courtsite_pickle_pickle_taman_connaught_cheras",
+      "data": {
+        "name": "Pickle Pickle @ Taman Connaught, Cheras",
+        "address": "TF Value-Mart, Taman Connaught, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0807815,
+        "longitude": 101.7305595
+      }
+    },
+    {
+      "id": "courtsite_pj_sports_centre",
+      "data": {
+        "name": "PJ Sports Centre",
+        "address": "Pj Sports Centre, Lorong Sultan, Seksyen 52 Petaling Jaya, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1016853,
+        "longitude": 101.6458693
+      }
+    },
+    {
+      "id": "courtsite_sri_kdu_international_school_klang",
+      "data": {
+        "name": "Sri KDU International School, Klang",
+        "address": "Sri KDU International School, Lot 4187, Jalan Goh Hock Huat, KU 1, 41050 Klang, Selangor",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0553475,
+        "longitude": 101.4419
+      }
+    },
+    {
+      "id": "courtsite_sri_kdu_international_school_subang_jaya",
+      "data": {
+        "name": "Sri KDU International School, Subang Jaya",
+        "address": "Sri KDU International School, Jalan MP 2, Tropicana Metropark, 47500 Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.074529,
+        "longitude": 101.5673228
+      }
+    },
+    {
+      "id": "courtsite_taylor_s_international_school_kuala_lumpur",
+      "data": {
+        "name": "Taylor's International School Kuala Lumpur",
+        "address": "9 Jalan 1/75C, Off Jalan Pria, Taman Maluri, 55100 Kuala Lumpur, Wilayah Persekutuan, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1371499,
+        "longitude": 101.7312955
+      }
+    },
+    {
+      "id": "courtsite_time_to_tennis_citta_mall",
+      "data": {
+        "name": "Time to Tennis @ Citta Mall",
+        "address": "Time To Tennis, Jalan PJU 1a/48, Ara Damansara, Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1126923,
+        "longitude": 101.5793955
+      }
+    },
+    {
+      "id": "courtsite_w_sentul_pickleplay_casual",
+      "data": {
+        "name": "W (Sentul) PicklePlay.Casual",
+        "address": "Lot 2953, Jalan Sentul Harmoni OFF Jalan Sentul Pasar, Sentul, 51000 KL",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.2062837,
+        "longitude": 101.6891609
+      }
+    },
+    {
+      "id": "courtsite_bayan_club_seri_kembangan",
+      "data": {
+        "name": "Bayan Club @ Seri Kembangan",
+        "address": "Jalan BS 3/12, Taman Bukit Serdang, 43300 Seri Kembangan, Selangor",
+        "city": "Seri Kembangan",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0145791,
+        "longitude": 101.6944546
+      }
+    },
+    {
+      "id": "courtsite_pioneer_badminton_centre_endah_parade",
+      "data": {
+        "name": "Pioneer Badminton Centre Endah Parade",
+        "address": "Endah Parade, Lot 5-001 & 5-001A, 5th Floor, Jalan 1/149e, Taman Sri Endah, 57000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.0632851,
+        "longitude": 101.6950878
+      }
+    },
+    {
+      "id": "courtsite_sportizza_home_of_sports_klang",
+      "data": {
+        "name": "Sportizza - Home of Sports Klang",
+        "address": "2156, 1, Jalan Sungai Bertih, Kampung Sungai Udang, Klang, Selangor, Malaysia",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0349718,
+        "longitude": 101.4236194
+      }
+    },
+    {
+      "id": "courtsite_149_sports_arena",
+      "data": {
+        "name": "149 Sports Arena",
+        "address": "Lot 1810, Jalan Kpb 5, Bukit Belimbing, 43300 Seri Kembangan, Selangor, Malaysia",
+        "city": "Balakong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.034575,
+        "longitude": 101.7327511
+      }
+    },
+    {
+      "id": "afa_98_impian_sports",
+      "data": {
+        "name": "Impian Sports",
+        "address": "Lot 152157, Jalan Selatan 11, Taman Impian Emas, 81300 Skudai, Johor",
+        "city": "Skudai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.54368,
+        "longitude": 103.68913
+      }
+    },
+    {
+      "id": "afa_126_kelab_rekreasi_petroliam_krp",
+      "data": {
+        "name": "Kelab Rekreasi Petroliam (KRP)",
+        "address": "Kelab Rekreasi Petroliam, Lutong, 98000 Lutong, Sarawak",
+        "city": "Lutong",
+        "state": "Sarawak",
+        "country": "Malaysia",
+        "latitude": 4.46969,
+        "longitude": 114.00766
+      }
+    },
+    {
+      "id": "afa_144_sentosa_sports_centre",
+      "data": {
+        "name": "Sentosa Sports Centre",
+        "address": "Block 17, Lot 310, Jalan Stakan, Batu 7, Kota Sentosa, Kota Sentosa,",
+        "city": "Kuching",
+        "state": "Sarawak",
+        "country": "Malaysia",
+        "latitude": 1.46544,
+        "longitude": 110.33422
+      }
+    },
+    {
+      "id": "afa_155_kompleks_sukan_batu_berendam",
+      "data": {
+        "name": "Kompleks Sukan Batu Berendam",
+        "address": "Jalan Dato Seri Hj Mat Zain, 75350 Melaka",
+        "city": "Melaka",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.21811,
+        "longitude": 102.21956
+      }
+    },
+    {
+      "id": "afa_157_ax_sport_arena",
+      "data": {
+        "name": "AX Sport Arena",
+        "address": "138B, Jalan Mawar, Taman Jaya, 14000 Bukit Mertajam, Pulau Pinang",
+        "city": "Bukit Mertajam",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.35625,
+        "longitude": 100.47063
+      }
+    },
+    {
+      "id": "afa_168_ii_sports_centre_kota_kinabalu",
+      "data": {
+        "name": "ii Sports Centre Kota Kinabalu",
+        "address": "Hse 35, Lot 27, Jalan Kilang, Kolombong, 88450 Kota Kinabalu, Sabah",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.9829,
+        "longitude": 116.11747
+      }
+    },
+    {
+      "id": "afa_184_kelab_golf_dan_rekreasi_petronas",
+      "data": {
+        "name": "Kelab Golf Dan Rekreasi Petronas",
+        "address": "Jalan Kemaman - Dungun, Perumahan Petronas Rantau Bukit,",
+        "city": "Kerteh",
+        "state": "Terengganu",
+        "country": "Malaysia",
+        "latitude": 4.45802,
+        "longitude": 103.44246
+      }
+    },
+    {
+      "id": "afa_187_havona_badminton_sports_centre",
+      "data": {
+        "name": "Havona Badminton Sports Centre",
+        "address": "49-59 (1st Floor, Block B, Jalan 4, Taman Sri Kluang, 86000 Kluang, Johor",
+        "city": "Kluang",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.0268,
+        "longitude": 103.29918
+      }
+    },
+    {
+      "id": "afa_196_sportshub_austin_heights",
+      "data": {
+        "name": "SportsHub@Austin Heights",
+        "address": "Sports Hub @ Austin Height",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.56437,
+        "longitude": 103.77572
+      }
+    },
+    {
+      "id": "afa_209_rcp_racquet_club_puchong_badminton_and_pickleball",
+      "data": {
+        "name": "RCP Racquet Club Puchong (Badminton & Pickleball)",
+        "address": "1295, Jalan Pipit, Batu 8 1/2, kg Bukit Tandang, Bandar Puchong Jaya, 47100 Puchong, Selangor, Malaysia",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05919,
+        "longitude": 101.63131
+      }
+    },
+    {
+      "id": "afa_240_sports_affairs_the_commune",
+      "data": {
+        "name": "Sports Affairs @ The Commune",
+        "address": "THE COMMUNE Lifestyle Mall Jalan Kiambang 10 Bandar Indahpura",
+        "city": "Kulai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.64224,
+        "longitude": 103.60252
+      }
+    },
+    {
+      "id": "afa_252_the_picklz",
+      "data": {
+        "name": "The Picklz",
+        "address": "23, Lintang Sungai Tiram 5, Sunway Prima, Bayan Lepas, Penang, Malaysia",
+        "city": "Bayan Lepas",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.30379,
+        "longitude": 100.27707
+      }
+    },
+    {
+      "id": "afa_258_juzdink_pickleball",
+      "data": {
+        "name": "Juzdink Pickleball",
+        "address": "5, JALAN SELATAN 8/1,KAWASAN PERINDUSTRIAN SELATAN, 81300 JOHOR BAHRU,JOHOR, MALAYSIA",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.54409,
+        "longitude": 103.69176
+      }
+    },
+    {
+      "id": "afa_275_ping_ming_pickleball",
+      "data": {
+        "name": "Ping Ming Pickleball",
+        "address": "no 78, Jalan Tun Sri Lanang 75100",
+        "city": "Melaka",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.2066,
+        "longitude": 102.25323
+      }
+    },
+    {
+      "id": "afa_276_the_pickle_place",
+      "data": {
+        "name": "The Pickle Place",
+        "address": "50C, Jalan Haruan 1, Oakland Industrial Park, 70300, Seremban, Negeri Sembilan, Malaysia",
+        "city": "Seremban",
+        "state": "Negeri Sembilan",
+        "country": "Malaysia",
+        "latitude": 2.70359,
+        "longitude": 101.9168
+      }
+    },
+    {
+      "id": "afa_278_jom_pickleball_centre",
+      "data": {
+        "name": "Jom Pickleball Centre",
+        "address": "Jalan Jeram Mesjid, Kampung Jeram, Muar, Johor, Malaysia",
+        "city": "Muar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.05883,
+        "longitude": 102.6226
+      }
+    },
+    {
+      "id": "afa_279_space_7even_sport_centre",
+      "data": {
+        "name": "Space 7even Sport Centre",
+        "address": "19 Lorong Parit Haji Ali",
+        "city": "Batu Pahat",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.87424,
+        "longitude": 102.96917
+      }
+    },
+    {
+      "id": "afa_282_alor_setar_pickleball",
+      "data": {
+        "name": "Alor Setar Pickleball",
+        "address": "Mergong Barrage, Jalan Lencong Barat,  Alor Setar, Kedah, Malaysia",
+        "city": "Alor Setar",
+        "state": "Kedah",
+        "country": "Malaysia",
+        "latitude": 6.08653,
+        "longitude": 100.35486
+      }
+    },
+    {
+      "id": "afa_288_pickle_friends_lotuss_plentong_powered_by_ori5in",
+      "data": {
+        "name": "Pickle Friends @ Lotuss Plentong Powered by ORI5IN",
+        "address": "Lotus's Plentong, Jalan Masai Lama, Kampung Batu 10, Masai, Johor Darul Ta'zim, Malaysia",
+        "city": "Masai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.52183,
+        "longitude": 103.815
+      }
+    },
+    {
+      "id": "afa_290_d_pickle_zone_johor_bahru",
+      "data": {
+        "name": "D Pickle Zone Johor Bahru",
+        "address": "PTD 75289, Jalan Harum Utama, Taman Perindustrian Sri Plentong, Permas Jaya, Masai, Johor Darul Ta'zim, Malaysia",
+        "city": "Masai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.50733,
+        "longitude": 103.8316
+      }
+    },
+    {
+      "id": "afa_291_b_and_b_pickleball_club",
+      "data": {
+        "name": "B&B Pickleball Club",
+        "address": "Bounce & Bloom Pickleball Club Jalan Bakri Batu 2 Parit Tiram",
+        "city": "Muar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.05049,
+        "longitude": 102.60195
+      }
+    },
+    {
+      "id": "afa_297_pickle_88",
+      "data": {
+        "name": "Pickle 88",
+        "address": "PT90, HSM 80, RAUB PICKLEBALL SPORT SERVICES, PINTU PADANG MUKIM GALI, 27600 RAUB, PAHANG",
+        "city": "Raub",
+        "state": "Pahang",
+        "country": "Malaysia",
+        "latitude": 3.82473,
+        "longitude": 101.9049
+      }
+    },
+    {
+      "id": "afa_299_premier_subang_pickleball",
+      "data": {
+        "name": "Premier Subang Pickleball",
+        "address": "No. 2, Jalan SS13/3F, 47500 Petaling Jaya, Selangor, Malaysia",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.07009,
+        "longitude": 101.59677
+      }
+    },
+    {
+      "id": "afa_300_pickletop_pickleball_court",
+      "data": {
+        "name": "Pickletop Pickleball Court",
+        "address": "3353, Jalan Rozhan, Taman Alma Jaya, Bukit Mertajam, Penang, Malaysia",
+        "city": "Bukit Mertajam",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.33668,
+        "longitude": 100.48359
+      }
+    },
+    {
+      "id": "afa_302_picklebola",
+      "data": {
+        "name": "PickleBola",
+        "address": "Lot 2599, 12 km Jalan Bukit putus, 70400, Seremban, Negeri Sembilan",
+        "city": "Seremban",
+        "state": "Negeri Sembilan",
+        "country": "Malaysia",
+        "latitude": 2.71019,
+        "longitude": 102.05055
+      }
+    },
+    {
+      "id": "afa_304_28_sports_cafe",
+      "data": {
+        "name": "28 Sports Cafe",
+        "address": "Lot 000453, Pekan Batu berendam, 75350 Malacca",
+        "city": "Melaka",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.2549,
+        "longitude": 102.24907
+      }
+    },
+    {
+      "id": "afa_305_91_pickleball_club_house_skudai_formerly_known_as_pickle",
+      "data": {
+        "name": "91 Pickleball Club House @ Skudai (formerly known as Pickle Champs)",
+        "address": "PDT 62580 Batu 8 1/2 81300, Skudai Highway, Taman Ungku Tun Aminah, Johor Bahru, Johor, Malaysia",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.52346,
+        "longitude": 103.67062
+      }
+    },
+    {
+      "id": "afa_306_off_the_ground_pickle_club",
+      "data": {
+        "name": "OFF THE GROUND Pickle Club",
+        "address": "50A, Jalan Arumugam Pillai",
+        "city": "Bukit Mertajam",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.36784,
+        "longitude": 100.46219
+      }
+    },
+    {
+      "id": "afa_307_picklegen",
+      "data": {
+        "name": "Picklegen",
+        "address": "Giant Bayan Baru @ Ground Floor, 78 Lintang Bayan, Bayan Baru, Bayan Lepas, Penang, Malaysia",
+        "city": "Bayan Lepas",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.321,
+        "longitude": 100.28403
+      }
+    },
+    {
+      "id": "afa_310_gotta_bounce_sports_and_social_club",
+      "data": {
+        "name": "Gotta\u2018 Bounce Sports & Social Club",
+        "address": "6c, Jalan Riang Utama Taman Gembira",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.523,
+        "longitude": 103.74893
+      }
+    },
+    {
+      "id": "afa_313_infinity_sports_arena_2_0",
+      "data": {
+        "name": "Infinity Sports Arena 2.0",
+        "address": "Infinity Sports Arena 2.0 Jalan Tuaran Inanam",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.99216,
+        "longitude": 116.12449
+      }
+    },
+    {
+      "id": "afa_318_pickle_x_shah_alam_icity",
+      "data": {
+        "name": "Pickle X Shah Alam iCity",
+        "address": "Lot PT 1168, Jalan Plumbum Ac 7/Ac Seksyen 7",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06377,
+        "longitude": 101.48875
+      }
+    },
+    {
+      "id": "afa_327_unoo_sport_centre",
+      "data": {
+        "name": "UNOO Sport Centre",
+        "address": "Unoo Pickleball Club Jalan Tenggayun",
+        "city": "Pontian District",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.45327,
+        "longitude": 103.41858
+      }
+    },
+    {
+      "id": "afa_336_the_pickle_hub_cheras",
+      "data": {
+        "name": "The Pickle Hub (Cheras)",
+        "address": "The Pickle Hub Jalan Cheras Kampung Bharu Cheras",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05158,
+        "longitude": 101.77399
+      }
+    },
+    {
+      "id": "afa_337_pickle_island",
+      "data": {
+        "name": "Pickle Island",
+        "address": "Pickle Island KK Landing Likas Baharu Jalan Tuaran",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.99828,
+        "longitude": 116.12006
+      }
+    },
+    {
+      "id": "afa_338_pickle_buddy_segamat",
+      "data": {
+        "name": "Pickle Buddy Segamat",
+        "address": "Rooftop Car Park @ Segamat Central Shopping Mall, Jalan Kolam Air, Segamat, Johor, Malaysia.",
+        "city": "Segamat District",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.50879,
+        "longitude": 102.81281
+      }
+    },
+    {
+      "id": "afa_339_picklestory",
+      "data": {
+        "name": "PickleStory",
+        "address": "775, Q290, Kampung Lopeng Tengah, Miri, Sarawak, Malaysia",
+        "city": "Miri",
+        "state": "Sarawak",
+        "country": "Malaysia",
+        "latitude": 4.36354,
+        "longitude": 113.98551
+      }
+    },
+    {
+      "id": "afa_341_usports",
+      "data": {
+        "name": "Usports",
+        "address": "Usports Badminton Jalan Kencana Emas 2/1 Kawasan Perindustrian Tebrau",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.53911,
+        "longitude": 103.77477
+      }
+    },
+    {
+      "id": "afa_356_sp_pickleplex",
+      "data": {
+        "name": "SP Pickleplex",
+        "address": "SP PICKLEPLEX Jalan Ttc 33",
+        "city": "KAW PERINDUSTRIAN CHENG",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.26947,
+        "longitude": 102.2288
+      }
+    },
+    {
+      "id": "afa_360_brickfields_court",
+      "data": {
+        "name": "Brickfields Court",
+        "address": "Portion of lots 238 & 240, both of block 32, kemena land district,97000 Bintulu Sarawak",
+        "city": "Bintulu",
+        "state": "Sarawak",
+        "country": "Malaysia",
+        "latitude": 3.19862,
+        "longitude": 113.04482
+      }
+    },
+    {
+      "id": "afa_362_the_vibes_sport_centre",
+      "data": {
+        "name": "The Vibes Sport Centre",
+        "address": "Jalan Jeram Masjid Kampung Jeram",
+        "city": "Muar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.05883,
+        "longitude": 102.6226
+      }
+    },
+    {
+      "id": "afa_371_kicks_the_pickle_exchange_taman_gembira_johor_bahru",
+      "data": {
+        "name": "KICKS - The Pickle Exchange | Taman Gembira, Johor Bahru",
+        "address": "6A, Jalan Riang Utama, Taman Gembira, 81200 Johor Bahru, Johor, Malaysia",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.52234,
+        "longitude": 103.74945
+      }
+    },
+    {
+      "id": "afa_385_bola_jeruk_pickle_horizon",
+      "data": {
+        "name": "Bola Jeruk @ Pickle Horizon",
+        "address": "Asahan Maju Industries Sdn Bhd, Kawasan Perindustrian Pengkalan Chepa 2, 16100, Kota\u00a0Bharu,\u00a0Kelantan",
+        "city": "Pengkalan Chepa",
+        "state": "Kelantan",
+        "country": "Malaysia",
+        "latitude": 6.14325,
+        "longitude": 102.29485
+      }
+    },
+    {
+      "id": "afa_386_55_gatheround_pickleball",
+      "data": {
+        "name": "55 Gatheround Pickleball",
+        "address": "Lot 5580, Mas Mart, Jalan Mas 4, Taman Desamas, 81000 Kulai, Johor Darul Ta'zim",
+        "city": "Kulai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.65554,
+        "longitude": 103.59752
+      }
+    },
+    {
+      "id": "afa_390_yolo_mansion",
+      "data": {
+        "name": "YOLO MANSION",
+        "address": "Phoenix Club Persiaran Danga Perdana",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.46498,
+        "longitude": 103.7268
+      }
+    },
+    {
+      "id": "afa_391_pickle_smash",
+      "data": {
+        "name": "Pickle Smash",
+        "address": "Pickle Smash Kangar Perlis R166 Kampung Pondok",
+        "city": "Kangar",
+        "state": "Perlis",
+        "country": "Malaysia",
+        "latitude": 6.45019,
+        "longitude": 100.1942
+      }
+    },
+    {
+      "id": "afa_395_76_pickle_hub",
+      "data": {
+        "name": "76 Pickle Hub",
+        "address": "76 Pickle Hub - Johor Permas Jaya Jalan Permas Barat Taman Perindustrian Sri Plentong",
+        "city": "Masai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.49854,
+        "longitude": 103.82867
+      }
+    },
+    {
+      "id": "afa_401_pickle_connection_nusa_bestari",
+      "data": {
+        "name": "Pickle Connection Nusa Bestari",
+        "address": "TF Value-Mart Nusa Bestari, Taman Nusa Bestari, Johor Bahru, Johor, Malaysia",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.48345,
+        "longitude": 103.66508
+      }
+    },
+    {
+      "id": "afa_403_centro_pickleball",
+      "data": {
+        "name": "Centro Pickleball",
+        "address": "Centro Mall, Level 2, 8,  Jalan Batu Tiga Lama Kawasan 16",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05283,
+        "longitude": 101.46286
+      }
+    },
+    {
+      "id": "afa_407_nuova_sport_arena",
+      "data": {
+        "name": "NUOVA Sport Arena",
+        "address": "FBSA BY NUOVA SPORT ARENA Jalan Sungai Rasau Kawasan Perindustrian Sungai Rasau",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.05498,
+        "longitude": 101.48166
+      }
+    },
+    {
+      "id": "afa_409_level_up_fitness_xpress_gaya_st_members_only_check_t_and",
+      "data": {
+        "name": "Level Up Fitness Xpress, Gaya St [MEMBERS ONLY, check T&C before booking]",
+        "address": "20 Jalan Haji Saman",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98639,
+        "longitude": 116.07773
+      }
+    },
+    {
+      "id": "afa_410_sports99_arena",
+      "data": {
+        "name": "SPORTS99 ARENA",
+        "address": "SPORTS99 ARENA Jalan Iks PS 6",
+        "city": "Alor Gajah",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.4566,
+        "longitude": 102.22631
+      }
+    },
+    {
+      "id": "afa_411_sikamat_sport_centre",
+      "data": {
+        "name": "Sikamat Sport Centre",
+        "address": "Jalan Ujong Pasir 1 Kampung Ujong Pasir 70400",
+        "city": "Seremban",
+        "state": "Negeri Sembilan",
+        "country": "Malaysia",
+        "latitude": 2.73805,
+        "longitude": 101.96648
+      }
+    },
+    {
+      "id": "afa_413_peakles_park",
+      "data": {
+        "name": "Peakles Park",
+        "address": "Jalan KLJ 5",
+        "city": "Taman Kota Laksamana",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.19897,
+        "longitude": 102.23172
+      }
+    },
+    {
+      "id": "afa_415_smash_zone_gemas",
+      "data": {
+        "name": "Smash Zone Gemas",
+        "address": "11b, Jalan Heng Wong",
+        "city": "Gemas Baharu",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.58524,
+        "longitude": 102.62533
+      }
+    },
+    {
+      "id": "afa_416_dsbc_sungai_labu",
+      "data": {
+        "name": "DSBC Sungai Labu",
+        "address": "Jalan Sungai Lada Jalan Kiarong Seksyen 4( Dekat Masjid Al-Ehsan )",
+        "city": "Labuan",
+        "state": "Labuan Federal Territory",
+        "country": "Malaysia",
+        "latitude": 5.32289,
+        "longitude": 115.18686
+      }
+    },
+    {
+      "id": "afa_417_m_racquet_cs_studio",
+      "data": {
+        "name": "M Racquet CS Studio",
+        "address": "Sekolah Rendah Jenis Kebangsaan (C) Mah Hua Tingkat Selamat 7 Kampung Selamat",
+        "city": "Tasek Gelugor",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.50652,
+        "longitude": 100.52173
+      }
+    },
+    {
+      "id": "afa_423_ogco_pickleball_court",
+      "data": {
+        "name": "OGCO Pickleball Court",
+        "address": "Kemena Industrial Estate Phase 2 Jalan Kemena",
+        "city": "Bintulu",
+        "state": "Sarawak",
+        "country": "Malaysia",
+        "latitude": 3.1607,
+        "longitude": 113.09895
+      }
+    },
+    {
+      "id": "afa_424_mew_pickleball",
+      "data": {
+        "name": "MEW Pickleball",
+        "address": "@ Leong See Kah Miew \u6881\u6c0f\u5bb6\u5e99 65 Jalan Perak (Level 2) Georgetown, 10450 George Town, Penang, Malaysia",
+        "city": "Jalan Perak",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.41689,
+        "longitude": 100.31689
+      }
+    },
+    {
+      "id": "afa_430_picklethorn",
+      "data": {
+        "name": "Picklethorn",
+        "address": "Tetz Pickleball Club Court (Picklethorn)",
+        "city": "Raub",
+        "state": "Pahang",
+        "country": "Malaysia",
+        "latitude": 3.7987,
+        "longitude": 101.86318
+      }
+    },
+    {
+      "id": "afa_431_at_pickle",
+      "data": {
+        "name": "AT Pickle",
+        "address": "Taman Simpang Tiga Exit Persiaran Jubli Emas Taman Suriani",
+        "city": "Kangar",
+        "state": "Perlis",
+        "country": "Malaysia",
+        "latitude": 6.44477,
+        "longitude": 100.20705
+      }
+    },
+    {
+      "id": "afa_432_b_project_hub",
+      "data": {
+        "name": "B Project Hub",
+        "address": "B Project Academy Holding Sdn. Bhd., Jalan Kolombong, Sedco Industrial Estate, Kota Kinabalu, Sabah, Malaysia",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98176,
+        "longitude": 116.11766
+      }
+    },
+    {
+      "id": "afa_435_pickle_world_kk",
+      "data": {
+        "name": "Pickle World KK",
+        "address": "Servis Perodua Kelombong Lorong Tomato Kolombong",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.9853,
+        "longitude": 116.11871
+      }
+    },
+    {
+      "id": "afa_436_century_bay_private_residence",
+      "data": {
+        "name": "Century Bay Private Residence",
+        "address": "Century Bay Private Residence Lintang Pantai Jerjak Taman Jerjak Indah",
+        "city": "Gelugor",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.34493,
+        "longitude": 100.3052
+      }
+    },
+    {
+      "id": "afa_437_court_buddy_social_club_langkawi",
+      "data": {
+        "name": "Court Buddy Social Club Langkawi",
+        "address": "lot 195, no7, Jalan Pandak Mayah 3, Taman Bendang Baru, Kuah, Kedah, Malaysia",
+        "city": "Kuah",
+        "state": "Kedah",
+        "country": "Malaysia",
+        "latitude": 6.32233,
+        "longitude": 99.85098
+      }
+    },
+    {
+      "id": "afa_438_pickle_madness",
+      "data": {
+        "name": "Pickle Madness",
+        "address": "Jalan Austin Heights 8/1",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.56009,
+        "longitude": 103.77453
+      }
+    },
+    {
+      "id": "afa_440_jms_sport_centre",
+      "data": {
+        "name": "JMS Sport Centre",
+        "address": "Depot parking haulier",
+        "city": "Butterworth",
+        "state": "Penang",
+        "country": "Malaysia",
+        "latitude": 5.44012,
+        "longitude": 100.40579
+      }
+    },
+    {
+      "id": "afa_441_calvary_crown_pickleball_and_badminton",
+      "data": {
+        "name": "Calvary Crown Pickleball & Badminton",
+        "address": "Dewan Calvary, TB6881, Taman Setia, Jalan Chong Thien Vun, 91000 Tawau Sabah.",
+        "city": "Tawau",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 4.26118,
+        "longitude": 117.90867
+      }
+    },
+    {
+      "id": "afa_443_anytime_pickleball",
+      "data": {
+        "name": "Anytime Pickleball",
+        "address": "Ptd 13304 Kawasan Sg Mati, Mukim Se, Sungai Mati, 84400,\u00a0JHR,\u00a0MY",
+        "city": "4HP5+J8 Sungai Mati",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.13656,
+        "longitude": 102.55831
+      }
+    },
+    {
+      "id": "afa_445_pickle_lab_tawau",
+      "data": {
+        "name": "Pickle Lab Tawau",
+        "address": "Pickle Lab Tawau Taman Milenium Centenary II Light Industrial Estate Jalan Apas",
+        "city": "Tawau",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 4.27631,
+        "longitude": 117.93228
+      }
+    },
+    {
+      "id": "afa_449_apt",
+      "data": {
+        "name": "APT",
+        "address": "APT Pickleball Court Jalan Teluk Likas",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98832,
+        "longitude": 116.09579
+      }
+    },
+    {
+      "id": "afa_450_163_sky_pickle",
+      "data": {
+        "name": "163 Sky Pickle",
+        "address": "163 Sky Pickle Kampung Kemansur",
+        "city": "Bentong",
+        "state": "Pahang",
+        "country": "Malaysia",
+        "latitude": 3.52444,
+        "longitude": 101.90479
+      }
+    },
+    {
+      "id": "afa_452_pickle_town_tawau",
+      "data": {
+        "name": "Pickle Town Tawau",
+        "address": "213 , Jln. St Patrick Bandar Tawau 91000",
+        "city": "Tawau",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 4.24636,
+        "longitude": 117.89283
+      }
+    },
+    {
+      "id": "afa_453_pickle_pod_inanam_capital",
+      "data": {
+        "name": "Pickle Pod Inanam Capital",
+        "address": "Pickle Pod PICKLE POD Inanam",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98739,
+        "longitude": 116.13121
+      }
+    },
+    {
+      "id": "afa_454_united_pickleball",
+      "data": {
+        "name": "United Pickleball",
+        "address": "38, Jalan Kesang",
+        "city": "Muar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.06828,
+        "longitude": 102.55407
+      }
+    },
+    {
+      "id": "afa_456_picklenova",
+      "data": {
+        "name": "PickleNova",
+        "address": "Lot 2340 , BLOCK FA , Batu 4 1/2 , Jalan Kuala Kangsar , Simpang",
+        "city": "Taiping",
+        "state": "Perak",
+        "country": "Malaysia",
+        "latitude": 4.8091,
+        "longitude": 100.72386
+      }
+    },
+    {
+      "id": "afa_458_br_96_sports_court_centre",
+      "data": {
+        "name": "BR 96 SPORTS COURT CENTRE",
+        "address": "BR 96 SPORTS CENTRE, JALAN PBR 11, Kawasan Perindustrian Bukit Rambai, Melaka, Malaysia",
+        "city": "Bukit Rambai",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.27297,
+        "longitude": 102.17908
+      }
+    },
+    {
+      "id": "afa_459_pickle_haven_usj",
+      "data": {
+        "name": "Pickle Haven USJ",
+        "address": "763, Jalan Subang 4, Ultramine Industrial Park, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.04692,
+        "longitude": 101.59583
+      }
+    },
+    {
+      "id": "afa_461_pickup",
+      "data": {
+        "name": "PICKUP",
+        "address": "Pickup Sport Complex Jalan Iks Malim Jaya 5",
+        "city": "Taman Malim Jaya",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.23889,
+        "longitude": 102.23862
+      }
+    },
+    {
+      "id": "afa_462_play_at_dewani",
+      "data": {
+        "name": "Play! at Dewani",
+        "address": "1556 Kawasan Perindustrian Dewani",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.52004,
+        "longitude": 103.75237
+      }
+    },
+    {
+      "id": "afa_466_aseana_arena",
+      "data": {
+        "name": "ASEANA ARENA",
+        "address": "ASEANA ARENA, Lot 20006, Jalan Nakhoda Yusof Maluri",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.13494,
+        "longitude": 101.72595
+      }
+    },
+    {
+      "id": "afa_467_syok_pickle",
+      "data": {
+        "name": "Syok Pickle",
+        "address": "Syok Pickle, Persiaran Kemajuan, Kawasan Perindustrian Bangi, Bandar Baru Bangi, Selangor, Malaysia",
+        "city": "Bandar Baru Bangi",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.95142,
+        "longitude": 101.75672
+      }
+    },
+    {
+      "id": "afa_469_p4_pickleball_sport_kayu_ara",
+      "data": {
+        "name": "P4 Pickleball Sport (Kayu Ara)",
+        "address": "P4 Pickleball Sports (Kayu Ara PJ) KAMPUNG Jalan Kekwa Kampung Sungai Kayu Ara, PJ, Selangor",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.12551,
+        "longitude": 101.60903
+      }
+    },
+    {
+      "id": "afa_470_desaru_utama_clubhouse",
+      "data": {
+        "name": "Desaru Utama Clubhouse",
+        "address": "\u5339\u514b\u7403 \uff06 \u6e38\u6cf3\u9986\u9879\u76ee\u5730 Desaru Utama Clubhouse, CLUBHOUSE, DESARU UTAMA, Jalan Kejora Utama, Taman Desaru Utama, Bandar Penawar, Johor, Malaysia",
+        "city": "Bandar Penawar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.57463,
+        "longitude": 104.21327
+      }
+    },
+    {
+      "id": "afa_471_the_hood",
+      "data": {
+        "name": "The Hood",
+        "address": "41, Jalan Rahmat, Off Jalan Ipoh",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.17012,
+        "longitude": 101.69291
+      }
+    },
+    {
+      "id": "afa_473_pickle_plaza",
+      "data": {
+        "name": "Pickle Plaza",
+        "address": "Sungai Mas Plaza Jalan Ipoh Taman Kok Lian",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.20247,
+        "longitude": 101.6718
+      }
+    },
+    {
+      "id": "afa_474_pickleluxx_janda_baik",
+      "data": {
+        "name": "PICKLELUXX JANDA BAIK",
+        "address": "101 Resort & Spa Kampung Janda Baik",
+        "city": "Bentong",
+        "state": "Pahang",
+        "country": "Malaysia",
+        "latitude": 3.33236,
+        "longitude": 101.85905
+      }
+    },
+    {
+      "id": "afa_475_picklehub_kluang",
+      "data": {
+        "name": "PICKLEHUB KLUANG",
+        "address": "15 , Jalan Perindustrian Gemilang, 86000 Kluang,Johor.",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.05525,
+        "longitude": 103.35975
+      }
+    },
+    {
+      "id": "afa_477_pickleball_planet",
+      "data": {
+        "name": "Pickleball Planet",
+        "address": "Level 9, Plaza Hang Tuah, Jalan Tun Mamat",
+        "city": "Melaka",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.20264,
+        "longitude": 102.24791
+      }
+    },
+    {
+      "id": "afa_478_tmke_sports_arena",
+      "data": {
+        "name": "TMKE SPORTS ARENA",
+        "address": "TMKE SPORTS ARENA Jalan Kapar Batu Tiga",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0694,
+        "longitude": 101.41733
+      }
+    },
+    {
+      "id": "afa_479_tff_pickleball",
+      "data": {
+        "name": "TFF Pickleball",
+        "address": "Pickleball court Jalan Padang Matsirat Kuah",
+        "city": "Langkawi",
+        "state": "Kedah",
+        "country": "Malaysia",
+        "latitude": 6.32292,
+        "longitude": 99.78825
+      }
+    },
+    {
+      "id": "afa_480_the_pickle_culture_club_pcc",
+      "data": {
+        "name": "The Pickle Culture Club (PCC)",
+        "address": "Mee Woo Superstore, Keningau, Sabah. Lor Andika Phase 5",
+        "city": "Keningau",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.34083,
+        "longitude": 116.15369
+      }
+    },
+    {
+      "id": "afa_482_borneo_pickle_haus",
+      "data": {
+        "name": "BORNEO PICKLE HAUS",
+        "address": "39C, Lot 59, Sedco Light Industrial Estate, Phase 2, Jalan Kilang, Kolombong, 88450 Kota Kinabalu, Sabah",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98374,
+        "longitude": 116.11786
+      }
+    },
+    {
+      "id": "afa_483_picklebee_the_rooftop",
+      "data": {
+        "name": "PickleBEE @ The Rooftop",
+        "address": "Rooftop, \u00c6ON Mall Bukit Raja Persiaran Bukit Raja 2 Bandar Baru Klang",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.06088,
+        "longitude": 101.47227
+      }
+    },
+    {
+      "id": "afa_484_railpickle_sports_depot",
+      "data": {
+        "name": "RailPickle Sports Depot",
+        "address": "Railpickle Sports Depot Pulau Sebang",
+        "city": "Alor Gajah",
+        "state": "Malacca",
+        "country": "Malaysia",
+        "latitude": 2.46208,
+        "longitude": 102.22981
+      }
+    },
+    {
+      "id": "afa_485_perling_pickleball",
+      "data": {
+        "name": "Perling Pickleball",
+        "address": "Jalan Persisiran Perling 1 Taman Perling",
+        "city": "Johor Bahru",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.48265,
+        "longitude": 103.68552
+      }
+    },
+    {
+      "id": "afa_488_ksp_ks_picklepoint",
+      "data": {
+        "name": "KSP (KS Picklepoint)",
+        "address": "4A, Persiaran Astana/KU2",
+        "city": "Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.08627,
+        "longitude": 101.45978
+      }
+    },
+    {
+      "id": "afa_489_finz_sports_pura_kencana_clubhouse",
+      "data": {
+        "name": "FINZ SPORTS @ Pura Kencana Clubhouse",
+        "address": "FINZ SPORTS @ Pura Kencana Clubhouse Sri Gading",
+        "city": "Batu Pahat",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.85291,
+        "longitude": 103.02507
+      }
+    },
+    {
+      "id": "afa_490_sabahtea_pickleball_courts",
+      "data": {
+        "name": "Sabahtea Pickleball Courts",
+        "address": "Sabah Tea Resort Cottage, Ranau, Sabah, Malaysia",
+        "city": "Ranau",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.94243,
+        "longitude": 116.78345
+      }
+    },
+    {
+      "id": "afa_491_borneo_sports_arena",
+      "data": {
+        "name": "BORNEO SPORTS ARENA",
+        "address": "Borneo Sports Arena Jalan Mangga Kelombong",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.98364,
+        "longitude": 116.11705
+      }
+    },
+    {
+      "id": "afa_492_ag_pickleball_sport_centre",
+      "data": {
+        "name": "AG PICKLEBALL SPORT CENTRE",
+        "address": "Sekolah Jenis Kebangsaan (Cina) Alor Gajah Rumah Awam Jalan Kolam Ayer",
+        "city": "Alor Gajah",
+        "state": "Malacca",
+        "country": "Malaysia",
+        "latitude": 2.38506,
+        "longitude": 102.20751
+      }
+    },
+    {
+      "id": "afa_493_empire_pickle_club_kluang",
+      "data": {
+        "name": "Empire Pickle Club - Kluang",
+        "address": "Jalan Haji Manan Taman Sri Mernanti",
+        "city": "Kluang",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 2.04004,
+        "longitude": 103.31786
+      }
+    },
+    {
+      "id": "afa_498_alpha_badminton_complex_batu_pahat",
+      "data": {
+        "name": "Alpha Badminton Complex - Batu Pahat",
+        "address": "Alpha Badminton Complex Batu Pahat Jalan Wawasan 17 Kawasan Perindustrian Sri Gading 2",
+        "city": "Batu Pahat",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.86302,
+        "longitude": 102.9921
+      }
+    },
+    {
+      "id": "afa_499_bounce_pickleball_court",
+      "data": {
+        "name": "BOUNCE | Pickleball Court",
+        "address": "G7, Jalan Rampayan, 88450 Kota Kinabalu, Sabah, Malaysia",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 6.02881,
+        "longitude": 116.1475
+      }
+    },
+    {
+      "id": "afa_501_pickle_go",
+      "data": {
+        "name": "Pickle Go!",
+        "address": "Persiaran Jaya 1 Mutiara Rini",
+        "city": "Skudai",
+        "state": "Johor",
+        "country": "Malaysia",
+        "latitude": 1.51412,
+        "longitude": 103.63548
+      }
+    },
+    {
+      "id": "afa_502_replay_karamunsing",
+      "data": {
+        "name": "Replay Karamunsing",
+        "address": "Kompleks Karamunsing",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.97082,
+        "longitude": 116.07513
+      }
+    },
+    {
+      "id": "afa_503_premier_kl_pickleball",
+      "data": {
+        "name": "Premier KL Pickleball",
+        "address": "Premier KL Pickleball Jalan Taman Setiawangsa Setiawangsa",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.17729,
+        "longitude": 101.74784
+      }
+    },
+    {
+      "id": "afa_504_rally_and_dink",
+      "data": {
+        "name": "Rally & Dink",
+        "address": "Ground Floor, Jalan KIP Utama, Taman KIP Utama, 75350 Batu Berendam, Melaka",
+        "city": "Melaka",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.23496,
+        "longitude": 102.24854
+      }
+    },
+    {
+      "id": "afa_508_empire_pickle_club_kemuning",
+      "data": {
+        "name": "Empire Pickle Club Kemuning",
+        "address": "Giant Kemuning Utama Seksyen 33",
+        "city": "Shah Alam",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01843,
+        "longitude": 101.53725
+      }
+    },
+    {
+      "id": "afa_511_pickle_garden_cvr",
+      "data": {
+        "name": "Pickle Garden @ CVR",
+        "address": "Cyberview Resort & Spa, The Lodge, Persiaran Multimedia, Cyber 7",
+        "city": "Cyberjaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 2.92421,
+        "longitude": 101.66733
+      }
+    },
+    {
+      "id": "afa_513_gio_me_pickle_melaka",
+      "data": {
+        "name": "Gio Me Pickle @ Melaka",
+        "address": "Gio Me Pickle @ Bukit Baru Melaka Jalan Bukit Baru",
+        "city": "Bukit Baru",
+        "state": "Melaka",
+        "country": "Malaysia",
+        "latitude": 2.2164,
+        "longitude": 102.26847
+      }
+    },
+    {
+      "id": "afa_514_dink_arena",
+      "data": {
+        "name": "DINK ARENA",
+        "address": "Dink Arena \u2022 USJ Jalan TS 6/1 TAMAN PERINDUSTRIAN",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.03792,
+        "longitude": 101.5989
+      }
+    },
+    {
+      "id": "afa_515_21_pickle_park",
+      "data": {
+        "name": "21 Pickle Park",
+        "address": "Jalan Ketiau Tombovo Bandar Putatan",
+        "city": "Putatan",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.88562,
+        "longitude": 116.05112
+      }
+    },
+    {
+      "id": "afa_516_ko_pickle_matcha",
+      "data": {
+        "name": "KO PICKLE MATCHA",
+        "address": "Lot 240, Taman Farmasi",
+        "city": "Seri Iskandar",
+        "state": "Perak",
+        "country": "Malaysia",
+        "latitude": 4.36412,
+        "longitude": 100.97737
+      }
+    },
+    {
+      "id": "afa_517_paddle_hub_7_x_kelab_pickleball_titiwangsa_taman_maluri",
+      "data": {
+        "name": "Paddle Hub 7 x Kelab Pickleball Titiwangsa @ Taman Maluri",
+        "address": "Paddle Hub 7 x Kelab Pickleball Titiwangsa @ Taman Maluri Jalan Perkasa 1 Maluri",
+        "city": "Cheras",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1325,
+        "longitude": 101.73232
+      }
+    },
+    {
+      "id": "afa_518_pickleyard",
+      "data": {
+        "name": "PickleYard",
+        "address": "46M, Jalan Lima, Chan Sow Lin, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Federal Territory of Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.11665,
+        "longitude": 101.71215
+      }
+    },
+    {
+      "id": "afa_519_pickle_play",
+      "data": {
+        "name": "Pickle Play",
+        "address": "Athletes For Athletes Solutions Sdn. Bhd. (AFA) Jalan 19/1 Seksyen 19",
+        "city": "Petaling Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.1113,
+        "longitude": 101.63198
+      }
+    },
+    {
+      "id": "afa_523_pickle_kito",
+      "data": {
+        "name": "Pickle Kito",
+        "address": "1st Floor, Lot PT1138, QueensPark SportzCity & Boulevard,\nJalan Tengku Ahmad Panglima",
+        "city": "Kota Bharu",
+        "state": "Kelantan",
+        "country": "Malaysia",
+        "latitude": 6.14445,
+        "longitude": 102.25185
+      }
+    },
+    {
+      "id": "afa_524_apex_pickleball",
+      "data": {
+        "name": "Apex Pickleball",
+        "address": "Apex Pickleball, Jalan Pandan Bersih (D), Taman Nirwana, Ampang Jaya, Selangor, Malaysia",
+        "city": "Ampang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.14202,
+        "longitude": 101.75028
+      }
+    },
+    {
+      "id": "afa_527_monsterball_social_club",
+      "data": {
+        "name": "MonsterBall Social Club",
+        "address": "MonsterBall Social Club, GF - Warehouse, Jalan SS13/4, Subang Jaya Industrial Estate, Subang Jaya, Selangor, Malaysia",
+        "city": "Subang Jaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.07013,
+        "longitude": 101.59549
+      }
+    },
+    {
+      "id": "afa_529_qna_court_culture",
+      "data": {
+        "name": "QNA Court Culture",
+        "address": "Jalan Petola, Kampung Raja Uda, Port Klang, Selangor, Malaysia",
+        "city": "Pelabuhan Klang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01964,
+        "longitude": 101.41349
+      }
+    },
+    {
+      "id": "afa_532_bk_smash_badminton_and_pickleball_centre",
+      "data": {
+        "name": "BK SMASH BADMINTON AND PICKLEBALL CENTRE",
+        "address": "Pejabat Pos Batang Kali Pusat Perdagangan Ara Seksyen 5",
+        "city": "Batang Kali",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.45722,
+        "longitude": 101.66036
+      }
+    },
+    {
+      "id": "afa_533_sbs_arena",
+      "data": {
+        "name": "SBS Arena",
+        "address": "White Fairy Futsal & Badminton Court, Jalan Taman Kinrara, Taman Kinrara, Puchong, Selangor, Malaysia",
+        "city": "Puchong",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.0597,
+        "longitude": 101.63691
+      }
+    },
+    {
+      "id": "afa_534_jompickleball_tpca",
+      "data": {
+        "name": "JomPickleball @TPCA",
+        "address": "TPCA Oval Cricket Ground Jalan Pinggiran Saujana 2/1 Taman Pinggiran Saujana",
+        "city": "Kajang",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.01715,
+        "longitude": 101.80134
+      }
+    },
+    {
+      "id": "afa_536_pickle_loft",
+      "data": {
+        "name": "Pickle Loft",
+        "address": "no 13c, Jalan Tembaga SD 5/2a Bandar Sri Damansara",
+        "city": "Kuala Lumpur",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.20187,
+        "longitude": 101.61909
+      }
+    },
+    {
+      "id": "afa_537_apro_pickle_club",
+      "data": {
+        "name": "Apro Pickle Club",
+        "address": "APRO PICKLE CLUB Jalan CJ 1/1 Taman Cheras Jaya",
+        "city": "Cheras",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "latitude": 3.02173,
+        "longitude": 101.76759
+      }
+    },
+    {
+      "id": "afa_540_nexxo_pickle_club",
+      "data": {
+        "name": "NEXXO PICKLE CLUB",
+        "address": "Asia City",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia",
+        "latitude": 5.97712,
+        "longitude": 116.07257
+      }
+    },
+    {
+      "id": "the_pxp_pickleball_club",
+      "data": {
+        "name": "The PxP Pickleball Club",
+        "address": "Pavillion Damansara Heights, Jalan Damansara, Damansara Heights, Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.147312,
+        "longitude": 101.662813
+      }
+    },
+    {
+      "id": "skycourts_pklcc",
+      "data": {
+        "name": "SKYCOURTS PKLCC",
+        "address": "SKYCOURTS PKLCC, Level 3, Pavilion Kuala Lumpur City Centre, Jalan Ampang, Kuala Lumpur, Malaysia",
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.158313,
+        "longitude": 101.719063
+      }
+    },
+    {
+      "id": "p3_courts",
+      "data": {
+        "name": "P3 Courts",
+        "address": "Lot 5710, Warehouse W2, Jalan Kuchai Lama, Taman Continental, 58200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+        "city": "Kuala Lumpur",
+        "state": "Wilayah Persekutuan Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.091687,
+        "longitude": 101.692813
+      }
+    }
+  ]
+}

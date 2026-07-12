@@ -1,0 +1,972 @@
+{
+  "database": {
+    "idEnv": "APPWRITE_DATABASE_ID",
+    "name": "PikaCircle MVP"
+  },
+  "bucket": {
+    "idEnv": "APPWRITE_AVATAR_BUCKET_ID",
+    "name": "Profile avatars"
+  },
+  "tables": [
+    {
+      "id": "users",
+      "name": "Users",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 160, "required": true },
+        { "key": "email", "type": "email", "required": true },
+        { "key": "date_of_birth", "type": "varchar", "size": 32 },
+        { "key": "gender", "type": "enum", "elements": ["male", "female", "non_binary"] },
+        { "key": "bio", "type": "text" },
+        { "key": "job_title", "type": "varchar", "size": 160 },
+        { "key": "job_title_verified", "type": "boolean", "default": false },
+        { "key": "job_title_verified_at", "type": "datetime" },
+        { "key": "job_title_verified_by", "type": "varchar", "size": 64 },
+        { "key": "job_title_credit_awarded_at", "type": "datetime" },
+        { "key": "linkedin_profile_url", "type": "url" },
+        { "key": "company", "type": "varchar", "size": 160 },
+        { "key": "industry", "type": "varchar", "size": 160 },
+        { "key": "salary_range", "type": "enum", "elements": ["below_3k", "3k_6k", "6k_10k", "10k_20k", "20k_plus", "prefer_not_to_say"], "validateExisting": true },
+        { "key": "phone_number", "type": "varchar", "size": 32 },
+        { "key": "phone_number_verified", "type": "boolean", "default": false },
+        { "key": "phone_number_verified_at", "type": "datetime" },
+        { "key": "location_label", "type": "varchar", "size": 255 },
+        { "key": "location_city", "type": "varchar", "size": 120 },
+        { "key": "location_state", "type": "varchar", "size": 120 },
+        { "key": "location_country", "type": "varchar", "size": 120 },
+        { "key": "home_latitude", "type": "float" },
+        { "key": "home_longitude", "type": "float" },
+        { "key": "profile_picture_file_id", "type": "varchar", "size": 255 },
+        { "key": "profile_picture_url", "type": "url" },
+        { "key": "roles", "type": "enum", "elements": ["user", "host", "admin"], "array": true, "validateExisting": true }
+      ],
+      "relationships": [
+        { "key": "membership_level_id", "relatedTableId": "membership_levels", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "email_unique", "type": "unique", "columns": ["email"] },
+        { "key": "industry_idx", "type": "key", "columns": ["industry"] },
+        { "key": "salary_range_idx", "type": "key", "columns": ["salary_range"] },
+        { "key": "location_city_idx", "type": "key", "columns": ["location_city"] },
+        { "key": "location_state_idx", "type": "key", "columns": ["location_state"] }
+      ]
+    },
+    {
+      "id": "membership_levels",
+      "name": "Membership Levels",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "enum", "elements": ["bronze", "silver", "gold", "platinum", "goat"], "required": true },
+        { "key": "description", "type": "text" },
+        { "key": "benefits", "type": "text" },
+        { "key": "min_lifetime_paid_credits", "type": "integer", "default": 0 },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [{ "key": "sort_order_idx", "type": "key", "columns": ["sort_order"] }]
+    },
+    {
+      "id": "announcements",
+      "name": "Announcements",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "title", "type": "varchar", "size": 255, "required": true },
+        { "key": "content", "type": "text" },
+        { "key": "image_url", "type": "url" },
+        { "key": "published_at", "type": "datetime" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [{ "key": "published_at_idx", "type": "key", "columns": ["published_at"] }]
+    },
+    {
+      "id": "venues",
+      "name": "Venues",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 255, "required": true },
+        { "key": "address", "type": "text" },
+        { "key": "city", "type": "varchar", "size": 120 },
+        { "key": "state", "type": "varchar", "size": 120 },
+        { "key": "country", "type": "varchar", "size": 120 },
+        { "key": "longitude", "type": "float" },
+        { "key": "latitude", "type": "float" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [{ "key": "city_idx", "type": "key", "columns": ["city"] }]
+    },
+    {
+      "id": "sponsors",
+      "name": "Sponsors",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 255, "required": true },
+        { "key": "description", "type": "text" },
+        { "key": "website", "type": "url" },
+        { "key": "image_url", "type": "url" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ]
+    },
+    {
+      "id": "sessions",
+      "name": "Sessions",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "title", "type": "varchar", "size": 255, "required": true },
+        { "key": "description", "type": "text" },
+        { "key": "starts_at", "type": "datetime" },
+        { "key": "skill_level", "type": "enum", "elements": ["beginner", "intermediate", "competitive"], "validateExisting": true },
+        { "key": "max_participants", "type": "integer" },
+        { "key": "privacy", "type": "boolean", "default": false },
+        { "key": "credit_cost", "type": "integer", "default": 0 },
+        { "key": "auto_approve", "type": "boolean", "default": true },
+        { "key": "refund_available", "type": "boolean", "default": true },
+        { "key": "refund_window_hours", "type": "enum", "elements": ["12", "24", "48"], "default": "24" },
+        { "key": "session_type", "type": "enum", "elements": ["social", "dupr", "drills", "class", "tournament", "league", "other"], "default": "social", "validateExisting": true },
+        { "key": "session_duration", "type": "enum", "elements": ["60", "90", "120"], "default": "60" },
+        { "key": "status", "type": "enum", "elements": ["draft", "published", "in_progress", "completed", "cancelled"], "default": "draft" },
+        { "key": "cancelled_at", "type": "datetime" },
+        { "key": "cancellation_reason", "type": "text" },
+        { "key": "scoring_mode", "type": "enum", "elements": ["none", "manual", "pb_vision"], "default": "none" },
+        { "key": "score_status", "type": "enum", "elements": ["not_started", "recording", "pending_review", "final"], "default": "not_started" },
+        { "key": "match_format", "type": "enum", "elements": ["singles", "doubles"], "default": "doubles" },
+        { "key": "winning_score", "type": "integer", "default": 11 },
+        { "key": "number_of_games", "type": "enum", "elements": ["1", "3", "5"], "default": "1" },
+        { "key": "win_by", "type": "enum", "elements": ["1", "2"], "default": "2" },
+        { "key": "venue", "type": "varchar", "size": 255 },
+        { "key": "timeLabel", "type": "varchar", "size": 120 },
+        { "key": "skill", "type": "varchar", "size": 120 },
+        { "key": "location", "type": "varchar", "size": 160 },
+        { "key": "hosted", "type": "boolean", "default": false },
+        { "key": "credits", "type": "integer", "default": 0 },
+        { "key": "remainingSlots", "type": "integer", "default": 0 },
+        { "key": "timeOfDay", "type": "varchar", "size": 80 },
+        { "key": "sponsor", "type": "varchar", "size": 255 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "relationships": [
+        { "key": "host_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "cancelled_by", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "venue_id", "relatedTableId": "venues", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "sponsor_id", "relatedTableId": "sponsors", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "score_format_id", "relatedTableId": "play_formats", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "starts_at_idx", "type": "key", "columns": ["starts_at"] },
+        { "key": "host_id_idx", "type": "key", "columns": ["host_id"] },
+        { "key": "venue_id_idx", "type": "key", "columns": ["venue_id"] },
+        { "key": "skill_level_idx", "type": "key", "columns": ["skill_level"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] },
+        { "key": "scoring_mode_idx", "type": "key", "columns": ["scoring_mode"] },
+        { "key": "score_status_idx", "type": "key", "columns": ["score_status"] },
+        { "key": "match_format_idx", "type": "key", "columns": ["match_format"] }
+      ]
+    },
+    {
+      "id": "session_participants",
+      "name": "Session Participants",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "role", "type": "enum", "elements": ["host", "player"], "default": "player" },
+        { "key": "status", "type": "enum", "elements": ["waitlisted", "confirmed", "cant_go", "no_show", "checked_in"], "default": "confirmed" },
+        { "key": "waitlist_position", "type": "integer" },
+        { "key": "credits_charged", "type": "integer", "default": 0 },
+        { "key": "participant_key", "type": "varchar", "size": 72 },
+        { "key": "joined_at", "type": "datetime" },
+        { "key": "confirmed_at", "type": "datetime" },
+        { "key": "waitlisted_at", "type": "datetime" },
+        { "key": "cancelled_at", "type": "datetime" },
+        { "key": "status_updated_at", "type": "datetime" },
+        { "key": "status_note", "type": "text" }
+      ],
+      "relationships": [
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "requested_status_by", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "status_updated_by", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "session_user_unique", "type": "unique", "columns": ["session_id", "user_id"] },
+        { "key": "participant_key_unique", "type": "unique", "columns": ["participant_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "session_id_idx", "type": "key", "columns": ["session_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] },
+        { "key": "waitlist_position_idx", "type": "key", "columns": ["waitlist_position"] }
+      ]
+    },
+    {
+      "id": "session_host_actions",
+      "name": "Session Host Actions",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "action_type", "type": "enum", "elements": ["publish_session", "cancel_session", "move_to_waitlist", "promote_from_waitlist", "mark_attended", "mark_no_show", "remove_participant", "update_session"], "required": true },
+        { "key": "before_status", "type": "varchar", "size": 80 },
+        { "key": "after_status", "type": "varchar", "size": 80 },
+        { "key": "reason", "type": "varchar", "size": 255 },
+        { "key": "note", "type": "text" }
+      ],
+      "relationships": [
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "actor_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "target_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "participant_id", "relatedTableId": "session_participants", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "session_id_idx", "type": "key", "columns": ["session_id"] },
+        { "key": "actor_user_id_idx", "type": "key", "columns": ["actor_user_id"] },
+        { "key": "target_user_id_idx", "type": "key", "columns": ["target_user_id"] },
+        { "key": "participant_id_idx", "type": "key", "columns": ["participant_id"] },
+        { "key": "action_type_idx", "type": "key", "columns": ["action_type"] }
+      ]
+    },
+    {
+      "id": "session_access_codes",
+      "name": "Session Access Codes",
+      "permissions": [],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "code", "type": "varchar", "size": 255, "required": true },
+        { "key": "purpose", "type": "enum", "elements": ["qr_join", "private_invite", "host_check_in"], "required": true },
+        { "key": "status", "type": "enum", "elements": ["active", "revoked", "expired"], "default": "active" },
+        { "key": "max_uses", "type": "integer" },
+        { "key": "uses_count", "type": "integer", "default": 0 },
+        { "key": "expires_at", "type": "datetime" },
+        { "key": "last_used_at", "type": "datetime" }
+      ],
+      "relationships": [
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "created_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "code_unique", "type": "unique", "columns": ["code"] },
+        { "key": "session_id_idx", "type": "key", "columns": ["session_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 120, "required": true },
+        { "key": "display_name", "type": "varchar", "size": 160, "required": true },
+        { "key": "is_active", "type": "boolean", "default": true },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [
+        { "key": "name_unique", "type": "unique", "columns": ["name"] },
+        { "key": "is_active_idx", "type": "key", "columns": ["is_active"] },
+        { "key": "sort_order_idx", "type": "key", "columns": ["sort_order"] }
+      ]
+    },
+    {
+      "id": "user_sports_backgrounds",
+      "name": "User Sports Backgrounds",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "level", "type": "enum", "elements": ["beginner", "intermediate", "competitive"], "validateExisting": true },
+        { "key": "is_primary", "type": "boolean", "default": false },
+        { "key": "years_played", "type": "integer" },
+        { "key": "notes", "type": "text" },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "user_sport_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "sport_id", "relatedTableId": "sports", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "user_sport_unique", "type": "unique", "columns": ["user_sport_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "sport_id_idx", "type": "key", "columns": ["sport_id"] },
+        { "key": "level_idx", "type": "key", "columns": ["level"] }
+      ]
+    },
+    {
+      "id": "social_platforms",
+      "name": "Social Platforms",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 120, "required": true },
+        { "key": "display_name", "type": "varchar", "size": 160, "required": true },
+        { "key": "profile_url_template", "type": "varchar", "size": 255 },
+        { "key": "is_active", "type": "boolean", "default": true },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [
+        { "key": "name_unique", "type": "unique", "columns": ["name"] },
+        { "key": "is_active_idx", "type": "key", "columns": ["is_active"] },
+        { "key": "sort_order_idx", "type": "key", "columns": ["sort_order"] }
+      ]
+    },
+    {
+      "id": "user_social_profiles",
+      "name": "User Social Profiles",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "handle", "type": "varchar", "size": 160 },
+        { "key": "profile_url", "type": "url" },
+        { "key": "visibility", "type": "enum", "elements": ["private", "friends", "session_participants", "public"], "default": "private" },
+        { "key": "verified", "type": "boolean", "default": false },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "user_platform_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "platform_id", "relatedTableId": "social_platforms", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "user_platform_unique", "type": "unique", "columns": ["user_platform_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "platform_id_idx", "type": "key", "columns": ["platform_id"] },
+        { "key": "visibility_idx", "type": "key", "columns": ["visibility"] }
+      ]
+    },
+    {
+      "id": "play_formats",
+      "name": "Play Formats",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 120, "required": true },
+        { "key": "display_name", "type": "varchar", "size": 160, "required": true },
+        { "key": "scoring_system", "type": "enum", "elements": ["side_out", "rally"], "required": true, "validateExisting": true },
+        { "key": "description", "type": "text" },
+        { "key": "score_call_format", "type": "enum", "elements": ["two_number", "three_number"], "validateExisting": true },
+        { "key": "points_awarded_to", "type": "enum", "elements": ["serving_team_only", "rally_winner"], "validateExisting": true },
+        { "key": "tracks_server_number", "type": "boolean", "default": false },
+        { "key": "is_active", "type": "boolean", "default": true },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [
+        { "key": "name_unique", "type": "unique", "columns": ["name"] },
+        { "key": "scoring_system_idx", "type": "key", "columns": ["scoring_system"] },
+        { "key": "is_active_idx", "type": "key", "columns": ["is_active"] }
+      ]
+    },
+    {
+      "id": "user_play_preferences",
+      "name": "User Play Preferences",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "preferred_time_slots", "type": "enum", "elements": ["morning", "afternoon", "evening", "night"], "array": true, "validateExisting": true },
+        { "key": "preferred_days", "type": "enum", "elements": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"], "array": true, "validateExisting": true },
+        { "key": "preferred_format_ids", "type": "varchar", "size": 120, "array": true },
+        { "key": "notes", "type": "text" },
+        { "key": "updated_at", "type": "datetime" }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "oneToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [{ "key": "user_id_unique", "type": "unique", "columns": ["user_id"] }]
+    },
+    {
+      "id": "user_favourite_venues",
+      "name": "User Favourite Venues",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_at", "type": "datetime" },
+        { "key": "user_venue_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "venue_id", "relatedTableId": "venues", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "user_venue_unique", "type": "unique", "columns": ["user_venue_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "venue_id_idx", "type": "key", "columns": ["venue_id"] }
+      ]
+    },
+    {
+      "id": "session_games",
+      "name": "Session Games",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "sequence_number", "type": "integer", "required": true },
+        { "key": "court_label", "type": "varchar", "size": 120 },
+        { "key": "play_type", "type": "enum", "elements": ["singles", "doubles"], "default": "doubles" },
+        { "key": "game_to", "type": "integer", "default": 11 },
+        { "key": "win_by", "type": "integer", "default": 2 },
+        { "key": "scoring_source", "type": "enum", "elements": ["manual", "pb_vision", "imported"], "default": "manual" },
+        { "key": "status", "type": "enum", "elements": ["draft", "in_progress", "pending_review", "final", "voided"], "default": "draft" },
+        { "key": "started_at", "type": "datetime" },
+        { "key": "ended_at", "type": "datetime" },
+        { "key": "reviewed_at", "type": "datetime" },
+        { "key": "notes", "type": "text" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "relationships": [
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "format_id", "relatedTableId": "play_formats", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "reviewed_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "session_id_idx", "type": "key", "columns": ["session_id"] },
+        { "key": "format_id_idx", "type": "key", "columns": ["format_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] },
+        { "key": "scoring_source_idx", "type": "key", "columns": ["scoring_source"] }
+      ]
+    },
+    {
+      "id": "session_game_teams",
+      "name": "Session Game Teams",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "team_number", "type": "integer", "required": true },
+        { "key": "score", "type": "integer", "default": 0 },
+        { "key": "result", "type": "enum", "elements": ["win", "loss", "draw", "void"], "validateExisting": true },
+        { "key": "game_team_key", "type": "varchar", "size": 100 }
+      ],
+      "relationships": [
+        { "key": "game_id", "relatedTableId": "session_games", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "game_team_unique", "type": "unique", "columns": ["game_team_key"] },
+        { "key": "game_id_idx", "type": "key", "columns": ["game_id"] }
+      ]
+    },
+    {
+      "id": "session_game_team_players",
+      "name": "Session Game Team Players",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "position_label", "type": "varchar", "size": 80 },
+        { "key": "team_participant_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "game_team_id", "relatedTableId": "session_game_teams", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "participant_id", "relatedTableId": "session_participants", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "team_participant_unique", "type": "unique", "columns": ["team_participant_key"] },
+        { "key": "game_team_id_idx", "type": "key", "columns": ["game_team_id"] },
+        { "key": "participant_id_idx", "type": "key", "columns": ["participant_id"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] }
+      ]
+    },
+    {
+      "id": "session_score_events",
+      "name": "Session Score Events",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "sequence_number", "type": "integer", "required": true },
+        { "key": "team_number", "type": "integer" },
+        { "key": "serving_team_number", "type": "integer" },
+        { "key": "receiving_team_number", "type": "integer" },
+        { "key": "rally_winner_team_number", "type": "integer" },
+        { "key": "event_type", "type": "enum", "elements": ["point", "side_out", "second_server", "correction", "game_start", "game_end"], "required": true, "validateExisting": true },
+        { "key": "team_1_score", "type": "integer", "default": 0 },
+        { "key": "team_2_score", "type": "integer", "default": 0 },
+        { "key": "server_number", "type": "integer" },
+        { "key": "server_position", "type": "enum", "elements": ["right", "left"], "validateExisting": true },
+        { "key": "source", "type": "enum", "elements": ["manual", "pb_vision"], "default": "manual" },
+        { "key": "occurred_at", "type": "datetime" },
+        { "key": "notes", "type": "text" }
+      ],
+      "relationships": [
+        { "key": "game_id", "relatedTableId": "session_games", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "entered_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "game_id_idx", "type": "key", "columns": ["game_id"] },
+        { "key": "sequence_number_idx", "type": "key", "columns": ["sequence_number"] },
+        { "key": "serving_team_idx", "type": "key", "columns": ["serving_team_number"] },
+        { "key": "rally_winner_idx", "type": "key", "columns": ["rally_winner_team_number"] }
+      ]
+    },
+    {
+      "id": "user_match_stats",
+      "name": "User Match Stats",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "scope", "type": "enum", "elements": ["all_time", "rolling_30_days", "rolling_90_days"], "default": "all_time" },
+        { "key": "games_played", "type": "integer", "default": 0 },
+        { "key": "wins", "type": "integer", "default": 0 },
+        { "key": "losses", "type": "integer", "default": 0 },
+        { "key": "draws", "type": "integer", "default": 0 },
+        { "key": "win_rate", "type": "float" },
+        { "key": "last_game_at", "type": "datetime" },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "user_scope_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "user_scope_unique", "type": "unique", "columns": ["user_scope_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "scope_idx", "type": "key", "columns": ["scope"] }
+      ]
+    },
+    {
+      "id": "penalty_rules",
+      "name": "Penalty Rules",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 160, "required": true },
+        { "key": "event_type", "type": "enum", "elements": ["no_show", "late_cancel", "host_report"], "default": "no_show" },
+        { "key": "threshold_count", "type": "integer", "default": 1 },
+        { "key": "rolling_window_days", "type": "integer", "default": 365 },
+        { "key": "block_days", "type": "integer", "default": 0 },
+        { "key": "applies_to_joining", "type": "boolean", "default": true },
+        { "key": "is_active", "type": "boolean", "default": true },
+        { "key": "created_at", "type": "datetime" },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [
+        { "key": "name_unique", "type": "unique", "columns": ["name"] },
+        { "key": "event_type_idx", "type": "key", "columns": ["event_type"] },
+        { "key": "is_active_idx", "type": "key", "columns": ["is_active"] }
+      ]
+    },
+    {
+      "id": "user_penalty_events",
+      "name": "User Penalty Events",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "event_type", "type": "enum", "elements": ["no_show", "late_cancel", "host_report", "admin_adjustment"], "required": true, "validateExisting": true },
+        { "key": "status", "type": "enum", "elements": ["active", "forgiven", "voided"], "default": "active" },
+        { "key": "occurred_at", "type": "datetime" },
+        { "key": "reason", "type": "varchar", "size": 255 },
+        { "key": "notes", "type": "text" },
+        { "key": "participant_event_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "participant_id", "relatedTableId": "session_participants", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "rule_id", "relatedTableId": "penalty_rules", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "reported_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "participant_event_unique", "type": "unique", "columns": ["participant_event_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "session_id_idx", "type": "key", "columns": ["session_id"] },
+        { "key": "participant_id_idx", "type": "key", "columns": ["participant_id"] },
+        { "key": "event_type_idx", "type": "key", "columns": ["event_type"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "user_restrictions",
+      "name": "User Restrictions",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "restriction_type", "type": "enum", "elements": ["join_block"], "required": true, "validateExisting": true },
+        { "key": "status", "type": "enum", "elements": ["active", "expired", "lifted"], "default": "active" },
+        { "key": "starts_at", "type": "datetime" },
+        { "key": "ends_at", "type": "datetime" },
+        { "key": "trigger_event_ids", "type": "varchar", "size": 64, "array": true },
+        { "key": "lifted_at", "type": "datetime" },
+        { "key": "reason", "type": "text" }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "rule_id", "relatedTableId": "penalty_rules", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "created_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "lifted_by_user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "restriction_type_idx", "type": "key", "columns": ["restriction_type"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] },
+        { "key": "starts_at_idx", "type": "key", "columns": ["starts_at"] },
+        { "key": "ends_at_idx", "type": "key", "columns": ["ends_at"] }
+      ]
+    },
+    {
+      "id": "credit_packs",
+      "name": "Credit Packs",
+      "permissions": ["read(\"any\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "name", "type": "varchar", "size": 160, "required": true },
+        { "key": "description", "type": "text" },
+        { "key": "image_url", "type": "url" },
+        { "key": "credits", "type": "integer", "required": true },
+        { "key": "currency", "type": "varchar", "size": 16, "default": "MYR" },
+        { "key": "price", "type": "float", "required": true },
+        { "key": "remarks", "type": "text" },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "priceLabel", "type": "varchar", "size": 80 },
+        { "key": "sortOrder", "type": "integer", "default": 0 },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [{ "key": "sort_order_idx", "type": "key", "columns": ["sort_order"] }]
+    },
+    {
+      "id": "wallet",
+      "name": "Wallet",
+      "permissions": [],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "free_credits", "type": "integer", "default": 0 },
+        { "key": "free_credits_decimal", "type": "float", "default": 0 },
+        { "key": "free_credits_expiry_date", "type": "datetime" },
+        { "key": "reset_countdown", "type": "varchar", "size": 120 },
+        { "key": "paid_credits", "type": "integer", "default": 0 },
+        { "key": "paid_credits_decimal", "type": "float", "default": 0 },
+        { "key": "remarks", "type": "text" },
+        { "key": "freeCredits", "type": "integer", "default": 0 },
+        { "key": "freeCredits_decimal", "type": "float", "default": 0 },
+        { "key": "paidCredits", "type": "integer", "default": 0 },
+        { "key": "paidCredits_decimal", "type": "float", "default": 0 },
+        { "key": "resetCountdown", "type": "varchar", "size": 120 },
+        { "key": "note", "type": "text" },
+        { "key": "freeCreditsExpiring", "type": "integer", "default": 0 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "oneToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [{ "key": "user_id_unique", "type": "unique", "columns": ["user_id"] }]
+    },
+    {
+      "id": "transactions",
+      "name": "Transactions",
+      "permissions": [],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "type", "type": "enum", "elements": ["purchase", "session_charge", "refund", "free_credit_reset", "adjustment"], "required": true },
+        { "key": "amount", "type": "float" },
+        { "key": "currency", "type": "varchar", "size": 16 },
+        { "key": "credits_delta", "type": "integer", "required": true },
+        { "key": "credits_delta_decimal", "type": "float" },
+        { "key": "transaction_date", "type": "datetime" },
+        { "key": "remarks", "type": "text" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "credit_pack_id", "relatedTableId": "credit_packs", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "session_id", "relatedTableId": "sessions", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [{ "key": "user_id_idx", "type": "key", "columns": ["user_id"] }]
+    },
+    {
+      "id": "gamification_reward_rules",
+      "name": "Gamification Reward Rules",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": false,
+      "columns": [
+        { "key": "code", "type": "varchar", "size": 160, "required": true },
+        { "key": "name", "type": "varchar", "size": 255, "required": true },
+        { "key": "description", "type": "text" },
+        { "key": "category", "type": "enum", "elements": ["referral", "hosted_session", "profile_completion", "verification", "admin_campaign"], "required": true, "validateExisting": true },
+        { "key": "trigger_event_type", "type": "enum", "elements": ["referral_qualified", "hosted_session_checked_in", "profile_field_completed", "profile_field_verified", "admin_adjustment"], "required": true, "validateExisting": true },
+        { "key": "target_field", "type": "varchar", "size": 120 },
+        { "key": "required_count", "type": "float", "default": 1 },
+        { "key": "reward_credits", "type": "float", "default": 0 },
+        { "key": "max_grants_per_user", "type": "integer" },
+        { "key": "cooldown_days", "type": "integer" },
+        { "key": "qualifying_session_kind", "type": "enum", "elements": ["hosted", "non_hosted", "any"], "validateExisting": true },
+        { "key": "qualifying_participant_status", "type": "enum", "elements": ["checked_in", "confirmed", "completed"], "validateExisting": true },
+        { "key": "wallet_credit_bucket", "type": "enum", "elements": ["free_credits", "paid_credits"], "default": "free_credits" },
+        { "key": "is_active", "type": "boolean", "default": true },
+        { "key": "starts_at", "type": "datetime" },
+        { "key": "ends_at", "type": "datetime" },
+        { "key": "sort_order", "type": "integer", "default": 0 },
+        { "key": "created_at", "type": "datetime" },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "created_by", "type": "varchar", "size": 64 }
+      ],
+      "indexes": [
+        { "key": "code_unique", "type": "unique", "columns": ["code"] },
+        { "key": "category_idx", "type": "key", "columns": ["category"] },
+        { "key": "trigger_event_type_idx", "type": "key", "columns": ["trigger_event_type"] },
+        { "key": "target_field_idx", "type": "key", "columns": ["target_field"] },
+        { "key": "is_active_idx", "type": "key", "columns": ["is_active"] }
+      ]
+    },
+    {
+      "id": "user_reward_events",
+      "name": "User Reward Events",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "event_type", "type": "enum", "elements": ["referral_qualified", "hosted_session_checked_in", "profile_field_completed", "profile_field_verified", "admin_adjustment"], "required": true, "validateExisting": true },
+        { "key": "source_table", "type": "varchar", "size": 120 },
+        { "key": "source_id", "type": "varchar", "size": 64 },
+        { "key": "target_field", "type": "varchar", "size": 120 },
+        { "key": "event_value", "type": "varchar", "size": 255 },
+        { "key": "occurred_at", "type": "datetime" },
+        { "key": "processed_at", "type": "datetime" },
+        { "key": "status", "type": "enum", "elements": ["pending", "processed", "ignored", "voided"], "default": "pending" },
+        { "key": "notes", "type": "text" },
+        { "key": "user_event_source_key", "type": "varchar", "size": 220 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "rule_id", "relatedTableId": "gamification_reward_rules", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "user_event_source_unique", "type": "unique", "columns": ["user_event_source_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "rule_id_idx", "type": "key", "columns": ["rule_id"] },
+        { "key": "event_type_idx", "type": "key", "columns": ["event_type"] },
+        { "key": "source_id_idx", "type": "key", "columns": ["source_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "user_reward_progress",
+      "name": "User Reward Progress",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "progress_count", "type": "float", "default": 0 },
+        { "key": "required_count_snapshot", "type": "float", "default": 1 },
+        { "key": "reward_credits_snapshot", "type": "float", "default": 0 },
+        { "key": "status", "type": "enum", "elements": ["in_progress", "completed", "paused", "expired"], "default": "in_progress" },
+        { "key": "last_event_at", "type": "datetime" },
+        { "key": "completed_at", "type": "datetime" },
+        { "key": "updated_at", "type": "datetime" },
+        { "key": "user_rule_key", "type": "varchar", "size": 140 }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "rule_id", "relatedTableId": "gamification_reward_rules", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "last_event_id", "relatedTableId": "user_reward_events", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "user_rule_unique", "type": "unique", "columns": ["user_rule_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "rule_id_idx", "type": "key", "columns": ["rule_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "user_reward_grants",
+      "name": "User Reward Grants",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "user_id", "type": "varchar", "size": 64 },
+        { "key": "credits_awarded", "type": "float", "default": 0 },
+        { "key": "wallet_credit_bucket", "type": "enum", "elements": ["free_credits", "paid_credits"], "default": "free_credits" },
+        { "key": "grant_status", "type": "enum", "elements": ["granted", "reversed", "voided"], "default": "granted" },
+        { "key": "granted_at", "type": "datetime" },
+        { "key": "reversed_at", "type": "datetime" },
+        { "key": "reversed_by_user_id", "type": "varchar", "size": 64 },
+        { "key": "reason", "type": "text" },
+        { "key": "user_rule_event_key", "type": "varchar", "size": 220 }
+      ],
+      "relationships": [
+        { "key": "rule_id", "relatedTableId": "gamification_reward_rules", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "progress_id", "relatedTableId": "user_reward_progress", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "event_id", "relatedTableId": "user_reward_events", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "transaction_id", "relatedTableId": "transactions", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "user_rule_event_unique", "type": "unique", "columns": ["user_rule_event_key"] },
+        { "key": "user_id_idx", "type": "key", "columns": ["user_id"] },
+        { "key": "rule_id_idx", "type": "key", "columns": ["rule_id"] },
+        { "key": "event_id_idx", "type": "key", "columns": ["event_id"] },
+        { "key": "transaction_id_idx", "type": "key", "columns": ["transaction_id"] },
+        { "key": "grant_status_idx", "type": "key", "columns": ["grant_status"] }
+      ]
+    },
+    {
+      "id": "referral_codes",
+      "name": "Referral Codes",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "user_id", "type": "varchar", "size": 64 },
+        { "key": "code", "type": "varchar", "size": 80, "required": true },
+        { "key": "status", "type": "enum", "elements": ["active", "paused", "revoked"], "default": "active" },
+        { "key": "created_at", "type": "datetime" },
+        { "key": "last_shared_at", "type": "datetime" },
+        { "key": "uses_count", "type": "integer", "default": 0 }
+      ],
+      "indexes": [
+        { "key": "user_id_unique", "type": "unique", "columns": ["user_id"] },
+        { "key": "code_unique", "type": "unique", "columns": ["code"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "referrals",
+      "name": "Referrals",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "referrer_user_id", "type": "varchar", "size": 64 },
+        { "key": "invitee_user_id", "type": "varchar", "size": 64 },
+        { "key": "status", "type": "enum", "elements": ["pending_signup", "qualified", "rewarded", "rejected", "cancelled"], "default": "pending_signup" },
+        { "key": "source", "type": "enum", "elements": ["link", "manual_code", "admin_adjustment"], "default": "link" },
+        { "key": "accepted_at", "type": "datetime" },
+        { "key": "qualified_at", "type": "datetime" },
+        { "key": "rewarded_at", "type": "datetime" },
+        { "key": "reward_credits", "type": "float" },
+        { "key": "rejection_reason", "type": "text" }
+      ],
+      "relationships": [
+        { "key": "referral_code_id", "relatedTableId": "referral_codes", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "referrer_transaction_id", "relatedTableId": "transactions", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "invitee_transaction_id", "relatedTableId": "transactions", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "referrer_reward_grant_id", "relatedTableId": "user_reward_grants", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" },
+        { "key": "invitee_reward_grant_id", "relatedTableId": "user_reward_grants", "type": "manyToOne", "twoWay": false, "onDelete": "setNull" }
+      ],
+      "indexes": [
+        { "key": "invitee_user_id_unique", "type": "unique", "columns": ["invitee_user_id"] },
+        { "key": "referral_code_id_idx", "type": "key", "columns": ["referral_code_id"] },
+        { "key": "referrer_user_id_idx", "type": "key", "columns": ["referrer_user_id"] },
+        { "key": "status_idx", "type": "key", "columns": ["status"] }
+      ]
+    },
+    {
+      "id": "skills",
+      "name": "Skills",
+      "permissions": ["read(\"users\")"],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "level", "type": "enum", "elements": ["beginner", "intermediate", "competitive"], "validateExisting": true },
+        { "key": "serve", "type": "float" },
+        { "key": "return", "type": "float" },
+        { "key": "offense", "type": "float" },
+        { "key": "defense", "type": "float" },
+        { "key": "agility", "type": "float" },
+        { "key": "consistency", "type": "float" },
+        { "key": "overall_skill_rating", "type": "float" }
+      ],
+      "relationships": [
+        { "key": "user_id", "relatedTableId": "users", "type": "oneToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [{ "key": "user_id_unique", "type": "unique", "columns": ["user_id"] }]
+    },
+    {
+      "id": "messages",
+      "name": "Messages",
+      "permissions": [],
+      "rowSecurity": true,
+      "columns": [
+        { "key": "content", "type": "text", "required": true },
+        { "key": "read_at", "type": "datetime" }
+      ],
+      "relationships": [
+        { "key": "sender_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" },
+        { "key": "receiver_id", "relatedTableId": "users", "type": "manyToOne", "twoWay": false, "onDelete": "cascade" }
+      ],
+      "indexes": [
+        { "key": "sender_id_idx", "type": "key", "columns": ["sender_id"] },
+        { "key": "receiver_id_idx", "type": "key", "columns": ["receiver_id"] }
+      ]
+    }
+  ],
+  "obsoleteTables": ["session_types", "session_durations", "user_flags", "dupr"],
+  "obsoleteColumns": [
+    { "tableId": "users", "keys": ["created_at", "updated_at"] },
+    { "tableId": "membership_levels", "keys": ["created_at", "updated_at", "min_lifetime_spend_cents"] },
+    { "tableId": "announcements", "keys": ["created_at", "updated_at"] },
+    { "tableId": "venues", "keys": ["created_at", "updated_at", "postal_code"] },
+    { "tableId": "sponsors", "keys": ["created_at", "updated_at"] },
+    { "tableId": "sessions", "keys": ["created_at", "updated_at"] },
+    { "tableId": "session_participants", "keys": ["created_at", "updated_at"] },
+    { "tableId": "session_host_actions", "keys": ["created_at"] },
+    { "tableId": "session_access_codes", "keys": ["created_at", "updated_at"] },
+    { "tableId": "credit_packs", "keys": ["created_at", "updated_at"] },
+    { "tableId": "wallet", "keys": ["created_at", "updated_at"] },
+    { "tableId": "transactions", "keys": ["created_at", "updated_at"] },
+    { "tableId": "play_formats", "keys": ["default_game_to", "win_by"] },
+    { "tableId": "skills", "keys": ["level_description", "created_at", "updated_at"] },
+    { "tableId": "messages", "keys": ["created_at", "updated_at"] }
+  ],
+  "obsoleteRows": [
+    { "tableId": "credit_packs", "rowIds": ["starter_10", "regular_25", "power_50"] }
+  ],
+  "seeds": [
+    {
+      "tableId": "membership_levels",
+      "rows": [
+        { "id": "bronze", "data": { "name": "bronze", "description": "Starter membership", "benefits": "Discover games and manage a player profile.", "min_lifetime_paid_credits": 0, "sort_order": 1 } },
+        { "id": "silver", "data": { "name": "silver", "description": "Regular player membership", "benefits": "Priority access to selected community events.", "min_lifetime_paid_credits": 500, "sort_order": 2 } },
+        { "id": "gold", "data": { "name": "gold", "description": "Committed player membership", "benefits": "Enhanced community perks and event visibility.", "min_lifetime_paid_credits": 1000, "sort_order": 3 } },
+        { "id": "platinum", "data": { "name": "platinum", "description": "Top tier membership", "benefits": "Premium PikaCircle benefits as they become available.", "min_lifetime_paid_credits": 5000, "sort_order": 4 } },
+        { "id": "goat", "data": { "name": "goat", "description": "Greatest of All Time membership", "benefits": "Exclusive PikaCircle benefits for elite players.", "min_lifetime_paid_credits": 10000, "sort_order": 5 } }
+      ]
+    },
+    {
+      "tableId": "credit_packs",
+      "rows": [
+        { "id": "credits_10", "data": { "name": "10 Credits", "description": "Standard PikaCircle credit pack.", "credits": 10, "currency": "MYR", "price": 50, "priceLabel": "MYR 50", "remarks": "Paid credits never expire.", "sort_order": 1, "sortOrder": 1 } },
+        { "id": "credits_22", "data": { "name": "22 Credits", "description": "Best value PikaCircle credit pack.", "credits": 22, "currency": "MYR", "price": 100, "priceLabel": "MYR 100", "remarks": "Paid credits never expire.", "sort_order": 2, "sortOrder": 2 } }
+      ]
+    },
+    {
+      "tableId": "sports",
+      "rows": [
+        { "id": "pickleball", "data": { "name": "pickleball", "display_name": "Pickleball", "is_active": true, "sort_order": 1 } },
+        { "id": "tennis", "data": { "name": "tennis", "display_name": "Tennis", "is_active": true, "sort_order": 2 } },
+        { "id": "badminton", "data": { "name": "badminton", "display_name": "Badminton", "is_active": true, "sort_order": 3 } },
+        { "id": "table_tennis", "data": { "name": "table_tennis", "display_name": "Table Tennis", "is_active": true, "sort_order": 4 } },
+        { "id": "squash", "data": { "name": "squash", "display_name": "Squash", "is_active": true, "sort_order": 5 } },
+        { "id": "padel", "data": { "name": "padel", "display_name": "Padel", "is_active": true, "sort_order": 6 } }
+      ]
+    },
+    {
+      "tableId": "social_platforms",
+      "rows": [
+        { "id": "instagram", "data": { "name": "instagram", "display_name": "Instagram", "profile_url_template": "https://instagram.com/{handle}", "is_active": true, "sort_order": 1 } },
+        { "id": "facebook", "data": { "name": "facebook", "display_name": "Facebook", "profile_url_template": "https://facebook.com/{handle}", "is_active": true, "sort_order": 2 } },
+        { "id": "tiktok", "data": { "name": "tiktok", "display_name": "TikTok", "profile_url_template": "https://www.tiktok.com/@{handle}", "is_active": true, "sort_order": 3 } }
+      ]
+    },
+    {
+      "tableId": "play_formats",
+      "rows": [
+        { "id": "side_out", "data": { "name": "side_out", "display_name": "Side-out Scoring", "scoring_system": "side_out", "description": "Traditional pickleball scoring. Only the serving team scores; doubles score calls include server number and conventionally start 0-0-2.", "score_call_format": "three_number", "points_awarded_to": "serving_team_only", "tracks_server_number": true, "is_active": true, "sort_order": 1 } },
+        { "id": "rally", "data": { "name": "rally", "display_name": "Rally Scoring", "scoring_system": "rally", "description": "Every rally winner scores a point. Doubles score calls use two numbers and do not include server number.", "score_call_format": "two_number", "points_awarded_to": "rally_winner", "tracks_server_number": false, "is_active": true, "sort_order": 2 } }
+      ]
+    },
+    {
+      "tableId": "gamification_reward_rules",
+      "rows": [
+        { "id": "referral_qualified", "data": { "code": "referral_qualified", "name": "Qualified referral", "description": "Reward inviter when an accepted referral qualifies.", "category": "referral", "trigger_event_type": "referral_qualified", "required_count": 1, "reward_credits": 3, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 1 } },
+        { "id": "join_5_hosted_sessions", "data": { "code": "join_5_hosted_sessions", "name": "Join 5 hosted sessions", "description": "Reward players after five checked-in hosted sessions.", "category": "hosted_session", "trigger_event_type": "hosted_session_checked_in", "required_count": 5, "reward_credits": 2, "qualifying_session_kind": "hosted", "qualifying_participant_status": "checked_in", "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 2 } },
+        { "id": "profile_avatar_added", "data": { "code": "profile_avatar_added", "name": "Add avatar", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "profile_picture", "required_count": 1, "reward_credits": 0.15, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 10 } },
+        { "id": "profile_birthday_set", "data": { "code": "profile_birthday_set", "name": "Set birthday", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "date_of_birth", "required_count": 1, "reward_credits": 0.5, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 11 } },
+        { "id": "profile_gender_set", "data": { "code": "profile_gender_set", "name": "Set gender", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "gender", "required_count": 1, "reward_credits": 0.5, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 12 } },
+        { "id": "profile_job_title_added", "data": { "code": "profile_job_title_added", "name": "Add job title", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "job_title", "required_count": 1, "reward_credits": 2, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 13 } },
+        { "id": "profile_job_title_verified", "data": { "code": "profile_job_title_verified", "name": "Verify job title", "category": "verification", "trigger_event_type": "profile_field_verified", "target_field": "job_title_verified", "required_count": 1, "reward_credits": 2, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 14 } },
+        { "id": "profile_industry_added", "data": { "code": "profile_industry_added", "name": "Add industry", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "industry", "required_count": 1, "reward_credits": 1, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 15 } },
+        { "id": "profile_salary_range_added", "data": { "code": "profile_salary_range_added", "name": "Add salary range", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "salary_range", "required_count": 1, "reward_credits": 1, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 16 } },
+        { "id": "profile_phone_number_added", "data": { "code": "profile_phone_number_added", "name": "Add phone number", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "phone_number", "required_count": 1, "reward_credits": 1, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 17 } },
+        { "id": "profile_location_added", "data": { "code": "profile_location_added", "name": "Add location", "category": "profile_completion", "trigger_event_type": "profile_field_completed", "target_field": "location", "required_count": 1, "reward_credits": 1, "max_grants_per_user": 1, "wallet_credit_bucket": "free_credits", "is_active": true, "sort_order": 18 } }
+      ]
+    },
+    {
+      "tableId": "penalty_rules",
+      "rows": [
+        { "id": "default_no_show_block", "data": { "name": "default_no_show_block", "event_type": "no_show", "threshold_count": 3, "rolling_window_days": 90, "block_days": 7, "applies_to_joining": true, "is_active": true } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2131 @@
+[
+  {
+    "tableId": "users",
+    "rows": [
+      {
+        "ref": "nadia_admin",
+        "data": {
+          "name": "Nadia Lim",
+          "email": "nadia.admin@example.com",
+          "date_of_birth": "1990-03-12",
+          "gender": "female",
+          "bio": "Admin coordinating MVP sessions.",
+          "job_title": "Community Operations Lead",
+          "job_title_verified": true,
+          "company": "PikaCircle",
+          "industry": "sports_events",
+          "salary_range": "10k_20k",
+          "phone_number": "+60123000001",
+          "phone_number_verified": true,
+          "phone_number_verified_at": "2026-06-01T08:00:00.000Z",
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.11,
+          "home_longitude": 101.61,
+          "profile_picture_file_id": "avatar_nadia_admin",
+          "profile_picture_url": "https://example.com/avatars/nadia_admin.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/nadia-admin",
+          "roles": [
+            "user",
+            "admin"
+          ],
+          "job_title_verified_at": "2026-06-02T10:00:00.000Z",
+          "job_title_verified_by": "admin"
+        }
+      },
+      {
+        "ref": "maya_host",
+        "data": {
+          "name": "Maya Tan",
+          "email": "maya.host@example.com",
+          "date_of_birth": "1988-08-20",
+          "gender": "female",
+          "bio": "Intermediate host who keeps games moving.",
+          "job_title": "Product Manager",
+          "job_title_verified": true,
+          "company": "Courtside Labs",
+          "industry": "technology",
+          "salary_range": "20k_plus",
+          "phone_number": "+60123000002",
+          "phone_number_verified": true,
+          "phone_number_verified_at": "2026-06-01T08:00:00.000Z",
+          "location_label": "Petaling Jaya, Selangor",
+          "location_city": "Petaling Jaya",
+          "location_state": "Selangor",
+          "location_country": "Malaysia",
+          "home_latitude": 3.12,
+          "home_longitude": 101.61999999999999,
+          "profile_picture_file_id": "avatar_maya_host",
+          "profile_picture_url": "https://example.com/avatars/maya_host.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/maya-host",
+          "roles": [
+            "user",
+            "host"
+          ],
+          "job_title_verified_at": "2026-06-02T10:00:00.000Z",
+          "job_title_verified_by": "admin"
+        }
+      },
+      {
+        "ref": "adrian_host",
+        "data": {
+          "name": "Adrian Wong",
+          "email": "adrian.host@example.com",
+          "date_of_birth": "1985-11-05",
+          "gender": "male",
+          "bio": "Competitive host for ladder games.",
+          "job_title": "Sales Director",
+          "job_title_verified": true,
+          "company": "NetPlay Asia",
+          "industry": "sales",
+          "salary_range": "20k_plus",
+          "phone_number": "+60123000003",
+          "phone_number_verified": true,
+          "phone_number_verified_at": "2026-06-01T08:00:00.000Z",
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.13,
+          "home_longitude": 101.63,
+          "profile_picture_file_id": "avatar_adrian_host",
+          "profile_picture_url": "https://example.com/avatars/adrian_host.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/adrian-host",
+          "roles": [
+            "user",
+            "host"
+          ],
+          "job_title_verified_at": "2026-06-02T10:00:00.000Z",
+          "job_title_verified_by": "admin"
+        }
+      },
+      {
+        "ref": "alicia_player",
+        "data": {
+          "name": "Alicia Teh",
+          "email": "alicia.player@example.com",
+          "date_of_birth": "1993-04-18",
+          "gender": "female",
+          "bio": "Reliable intermediate doubles player.",
+          "job_title": "Designer",
+          "job_title_verified": false,
+          "company": "Studio Rally",
+          "industry": "design",
+          "salary_range": "6k_10k",
+          "phone_number": "+60123000004",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.14,
+          "home_longitude": 101.64,
+          "profile_picture_file_id": "avatar_alicia_player",
+          "profile_picture_url": "https://example.com/avatars/alicia_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/alicia-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "raymond_player",
+        "data": {
+          "name": "Raymond Chua",
+          "email": "raymond.player@example.com",
+          "date_of_birth": "1991-09-27",
+          "gender": "male",
+          "bio": "Fast hands, working on resets.",
+          "job_title": "Software Engineer",
+          "job_title_verified": false,
+          "company": "Packet Foundry",
+          "industry": "technology",
+          "salary_range": "10k_20k",
+          "phone_number": "+60123000005",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Petaling Jaya, Selangor",
+          "location_city": "Petaling Jaya",
+          "location_state": "Selangor",
+          "location_country": "Malaysia",
+          "home_latitude": 3.15,
+          "home_longitude": 101.64999999999999,
+          "profile_picture_file_id": "avatar_raymond_player",
+          "profile_picture_url": "https://example.com/avatars/raymond_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/raymond-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "hannah_player",
+        "data": {
+          "name": "Hannah Lee",
+          "email": "hannah.player@example.com",
+          "date_of_birth": "1989-12-02",
+          "gender": "female",
+          "bio": "Competitive player seeking serious rallies.",
+          "job_title": "Finance Manager",
+          "job_title_verified": false,
+          "company": "Northstar Capital",
+          "industry": "finance",
+          "salary_range": "10k_20k",
+          "phone_number": "+60123000006",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.16,
+          "home_longitude": 101.66,
+          "profile_picture_file_id": "avatar_hannah_player",
+          "profile_picture_url": "https://example.com/avatars/hannah_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/hannah-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "ken_player",
+        "data": {
+          "name": "Ken Ho",
+          "email": "ken.player@example.com",
+          "date_of_birth": "1996-01-14",
+          "gender": "male",
+          "bio": "Beginner building confidence.",
+          "job_title": "Marketing Executive",
+          "job_title_verified": false,
+          "company": "Bright Pixel",
+          "industry": "marketing",
+          "salary_range": "3k_6k",
+          "phone_number": "+60123000007",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Subang Jaya, Selangor",
+          "location_city": "Subang Jaya",
+          "location_state": "Selangor",
+          "location_country": "Malaysia",
+          "home_latitude": 3.17,
+          "home_longitude": 101.66999999999999,
+          "profile_picture_file_id": "avatar_ken_player",
+          "profile_picture_url": "https://example.com/avatars/ken_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/ken-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "isha_player",
+        "data": {
+          "name": "Isha Kumar",
+          "email": "isha.player@example.com",
+          "date_of_birth": "1994-07-09",
+          "gender": "non_binary",
+          "bio": "Loves drilling thirds.",
+          "job_title": "Operations Analyst",
+          "job_title_verified": false,
+          "company": "Loop Works",
+          "industry": "operations",
+          "salary_range": "6k_10k",
+          "phone_number": "+60123000008",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.18,
+          "home_longitude": 101.67999999999999,
+          "profile_picture_file_id": "avatar_isha_player",
+          "profile_picture_url": "https://example.com/avatars/isha_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/isha-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "jon_player",
+        "data": {
+          "name": "Jon Ng",
+          "email": "jon.player@example.com",
+          "date_of_birth": "1992-10-21",
+          "gender": "male",
+          "bio": "Social open-play regular.",
+          "job_title": "Account Executive",
+          "job_title_verified": false,
+          "company": "Beacon Works",
+          "industry": "sales",
+          "salary_range": "6k_10k",
+          "phone_number": "+60123000009",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Petaling Jaya, Selangor",
+          "location_city": "Petaling Jaya",
+          "location_state": "Selangor",
+          "location_country": "Malaysia",
+          "home_latitude": 3.19,
+          "home_longitude": 101.69,
+          "profile_picture_file_id": "avatar_jon_player",
+          "profile_picture_url": "https://example.com/avatars/jon_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/jon-player",
+          "roles": [
+            "user"
+          ]
+        }
+      },
+      {
+        "ref": "sara_player",
+        "data": {
+          "name": "Sara Foo",
+          "email": "sara.player@example.com",
+          "date_of_birth": "1995-05-30",
+          "gender": "female",
+          "bio": "Newer player joining beginner-friendly play.",
+          "job_title": "People Partner",
+          "job_title_verified": false,
+          "company": "Kindred Studio",
+          "industry": "hr",
+          "salary_range": "6k_10k",
+          "phone_number": "+60123000010",
+          "phone_number_verified": false,
+          "phone_number_verified_at": null,
+          "location_label": "Kuala Lumpur, Kuala Lumpur",
+          "location_city": "Kuala Lumpur",
+          "location_state": "Kuala Lumpur",
+          "location_country": "Malaysia",
+          "home_latitude": 3.2,
+          "home_longitude": 101.69999999999999,
+          "profile_picture_file_id": "avatar_sara_player",
+          "profile_picture_url": "https://example.com/avatars/sara_player.jpg",
+          "linkedin_profile_url": "https://linkedin.com/in/sara-player",
+          "roles": [
+            "user"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "skills",
+    "rows": [
+      {
+        "ref": "skill_nadia_admin",
+        "userRef": "nadia_admin",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_maya_host",
+        "userRef": "maya_host",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_adrian_host",
+        "userRef": "adrian_host",
+        "data": {
+          "level": "competitive",
+          "serve": 4.2,
+          "return": 4.3,
+          "offense": 4.2,
+          "defense": 4.1000000000000005,
+          "agility": 4.4,
+          "consistency": 4.2,
+          "overall_skill_rating": 4.2
+        }
+      },
+      {
+        "ref": "skill_alicia_player",
+        "userRef": "alicia_player",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_raymond_player",
+        "userRef": "raymond_player",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_hannah_player",
+        "userRef": "hannah_player",
+        "data": {
+          "level": "competitive",
+          "serve": 4.2,
+          "return": 4.3,
+          "offense": 4.2,
+          "defense": 4.1000000000000005,
+          "agility": 4.4,
+          "consistency": 4.2,
+          "overall_skill_rating": 4.2
+        }
+      },
+      {
+        "ref": "skill_ken_player",
+        "userRef": "ken_player",
+        "data": {
+          "level": "beginner",
+          "serve": 2.1,
+          "return": 2.2,
+          "offense": 2.1,
+          "defense": 2.0,
+          "agility": 2.3000000000000003,
+          "consistency": 2.1,
+          "overall_skill_rating": 2.1
+        }
+      },
+      {
+        "ref": "skill_isha_player",
+        "userRef": "isha_player",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_jon_player",
+        "userRef": "jon_player",
+        "data": {
+          "level": "intermediate",
+          "serve": 3.4,
+          "return": 3.5,
+          "offense": 3.4,
+          "defense": 3.3,
+          "agility": 3.6,
+          "consistency": 3.4,
+          "overall_skill_rating": 3.4
+        }
+      },
+      {
+        "ref": "skill_sara_player",
+        "userRef": "sara_player",
+        "data": {
+          "level": "beginner",
+          "serve": 2.1,
+          "return": 2.2,
+          "offense": 2.1,
+          "defense": 2.0,
+          "agility": 2.3000000000000003,
+          "consistency": 2.1,
+          "overall_skill_rating": 2.1
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "wallet",
+    "rows": [
+      {
+        "ref": "wallet_nadia_admin",
+        "userRef": "nadia_admin",
+        "data": {
+          "free_credits": 4,
+          "free_credits_decimal": 4.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 40,
+          "paid_credits_decimal": 40.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 4,
+          "freeCredits_decimal": 4.0,
+          "paidCredits": 40,
+          "paidCredits_decimal": 40.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 4
+        }
+      },
+      {
+        "ref": "wallet_maya_host",
+        "userRef": "maya_host",
+        "data": {
+          "free_credits": 2,
+          "free_credits_decimal": 2.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 18,
+          "paid_credits_decimal": 18.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 2,
+          "freeCredits_decimal": 2.0,
+          "paidCredits": 18,
+          "paidCredits_decimal": 18.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 2
+        }
+      },
+      {
+        "ref": "wallet_adrian_host",
+        "userRef": "adrian_host",
+        "data": {
+          "free_credits": 1,
+          "free_credits_decimal": 1.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 24,
+          "paid_credits_decimal": 24.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 1,
+          "freeCredits_decimal": 1.0,
+          "paidCredits": 24,
+          "paidCredits_decimal": 24.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 1
+        }
+      },
+      {
+        "ref": "wallet_alicia_player",
+        "userRef": "alicia_player",
+        "data": {
+          "free_credits": 0,
+          "free_credits_decimal": 0.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 16,
+          "paid_credits_decimal": 16.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 0,
+          "freeCredits_decimal": 0.0,
+          "paidCredits": 16,
+          "paidCredits_decimal": 16.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 0
+        }
+      },
+      {
+        "ref": "wallet_raymond_player",
+        "userRef": "raymond_player",
+        "data": {
+          "free_credits": 2,
+          "free_credits_decimal": 2.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 8,
+          "paid_credits_decimal": 8.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 2,
+          "freeCredits_decimal": 2.0,
+          "paidCredits": 8,
+          "paidCredits_decimal": 8.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 2
+        }
+      },
+      {
+        "ref": "wallet_hannah_player",
+        "userRef": "hannah_player",
+        "data": {
+          "free_credits": 0,
+          "free_credits_decimal": 0.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 30,
+          "paid_credits_decimal": 30.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 0,
+          "freeCredits_decimal": 0.0,
+          "paidCredits": 30,
+          "paidCredits_decimal": 30.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 0
+        }
+      },
+      {
+        "ref": "wallet_ken_player",
+        "userRef": "ken_player",
+        "data": {
+          "free_credits": 4,
+          "free_credits_decimal": 4.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 2,
+          "paid_credits_decimal": 2.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 4,
+          "freeCredits_decimal": 4.0,
+          "paidCredits": 2,
+          "paidCredits_decimal": 2.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 4
+        }
+      },
+      {
+        "ref": "wallet_isha_player",
+        "userRef": "isha_player",
+        "data": {
+          "free_credits": 1,
+          "free_credits_decimal": 1.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 12,
+          "paid_credits_decimal": 12.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 1,
+          "freeCredits_decimal": 1.0,
+          "paidCredits": 12,
+          "paidCredits_decimal": 12.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 1
+        }
+      },
+      {
+        "ref": "wallet_jon_player",
+        "userRef": "jon_player",
+        "data": {
+          "free_credits": 3,
+          "free_credits_decimal": 3.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 6,
+          "paid_credits_decimal": 6.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 3,
+          "freeCredits_decimal": 3.0,
+          "paidCredits": 6,
+          "paidCredits_decimal": 6.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 3
+        }
+      },
+      {
+        "ref": "wallet_sara_player",
+        "userRef": "sara_player",
+        "data": {
+          "free_credits": 5,
+          "free_credits_decimal": 5.0,
+          "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
+          "reset_countdown": "20 days",
+          "paid_credits": 0,
+          "paid_credits_decimal": 0.0,
+          "remarks": "Demo wallet.",
+          "freeCredits": 5,
+          "freeCredits_decimal": 5.0,
+          "paidCredits": 0,
+          "paidCredits_decimal": 0.0,
+          "resetCountdown": "20 days",
+          "note": "Seed data for wallet UI.",
+          "freeCreditsExpiring": 5
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_sports_backgrounds",
+    "rows": [
+      {
+        "ref": "sport_nadia_admin_pickleball",
+        "userRef": "nadia_admin",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_maya_host_pickleball",
+        "userRef": "maya_host",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_adrian_host_pickleball",
+        "userRef": "adrian_host",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "competitive",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_alicia_player_pickleball",
+        "userRef": "alicia_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_raymond_player_pickleball",
+        "userRef": "raymond_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_hannah_player_pickleball",
+        "userRef": "hannah_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "competitive",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_ken_player_pickleball",
+        "userRef": "ken_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "beginner",
+          "is_primary": true,
+          "years_played": 0,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_isha_player_pickleball",
+        "userRef": "isha_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_jon_player_pickleball",
+        "userRef": "jon_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "intermediate",
+          "is_primary": true,
+          "years_played": 2,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_sara_player_pickleball",
+        "userRef": "sara_player",
+        "sportRef": "pickleball",
+        "data": {
+          "level": "beginner",
+          "is_primary": true,
+          "years_played": 0,
+          "notes": "Primary PikaCircle sport.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_maya_tennis",
+        "userRef": "maya_host",
+        "sportRef": "tennis",
+        "data": {
+          "level": "intermediate",
+          "is_primary": false,
+          "years_played": 5,
+          "notes": "Tennis background.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "sport_hannah_badminton",
+        "userRef": "hannah_player",
+        "sportRef": "badminton",
+        "data": {
+          "level": "competitive",
+          "is_primary": false,
+          "years_played": 8,
+          "notes": "Badminton footwork background.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_social_profiles",
+    "rows": [
+      {
+        "ref": "ig_maya_host",
+        "userRef": "maya_host",
+        "platformRef": "instagram",
+        "data": {
+          "handle": "maya.host",
+          "profile_url": "https://instagram.com/maya.host",
+          "visibility": "session_participants",
+          "verified": false,
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "ig_adrian_host",
+        "userRef": "adrian_host",
+        "platformRef": "instagram",
+        "data": {
+          "handle": "adrian.host",
+          "profile_url": "https://instagram.com/adrian.host",
+          "visibility": "session_participants",
+          "verified": false,
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "ig_alicia_player",
+        "userRef": "alicia_player",
+        "platformRef": "instagram",
+        "data": {
+          "handle": "alicia.player",
+          "profile_url": "https://instagram.com/alicia.player",
+          "visibility": "session_participants",
+          "verified": false,
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "ig_raymond_player",
+        "userRef": "raymond_player",
+        "platformRef": "instagram",
+        "data": {
+          "handle": "raymond.player",
+          "profile_url": "https://instagram.com/raymond.player",
+          "visibility": "session_participants",
+          "verified": false,
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "ig_hannah_player",
+        "userRef": "hannah_player",
+        "platformRef": "instagram",
+        "data": {
+          "handle": "hannah.player",
+          "profile_url": "https://instagram.com/hannah.player",
+          "visibility": "session_participants",
+          "verified": false,
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_play_preferences",
+    "rows": [
+      {
+        "ref": "pref_nadia_admin",
+        "userRef": "nadia_admin",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_maya_host",
+        "userRef": "maya_host",
+        "data": {
+          "preferred_time_slots": [
+            "evening",
+            "night"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_adrian_host",
+        "userRef": "adrian_host",
+        "data": {
+          "preferred_time_slots": [
+            "evening",
+            "night"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_alicia_player",
+        "userRef": "alicia_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_raymond_player",
+        "userRef": "raymond_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_hannah_player",
+        "userRef": "hannah_player",
+        "data": {
+          "preferred_time_slots": [
+            "evening",
+            "night"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_ken_player",
+        "userRef": "ken_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_isha_player",
+        "userRef": "isha_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_jon_player",
+        "userRef": "jon_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "monday",
+            "wednesday",
+            "friday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "pref_sara_player",
+        "userRef": "sara_player",
+        "data": {
+          "preferred_time_slots": [
+            "morning",
+            "afternoon"
+          ],
+          "preferred_days": [
+            "thursday",
+            "saturday"
+          ],
+          "preferred_format_ids": [
+            "side_out",
+            "rally"
+          ],
+          "notes": "Generated demo preferences.",
+          "updated_at": "2026-06-11T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_favourite_venues",
+    "rows": [
+      {
+        "ref": "fav_maya_base",
+        "userRef": "maya_host",
+        "venueRef": "courtsite_base_pickleball_and_padel_section_51_petaling_jaya",
+        "data": {
+          "sort_order": 1,
+          "created_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "fav_adrian_pxp",
+        "userRef": "adrian_host",
+        "venueRef": "The PxP Pickleball Club",
+        "data": {
+          "sort_order": 1,
+          "created_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "fav_alicia_p3",
+        "userRef": "alicia_player",
+        "venueRef": "P3 Courts",
+        "data": {
+          "sort_order": 1,
+          "created_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "fav_raymond_base",
+        "userRef": "raymond_player",
+        "venueRef": "courtsite_base_pickleball_and_padel_section_51_petaling_jaya",
+        "data": {
+          "sort_order": 1,
+          "created_at": "2026-06-11T00:00:00.000Z"
+        }
+      },
+      {
+        "ref": "fav_hannah_hood",
+        "userRef": "hannah_player",
+        "venueRef": "afa_471_the_hood",
+        "data": {
+          "sort_order": 1,
+          "created_at": "2026-06-11T00:00:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "sponsors",
+    "rows": [
+      {
+        "ref": "sypik",
+        "data": {
+          "name": "Sypik",
+          "description": "Official ball sponsor.",
+          "website": "https://sypik.com",
+          "image_url": "https://example.com/sypik.png"
+        }
+      },
+      {
+        "ref": "selkirk",
+        "data": {
+          "name": "Selkirk",
+          "description": "Premium paddle sponsor.",
+          "website": "https://selkirk.com",
+          "image_url": "https://example.com/selkirk.png"
+        }
+      },
+      {
+        "ref": "crbn",
+        "data": {
+          "name": "CRBN Pickleball",
+          "description": "Competitive equipment sponsor.",
+          "website": "https://crbnpickleball.com",
+          "image_url": "https://example.com/crbn.png"
+        }
+      },
+      {
+        "ref": "joola",
+        "data": {
+          "name": "Joola",
+          "description": "Apparel sponsor.",
+          "website": "https://joola.com",
+          "image_url": "https://example.com/joola.png"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "sessions",
+    "rows": [
+      {
+        "ref": "open_hood_morning",
+        "venueRef": "afa_471_the_hood",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Morning Open Play at The Hood",
+          "description": "Public non-hosted open play with QR join.",
+          "starts_at": "2026-06-13T00:00:00.000Z",
+          "skill_level": null,
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "The Hood",
+          "timeLabel": "Sat 13 Jun, 8:00 AM",
+          "skill": "All levels",
+          "location": "Kuala Lumpur",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 5,
+          "timeOfDay": "Morning",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "hosted_base_maya",
+        "hostRef": "maya_host",
+        "venueRef": "courtsite_base_pickleball_and_padel_section_51_petaling_jaya",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Maya Rally Night",
+          "description": "Hosted doubles rally-scoring session.",
+          "starts_at": "2026-06-14T11:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "recording",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Base Pickleball & Padel",
+          "timeLabel": "Sun 14 Jun, 7:30 PM",
+          "skill": "Intermediate",
+          "location": "Section 51, Selangor",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 2,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "hosted_pxp_dupr",
+        "hostRef": "adrian_host",
+        "venueRef": "The PxP Pickleball Club",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Private DUPR Ladder Invite",
+          "description": "Invite-only side-out scoring ladder.",
+          "starts_at": "2026-06-16T12:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 4,
+          "privacy": true,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "12",
+          "session_type": "dupr",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "pending_review",
+          "match_format": "doubles",
+          "winning_score": 21,
+          "number_of_games": "5",
+          "win_by": "2",
+          "venue": "The PxP Pickleball Club",
+          "timeLabel": "Tue 16 Jun, 8:00 PM",
+          "skill": "Competitive",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 0,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "hosted_p3_clinic",
+        "hostRef": "maya_host",
+        "venueRef": "P3 Courts",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Completed Reset Drills Clinic",
+          "description": "Past hosted clinic with scoring and no-show examples.",
+          "starts_at": "2026-06-07T02:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": false,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "completed",
+          "scoring_mode": "manual",
+          "score_status": "final",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "P3 Courts",
+          "timeLabel": "Sun 7 Jun, 10:00 AM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 0,
+          "timeOfDay": "Morning",
+          "sponsor": "CRBN Pickleball"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_participants",
+    "rows": [
+      {
+        "ref": "p_open_hood_alicia",
+        "sessionRef": "open_hood_morning",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_open_hood_raymond",
+        "sessionRef": "open_hood_morning",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_base_host",
+        "sessionRef": "hosted_base_maya",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "checked_in",
+          "credits_charged": 0,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_base_raymond",
+        "sessionRef": "hosted_base_maya",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_base_isha",
+        "sessionRef": "hosted_base_maya",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_base_alicia",
+        "sessionRef": "hosted_base_maya",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pxp_host",
+        "sessionRef": "hosted_pxp_dupr",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pxp_hannah",
+        "sessionRef": "hosted_pxp_dupr",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pxp_alicia",
+        "sessionRef": "hosted_pxp_dupr",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "waitlisted",
+          "credits_charged": 0,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "waitlisted_at": "2026-06-10T01:05:00.000Z",
+          "waitlist_position": 1
+        }
+      },
+      {
+        "ref": "p_hosted_p3_host",
+        "sessionRef": "hosted_p3_clinic",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "checked_in",
+          "credits_charged": 0,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_p3_alicia",
+        "sessionRef": "hosted_p3_clinic",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_p3_raymond",
+        "sessionRef": "hosted_p3_clinic",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "no_show",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "status_note": "Marked no-show after warm-up window."
+        }
+      },
+      {
+        "ref": "p_hosted_p3_isha",
+        "sessionRef": "hosted_p3_clinic",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 4,
+          "joined_at": "2026-06-10T01:00:00.000Z",
+          "status_updated_at": "2026-06-10T01:05:00.000Z",
+          "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_access_codes",
+    "rows": [
+      {
+        "ref": "code_open_hood_qr",
+        "sessionRef": "open_hood_morning",
+        "created_by_ref": "nadia_admin",
+        "data": {
+          "code": "QR-OPEN-HOOD-20260613",
+          "purpose": "qr_join",
+          "status": "active",
+          "max_uses": null,
+          "uses_count": 2,
+          "expires_at": "2026-06-13T02:00:00.000Z",
+          "last_used_at": "2026-06-10T01:22:00.000Z"
+        }
+      },
+      {
+        "ref": "code_pxp_invite",
+        "sessionRef": "hosted_pxp_dupr",
+        "created_by_ref": "adrian_host",
+        "data": {
+          "code": "INVITE-DUPR-PXP-20260616",
+          "purpose": "private_invite",
+          "status": "active",
+          "max_uses": 8,
+          "uses_count": 2,
+          "expires_at": "2026-06-16T12:00:00.000Z",
+          "last_used_at": "2026-06-09T09:15:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_games",
+    "rows": [
+      {
+        "ref": "game_base_1",
+        "sessionRef": "hosted_base_maya",
+        "formatRef": "rally",
+        "reviewedByRef": "maya_host",
+        "data": {
+          "sequence_number": 1,
+          "court_label": "Court 1",
+          "play_type": "doubles",
+          "game_to": 15,
+          "win_by": 2,
+          "scoring_source": "manual",
+          "status": "final",
+          "started_at": "2026-06-14T11:40:00.000Z",
+          "ended_at": "2026-06-14T12:05:00.000Z",
+          "reviewed_at": "2026-06-14T12:10:00.000Z",
+          "notes": "Rally scoring demo game."
+        }
+      },
+      {
+        "ref": "game_p3_1",
+        "sessionRef": "hosted_p3_clinic",
+        "formatRef": "side_out",
+        "reviewedByRef": "maya_host",
+        "data": {
+          "sequence_number": 1,
+          "court_label": "Court 2",
+          "play_type": "doubles",
+          "game_to": 11,
+          "win_by": 2,
+          "scoring_source": "manual",
+          "status": "final",
+          "started_at": "2026-06-07T02:10:00.000Z",
+          "ended_at": "2026-06-07T02:35:00.000Z",
+          "reviewed_at": "2026-06-07T02:40:00.000Z",
+          "notes": "Side-out scoring demo game."
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_game_teams",
+    "rows": [
+      {
+        "ref": "team_base_1_a",
+        "gameRef": "game_base_1",
+        "data": {
+          "team_number": 1,
+          "score": 15,
+          "result": "win"
+        }
+      },
+      {
+        "ref": "team_base_1_b",
+        "gameRef": "game_base_1",
+        "data": {
+          "team_number": 2,
+          "score": 13,
+          "result": "loss"
+        }
+      },
+      {
+        "ref": "team_p3_1_a",
+        "gameRef": "game_p3_1",
+        "data": {
+          "team_number": 1,
+          "score": 11,
+          "result": "win"
+        }
+      },
+      {
+        "ref": "team_p3_1_b",
+        "gameRef": "game_p3_1",
+        "data": {
+          "team_number": 2,
+          "score": 7,
+          "result": "loss"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_game_team_players",
+    "rows": [
+      {
+        "ref": "gtp_base_maya",
+        "gameTeamRef": "team_base_1_a",
+        "participantRef": "p_hosted_base_host",
+        "userRef": "maya_host",
+        "data": {
+          "position_label": "left"
+        }
+      },
+      {
+        "ref": "gtp_base_ray",
+        "gameTeamRef": "team_base_1_a",
+        "participantRef": "p_hosted_base_raymond",
+        "userRef": "raymond_player",
+        "data": {
+          "position_label": "right"
+        }
+      },
+      {
+        "ref": "gtp_base_isha",
+        "gameTeamRef": "team_base_1_b",
+        "participantRef": "p_hosted_base_isha",
+        "userRef": "isha_player",
+        "data": {
+          "position_label": "left"
+        }
+      },
+      {
+        "ref": "gtp_base_alicia",
+        "gameTeamRef": "team_base_1_b",
+        "participantRef": "p_hosted_base_alicia",
+        "userRef": "alicia_player",
+        "data": {
+          "position_label": "right"
+        }
+      },
+      {
+        "ref": "gtp_p3_maya",
+        "gameTeamRef": "team_p3_1_a",
+        "participantRef": "p_hosted_p3_host",
+        "userRef": "maya_host",
+        "data": {
+          "position_label": "left"
+        }
+      },
+      {
+        "ref": "gtp_p3_alicia",
+        "gameTeamRef": "team_p3_1_a",
+        "participantRef": "p_hosted_p3_alicia",
+        "userRef": "alicia_player",
+        "data": {
+          "position_label": "right"
+        }
+      },
+      {
+        "ref": "gtp_p3_isha",
+        "gameTeamRef": "team_p3_1_b",
+        "participantRef": "p_hosted_p3_isha",
+        "userRef": "isha_player",
+        "data": {
+          "position_label": "left"
+        }
+      },
+      {
+        "ref": "gtp_p3_ray",
+        "gameTeamRef": "team_p3_1_b",
+        "participantRef": "p_hosted_p3_raymond",
+        "userRef": "raymond_player",
+        "data": {
+          "position_label": "right"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_score_events",
+    "rows": [
+      {
+        "ref": "score_base_start",
+        "gameRef": "game_base_1",
+        "enteredByRef": "maya_host",
+        "data": {
+          "sequence_number": 1,
+          "event_type": "game_start",
+          "team_1_score": 0,
+          "team_2_score": 0,
+          "source": "manual",
+          "occurred_at": "2026-06-14T11:40:00.000Z"
+        }
+      },
+      {
+        "ref": "score_base_point1",
+        "gameRef": "game_base_1",
+        "enteredByRef": "maya_host",
+        "data": {
+          "sequence_number": 2,
+          "team_number": 1,
+          "serving_team_number": 1,
+          "receiving_team_number": 2,
+          "rally_winner_team_number": 1,
+          "event_type": "point",
+          "team_1_score": 1,
+          "team_2_score": 0,
+          "source": "manual",
+          "occurred_at": "2026-06-14T11:41:00.000Z"
+        }
+      },
+      {
+        "ref": "score_p3_start",
+        "gameRef": "game_p3_1",
+        "enteredByRef": "maya_host",
+        "data": {
+          "sequence_number": 1,
+          "event_type": "game_start",
+          "team_1_score": 0,
+          "team_2_score": 0,
+          "server_number": 2,
+          "server_position": "right",
+          "source": "manual",
+          "occurred_at": "2026-06-07T02:10:00.000Z"
+        }
+      },
+      {
+        "ref": "score_p3_sideout",
+        "gameRef": "game_p3_1",
+        "enteredByRef": "maya_host",
+        "data": {
+          "sequence_number": 2,
+          "serving_team_number": 1,
+          "receiving_team_number": 2,
+          "rally_winner_team_number": 2,
+          "event_type": "side_out",
+          "team_1_score": 0,
+          "team_2_score": 0,
+          "server_number": 2,
+          "server_position": "right",
+          "source": "manual",
+          "occurred_at": "2026-06-07T02:11:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_match_stats",
+    "rows": [
+      {
+        "ref": "stat_maya_all",
+        "userRef": "maya_host",
+        "data": {
+          "scope": "all_time",
+          "games_played": 2,
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "win_rate": 1.0,
+          "last_game_at": "2026-06-14T12:05:00.000Z",
+          "updated_at": "2026-06-14T12:10:00.000Z"
+        }
+      },
+      {
+        "ref": "stat_alicia_all",
+        "userRef": "alicia_player",
+        "data": {
+          "scope": "all_time",
+          "games_played": 2,
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "win_rate": 0.5,
+          "last_game_at": "2026-06-14T12:05:00.000Z",
+          "updated_at": "2026-06-14T12:10:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_penalty_events",
+    "rows": [
+      {
+        "ref": "penalty_ray_no_show",
+        "userRef": "raymond_player",
+        "sessionRef": "hosted_p3_clinic",
+        "participantRef": "p_hosted_p3_raymond",
+        "penaltyRuleRef": "default_no_show_block",
+        "reportedByRef": "maya_host",
+        "data": {
+          "event_type": "no_show",
+          "status": "active",
+          "occurred_at": "2026-06-07T02:20:00.000Z",
+          "reason": "Did not arrive",
+          "notes": "Demo no-show penalty event."
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_restrictions",
+    "rows": [
+      {
+        "ref": "restrict_ray_review",
+        "userRef": "raymond_player",
+        "penaltyRuleRef": "default_no_show_block",
+        "created_by_user_ref": "nadia_admin",
+        "data": {
+      "restriction_type": "join_block",
+          "status": "active",
+          "starts_at": "2026-06-07T02:30:00.000Z",
+          "ends_at": "2026-07-07T02:30:00.000Z",
+          "trigger_event_ids": [
+            "demo_no_show_raymond"
+          ],
+          "reason": "Demo restriction for no-show review."
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "session_host_actions",
+    "rows": [
+      {
+        "ref": "action_publish_base",
+        "sessionRef": "hosted_base_maya",
+        "actorUserRef": "nadia_admin",
+        "data": {
+          "action_type": "publish_session",
+          "before_status": "draft",
+          "after_status": "published",
+          "reason": "Session approved",
+          "note": "Admin published hosted rally night."
+        }
+      },
+      {
+        "ref": "action_p3_no_show_raymond",
+        "sessionRef": "hosted_p3_clinic",
+        "actorUserRef": "maya_host",
+        "targetUserRef": "raymond_player",
+        "participantRef": "p_hosted_p3_raymond",
+        "data": {
+          "action_type": "mark_no_show",
+          "before_status": "confirmed",
+          "after_status": "no_show",
+          "reason": "Did not arrive",
+          "note": "No-show after host waited."
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "transactions",
+    "rows": [
+      {
+        "ref": "tx_p_open_hood_alicia",
+        "userRef": "alicia_player",
+        "sessionRef": "open_hood_morning",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -2,
+          "credits_delta_decimal": -2.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_open_hood_raymond",
+        "userRef": "raymond_player",
+        "sessionRef": "open_hood_morning",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -2,
+          "credits_delta_decimal": -2.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_base_raymond",
+        "userRef": "raymond_player",
+        "sessionRef": "hosted_base_maya",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_base_isha",
+        "userRef": "isha_player",
+        "sessionRef": "hosted_base_maya",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_base_alicia",
+        "userRef": "alicia_player",
+        "sessionRef": "hosted_base_maya",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_pxp_hannah",
+        "userRef": "hannah_player",
+        "sessionRef": "hosted_pxp_dupr",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -5,
+          "credits_delta_decimal": -5.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_p3_alicia",
+        "userRef": "alicia_player",
+        "sessionRef": "hosted_p3_clinic",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_p3_raymond",
+        "userRef": "raymond_player",
+        "sessionRef": "hosted_p3_clinic",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_p_hosted_p3_isha",
+        "userRef": "isha_player",
+        "sessionRef": "hosted_p3_clinic",
+        "data": {
+          "type": "session_charge",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": -4,
+          "credits_delta_decimal": -4.0,
+          "transaction_date": "2026-06-10T02:00:00.000Z",
+          "remarks": "Demo session charge."
+        }
+      },
+      {
+        "ref": "tx_reward_referral_maya",
+        "userRef": "maya_host",
+        "data": {
+          "type": "adjustment",
+          "amount": 0,
+          "currency": "CREDITS",
+          "credits_delta": 3,
+          "credits_delta_decimal": 3.0,
+          "transaction_date": "2026-06-11T00:00:00.000Z",
+          "remarks": "reward_referral_qualified"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "referral_codes",
+    "rows": [
+      {
+        "ref": "refcode_maya",
+        "userRef": "maya_host",
+        "data": {
+          "code": "MAYA2026",
+          "status": "active",
+          "created_at": "2026-06-01T00:00:00.000Z",
+          "last_shared_at": "2026-06-10T00:00:00.000Z",
+          "uses_count": 1
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_reward_events",
+    "rows": [
+      {
+        "ref": "rwevent_referral_maya",
+        "userRef": "maya_host",
+        "ruleRef": "referral_qualified",
+        "data": {
+          "event_type": "referral_qualified",
+          "source_table": "referrals",
+          "source_id": "demo_referral_raymond",
+          "occurred_at": "2026-06-11T00:00:00.000Z",
+          "processed_at": "2026-06-11T00:00:01.000Z",
+          "status": "processed",
+          "notes": "Demo referral reward event."
+        }
+      },
+      {
+        "ref": "rwevent_hosted_raymond",
+        "userRef": "raymond_player",
+        "ruleRef": "join_5_hosted_sessions",
+        "data": {
+          "event_type": "hosted_session_checked_in",
+          "source_table": "session_participants",
+          "source_id": "p_hosted_base_raymond",
+          "occurred_at": "2026-06-14T11:30:00.000Z",
+          "processed_at": "2026-06-14T11:31:00.000Z",
+          "status": "processed"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_reward_progress",
+    "rows": [
+      {
+        "ref": "rwprog_raymond_hosted",
+        "userRef": "raymond_player",
+        "ruleRef": "join_5_hosted_sessions",
+        "lastEventRef": "rwevent_hosted_raymond",
+        "data": {
+          "progress_count": 1,
+          "required_count_snapshot": 5,
+          "reward_credits_snapshot": 2,
+          "status": "in_progress",
+          "last_event_at": "2026-06-14T11:31:00.000Z",
+          "updated_at": "2026-06-14T11:31:00.000Z"
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "user_reward_grants",
+    "rows": [
+      {
+        "ref": "rwgrant_referral_maya",
+        "userRef": "maya_host",
+        "ruleRef": "referral_qualified",
+        "eventRef": "rwevent_referral_maya",
+        "transactionRef": "tx_reward_referral_maya",
+        "data": {
+          "credits_awarded": 3,
+          "wallet_credit_bucket": "free_credits",
+          "grant_status": "granted",
+          "granted_at": "2026-06-11T00:00:01.000Z",
+          "reason": "Qualified referral demo reward."
+        }
+      }
+    ]
+  },
+  {
+    "tableId": "referrals",
+    "rows": [
+      {
+        "ref": "referral_maya_raymond",
+        "referralCodeRef": "refcode_maya",
+        "referrerUserRef": "maya_host",
+        "inviteeUserRef": "raymond_player",
+        "referrerTransactionRef": "tx_reward_referral_maya",
+        "referrerRewardGrantRef": "rwgrant_referral_maya",
+        "data": {
+          "status": "rewarded",
+          "source": "manual_code",
+          "accepted_at": "2026-06-10T00:00:00.000Z",
+          "qualified_at": "2026-06-11T00:00:00.000Z",
+          "rewarded_at": "2026-06-11T00:00:01.000Z",
+          "reward_credits": 3,
+          "rejection_reason": null
+        }
+      }
+    ]
+  }
+]

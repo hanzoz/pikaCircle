@@ -1,0 +1,9 @@
+{
+  "name": "pikacircle-session-join",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "node-appwrite": "22.1.3"
+  }
+}
