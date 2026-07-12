@@ -83,6 +83,31 @@ class ProfileRemoteDataSource {
     return body;
   }
 
+  /// Checks whether [username] is available. POSTs {action:'check_username',
+  /// username} to the profile-upsert function. Returns the decoded map,
+  /// expected shape:
+  /// `{ available: bool, normalized: String, reason?: String }`.
+  ///
+  /// Throws an [AppwriteException] carrying the function's `error` message and
+  /// status code when the response status is >= 400.
+  Future<Map<String, dynamic>> checkUsernameAvailable(String username) async {
+    final execution = await _functions.createExecution(
+      functionId: _config.profileFunctionId,
+      body: jsonEncode({'action': 'check_username', 'username': username}),
+      method: ExecutionMethod.pOST,
+      headers: const {'content-type': 'application/json'},
+    );
+
+    final body = _decodeBody(execution.responseBody);
+
+    if (execution.responseStatusCode >= 400) {
+      final message = body['error']?.toString() ?? 'Username check failed';
+      throw AppwriteException(message, execution.responseStatusCode);
+    }
+
+    return body;
+  }
+
   /// Decodes the function response body into a JSON map, tolerating an empty
   /// or non-object body.
   Map<String, dynamic> _decodeBody(String responseBody) {

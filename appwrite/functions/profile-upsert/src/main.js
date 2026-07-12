@@ -10,8 +10,22 @@ const GENDERS = new Set(['male', 'female', 'non_binary']);
 const APP_ROLES = new Set(['user', 'host', 'admin']);
 const EDITABLE_RELATIONSHIP_FIELDS = new Set([]);
 
+const USERNAME_MIN_LENGTH = 3;
+const USERNAME_MAX_LENGTH = 30;
+const RESERVED_USERNAMES = new Set([
+  'admin',
+  'root',
+  'support',
+  'pikacircle',
+  'system',
+  'me',
+  'null',
+  'undefined',
+]);
+
 const editableFields = new Set([
   'name',
+  'username',
   'email',
   'date_of_birth',
   'gender',
@@ -46,6 +60,31 @@ export default async ({ req, res, log, error }) => {
     return res.json({ error: 'Invalid JSON body.' }, 400);
   }
 
+  const client = new Client()
+    .setEndpoint(requiredEnv('APPWRITE_FUNCTION_API_ENDPOINT'))
+    .setProject(requiredEnv('APPWRITE_FUNCTION_PROJECT_ID'))
+    .setKey(requiredEnv('APPWRITE_API_KEY'));
+
+  const tables = new TablesDB(client);
+  const databaseId = requiredEnv('APPWRITE_DATABASE_ID');
+
+  // Availability-check mode: short-circuit before the editable-field flow.
+  const checkUsername = parseCheckUsername(body);
+  if (checkUsername != null) {
+    try {
+      const result = await evaluateUsernameAvailability(
+        tables,
+        databaseId,
+        userId,
+        checkUsername,
+      );
+      return res.json(result, 200);
+    } catch (caught) {
+      error(caught?.message ?? String(caught));
+      return res.json({ error: 'Could not check username.' }, 500);
+    }
+  }
+
   const attemptedProtectedField = Object.keys(body).find((key) =>
     protectedFields.has(key),
   );
@@ -61,15 +100,25 @@ export default async ({ req, res, log, error }) => {
     return res.json({ error: 'No editable profile fields provided.' }, 400);
   }
 
-  const client = new Client()
-    .setEndpoint(requiredEnv('APPWRITE_FUNCTION_API_ENDPOINT'))
-    .setProject(requiredEnv('APPWRITE_FUNCTION_PROJECT_ID'))
-    .setKey(requiredEnv('APPWRITE_API_KEY'));
-
-  const tables = new TablesDB(client);
-  const databaseId = requiredEnv('APPWRITE_DATABASE_ID');
-
   try {
+    if (typeof data.username === 'string') {
+      const normalized = normalizeUsername(data.username);
+      if (!isValidUsername(normalized)) {
+        return res.json(
+          { error: 'Usernames must be 3-30 characters using letters, numbers, or underscores and start with a letter.' },
+          400,
+        );
+      }
+      if (RESERVED_USERNAMES.has(normalized)) {
+        return res.json({ error: 'That username is reserved.' }, 400);
+      }
+      const takenBy = await usernameOwner(tables, databaseId, normalized);
+      if (takenBy && takenBy !== userId) {
+        return res.json({ error: 'That username is taken.' }, 409);
+      }
+      data.username = normalized;
+    }
+
     const existing = await getUserRowOrNull(tables, databaseId, userId);
     if (!existing && (!data.name || !data.email)) {
       return res.json({ error: 'Name and email are required.' }, 400);
@@ -172,12 +221,66 @@ function initialUserRowData(data) {
   };
 }
 
+function normalizeUsername(value) {
+  if (typeof value !== 'string') return '';
+  let handle = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  if (handle && !/^[a-z]/.test(handle)) {
+    handle = `u${handle}`;
+  }
+  if (handle.length > USERNAME_MAX_LENGTH) {
+    handle = handle.slice(0, USERNAME_MAX_LENGTH).replace(/_+$/g, '');
+  }
+  return handle;
+}
+
+function isValidUsername(handle) {
+  return (
+    typeof handle === 'string' &&
+    handle.length >= USERNAME_MIN_LENGTH &&
+    handle.length <= USERNAME_MAX_LENGTH &&
+    /^[a-z][a-z0-9_]*$/.test(handle)
+  );
+}
+
+function parseCheckUsername(body) {
+  if (!body || body.action !== 'check_username') return null;
+  return typeof body.username === 'string' ? body.username : '';
+}
+
+async function usernameOwner(tables, databaseId, username) {
+  const rows = await tables.listRows({
+    databaseId,
+    tableId: USERS_TABLE_ID,
+    queries: [Query.equal('username', username), Query.limit(1)],
+  });
+  return rows.rows.at(0)?.$id ?? null;
+}
+
+async function evaluateUsernameAvailability(tables, databaseId, userId, rawUsername) {
+  const normalized = normalizeUsername(rawUsername);
+  if (!isValidUsername(normalized)) {
+    return { available: false, normalized, reason: 'invalid' };
+  }
+  if (RESERVED_USERNAMES.has(normalized)) {
+    return { available: false, normalized, reason: 'reserved' };
+  }
+  const ownerId = await usernameOwner(tables, databaseId, normalized);
+  if (ownerId && ownerId !== userId) {
+    return { available: false, normalized, reason: 'taken' };
+  }
+  return { available: true, normalized };
+}
+
 function isRelationshipField(key) {
   return key.endsWith('_id') || key.endsWith('_by');
 }
 
-function acceptsBlankString(key) {
-  return key === 'date_of_birth' ||
+function acceptsBlankString(key) {  return key === 'date_of_birth' ||
     key === 'bio' ||
     key === 'job_title' ||
     key === 'profile_picture_file_id';
@@ -315,6 +418,10 @@ export const testOnly = {
   normalizedGender,
   normalizedRolesForWrite,
   normalizedSkillLevel,
+  normalizeUsername,
+  isValidUsername,
+  parseCheckUsername,
+  RESERVED_USERNAMES,
 };
 
 function header(req, name) {

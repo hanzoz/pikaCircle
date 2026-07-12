@@ -105,6 +105,12 @@ row.
 - `$id` / `id` - primary key; same as Appwrite Auth user `$id`
 - `name`
 - `email` - unique
+- `username` - unique, lowercase handle used for user search and mentions; `[a-z0-9_]`, 3-30 chars, must start with a
+  letter. Auto-generated at registration by the `user-provision` function (derived from name/email, then made unique),
+  and user-editable later via `profile-upsert`. Uniqueness is enforced by the `username_unique` index plus server-side
+  validation; reserved handles (`admin`, `root`, `support`, `pikacircle`, `system`, `me`, `null`, `undefined`) are
+  rejected. Clients check availability via the `profile-upsert` `check_username` action (no direct reads of other
+  users' rows), keeping the `users` table private
 - `date_of_birth`
 - `gender` - `male`, `female`, `non_binary`
 - `bio`
@@ -1438,6 +1444,7 @@ erDiagram
     USERS {
         string id PK
         string email UK
+        string username UK
         string name
         string[] roles
         date date_of_birth

@@ -1,10 +1,23 @@
-import { Client, Permission, Role, TablesDB, Users } from 'node-appwrite';
+import { Client, Permission, Query, Role, TablesDB, Users } from 'node-appwrite';
 
 const USERS_TABLE_ID = 'users';
 const WALLET_TABLE_ID = 'wallet';
 const DEFAULT_MEMBERSHIP_LEVEL_ID = 'bronze';
 const MONTHLY_FREE_CREDITS = 10;
 const DEFAULT_ROLE = 'user';
+
+const USERNAME_MIN_LENGTH = 3;
+const USERNAME_MAX_LENGTH = 30;
+const RESERVED_USERNAMES = new Set([
+  'admin',
+  'root',
+  'support',
+  'pikacircle',
+  'system',
+  'me',
+  'null',
+  'undefined',
+]);
 
 export default async ({ req, res, log, error }) => {
   const payload = parseBody(req);
@@ -42,11 +55,13 @@ export default async ({ req, res, log, error }) => {
     // 2. users row — create only if missing.
     const existing = await getUserRowOrNull(tables, databaseId, userId);
     if (!existing) {
+      const base = baseUsernameFrom(name, email);
+      const username = await generateUniqueUsername(tables, databaseId, base);
       await tables.createRow({
         databaseId,
         tableId: USERS_TABLE_ID,
         rowId: userId,
-        data: initialUserRowData(name, email),
+        data: initialUserRowData(name, email, username),
         permissions: [Permission.read(Role.user(userId))],
       });
     }
@@ -79,14 +94,107 @@ function nextLabels(existingLabels) {
   return labels.includes(DEFAULT_ROLE) ? labels : [...labels, DEFAULT_ROLE];
 }
 
-function initialUserRowData(name, email) {
+function initialUserRowData(name, email, username) {
   return {
     name,
     email,
+    username,
     roles: [DEFAULT_ROLE],
     membership_level_id: DEFAULT_MEMBERSHIP_LEVEL_ID,
     job_title_verified: false,
   };
+}
+
+function normalizeUsername(value) {
+  if (typeof value !== 'string') return '';
+  let handle = value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  if (handle && !/^[a-z]/.test(handle)) {
+    handle = `u${handle}`;
+  }
+  if (handle.length > USERNAME_MAX_LENGTH) {
+    handle = handle.slice(0, USERNAME_MAX_LENGTH).replace(/_+$/g, '');
+  }
+  return handle;
+}
+
+function baseUsernameFrom(name, email) {
+  const fromName = normalizeUsername(name);
+  if (isValidUsername(fromName) && !RESERVED_USERNAMES.has(fromName)) {
+    return fromName;
+  }
+  const localPart = typeof email === 'string' ? email.split('@')[0] : '';
+  const fromEmail = normalizeUsername(localPart);
+  if (isValidUsername(fromEmail) && !RESERVED_USERNAMES.has(fromEmail)) {
+    return fromEmail;
+  }
+  const fallback = fromName || fromEmail || 'user';
+  return padUsername(fallback);
+}
+
+function isValidUsername(handle) {
+  return (
+    typeof handle === 'string' &&
+    handle.length >= USERNAME_MIN_LENGTH &&
+    handle.length <= USERNAME_MAX_LENGTH &&
+    /^[a-z][a-z0-9_]*$/.test(handle)
+  );
+}
+
+function padUsername(handle) {
+  let padded = /^[a-z]/.test(handle) ? handle : `u${handle}`;
+  while (padded.length < USERNAME_MIN_LENGTH) {
+    padded = `${padded}${randomDigits(2)}`;
+  }
+  return padded.slice(0, USERNAME_MAX_LENGTH);
+}
+
+function randomDigits(count) {
+  let out = '';
+  for (let i = 0; i < count; i += 1) {
+    out += Math.floor(Math.random() * 10).toString();
+  }
+  return out;
+}
+
+function withSuffix(base, suffix) {
+  const room = USERNAME_MAX_LENGTH - suffix.length;
+  const trimmedBase = base.slice(0, Math.max(1, room)).replace(/_+$/g, '');
+  return `${trimmedBase}${suffix}`;
+}
+
+async function usernameExists(tables, databaseId, candidate) {
+  const rows = await tables.listRows({
+    databaseId,
+    tableId: USERS_TABLE_ID,
+    queries: [Query.equal('username', candidate), Query.limit(1)],
+  });
+  return rows.rows.length > 0;
+}
+
+async function generateUniqueUsername(tables, databaseId, base) {
+  let candidate = padUsername(base);
+  if (!RESERVED_USERNAMES.has(candidate) && !(await usernameExists(tables, databaseId, candidate))) {
+    return candidate;
+  }
+
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    candidate = withSuffix(base, randomDigits(attempt < 5 ? 2 : 4));
+    if (
+      !RESERVED_USERNAMES.has(candidate) &&
+      !(await usernameExists(tables, databaseId, candidate))
+    ) {
+      return candidate;
+    }
+  }
+
+  // Final fallback: append a short random token so it always resolves.
+  candidate = withSuffix(base, `${randomDigits(2)}${Math.random().toString(36).slice(2, 6)}`);
+  return normalizeUsername(candidate) || padUsername(base);
 }
 
 async function getUserRowOrNull(tables, databaseId, userId) {
@@ -148,6 +256,10 @@ export const testOnly = {
   initialUserRowData,
   endOfCurrentMonthUtc,
   nextLabels,
+  normalizeUsername,
+  baseUsernameFrom,
+  isValidUsername,
+  RESERVED_USERNAMES,
 };
 
 function requiredEnv(name) {

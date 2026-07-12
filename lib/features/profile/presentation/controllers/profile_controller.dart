@@ -2,11 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/error/failure.dart';
+import 'package:pikacircle/core/result/result.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pikacircle/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:pikacircle/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
+import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 import 'package:pikacircle/features/profile/domain/repositories/profile_repository.dart';
 
 /// Wires the Appwrite services into the profile remote data source.
@@ -64,6 +66,9 @@ class ProfileController extends AsyncNotifier<AccountProfile?> {
 
   /// Upserts the caller's editable profile fields, then reloads the profile.
   ///
+  /// [editableFields] accepts `username` as an editable wire key (in addition
+  /// to the other snake_case profile keys the function supports).
+  ///
   /// Returns `null` on success. On failure, restores the previously loaded
   /// data and returns the [Failure] so the caller can present it. Returns an
   /// [UnauthorizedFailure] when there is no signed-in user.
@@ -100,6 +105,10 @@ class ProfileController extends AsyncNotifier<AccountProfile?> {
       },
     );
   }
+
+  /// Checks if [username] is available (proxied to the profile-upsert function).
+  Future<Result<UsernameAvailability>> checkUsername(String username) =>
+      _repo.checkUsername(username);
 }
 
 /// The app-wide profile controller.

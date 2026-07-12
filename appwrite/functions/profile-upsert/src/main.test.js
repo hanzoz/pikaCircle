@@ -92,3 +92,25 @@ test('normalizedRolesForWrite defaults to user when no valid roles exist', () =>
   assert.deepEqual(testOnly.normalizedRolesForWrite(['normal_user']), ['user']);
   assert.deepEqual(testOnly.normalizedRolesForWrite(['unknown']), ['user']);
 });
+
+test('normalizeUsername produces a valid lowercase handle', () => {
+  assert.equal(testOnly.normalizeUsername('  Player One!!  '), 'player_one');
+  assert.equal(testOnly.normalizeUsername('123player'), 'u123player');
+  assert.equal(testOnly.normalizeUsername('a'.repeat(50)).length, 30);
+});
+
+test('isValidUsername rejects reserved-style handles and accepts good ones', () => {
+  assert.equal(testOnly.isValidUsername('ab'), false);
+  assert.equal(testOnly.isValidUsername('1abc'), false);
+  assert.equal(testOnly.isValidUsername('valid_handle'), true);
+  assert.equal(testOnly.RESERVED_USERNAMES.has('admin'), true);
+});
+
+test('parseCheckUsername detects the availability-check action', () => {
+  assert.equal(
+    testOnly.parseCheckUsername({ action: 'check_username', username: 'Foo' }),
+    'Foo',
+  );
+  assert.equal(testOnly.parseCheckUsername({ action: 'check_username' }), '');
+  assert.equal(testOnly.parseCheckUsername({ name: 'Foo' }), null);
+});

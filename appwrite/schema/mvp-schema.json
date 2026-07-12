@@ -15,6 +15,7 @@
       "rowSecurity": true,
       "columns": [
         { "key": "name", "type": "varchar", "size": 160, "required": true },
+        { "key": "username", "type": "varchar", "size": 30 },
         { "key": "email", "type": "email", "required": true },
         { "key": "date_of_birth", "type": "varchar", "size": 32 },
         { "key": "gender", "type": "enum", "elements": ["male", "female", "non_binary"] },
@@ -46,6 +47,7 @@
       ],
       "indexes": [
         { "key": "email_unique", "type": "unique", "columns": ["email"] },
+        { "key": "username_unique", "type": "unique", "columns": ["username"] },
         { "key": "industry_idx", "type": "key", "columns": ["industry"] },
         { "key": "salary_range_idx", "type": "key", "columns": ["salary_range"] },
         { "key": "location_city_idx", "type": "key", "columns": ["location_city"] },

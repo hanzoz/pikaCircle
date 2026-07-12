@@ -4,6 +4,7 @@ import 'package:pikacircle/features/profile/data/models/user_profile_model.dart'
 import 'package:pikacircle/features/profile/data/models/wallet_model.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 import 'package:pikacircle/features/profile/domain/entities/wallet.dart';
 import 'package:pikacircle/features/profile/domain/repositories/profile_repository.dart';
 
@@ -48,6 +49,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
       // server-side normalization the function applied.
       final userRow = await _remote.getUserRow(userId);
       return Right(UserProfileModel.fromRow(userRow));
+    } catch (e) {
+      return Left(mapError(e));
+    }
+  }
+
+  @override
+  Future<Result<UsernameAvailability>> checkUsername(String username) async {
+    try {
+      final body = await _remote.checkUsernameAvailable(username);
+      return Right(
+        UsernameAvailability(
+          available: body['available'] as bool? ?? false,
+          normalized: body['normalized'] as String? ?? '',
+          reason: body['reason'] as String?,
+        ),
+      );
     } catch (e) {
       return Left(mapError(e));
     }

@@ -1,6 +1,7 @@
 import 'package:pikacircle/core/result/result.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 
 /// Contract for reading and updating the signed-in user's profile.
 ///
@@ -15,11 +16,16 @@ abstract class ProfileRepository {
   ///
   /// [editableFields] keys must be the wire snake_case names the function
   /// accepts (e.g. `name`, `date_of_birth`, `job_title`, `gender`,
-  /// `linkedin_profile_url`, `profile_picture_file_id`). [skillLevel], when
-  /// provided, is sent as `skill_level` (beginner|intermediate|competitive).
+  /// `linkedin_profile_url`, `profile_picture_file_id`). `username` is also an
+  /// accepted editable wire key. [skillLevel], when provided, is sent as
+  /// `skill_level` (beginner|intermediate|competitive).
   Future<Result<UserProfile>> upsertProfile({
     required String userId,
     required Map<String, Object?> editableFields,
     String? skillLevel,
   });
+
+  /// Checks whether [username] is available via the profile-upsert function,
+  /// returning the normalized form and (when unavailable) a reason.
+  Future<Result<UsernameAvailability>> checkUsername(String username);
 }

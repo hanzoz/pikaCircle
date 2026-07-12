@@ -15,6 +15,7 @@ abstract final class UserProfileModel {
       id: row.$id,
       name: _string(data['name']) ?? '',
       email: _string(data['email']) ?? '',
+      username: _string(data['username']),
       dateOfBirth: _string(data['date_of_birth']),
       gender: _string(data['gender']),
       bio: _string(data['bio']),
