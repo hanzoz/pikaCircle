@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
@@ -12,6 +13,7 @@ import 'package:pikacircle/features/shell/presentation/controllers/shell_control
 import 'package:pikacircle/features/shell/presentation/widgets/tab_config.dart';
 import 'package:pikacircle/features/wallet/presentation/screens/wallet_screen.dart';
 import 'package:pikacircle/shared/widgets/placeholder_page.dart';
+import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 /// The authenticated app shell: glass app bar, searchable bottom navigation,
 /// and an [IndexedStack] of primary feature tabs.
@@ -126,6 +128,16 @@ class _MainShellState extends ConsumerState<MainShell> {
   Widget build(BuildContext context) {
     final shell = ref.watch(shellControllerProvider);
     final workflow = ref.watch(currentWorkflowProvider);
+    final profileAsync = ref.watch(profileControllerProvider);
+    final initials =
+        profileAsync.asData?.value?.user.name
+            .trim()
+            .split(RegExp(r'\s+'))
+            .where((p) => p.isNotEmpty)
+            .take(2)
+            .map((p) => p[0].toUpperCase())
+            .join() ??
+        'P';
 
     // The third tab ("Sessions" / "My Sessions") is host-only per the
     // registration workflow doc; relabel it for hosts.
@@ -137,20 +149,14 @@ class _MainShellState extends ConsumerState<MainShell> {
       contentAwareBrightness: true,
       appBar: GlassAppBar(
         centerTitle: false,
-        leading: GlassIconButton(
-          icon: const Icon(Icons.account_circle_rounded),
-          onPressed: _openProfile,
-          size: 44,
-          iconSize: 44,
-          useOwnLayer: true,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        leading: PikaLeadingButton(
+          leading: PikaAppBarLeading.profile,
+          initials: initials,
+          onTap: _openProfile,
         ),
         actions: [
-          GlassIconButton(
-            icon: const Icon(Icons.notifications_none_rounded),
-            onPressed: _openNotifications,
-            size: 44,
-            useOwnLayer: true,
-          ),
+          PikaNavButton(icon: CupertinoIcons.bell, onTap: _openNotifications),
         ],
       ),
       bottomBar: GlassSearchableBottomBar(

@@ -20,6 +20,7 @@ class UserProfile {
     this.linkedinProfileUrl,
     this.profilePictureFileId,
     this.membershipLevelId,
+    this.membershipLevelName,
     this.roles = const [UserRole.user],
   });
 
@@ -36,6 +37,11 @@ class UserProfile {
   final String? linkedinProfileUrl;
   final String? profilePictureFileId;
   final String? membershipLevelId;
+
+  /// The human-readable membership level name (e.g. `bronze`, `silver`,
+  /// `gold`, `platinum`, `goat`) resolved from the `membership_levels`
+  /// relationship at fetch time.
+  final String? membershipLevelName;
   final List<UserRole> roles;
 
   /// Whether the user holds the `host` role.
@@ -60,6 +66,7 @@ class UserProfile {
         other.linkedinProfileUrl == linkedinProfileUrl &&
         other.profilePictureFileId == profilePictureFileId &&
         other.membershipLevelId == membershipLevelId &&
+        other.membershipLevelName == membershipLevelName &&
         _listEquals(other.roles, roles);
   }
 
@@ -77,6 +84,7 @@ class UserProfile {
     linkedinProfileUrl,
     profilePictureFileId,
     membershipLevelId,
+    membershipLevelName,
     Object.hashAll(roles),
   );
 

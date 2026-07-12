@@ -1,10 +1,15 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/error/failure.dart';
 import 'package:pikacircle/core/result/result.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:pikacircle/features/profile/data/datasources/profile_local_data_source.dart';
 import 'package:pikacircle/features/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:pikacircle/features/profile/data/profile_cache_providers.dart';
 import 'package:pikacircle/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
@@ -33,19 +38,54 @@ final profileRepositoryProvider = Provider<ProfileRepository>(
 /// errors without tearing down the loaded profile.
 class ProfileController extends AsyncNotifier<AccountProfile?> {
   ProfileRepository get _repo => ref.read(profileRepositoryProvider);
+  ProfileLocalDataSource get _cache => ref.read(profileLocalDataSourceProvider);
 
   @override
   Future<AccountProfile?> build() async {
-    // Use read() to avoid circular dependency with AuthController.
-    // Profile loads explicitly via updateProfile() or reload(), not reactively.
-    final userId = ref.read(currentUserIdProvider);
+    // Watch the signed-in user id so this controller reactively rebuilds when
+    // auth resolves or changes (e.g. a session restored on app launch, or
+    // login/logout). Reading once would capture a null id if the profile is
+    // first read before auth finishes resolving, stranding the UI on the
+    // signed-out state. Watching currentUserIdProvider is not circular: the
+    // auth data/domain layers do not depend on the profile providers.
+    final userId = ref.watch(currentUserIdProvider);
     if (userId == null) return null;
 
+    // Cache-first: if we have a cached profile, surface it immediately and
+    // refresh from the network in the background (updating state + cache).
+    final cached = _cache.read(userId);
+    if (cached != null) {
+      unawaited(Future.microtask(() => _refresh(userId)));
+      return cached;
+    }
+
+    // Cold cache: load from the network, then persist for next launch.
     final result = await _repo.loadProfile(userId);
     return result.fold(
       // Throwing surfaces the failure as AsyncError to the UI.
       (failure) => throw failure,
-      (profile) => profile,
+      (profile) {
+        unawaited(_cache.write(userId, profile));
+        return profile;
+      },
+    );
+  }
+
+  /// Background refresh used by the cache-first [build] path.
+  ///
+  /// On success, replaces state and rewrites the cache. On failure, leaves the
+  /// currently-shown (cached) data intact rather than surfacing an error, so a
+  /// transient network problem never blows away good cached data.
+  Future<void> _refresh(String userId) async {
+    final result = await _repo.loadProfile(userId);
+    result.fold(
+      (failure) {
+        debugPrint('Profile background refresh failed: $failure');
+      },
+      (profile) {
+        state = AsyncData(profile);
+        unawaited(_cache.write(userId, profile));
+      },
     );
   }
 
@@ -60,7 +100,10 @@ class ProfileController extends AsyncNotifier<AccountProfile?> {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final result = await _repo.loadProfile(userId);
-      return result.fold((failure) => throw failure, (profile) => profile);
+      return result.fold((failure) => throw failure, (profile) {
+        unawaited(_cache.write(userId, profile));
+        return profile;
+      });
     });
   }
 

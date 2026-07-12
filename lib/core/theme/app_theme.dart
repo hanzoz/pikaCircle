@@ -10,7 +10,7 @@ abstract final class AppTheme {
   static const Color roseDeep = Color(0xFF881337);
   static const Color blue = Color(0xFF2563EB);
   static const Color ink = Color(0xFF172033);
-  static const Color canvas = Color(0xFFFFF6F7);
+  static const Color canvas = Color(0xFFE7E9EE);
   static const Color card = Color(0xFFFFFCFD);
   static const Color freeCredit = Color(0xFFE11D48);
   static const Color paidCredit = Color(0xFF16A34A);
@@ -29,7 +29,7 @@ abstract final class AppTheme {
         onPrimary: Colors.white,
         secondary: blue,
         onSecondary: Colors.white,
-        surface: card,
+        surface: const Color(0xFFE7E9EE),
         onSurface: ink,
         error: rose,
         onError: Colors.white,

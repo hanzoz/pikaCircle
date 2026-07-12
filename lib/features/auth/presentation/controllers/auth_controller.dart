@@ -9,6 +9,7 @@ import 'package:pikacircle/features/auth/domain/entities/auth_state.dart';
 import 'package:pikacircle/features/auth/domain/entities/auth_user.dart';
 import 'package:pikacircle/features/auth/domain/entities/oauth_provider.dart';
 import 'package:pikacircle/features/auth/domain/repositories/auth_repository.dart';
+import 'package:pikacircle/features/profile/data/profile_cache_providers.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 
 /// Appwrite-backed auth data source, wired from core Appwrite providers.
@@ -99,6 +100,11 @@ class AuthController extends AsyncNotifier<AuthState> {
   Future<Failure?> signOut() async {
     state = const AsyncLoading<AuthState>();
     final result = await _repo.signOut();
+    // Wipe local profile state regardless of network sign-out success, so no
+    // stale data lingers on-device (mirrors presenting the user as signed out
+    // even when the remote sign-out call fails).
+    await ref.read(profileLocalDataSourceProvider).clear();
+    ref.invalidate(profileControllerProvider);
     return result.match(
       (failure) {
         // Even if sign-out reporting failed, present the user as signed out.
@@ -130,21 +136,16 @@ class AuthController extends AsyncNotifier<AuthState> {
         return failure;
       },
       (user) async {
+        // Authenticate first so currentUserIdProvider exposes the new user id.
+        // ProfileController watches that id and loads the profile reactively,
+        // so no explicit profile reload is needed here.
+        state = AsyncData(AuthState.authenticated(user));
         if (skillLevel != null && skillLevel.isNotEmpty) {
           // Best-effort profile seed; ignore failure so auth still succeeds.
           await ref
               .read(profileControllerProvider.notifier)
               .updateProfile(editableFields: const {}, skillLevel: skillLevel);
-        } else {
-          // Load profile after successful auth (when no skill level is being set).
-          // Best-effort; ignore failure so auth still succeeds.
-          try {
-            await ref.read(profileControllerProvider.notifier).reload();
-          } catch (_) {
-            // Profile load failure doesn't fail auth.
-          }
         }
-        state = AsyncData(AuthState.authenticated(user));
         return null;
       },
     );

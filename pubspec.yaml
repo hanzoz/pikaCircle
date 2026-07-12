@@ -60,6 +60,11 @@ dependencies:
   # Functional error handling (Either/Result) for the data/domain layers.
   fpdart: ^1.2.0
 
+  # On-device key/value storage for the profile cache (plain Hive + manual
+  # JSON serialization; no TypeAdapters/codegen).
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
   # Immutable models / entities and JSON (de)serialization.
   freezed_annotation: ^3.1.0
   json_annotation: ^4.11.0

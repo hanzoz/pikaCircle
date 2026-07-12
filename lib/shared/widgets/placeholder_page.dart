@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
 import 'package:pikacircle/shared/widgets/empty_state_card.dart';
+import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 /// A full glass page with a back-navigating app bar and a centered
 /// [EmptyStateCard] body.
@@ -31,18 +32,13 @@ class PlaceholderPage extends StatelessWidget {
       statusBarStyle: GlassStatusBarStyle.auto,
       appBar: GlassAppBar(
         centerTitle: false,
-        leading: GlassIconButton(
-          icon: const Icon(CupertinoIcons.chevron_back),
-          onPressed: () => Navigator.of(context).pop(),
-          size: 40,
-          useOwnLayer: true,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        leading: PikaLeadingButton(
+          leading: PikaAppBarLeading.back,
+          initials: null,
+          onTap: () => Navigator.of(context).pop(),
         ),
-        title: Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-        ),
+        actions: [PikaNavButton(icon: CupertinoIcons.bell)],
       ),
       body: EmptyStateCard(title: title, message: message, icon: icon),
     );

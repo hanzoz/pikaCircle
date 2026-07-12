@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 
 import 'package:pikacircle/app/app.dart';
 import 'package:pikacircle/core/result/result.dart';
@@ -8,9 +9,11 @@ import 'package:pikacircle/features/auth/domain/entities/auth_user.dart';
 import 'package:pikacircle/features/auth/domain/entities/oauth_provider.dart';
 import 'package:pikacircle/features/auth/domain/repositories/auth_repository.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:pikacircle/features/profile/data/profile_cache_providers.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_role.dart';
+import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 import 'package:pikacircle/features/profile/domain/entities/wallet.dart';
 import 'package:pikacircle/features/profile/domain/repositories/profile_repository.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
@@ -71,9 +74,30 @@ class _FakeProfileRepository implements ProfileRepository {
     required Map<String, Object?> editableFields,
     String? skillLevel,
   }) async => Right(_profile.user);
+
+  @override
+  Future<Result<UsernameAvailability>> checkUsername(String username) async =>
+      Right(UsernameAvailability(available: true, normalized: username));
 }
 
 void main() {
+  late Box<String> profileBox;
+
+  setUpAll(() async {
+    // Cache-first ProfileController reads a Hive box; back it with an
+    // in-memory box for tests so the box provider override has a real target.
+    Hive.init('./.dart_tool/hive_test');
+    profileBox = await Hive.openBox<String>('profile_cache_test');
+  });
+
+  setUp(() async {
+    await profileBox.clear();
+  });
+
+  tearDownAll(() async {
+    await Hive.close();
+  });
+
   const user = AuthUser(
     id: 'user-1',
     name: 'Alex',
@@ -101,6 +125,7 @@ void main() {
         profileRepositoryProvider.overrideWithValue(
           const _FakeProfileRepository(profile),
         ),
+        profileCacheBoxProvider.overrideWithValue(profileBox),
       ],
       child: const PikaCircleApp(),
     );

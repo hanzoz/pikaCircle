@@ -23,9 +23,23 @@ abstract final class UserProfileModel {
       jobTitleVerified: _bool(data['job_title_verified']),
       linkedinProfileUrl: _string(data['linkedin_profile_url']),
       profilePictureFileId: _string(data['profile_picture_file_id']),
-      membershipLevelId: _string(data['membership_level_id']),
+      membershipLevelId: _membershipLevelId(data['membership_level_id']),
+      membershipLevelName: _membershipLevelName(data['membership_level_id']),
       roles: _roles(data['roles']),
     );
+  }
+
+  /// Extracts the `$id` from a membership_levels relationship value.
+  /// Returns the raw string when Appwrite returns a plain ID.
+  static String? _membershipLevelId(Object? value) {
+    if (value is Map) return _string(value[r'$id']);
+    return _string(value);
+  }
+
+  /// Extracts the `name` field from a membership_levels relationship object.
+  static String? _membershipLevelName(Object? value) {
+    if (value is Map) return _string(value['name']);
+    return null;
   }
 
   /// Coerces a dynamic value to a non-empty [String], or `null`.
