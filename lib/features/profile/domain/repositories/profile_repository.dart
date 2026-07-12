@@ -25,6 +25,14 @@ abstract class ProfileRepository {
     String? skillLevel,
   });
 
+  /// Uploads avatar bytes to storage and saves avatar metadata on the user's
+  /// profile row, then returns the refreshed [UserProfile].
+  Future<Result<UserProfile>> uploadAvatar({
+    required String userId,
+    required List<int> bytes,
+    required String fileName,
+  });
+
   /// Checks whether [username] is available via the profile-upsert function,
   /// returning the normalized form and (when unavailable) a reason.
   Future<Result<UsernameAvailability>> checkUsername(String username);

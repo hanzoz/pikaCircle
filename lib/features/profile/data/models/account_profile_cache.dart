@@ -12,7 +12,7 @@ import 'package:pikacircle/features/profile/domain/entities/wallet.dart';
 abstract final class AccountProfileCache {
   /// The current cache schema version. Bump when the shape changes so older
   /// entries are rejected by [fromJson].
-  static const int _version = 2;
+  static const int _version = 3;
 
   /// Serializes [p] into a plain JSON-encodable map.
   static Map<String, dynamic> toJson(AccountProfile p) {
@@ -32,6 +32,7 @@ abstract final class AccountProfileCache {
         'job_title_verified': user.jobTitleVerified,
         'linkedin_profile_url': user.linkedinProfileUrl,
         'profile_picture_file_id': user.profilePictureFileId,
+        'profile_picture_url': user.profilePictureUrl,
         'membership_level_id': user.membershipLevelId,
         'membership_level_name': user.membershipLevelName,
         'roles': [for (final role in user.roles) role.wire],
@@ -70,6 +71,7 @@ abstract final class AccountProfileCache {
       jobTitleVerified: _bool(userJson['job_title_verified']),
       linkedinProfileUrl: _string(userJson['linkedin_profile_url']),
       profilePictureFileId: _string(userJson['profile_picture_file_id']),
+      profilePictureUrl: _string(userJson['profile_picture_url']),
       membershipLevelId: _string(userJson['membership_level_id']),
       membershipLevelName: _string(userJson['membership_level_name']),
       roles: _roles(userJson['roles']),

@@ -21,6 +21,7 @@ final profileRemoteDataSourceProvider = Provider<ProfileRemoteDataSource>(
   (ref) => ProfileRemoteDataSource(
     ref.watch(appwriteTablesDbProvider),
     ref.watch(appwriteFunctionsProvider),
+    ref.watch(appwriteStorageProvider),
     ref.watch(appwriteConfigProvider),
   ),
 );
@@ -152,6 +153,37 @@ class ProfileController extends AsyncNotifier<AccountProfile?> {
   /// Checks if [username] is available (proxied to the profile-upsert function).
   Future<Result<UsernameAvailability>> checkUsername(String username) =>
       _repo.checkUsername(username);
+
+  /// Uploads and saves the signed-in user's avatar, then reloads profile.
+  Future<Failure?> uploadAvatar({
+    required List<int> bytes,
+    required String fileName,
+  }) async {
+    final userId = ref.read(currentUserIdProvider);
+    if (userId == null) {
+      return const UnauthorizedFailure();
+    }
+
+    final previous = state;
+    state = const AsyncLoading<AccountProfile?>();
+
+    final result = await _repo.uploadAvatar(
+      userId: userId,
+      bytes: bytes,
+      fileName: fileName,
+    );
+
+    return result.fold(
+      (failure) {
+        state = previous;
+        return failure;
+      },
+      (_) async {
+        await reload();
+        return null;
+      },
+    );
+  }
 }
 
 /// The app-wide profile controller.

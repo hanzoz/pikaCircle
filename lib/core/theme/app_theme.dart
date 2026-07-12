@@ -29,7 +29,7 @@ abstract final class AppTheme {
         onPrimary: Colors.white,
         secondary: blue,
         onSecondary: Colors.white,
-        surface: const Color(0xFFE7E9EE),
+        surface: Color(0xFFE7E9EE),
         onSurface: ink,
         error: rose,
         onError: Colors.white,

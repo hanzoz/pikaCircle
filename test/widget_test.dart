@@ -76,6 +76,13 @@ class _FakeProfileRepository implements ProfileRepository {
   }) async => Right(_profile.user);
 
   @override
+  Future<Result<UserProfile>> uploadAvatar({
+    required String userId,
+    required List<int> bytes,
+    required String fileName,
+  }) async => Right(_profile.user);
+
+  @override
   Future<Result<UsernameAvailability>> checkUsername(String username) async =>
       Right(UsernameAvailability(available: true, normalized: username));
 }
@@ -131,14 +138,9 @@ void main() {
     );
   }
 
-  testWidgets('authenticated shell renders welcome + primary tabs', (
-    tester,
-  ) async {
+  testWidgets('authenticated shell renders primary tabs', (tester) async {
     await tester.pumpWidget(bootstrap());
     await tester.pumpAndSettle();
-
-    // Greets the signed-in user (name comes from the fake profile).
-    expect(find.textContaining('Alex'), findsWidgets);
 
     // Primary navigation destinations are present.
     expect(find.text('Home'), findsWidgets);

@@ -19,6 +19,7 @@ class UserProfile {
     this.jobTitleVerified = false,
     this.linkedinProfileUrl,
     this.profilePictureFileId,
+    this.profilePictureUrl,
     this.membershipLevelId,
     this.membershipLevelName,
     this.roles = const [UserRole.user],
@@ -36,6 +37,7 @@ class UserProfile {
   final bool jobTitleVerified;
   final String? linkedinProfileUrl;
   final String? profilePictureFileId;
+  final String? profilePictureUrl;
   final String? membershipLevelId;
 
   /// The human-readable membership level name (e.g. `bronze`, `silver`,
@@ -65,6 +67,7 @@ class UserProfile {
         other.jobTitleVerified == jobTitleVerified &&
         other.linkedinProfileUrl == linkedinProfileUrl &&
         other.profilePictureFileId == profilePictureFileId &&
+        other.profilePictureUrl == profilePictureUrl &&
         other.membershipLevelId == membershipLevelId &&
         other.membershipLevelName == membershipLevelName &&
         _listEquals(other.roles, roles);
@@ -83,6 +86,7 @@ class UserProfile {
     jobTitleVerified,
     linkedinProfileUrl,
     profilePictureFileId,
+    profilePictureUrl,
     membershipLevelId,
     membershipLevelName,
     Object.hashAll(roles),

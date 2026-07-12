@@ -37,7 +37,18 @@ dependencies:
   liquid_glass_widgets: ^0.17.1
 
   # Backend: Appwrite (Account, TablesDB, Functions, Storage).
-  appwrite: ^25.2.0
+  # PINNED to 20.3.3: the self-hosted server is Appwrite 1.8.1. The File model
+  # gained `encryption`/`compression` fields on the SERVER in 1.9.0. Flutter SDK
+  # 21.0.0+ added those as NON-NULLABLE fields to its File model while still
+  # targeting response format 1.8.0, so `Storage.createFile` (and getFile/
+  # listFiles) throw `type 'Null' is not a subtype of type 'bool'` when parsing
+  # a 1.8.1 response that omits `encryption`. 20.3.3 is the last SDK whose File
+  # model matches a 1.8.x server. Do not bump past 20.x until the server is
+  # upgraded to 1.9.x (then move to SDK 23.x).
+  appwrite: 20.3.3
+
+  # HTTP client for direct REST API calls (file uploads).
+  http: ^1.2.0
 
   # Google OAuth: opens the Appwrite OAuth2 token URL in a browser tab and
   # captures the deep-link callback (userId/secret). Promoted to a direct
@@ -56,6 +67,9 @@ dependencies:
 
   # Loads .env.client (public Appwrite endpoint/project values only).
   flutter_dotenv: ^6.0.1
+
+  # Lets users choose avatar photos from gallery or camera.
+  image_picker: ^1.2.0
 
   # Functional error handling (Either/Result) for the data/domain layers.
   fpdart: ^1.2.0

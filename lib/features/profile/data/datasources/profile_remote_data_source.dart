@@ -13,10 +13,16 @@ import 'package:pikacircle/core/constants/table_ids.dart';
 /// let [AppwriteException]s propagate. The repository catches and translates
 /// them into `Failure`s.
 class ProfileRemoteDataSource {
-  ProfileRemoteDataSource(this._tables, this._functions, this._config);
+  ProfileRemoteDataSource(
+    this._tables,
+    this._functions,
+    this._storage,
+    this._config,
+  );
 
   final TablesDB _tables;
   final Functions _functions;
+  final Storage _storage;
   final AppwriteConfig _config;
 
   /// Fetches the caller's `users` row. Throws on any Appwrite error.
@@ -106,6 +112,44 @@ class ProfileRemoteDataSource {
     }
 
     return body;
+  }
+
+  /// Uploads avatar bytes into the configured avatars bucket via the
+  /// authenticated Appwrite SDK client. Returns the created storage file id.
+  Future<String> uploadAvatar({
+    required List<int> bytes,
+    required String fileName,
+  }) async {
+    final file = await _storage.createFile(
+      bucketId: _config.avatarBucketId,
+      fileId: ID.unique(),
+      file: InputFile.fromBytes(bytes: bytes, filename: fileName),
+    );
+    return file.$id;
+  }
+
+  /// Writes avatar file metadata to the caller's `users` row.
+  Future<void> updateAvatarForUser({
+    required String userId,
+    required String fileId,
+  }) async {
+    final avatarUrl = _avatarViewUrl(fileId);
+    await upsertProfile(
+      editableFields: {
+        'profile_picture_file_id': fileId,
+        'profile_picture_url': avatarUrl,
+      },
+    );
+  }
+
+  String _avatarViewUrl(String fileId) {
+    final endpointUri = Uri.parse(_config.endpoint);
+    final basePath = endpointUri.path.replaceFirst(RegExp(r'/+$'), '');
+    final path =
+        '$basePath/storage/buckets/${_config.avatarBucketId}/files/$fileId/view';
+    return endpointUri
+        .replace(path: path, queryParameters: {'project': _config.projectId})
+        .toString();
   }
 
   /// Decodes the function response body into a JSON map, tolerating an empty

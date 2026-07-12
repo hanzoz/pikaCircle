@@ -24,8 +24,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
       final user = UserProfileModel.fromRow(userRow);
 
       final walletRow = await _remote.getWalletRow(userId);
-      final Wallet? wallet =
-          walletRow == null ? null : WalletModel.fromRow(walletRow);
+      final Wallet? wallet = walletRow == null
+          ? null
+          : WalletModel.fromRow(walletRow);
 
       return Right(AccountProfile(user: user, wallet: wallet));
     } catch (e) {
@@ -48,6 +49,26 @@ class ProfileRepositoryImpl implements ProfileRepository {
       // Re-fetch the authoritative row so the returned profile reflects any
       // server-side normalization the function applied.
       final userRow = await _remote.getUserRow(userId);
+      return Right(UserProfileModel.fromRow(userRow));
+    } catch (e) {
+      return Left(mapError(e));
+    }
+  }
+
+  @override
+  Future<Result<UserProfile>> uploadAvatar({
+    required String userId,
+    required List<int> bytes,
+    required String fileName,
+  }) async {
+    try {
+      final fileId = await _remote.uploadAvatar(
+        bytes: bytes,
+        fileName: fileName,
+      );
+      await _remote.updateAvatarForUser(userId: userId, fileId: fileId);
+      final userRow = await _remote.getUserRowAfterUpsert(userId);
+
       return Right(UserProfileModel.fromRow(userRow));
     } catch (e) {
       return Left(mapError(e));

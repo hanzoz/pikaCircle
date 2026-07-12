@@ -9,6 +9,7 @@ const SKILL_LEVELS = new Set(['beginner', 'intermediate', 'competitive']);
 const GENDERS = new Set(['male', 'female', 'non_binary']);
 const APP_ROLES = new Set(['user', 'host', 'admin']);
 const EDITABLE_RELATIONSHIP_FIELDS = new Set([]);
+const NON_RELATIONSHIP_ID_FIELDS = new Set(['profile_picture_file_id']);
 
 const USERNAME_MIN_LENGTH = 3;
 const USERNAME_MAX_LENGTH = 30;
@@ -33,6 +34,7 @@ const editableFields = new Set([
   'job_title',
   'linkedin_profile_url',
   'profile_picture_file_id',
+  'profile_picture_url',
   'skill_level',
 ]);
 
@@ -277,13 +279,15 @@ async function evaluateUsernameAvailability(tables, databaseId, userId, rawUsern
 }
 
 function isRelationshipField(key) {
+  if (NON_RELATIONSHIP_ID_FIELDS.has(key)) return false;
   return key.endsWith('_id') || key.endsWith('_by');
 }
 
 function acceptsBlankString(key) {  return key === 'date_of_birth' ||
     key === 'bio' ||
     key === 'job_title' ||
-    key === 'profile_picture_file_id';
+    key === 'profile_picture_file_id' ||
+    key === 'profile_picture_url';
 }
 
 async function getUserRowOrNull(tables, databaseId, userId) {

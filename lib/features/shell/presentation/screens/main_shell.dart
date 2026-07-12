@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
+import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/discovery/presentation/screens/discovery_screen.dart';
 import 'package:pikacircle/features/home/presentation/screens/home_screen.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
@@ -129,6 +130,8 @@ class _MainShellState extends ConsumerState<MainShell> {
     final shell = ref.watch(shellControllerProvider);
     final workflow = ref.watch(currentWorkflowProvider);
     final profileAsync = ref.watch(profileControllerProvider);
+    final appwriteConfig = ref.watch(appwriteConfigProvider);
+    final appwriteStorage = ref.watch(appwriteStorageProvider);
     final initials =
         profileAsync.asData?.value?.user.name
             .trim()
@@ -138,6 +141,8 @@ class _MainShellState extends ConsumerState<MainShell> {
             .map((p) => p[0].toUpperCase())
             .join() ??
         'P';
+    final avatarUrl = profileAsync.asData?.value?.user.profilePictureUrl;
+    final avatarFileId = profileAsync.asData?.value?.user.profilePictureFileId;
 
     // The third tab ("Sessions" / "My Sessions") is host-only per the
     // registration workflow doc; relabel it for hosts.
@@ -153,6 +158,10 @@ class _MainShellState extends ConsumerState<MainShell> {
         leading: PikaLeadingButton(
           leading: PikaAppBarLeading.profile,
           initials: initials,
+          avatarUrl: avatarUrl,
+          avatarFileId: avatarFileId,
+          avatarBucketId: appwriteConfig.avatarBucketId,
+          storage: appwriteStorage,
           onTap: _openProfile,
         ),
         actions: [

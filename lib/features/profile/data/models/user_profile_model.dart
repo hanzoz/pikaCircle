@@ -23,6 +23,7 @@ abstract final class UserProfileModel {
       jobTitleVerified: _bool(data['job_title_verified']),
       linkedinProfileUrl: _string(data['linkedin_profile_url']),
       profilePictureFileId: _string(data['profile_picture_file_id']),
+      profilePictureUrl: _string(data['profile_picture_url']),
       membershipLevelId: _membershipLevelId(data['membership_level_id']),
       membershipLevelName: _membershipLevelName(data['membership_level_id']),
       roles: _roles(data['roles']),

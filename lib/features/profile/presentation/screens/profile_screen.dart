@@ -1,7 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
+import 'package:appwrite/appwrite.dart';
+
+import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
@@ -9,12 +14,99 @@ import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 /// Read-only account overview: name, email, membership, workflow, and wallet
 /// balance. Renders a bespoke profile layout and reacts to the async profile
 /// state (loading / error / signed-out / loaded).
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  final ImagePicker _imagePicker = ImagePicker();
+  bool _uploadingAvatar = false;
+
+  Future<void> _onAvatarTap(AccountProfile profile) async {
+    if (_uploadingAvatar) return;
+
+    final source = await _showAvatarSourceSheet(context);
+    if (source == null) return;
+
+    final pickedImage = await _imagePicker.pickImage(
+      source: source,
+      imageQuality: 85,
+      maxWidth: 2048,
+    );
+    if (pickedImage == null) return;
+
+    final bytes = await pickedImage.readAsBytes();
+    if (bytes.isEmpty || !mounted) return;
+
+    final isDuplicate = await _isSameAsCurrentAvatar(
+      selectedBytes: bytes,
+      profile: profile,
+    );
+    if (!mounted) return;
+    if (isDuplicate) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('This image is already your avatar.')),
+      );
+      return;
+    }
+
+    setState(() => _uploadingAvatar = true);
+    final failure = await ref
+        .read(profileControllerProvider.notifier)
+        .uploadAvatar(
+          bytes: bytes,
+          fileName: _avatarFileNameFromPick(pickedImage.name),
+        );
+
+    if (!mounted) return;
+    setState(() => _uploadingAvatar = false);
+
+    final messenger = ScaffoldMessenger.of(context);
+    if (failure == null) {
+      messenger.showSnackBar(
+        const SnackBar(content: Text('Profile photo updated.')),
+      );
+      return;
+    }
+
+    messenger.showSnackBar(SnackBar(content: Text(failure.message)));
+  }
+
+  Future<bool> _isSameAsCurrentAvatar({
+    required Uint8List selectedBytes,
+    required AccountProfile profile,
+  }) async {
+    final currentFileId = profile.user.profilePictureFileId?.trim();
+    if (currentFileId == null || currentFileId.isEmpty) {
+      return false;
+    }
+
+    final config = ref.read(appwriteConfigProvider);
+    final storage = ref.read(appwriteStorageProvider);
+
+    try {
+      final currentBytes = await storage.getFileView(
+        bucketId: config.avatarBucketId,
+        fileId: currentFileId,
+      );
+      if (currentBytes.length != selectedBytes.length) {
+        return false;
+      }
+      return listEquals(currentBytes, selectedBytes);
+    } catch (_) {
+      // If comparison cannot be performed (network/auth/transient error),
+      // proceed with normal upload flow.
+      return false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final profileState = ref.watch(profileControllerProvider);
+    final appwriteConfig = ref.watch(appwriteConfigProvider);
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -31,7 +123,21 @@ class ProfileScreen extends ConsumerWidget {
               icon: Icons.person_off_rounded,
             );
           }
-          return _ProfileDetails(profile: profile);
+          return _ProfileDetails(
+            profile: profile,
+            avatarUrl: _resolveAvatarUrl(
+              explicitUrl: profile.user.profilePictureUrl,
+              fileId: profile.user.profilePictureFileId,
+              endpoint: appwriteConfig.endpoint,
+              projectId: appwriteConfig.projectId,
+              bucketId: appwriteConfig.avatarBucketId,
+            ),
+            avatarFileId: profile.user.profilePictureFileId,
+            avatarBucketId: appwriteConfig.avatarBucketId,
+            storage: ref.watch(appwriteStorageProvider),
+            uploadingAvatar: _uploadingAvatar,
+            onAvatarTap: () => _onAvatarTap(profile),
+          );
         },
       ),
     );
@@ -89,9 +195,23 @@ class _ProfileMessage extends StatelessWidget {
 
 /// The loaded profile body: identity header plus a details card.
 class _ProfileDetails extends StatelessWidget {
-  const _ProfileDetails({required this.profile});
+  const _ProfileDetails({
+    required this.profile,
+    required this.avatarUrl,
+    required this.avatarFileId,
+    required this.avatarBucketId,
+    required this.storage,
+    required this.uploadingAvatar,
+    required this.onAvatarTap,
+  });
 
   final AccountProfile profile;
+  final String? avatarUrl;
+  final String? avatarFileId;
+  final String avatarBucketId;
+  final Storage storage;
+  final bool uploadingAvatar;
+  final VoidCallback onAvatarTap;
 
   @override
   Widget build(BuildContext context) {
@@ -134,35 +254,67 @@ class _ProfileDetails extends StatelessWidget {
                   children: [
                     const SizedBox(height: 18),
                     Center(
-                      child: Container(
-                        width: 114,
-                        height: 114,
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: const Color(0xFFE8EEF9),
-                            width: 2,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              colors: [Color(0xFFBBCFF1), Color(0xFF96B9E6)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              _initialsFromName(displayName),
-                              style: textTheme.headlineSmall?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+                      child: GestureDetector(
+                        onTap: uploadingAvatar ? null : onAvatarTap,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              width: 114,
+                              height: 114,
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: const Color(0xFFE8EEF9),
+                                  width: 2,
+                                ),
+                              ),
+                              child: _ProfileAvatarImage(
+                                avatarUrl: avatarUrl,
+                                avatarFileId: avatarFileId,
+                                avatarBucketId: avatarBucketId,
+                                storage: storage,
+                                initials: _initialsFromName(displayName),
+                                textStyle: textTheme.headlineSmall?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
-                          ),
+                            Positioned(
+                              right: 2,
+                              bottom: 2,
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF23262D),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 1.5,
+                                  ),
+                                ),
+                                child: uploadingAvatar
+                                    ? const Padding(
+                                        padding: EdgeInsets.all(7),
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                Colors.white,
+                                              ),
+                                        ),
+                                      )
+                                    : const Icon(
+                                        CupertinoIcons.camera_fill,
+                                        size: 15,
+                                        color: Colors.white,
+                                      ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -381,6 +533,128 @@ class _ProfileDetails extends StatelessWidget {
   }
 }
 
+class _ProfileAvatarImage extends StatelessWidget {
+  const _ProfileAvatarImage({
+    required this.avatarUrl,
+    required this.avatarFileId,
+    required this.avatarBucketId,
+    required this.storage,
+    required this.initials,
+    required this.textStyle,
+  });
+
+  final String? avatarUrl;
+  final String? avatarFileId;
+  final String avatarBucketId;
+  final Storage storage;
+  final String initials;
+  final TextStyle? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    final resolvedAvatarUrl = avatarUrl?.trim();
+    if (resolvedAvatarUrl != null && resolvedAvatarUrl.isNotEmpty) {
+      return ClipOval(
+        child: Image.network(
+          resolvedAvatarUrl,
+          width: 102,
+          height: 102,
+          fit: BoxFit.cover,
+          errorBuilder: (_, _, _) => _AvatarFromStorageOrFallback(
+            avatarFileId: avatarFileId,
+            avatarBucketId: avatarBucketId,
+            storage: storage,
+            initials: initials,
+            textStyle: textStyle,
+          ),
+        ),
+      );
+    }
+
+    return _AvatarFromStorageOrFallback(
+      avatarFileId: avatarFileId,
+      avatarBucketId: avatarBucketId,
+      storage: storage,
+      initials: initials,
+      textStyle: textStyle,
+    );
+  }
+}
+
+class _AvatarFromStorageOrFallback extends StatelessWidget {
+  const _AvatarFromStorageOrFallback({
+    required this.avatarFileId,
+    required this.avatarBucketId,
+    required this.storage,
+    required this.initials,
+    required this.textStyle,
+  });
+
+  final String? avatarFileId;
+  final String avatarBucketId;
+  final Storage storage;
+  final String initials;
+  final TextStyle? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    final normalizedFileId = avatarFileId?.trim();
+    if (normalizedFileId == null || normalizedFileId.isEmpty) {
+      return _AvatarInitialsFallback(initials: initials, textStyle: textStyle);
+    }
+
+    return FutureBuilder<Uint8List>(
+      future: storage.getFileView(
+        bucketId: avatarBucketId,
+        fileId: normalizedFileId,
+      ),
+      builder: (context, snapshot) {
+        final bytes = snapshot.data;
+        if (bytes == null || bytes.isEmpty) {
+          return _AvatarInitialsFallback(
+            initials: initials,
+            textStyle: textStyle,
+          );
+        }
+
+        return ClipOval(
+          child: Image.memory(
+            bytes,
+            width: 102,
+            height: 102,
+            fit: BoxFit.cover,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _AvatarInitialsFallback extends StatelessWidget {
+  const _AvatarInitialsFallback({
+    required this.initials,
+    required this.textStyle,
+  });
+
+  final String initials;
+  final TextStyle? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          colors: [Color(0xFFBBCFF1), Color(0xFF96B9E6)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Center(child: Text(initials, style: textStyle)),
+    );
+  }
+}
+
 class _StatTile extends StatelessWidget {
   const _StatTile({
     required this.title,
@@ -494,4 +768,59 @@ String _initialsFromName(String name) {
   }
   return '${parts.first.characters.first}${parts.last.characters.first}'
       .toUpperCase();
+}
+
+Future<ImageSource?> _showAvatarSourceSheet(BuildContext context) {
+  return showCupertinoModalPopup<ImageSource?>(
+    context: context,
+    builder: (context) => CupertinoActionSheet(
+      actions: [
+        CupertinoActionSheetAction(
+          onPressed: () => Navigator.of(context).pop(ImageSource.gallery),
+          child: const Text('Select from library'),
+        ),
+        CupertinoActionSheetAction(
+          onPressed: () => Navigator.of(context).pop(ImageSource.camera),
+          child: const Text('Take photo'),
+        ),
+      ],
+      cancelButton: CupertinoActionSheetAction(
+        isDefaultAction: true,
+        onPressed: () => Navigator.of(context).pop(null),
+        child: const Text('Cancel'),
+      ),
+    ),
+  );
+}
+
+String _avatarFileNameFromPick(String rawName) {
+  final trimmed = rawName.trim();
+  if (trimmed.isNotEmpty) return trimmed;
+  return 'avatar_${DateTime.now().millisecondsSinceEpoch}.jpg';
+}
+
+String? _resolveAvatarUrl({
+  required String? explicitUrl,
+  required String? fileId,
+  required String endpoint,
+  required String projectId,
+  required String bucketId,
+}) {
+  final profileUrl = explicitUrl?.trim();
+  if (profileUrl != null && profileUrl.isNotEmpty) {
+    return profileUrl;
+  }
+
+  final normalizedFileId = fileId?.trim();
+  if (normalizedFileId == null || normalizedFileId.isEmpty) {
+    return null;
+  }
+
+  final endpointUri = Uri.parse(endpoint);
+  final basePath = endpointUri.path.replaceFirst(RegExp(r'/+$'), '');
+  final path =
+      '$basePath/storage/buckets/$bucketId/files/$normalizedFileId/view';
+  return endpointUri
+      .replace(path: path, queryParameters: {'project': projectId})
+      .toString();
 }

@@ -496,8 +496,6 @@ class _SignUpStepState extends ConsumerState<_SignUpStep> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final isLoading = ref.watch(authControllerProvider).isLoading;
 
     return OnboardingScaffold(
@@ -578,45 +576,6 @@ class _SignUpStepState extends ConsumerState<_SignUpStep> {
         ],
       ),
     );
-  }
-}
-
-/// The beginner | intermediate | competitive skill selector.
-///
-/// Uses Material [SegmentedButton] pre-filled from the assessment result.
-class _SkillSelector extends StatelessWidget {
-  const _SkillSelector({
-    required this.selected,
-    required this.onChanged,
-    required this.enabled,
-  });
-
-  final String selected;
-  final ValueChanged<String> onChanged;
-  final bool enabled;
-
-  static const _values = ['beginner', 'intermediate', 'competitive'];
-  static const _labels = ['Beginner', 'Intermediate', 'Competitive'];
-
-  @override
-  Widget build(BuildContext context) {
-    final control = SegmentedButton<String>(
-      segments: [
-        for (var i = 0; i < _values.length; i++)
-          ButtonSegment(value: _values[i], label: Text(_labels[i])),
-      ],
-      selected: {selected},
-      onSelectionChanged: enabled ? (s) => onChanged(s.first) : null,
-      showSelectedIcon: false,
-      style: SegmentedButton.styleFrom(
-        textStyle: Theme.of(
-          context,
-        ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
-      ),
-    );
-
-    if (enabled) return control;
-    return IgnorePointer(child: Opacity(opacity: 0.5, child: control));
   }
 }
 

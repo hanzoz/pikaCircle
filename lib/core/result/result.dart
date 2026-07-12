@@ -22,7 +22,10 @@ Failure mapAppwriteException(AppwriteException e) {
     return UnauthorizedFailure(e.message ?? 'Please sign in to continue.');
   }
   if (code != null && code >= 500) {
-    return const ServerFailure();
+    // For 500+ errors, preserve the server message if available
+    return ServerFailure(
+      e.message ?? 'Something went wrong. Please try again.',
+    );
   }
   if (code != null && code >= 400) {
     return RequestFailure(e.message ?? 'Request failed.', code: code);
