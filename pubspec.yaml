@@ -65,6 +65,9 @@ dependencies:
   # Declarative routing with auth-redirect guard.
   go_router: ^17.3.0
 
+  # Swipeable discovery cards UI.
+  flutter_card_swiper: ^7.0.2
+
   # Loads .env.client (public Appwrite endpoint/project values only).
   flutter_dotenv: ^6.0.1
 
