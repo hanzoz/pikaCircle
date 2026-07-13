@@ -11,7 +11,10 @@ import '../widgets/play_date_chips.dart';
 import '../widgets/play_screen_header.dart';
 import '../widgets/play_sessions_list.dart';
 
-final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
+/// Provider for the Play tab: sessions where the current user is a confirmed participant.
+/// A host only appears here if they explicitly join their own session as a participant.
+/// Fetches from session_participants table, not from sessions hosted by the user.
+final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>(((
   ref,
 ) async {
   final userId = ref.watch(currentUserIdProvider);
@@ -22,6 +25,7 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
   final tables = ref.watch(appwriteTablesDbProvider);
   final config = ref.watch(appwriteConfigProvider);
 
+  /// Query sessions_participants table: user must be registered as a participant
   final participantRows = await tables.listRows(
     databaseId: config.databaseId,
     tableId: TableIds.sessionParticipants,

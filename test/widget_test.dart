@@ -147,6 +147,6 @@ void main() {
     expect(find.text('Wallet'), findsWidgets);
 
     // Host workflow relabels the third tab.
-    expect(find.text('My Sessions'), findsWidgets);
+    expect(find.text('Sessions'), findsWidgets);
   });
 }

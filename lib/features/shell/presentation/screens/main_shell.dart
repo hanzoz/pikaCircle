@@ -23,7 +23,7 @@ import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 /// Refactored from the former monolithic `MainShell`/`_MainShellState` in
 /// `main.dart`. Navigation/search state now lives in [ShellController]; the
 /// signed-in user's display name comes from [profileControllerProvider] and the
-/// host-only "My Sessions" tab is gated on [currentWorkflowProvider].
+/// host-only "Sessions" tab is gated on [currentWorkflowProvider].
 class MainShell extends ConsumerStatefulWidget {
   const MainShell({super.key});
 
@@ -131,16 +131,6 @@ class _MainShellState extends ConsumerState<MainShell> {
     _searchFocusNode.unfocus();
   }
 
-  Widget _tabBody(TabConfig tab, int index) {
-    return switch (index) {
-      0 => const HomeScreen(),
-      1 => const PlayScreen(),
-      2 => const SessionsScreen(),
-      3 => const WalletScreen(),
-      _ => const DiscoveryScreen(),
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     final shell = ref.watch(shellControllerProvider);
@@ -160,9 +150,18 @@ class _MainShellState extends ConsumerState<MainShell> {
     final avatarUrl = profileAsync.asData?.value?.user.profilePictureUrl;
     final avatarFileId = profileAsync.asData?.value?.user.profilePictureFileId;
 
-    // The third tab ("Sessions" / "My Sessions") is host-only per the
-    // registration workflow doc; relabel it for hosts.
+    // The Sessions tab is host-only per the registration workflow doc
     final isHost = workflow == AppWorkflow.host;
+
+    // Build visible tabs list based on user role
+    final visibleTabs = <TabConfig>[];
+    visibleTabs.add(_tabs[0]); // Home
+    visibleTabs.add(_tabs[1]); // Play
+    if (isHost) {
+      visibleTabs.add(_tabs[2]); // Sessions (host-only)
+    }
+    visibleTabs.add(_tabs[3]); // Wallet
+    final maxVisibleIndex = visibleTabs.length - 1;
 
     return GlassScaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -185,12 +184,12 @@ class _MainShellState extends ConsumerState<MainShell> {
         ],
       ),
       bottomBar: GlassSearchableBottomBar(
-        selectedIndex: shell.selectedIndex.clamp(0, 3),
+        selectedIndex: shell.selectedIndex.clamp(0, maxVisibleIndex),
         isSearchActive: shell.isSearchActive,
         onTabSelected: _selectPrimaryTab,
-        tabs: _tabs.take(4).toList().asMap().entries.map((entry) {
+        tabs: visibleTabs.asMap().entries.map((entry) {
           final tab = entry.value;
-          final label = (isHost && entry.key == 2) ? 'My Sessions' : tab.title;
+          final label = (isHost && entry.key == 2) ? 'Sessions' : tab.title;
           return GlassBottomBarTab(
             label: label,
             icon: Icon(tab.icon),
@@ -221,11 +220,13 @@ class _MainShellState extends ConsumerState<MainShell> {
       ),
       body: IndexedStack(
         index: shell.selectedIndex,
-        children: _tabs
-            .asMap()
-            .entries
-            .map((entry) => _tabBody(entry.value, entry.key))
-            .toList(),
+        children: [
+          const HomeScreen(), // 0
+          const PlayScreen(), // 1
+          if (isHost) const SessionsScreen(), // 2 (host-only)
+          const WalletScreen(), // 2 or 3
+          const DiscoveryScreen(),
+        ],
       ),
     );
   }
