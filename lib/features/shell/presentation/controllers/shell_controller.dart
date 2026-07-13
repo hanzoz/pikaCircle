@@ -3,15 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// UI state for the main shell: which primary tab is selected and whether the
 /// search field is expanded.
 class ShellState {
-  const ShellState({this.selectedIndex = 0, this.isSearchActive = false});
+  const ShellState({
+    this.selectedIndex = 0,
+    this.isSearchActive = false,
+    this.searchQuery = '',
+  });
 
   final int selectedIndex;
   final bool isSearchActive;
+  final String searchQuery;
 
-  ShellState copyWith({int? selectedIndex, bool? isSearchActive}) {
+  ShellState copyWith({
+    int? selectedIndex,
+    bool? isSearchActive,
+    String? searchQuery,
+  }) {
     return ShellState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
       isSearchActive: isSearchActive ?? this.isSearchActive,
+      searchQuery: searchQuery ?? this.searchQuery,
     );
   }
 
@@ -19,10 +29,11 @@ class ShellState {
   bool operator ==(Object other) =>
       other is ShellState &&
       other.selectedIndex == selectedIndex &&
-      other.isSearchActive == isSearchActive;
+      other.isSearchActive == isSearchActive &&
+      other.searchQuery == searchQuery;
 
   @override
-  int get hashCode => Object.hash(selectedIndex, isSearchActive);
+  int get hashCode => Object.hash(selectedIndex, isSearchActive, searchQuery);
 }
 
 /// Manages navigation/search state for [ShellState].
@@ -46,14 +57,25 @@ class ShellController extends Notifier<ShellState> {
     int homeIndex = 0,
   }) {
     if (active) {
-      state = state.copyWith(isSearchActive: true, selectedIndex: findPageIndex);
+      state = state.copyWith(
+        isSearchActive: true,
+        selectedIndex: findPageIndex,
+      );
     } else {
-      final nextIndex =
-          state.selectedIndex == findPageIndex ? homeIndex : state.selectedIndex;
+      final nextIndex = state.selectedIndex == findPageIndex
+          ? homeIndex
+          : state.selectedIndex;
       state = state.copyWith(isSearchActive: false, selectedIndex: nextIndex);
     }
   }
+
+  void setSearchQuery(String query) {
+    final normalized = query.trimLeft();
+    if (normalized == state.searchQuery) return;
+    state = state.copyWith(searchQuery: normalized);
+  }
 }
 
-final shellControllerProvider =
-    NotifierProvider<ShellController, ShellState>(ShellController.new);
+final shellControllerProvider = NotifierProvider<ShellController, ShellState>(
+  ShellController.new,
+);

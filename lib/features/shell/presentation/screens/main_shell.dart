@@ -36,6 +36,12 @@ class _MainShellState extends ConsumerState<MainShell> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
 
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_handleSearchQueryChanged);
+  }
+
   static const List<TabConfig> _tabs = [
     TabConfig(
       title: 'Home',
@@ -76,9 +82,16 @@ class _MainShellState extends ConsumerState<MainShell> {
 
   @override
   void dispose() {
+    _searchController.removeListener(_handleSearchQueryChanged);
     _searchController.dispose();
     _searchFocusNode.dispose();
     super.dispose();
+  }
+
+  void _handleSearchQueryChanged() {
+    ref
+        .read(shellControllerProvider.notifier)
+        .setSearchQuery(_searchController.text);
   }
 
   void _openProfile() {
@@ -106,6 +119,8 @@ class _MainShellState extends ConsumerState<MainShell> {
     if (active) {
       _searchFocusNode.requestFocus();
     } else {
+      _searchController.clear();
+      ref.read(shellControllerProvider.notifier).setSearchQuery('');
       _searchFocusNode.unfocus();
     }
   }
