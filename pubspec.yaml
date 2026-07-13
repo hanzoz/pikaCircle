@@ -68,6 +68,9 @@ dependencies:
   # Loads .env.client (public Appwrite endpoint/project values only).
   flutter_dotenv: ^6.0.1
 
+  # Reads the installed app version/build number for settings screens.
+  package_info_plus: ^8.0.3
+
   # Lets users choose avatar photos from gallery or camera.
   image_picker: ^1.2.0
 

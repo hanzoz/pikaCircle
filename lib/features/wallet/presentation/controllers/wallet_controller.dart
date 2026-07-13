@@ -57,6 +57,22 @@ class WalletController
       return _loadWalletHistory(userId);
     });
   }
+
+  /// Refreshes only the transaction list, leaving the wallet balance intact.
+  Future<void> reloadTransactions() async {
+    final userId = ref.read(currentUserIdProvider);
+    if (userId == null) return;
+
+    final current = state.value;
+    if (current == null) return;
+
+    final transactionRows = await _remote.listTransactionRows(userId);
+    final transactions = transactionRows.rows
+        .map((row) => WalletTransactionModel.fromRow(row))
+        .toList(growable: false);
+
+    state = AsyncData((wallet: current.wallet, transactions: transactions));
+  }
 }
 
 final walletControllerProvider =

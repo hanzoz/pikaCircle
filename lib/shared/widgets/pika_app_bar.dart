@@ -21,6 +21,7 @@ class PikaAppBar extends StatelessWidget {
     this.avatarFileId,
     this.avatarBucketId,
     this.storage,
+    this.onSettingsTap,
     this.onNotificationTap,
     this.onLeadingTap,
     this.safeArea = true,
@@ -44,6 +45,9 @@ class PikaAppBar extends StatelessWidget {
 
   /// Optional Appwrite storage client used to fetch private avatar bytes.
   final Storage? storage;
+
+  /// Called when the settings button is tapped.
+  final VoidCallback? onSettingsTap;
 
   /// Called when the notification bell is tapped.
   final VoidCallback? onNotificationTap;
@@ -77,7 +81,21 @@ class PikaAppBar extends StatelessWidget {
                       ? () => Navigator.of(context).maybePop()
                       : null),
             ),
-            PikaNavButton(icon: CupertinoIcons.bell, onTap: onNotificationTap),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (onSettingsTap != null)
+                  PikaNavButton(
+                    icon: CupertinoIcons.gear,
+                    onTap: onSettingsTap,
+                  ),
+                if (onSettingsTap != null) const SizedBox(width: 10),
+                PikaNavButton(
+                  icon: CupertinoIcons.bell,
+                  onTap: onNotificationTap,
+                ),
+              ],
+            ),
           ],
         ),
       ),

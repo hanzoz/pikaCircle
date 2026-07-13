@@ -50,9 +50,7 @@ class AuthController extends AsyncNotifier<AuthState> {
     required String email,
     required String password,
   }) {
-    return _run(
-      () => _repo.signInWithEmail(email: email, password: password),
-    );
+    return _run(() => _repo.signInWithEmail(email: email, password: password));
   }
 
   /// Registers, signs in, then seeds the profile's skill level. Returns a
@@ -98,21 +96,23 @@ class AuthController extends AsyncNotifier<AuthState> {
 
   /// Ends the current session. Returns a [Failure] on error, else `null`.
   Future<Failure?> signOut() async {
-    state = const AsyncLoading<AuthState>();
+    // Detach auth-dependent providers (such as profile) immediately before any
+    // async work to avoid transient logout-time dependency churn.
+    state = const AsyncData(AuthState.unauthenticated());
+
     final result = await _repo.signOut();
     // Wipe local profile state regardless of network sign-out success, so no
     // stale data lingers on-device (mirrors presenting the user as signed out
     // even when the remote sign-out call fails).
     await ref.read(profileLocalDataSourceProvider).clear();
-    ref.invalidate(profileControllerProvider);
+    // Profile controller will naturally rebuild when auth state is accessed,
+    // no need to explicitly invalidate it.
     return result.match(
       (failure) {
-        // Even if sign-out reporting failed, present the user as signed out.
-        state = const AsyncData(AuthState.unauthenticated());
+        // Remote sign-out failed, but local auth state already transitioned.
         return failure;
       },
       (_) {
-        state = const AsyncData(AuthState.unauthenticated());
         return null;
       },
     );
@@ -142,9 +142,24 @@ class AuthController extends AsyncNotifier<AuthState> {
         state = AsyncData(AuthState.authenticated(user));
         if (skillLevel != null && skillLevel.isNotEmpty) {
           // Best-effort profile seed; ignore failure so auth still succeeds.
-          await ref
-              .read(profileControllerProvider.notifier)
-              .updateProfile(editableFields: const {}, skillLevel: skillLevel);
+          //
+          // Seed through the repository (lower layer) rather than the
+          // ProfileController. Calling profileControllerProvider.notifier here
+          // would create a dependency cycle: AuthController ->
+          // ProfileController -> currentUserIdProvider -> AuthController. On
+          // success we invalidate the profile so its reactive build refetches
+          // the seeded data.
+          final seed = await ref
+              .read(profileRepositoryProvider)
+              .upsertProfile(
+                userId: user.id,
+                editableFields: const {},
+                skillLevel: skillLevel,
+              );
+          seed.match(
+            (_) => null,
+            (_) => ref.invalidate(profileControllerProvider),
+          );
         }
         return null;
       },
@@ -153,8 +168,9 @@ class AuthController extends AsyncNotifier<AuthState> {
 }
 
 /// The app-wide authentication controller.
-final authControllerProvider =
-    AsyncNotifierProvider<AuthController, AuthState>(AuthController.new);
+final authControllerProvider = AsyncNotifierProvider<AuthController, AuthState>(
+  AuthController.new,
+);
 
 /// Convenience accessor for the signed-in user's id, or `null`.
 final currentUserIdProvider = Provider<String?>(

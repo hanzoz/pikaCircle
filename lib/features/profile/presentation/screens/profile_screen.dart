@@ -9,6 +9,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
+import 'package:pikacircle/features/profile/presentation/screens/settings_screen.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 /// Read-only account overview: name, email, membership, workflow, and wallet
@@ -218,7 +219,6 @@ class _ProfileDetails extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final user = profile.user;
-    final wallet = profile.wallet;
     final displayName = user.name.isEmpty ? 'Profilim' : user.name;
     final username = user.username?.trim().isNotEmpty == true
         ? '@${user.username!.trim()}'
@@ -227,14 +227,6 @@ class _ProfileDetails extends StatelessWidget {
         : '@pikacircle';
     final membershipName = user.membershipLevelName ?? 'bronze';
     final hasPremium = membershipName.toLowerCase() != 'bronze';
-    final totalCredits = wallet?.totalCredits ?? 0;
-    final freeCredits = wallet?.freeCredits ?? 0;
-    final paidCredits = wallet?.paidCredits ?? 0;
-    final hasCredits = totalCredits > 0;
-    final expiryDate = wallet?.freeCreditsExpiryDate != null
-        ? DateTime.tryParse(wallet!.freeCreditsExpiryDate!)
-        : null;
-    final daysUntilExpiry = expiryDate?.difference(DateTime.now()).inDays;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -242,6 +234,7 @@ class _ProfileDetails extends StatelessWidget {
         PikaAppBar(
           leading: PikaAppBarLeading.back,
           initials: _initialsFromName(displayName),
+          onSettingsTap: () => _openSettings(context),
         ),
         Expanded(
           child: Center(
@@ -391,136 +384,10 @@ class _ProfileDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 14),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: _StatTile(
-                                  title: 'Free Credits',
-                                  value: '$freeCredits',
-                                  bottomLabel: daysUntilExpiry != null
-                                      ? 'Expires in $daysUntilExpiry ${daysUntilExpiry == 1 ? 'day' : 'days'}'
-                                      : '',
-                                  bottomLabelColor: daysUntilExpiry != null
-                                      ? const Color(0xFFE57373)
-                                      : null,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: _StatTile(
-                                  title: 'Paid Credits',
-                                  value: '$paidCredits',
-                                  bottomLabel: '',
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 11,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF2B2E36),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  CupertinoIcons.star_fill,
-                                  size: 17,
-                                  color: Color(0xFFD6D8DF),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        hasCredits
-                                            ? '$totalCredits Credits'
-                                            : 'Out of Credits!',
-                                        style: textTheme.labelLarge?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        hasCredits
-                                            ? '$freeCredits free · $paidCredits paid'
-                                            : 'Top up to keep playing.',
-                                        style: textTheme.bodySmall?.copyWith(
-                                          color: const Color(0xFFD6D8DF),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 14,
-                                    vertical: 9,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(18),
-                                  ),
-                                  child: Text(
-                                    hasCredits ? 'Buy More' : 'Top Up',
-                                    style: textTheme.labelLarge?.copyWith(
-                                      color: const Color(0xFF1D2230),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF9F9FA),
-                        borderRadius: BorderRadius.circular(26),
-                        border: Border.all(color: const Color(0xFFF0F1F5)),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x15000000),
-                            blurRadius: 20,
-                            offset: Offset(0, 10),
-                          ),
-                        ],
-                      ),
-                      child: const Column(
-                        children: [
-                          _MenuTile(
-                            icon: CupertinoIcons.person_alt_circle,
-                            label: 'Edit Profile',
-                          ),
-                          Divider(height: 1, color: Color(0xFFEBEDF2)),
-                          _MenuTile(
-                            icon: CupertinoIcons.lock_shield,
-                            label: 'Password & Security',
-                          ),
-                          Divider(height: 1, color: Color(0xFFEBEDF2)),
-                          _MenuTile(
-                            icon: CupertinoIcons.question_circle,
-                            label: 'Get Help',
-                          ),
-                          Divider(height: 1, color: Color(0xFFEBEDF2)),
-                          _MenuTile(
-                            icon: CupertinoIcons.gear,
-                            label: 'Settings',
-                          ),
-                        ],
-                      ),
-                    ),
                     const SizedBox(height: 16),
                   ],
                 ),
@@ -655,103 +522,10 @@ class _AvatarInitialsFallback extends StatelessWidget {
   }
 }
 
-class _StatTile extends StatelessWidget {
-  const _StatTile({
-    required this.title,
-    required this.value,
-    this.bottomLabel,
-    this.bottomLabelColor,
-  });
-
-  final String title;
-  final String value;
-  final String? bottomLabel;
-  final Color? bottomLabelColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF1F2F4),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Title at top center
-          Text(
-            title,
-            style: textTheme.labelSmall?.copyWith(
-              color: const Color(0xFF6D7280),
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 8),
-          // Value centered
-          Center(
-            child: Text(
-              value,
-              style: textTheme.headlineSmall?.copyWith(
-                color: const Color(0xFF1D2230),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          // Bottom label (expiry or placeholder) centered
-          Center(
-            child: Text(
-              bottomLabel ?? '',
-              textAlign: TextAlign.center,
-              style: textTheme.bodySmall?.copyWith(
-                color: bottomLabelColor ?? const Color(0xFFF1F2F4),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MenuTile extends StatelessWidget {
-  const _MenuTile({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-      child: Row(
-        children: [
-          Icon(icon, size: 21, color: const Color(0xFF262B37)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              label,
-              style: textTheme.titleMedium?.copyWith(
-                color: const Color(0xFF202532),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Icon(
-            CupertinoIcons.chevron_right,
-            size: 17,
-            color: Color(0xFF202532),
-          ),
-        ],
-      ),
-    );
-  }
+void _openSettings(BuildContext context) {
+  Navigator.of(
+    context,
+  ).push(MaterialPageRoute<void>(builder: (_) => const SettingsScreen()));
 }
 
 String _capitalize(String value) {

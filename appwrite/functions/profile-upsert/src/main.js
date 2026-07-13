@@ -376,32 +376,38 @@ async function ensureWalletRow(tables, databaseId, userId) {
 }
 
 async function ensureProvisionTransactionRow(tables, databaseId, userId) {
-  // Deterministic id keyed to the user so retries can't create duplicate
-  // provisioning transactions. createRow with an existing id throws 409,
-  // which we treat as already-recorded.
-  const rowId = `${userId}_wallet_provision`;
-  try {
-    await tables.createRow({
-      databaseId,
-      tableId: TRANSACTIONS_TABLE_ID,
-      rowId,
-      data: {
-        user_id: userId,
-        type: 'adjustment',
-        amount: 0,
-        currency: 'CREDITS',
-        credits_delta: MONTHLY_FREE_CREDITS,
-        credits_delta_decimal: MONTHLY_FREE_CREDITS,
-        transaction_date: new Date().toISOString(),
-        remarks: 'wallet_provision',
-        created_by: 'system',
-      },
-      permissions: [Permission.read(Role.user(userId))],
-    });
-  } catch (caught) {
-    if (caught?.code === 409) return; // Already recorded on a prior attempt.
-    throw caught;
-  }
+  // Idempotency without a deterministic rowId: Appwrite rowIds are capped at 36
+  // chars, and `${userId}_wallet_provision` overflows that, so we instead check
+  // whether a provisioning transaction already exists for this user before
+  // inserting one with an auto-generated id.
+  const existing = await tables.listRows({
+    databaseId,
+    tableId: TRANSACTIONS_TABLE_ID,
+    queries: [
+      Query.equal('user_id', userId),
+      Query.equal('remarks', 'wallet_provision'),
+      Query.limit(1),
+    ],
+  });
+  if (existing.rows.length > 0) return; // Already recorded on a prior attempt.
+
+  await tables.createRow({
+    databaseId,
+    tableId: TRANSACTIONS_TABLE_ID,
+    rowId: ID.unique(),
+    data: {
+      user_id: userId,
+      type: 'adjustment',
+      amount: 0,
+      currency: 'CREDITS',
+      credits_delta: MONTHLY_FREE_CREDITS,
+      credits_delta_decimal: MONTHLY_FREE_CREDITS,
+      transaction_date: new Date().toISOString(),
+      remarks: 'wallet_provision',
+      created_by: 'system',
+    },
+    permissions: [Permission.read(Role.user(userId))],
+  });
 }
 
 async function getWalletRowOrNull(tables, databaseId, userId) {

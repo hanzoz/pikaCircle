@@ -7,11 +7,25 @@ import 'package:pikacircle/features/wallet/presentation/controllers/wallet_contr
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 /// Wallet tab — balance summary and recent credit history.
-class WalletScreen extends ConsumerWidget {
+class WalletScreen extends ConsumerStatefulWidget {
   const WalletScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WalletScreen> createState() => _WalletScreenState();
+}
+
+class _WalletScreenState extends ConsumerState<WalletScreen> {
+  bool _reloadingTransactions = false;
+
+  Future<void> _refreshTransactions() async {
+    if (_reloadingTransactions) return;
+    setState(() => _reloadingTransactions = true);
+    await ref.read(walletControllerProvider.notifier).reloadTransactions();
+    if (mounted) setState(() => _reloadingTransactions = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final walletState = ref.watch(walletControllerProvider);
 
     return walletState.when(
@@ -212,6 +226,27 @@ class WalletScreen extends ConsumerWidget {
                                         ],
                                       ),
                                     ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 14,
+                                        vertical: 9,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(18),
+                                      ),
+                                      child: Text(
+                                        hasCredits ? 'Buy More' : 'Top Up',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelLarge
+                                            ?.copyWith(
+                                              color: const Color(0xFF1D2230),
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -230,13 +265,25 @@ class WalletScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                             ),
-                            IconButton(
-                              onPressed: () => ref
-                                  .read(walletControllerProvider.notifier)
-                                  .reload(),
-                              tooltip: 'Refresh transactions',
-                              icon: const Icon(Icons.refresh_rounded),
-                            ),
+                            _reloadingTransactions
+                                ? const SizedBox(
+                                    width: 48,
+                                    height: 48,
+                                    child: Center(
+                                      child: SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : IconButton(
+                                    onPressed: _refreshTransactions,
+                                    tooltip: 'Refresh transactions',
+                                    icon: const Icon(Icons.refresh_rounded),
+                                  ),
                           ],
                         ),
                         const SizedBox(height: 10),
