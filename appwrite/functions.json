@@ -63,5 +63,24 @@
         "commands": "npm install",
         "ignore": "node_modules\n.tmp",
         "path": "./functions/user-provision"
+    },
+    {
+        "$id": "wallet-reset",
+        "name": "wallet-reset",
+        "enabled": true,
+        "logging": true,
+        "runtime": "node-20.0",
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 7,
+        "execute": [],
+        "scopes": [],
+        "events": [],
+        "schedule": "0 3 * * *",
+        "timeout": 120,
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "ignore": "node_modules\n.tmp",
+        "path": "./functions/wallet-reset"
     }
 ]

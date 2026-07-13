@@ -28,4 +28,17 @@ class WalletRemoteDataSource {
       rethrow;
     }
   }
+
+  /// Returns the caller's recent `transactions` rows, newest first.
+  Future<models.RowList> listTransactionRows(String userId, {int limit = 20}) {
+    return _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.transactions,
+      queries: [
+        Query.equal('user_id', userId),
+        Query.orderDesc('transaction_date'),
+        Query.limit(limit),
+      ],
+    );
+  }
 }

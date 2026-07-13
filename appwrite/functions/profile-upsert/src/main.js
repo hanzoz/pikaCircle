@@ -1,7 +1,8 @@
-import { Client, Permission, Query, Role, TablesDB } from 'node-appwrite';
+import { Client, ID, Permission, Query, Role, TablesDB } from 'node-appwrite';
 
 const USERS_TABLE_ID = 'users';
 const WALLET_TABLE_ID = 'wallet';
+const TRANSACTIONS_TABLE_ID = 'transactions';
 const SKILLS_TABLE_ID = 'skills';
 const DEFAULT_MEMBERSHIP_LEVEL_ID = 'bronze';
 const MONTHLY_FREE_CREDITS = 10;
@@ -347,8 +348,13 @@ async function ensureWalletRow(tables, databaseId, userId) {
   const existing = await getWalletRowOrNull(tables, databaseId, userId);
   if (existing) return existing;
 
+  // Record the provisioning transaction first so a wallet is never created
+  // without its matching `transactions` row. If this throws, provisioning
+  // fails and Appwrite retries; the insert is idempotent (see below).
+  await ensureProvisionTransactionRow(tables, databaseId, userId);
+
   const expiry = endOfCurrentMonthUtc().toISOString();
-  return tables.createRow({
+  const wallet = await tables.createRow({
     databaseId,
     tableId: WALLET_TABLE_ID,
     rowId: userId,
@@ -365,6 +371,37 @@ async function ensureWalletRow(tables, databaseId, userId) {
     },
     permissions: [Permission.read(Role.user(userId))],
   });
+
+  return wallet;
+}
+
+async function ensureProvisionTransactionRow(tables, databaseId, userId) {
+  // Deterministic id keyed to the user so retries can't create duplicate
+  // provisioning transactions. createRow with an existing id throws 409,
+  // which we treat as already-recorded.
+  const rowId = `${userId}_wallet_provision`;
+  try {
+    await tables.createRow({
+      databaseId,
+      tableId: TRANSACTIONS_TABLE_ID,
+      rowId,
+      data: {
+        user_id: userId,
+        type: 'adjustment',
+        amount: 0,
+        currency: 'CREDITS',
+        credits_delta: MONTHLY_FREE_CREDITS,
+        credits_delta_decimal: MONTHLY_FREE_CREDITS,
+        transaction_date: new Date().toISOString(),
+        remarks: 'wallet_provision',
+        created_by: 'system',
+      },
+      permissions: [Permission.read(Role.user(userId))],
+    });
+  } catch (caught) {
+    if (caught?.code === 409) return; // Already recorded on a prior attempt.
+    throw caught;
+  }
 }
 
 async function getWalletRowOrNull(tables, databaseId, userId) {

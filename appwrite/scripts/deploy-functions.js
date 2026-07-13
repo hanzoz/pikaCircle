@@ -60,6 +60,7 @@ async function ensureFunction(def) {
     execute: def.execute || [],
     events: def.events || [],
     scopes: def.scopes || [],
+    schedule: def.schedule || '',
     timeout: def.timeout || 15,
     enabled: def.enabled !== false,
     logging: def.logging !== false,
