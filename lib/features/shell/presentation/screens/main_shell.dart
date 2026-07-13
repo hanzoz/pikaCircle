@@ -6,6 +6,7 @@ import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/discovery/presentation/screens/discovery_screen.dart';
 import 'package:pikacircle/features/home/presentation/screens/home_screen.dart';
+import 'package:pikacircle/features/play/presentation/screens/play_screen.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/features/profile/presentation/screens/profile_screen.dart';
@@ -54,7 +55,7 @@ class _MainShellState extends ConsumerState<MainShell> {
       title: 'Play',
       icon: Icons.local_play_outlined,
       activeIcon: Icons.local_play_rounded,
-      message: 'Upcoming sessions will appear here.',
+      message: 'Upcoming play will appear here.',
       glowColor: Color(0xFF8B5CF6),
     ),
     TabConfig(
@@ -133,7 +134,7 @@ class _MainShellState extends ConsumerState<MainShell> {
   Widget _tabBody(TabConfig tab, int index) {
     return switch (index) {
       0 => const HomeScreen(),
-      1 => const SessionsScreen(),
+      1 => const PlayScreen(),
       2 => const SessionsScreen(),
       3 => const WalletScreen(),
       _ => const DiscoveryScreen(),
