@@ -40,6 +40,8 @@ export default async ({ req, res, error }) => {
 
   try {
     const namesByUserId = {};
+    const avatarByUserId = {};
+    const avatarFileIdByUserId = {};
 
     for (let start = 0; start < userIds.length; start += MAX_IDS_PER_QUERY) {
       const end = Math.min(start + MAX_IDS_PER_QUERY, userIds.length);
@@ -57,10 +59,18 @@ export default async ({ req, res, error }) => {
         if (id && name) {
           namesByUserId[id] = name;
         }
+        const avatar = stringValue(row?.profile_picture_url);
+        if (id && avatar) {
+          avatarByUserId[id] = avatar;
+        }
+        const avatarFileId = stringValue(row?.profile_picture_file_id);
+        if (id && avatarFileId) {
+          avatarFileIdByUserId[id] = avatarFileId;
+        }
       }
     }
 
-    return res.json({ namesByUserId }, 200);
+    return res.json({ namesByUserId, avatarByUserId, avatarFileIdByUserId }, 200);
   } catch (caught) {
     error(caught?.message ?? String(caught));
     return res.json({ error: 'Could not load user display names.' }, 500);

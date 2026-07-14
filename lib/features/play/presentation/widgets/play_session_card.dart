@@ -55,6 +55,14 @@ class PlaySessionCard extends StatelessWidget {
       confirmedParticipantCount: session.participantCount ?? 0,
       waitlistedParticipantNames: session.waitlistedParticipantNames,
       waitlistCount: session.waitlistCount,
+      confirmedParticipantAvatarUrls: session.confirmedParticipantAvatarUrls,
+      confirmedParticipantAvatarFileIds:
+          session.confirmedParticipantAvatarFileIds,
+      waitlistedParticipantAvatarUrls: session.waitlistedParticipantAvatarUrls,
+      waitlistedParticipantAvatarFileIds:
+          session.waitlistedParticipantAvatarFileIds,
+      hostAvatarUrl: session.hostAvatarUrl,
+      hostAvatarFileId: session.hostAvatarFileId,
       hostSkillLevel: session.skillLevelLabel,
       hostSkillRating: null,
     );

@@ -27,6 +27,12 @@ class SessionDetailsData {
     required this.waitlistCount,
     required this.hostSkillLevel,
     required this.hostSkillRating,
+    this.confirmedParticipantAvatarUrls = const <String?>[],
+    this.confirmedParticipantAvatarFileIds = const <String?>[],
+    this.waitlistedParticipantAvatarUrls = const <String?>[],
+    this.waitlistedParticipantAvatarFileIds = const <String?>[],
+    this.hostAvatarUrl,
+    this.hostAvatarFileId,
   });
 
   final String title;
@@ -49,6 +55,12 @@ class SessionDetailsData {
   final int waitlistCount;
   final String hostSkillLevel;
   final double? hostSkillRating;
+  final List<String?> confirmedParticipantAvatarUrls;
+  final List<String?> confirmedParticipantAvatarFileIds;
+  final List<String?> waitlistedParticipantAvatarUrls;
+  final List<String?> waitlistedParticipantAvatarFileIds;
+  final String? hostAvatarUrl;
+  final String? hostAvatarFileId;
 }
 
 class SessionDetailsPage extends StatelessWidget {
@@ -178,6 +190,8 @@ class SessionDetailsPage extends StatelessWidget {
                   _SectionCard(
                     child: SessionAvatarList(
                       names: data.confirmedParticipantNames,
+                      avatarUrls: data.confirmedParticipantAvatarUrls,
+                      avatarFileIds: data.confirmedParticipantAvatarFileIds,
                       totalCount: data.confirmedParticipantCount,
                       avatarSize: 60,
                       gap: 12,
@@ -192,6 +206,8 @@ class SessionDetailsPage extends StatelessWidget {
                     _SectionCard(
                       child: SessionAvatarList(
                         names: data.waitlistedParticipantNames,
+                        avatarUrls: data.waitlistedParticipantAvatarUrls,
+                        avatarFileIds: data.waitlistedParticipantAvatarFileIds,
                         totalCount: data.waitlistCount,
                         avatarSize: 60,
                         gap: 12,
@@ -336,7 +352,12 @@ class _HostCard extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: <Widget>[
-            SessionAvatar(name: data.hostName, size: 44),
+            SessionAvatar(
+              name: data.hostName,
+              imageUrl: data.hostAvatarUrl,
+              avatarFileId: data.hostAvatarFileId,
+              size: 44,
+            ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

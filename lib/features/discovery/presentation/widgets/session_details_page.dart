@@ -30,6 +30,14 @@ class _SessionDetailsPage extends StatelessWidget {
       confirmedParticipantCount: source.participantCount,
       waitlistedParticipantNames: source.waitlistedParticipantNames,
       waitlistCount: source.waitlistCount,
+      confirmedParticipantAvatarUrls: source.confirmedParticipantAvatarUrls,
+      confirmedParticipantAvatarFileIds:
+          source.confirmedParticipantAvatarFileIds,
+      waitlistedParticipantAvatarUrls: source.waitlistedParticipantAvatarUrls,
+      waitlistedParticipantAvatarFileIds:
+          source.waitlistedParticipantAvatarFileIds,
+      hostAvatarUrl: source.hostAvatarUrl,
+      hostAvatarFileId: source.hostAvatarFileId,
       hostSkillLevel: source.hostSkillLevel,
       hostSkillRating: source.hostSkillRating,
     );

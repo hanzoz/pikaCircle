@@ -99,8 +99,14 @@ class _DiscoverySessionCard extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
                 child: _ParticipantGroups(
                   confirmedNames: session.confirmedParticipantNames,
+                  confirmedAvatarUrls: session.confirmedParticipantAvatarUrls,
+                  confirmedAvatarFileIds:
+                      session.confirmedParticipantAvatarFileIds,
                   confirmedCount: session.participantCount,
                   waitlistedNames: session.waitlistedParticipantNames,
+                  waitlistedAvatarUrls: session.waitlistedParticipantAvatarUrls,
+                  waitlistedAvatarFileIds:
+                      session.waitlistedParticipantAvatarFileIds,
                   waitlistCount: session.waitlistCount,
                 ),
               ),
@@ -170,14 +176,22 @@ class _CapacityBadge extends StatelessWidget {
 class _ParticipantGroups extends StatelessWidget {
   const _ParticipantGroups({
     required this.confirmedNames,
+    required this.confirmedAvatarUrls,
+    required this.confirmedAvatarFileIds,
     required this.confirmedCount,
     required this.waitlistedNames,
+    required this.waitlistedAvatarUrls,
+    required this.waitlistedAvatarFileIds,
     required this.waitlistCount,
   });
 
   final List<String> confirmedNames;
+  final List<String?> confirmedAvatarUrls;
+  final List<String?> confirmedAvatarFileIds;
   final int confirmedCount;
   final List<String> waitlistedNames;
+  final List<String?> waitlistedAvatarUrls;
+  final List<String?> waitlistedAvatarFileIds;
   final int waitlistCount;
 
   @override
@@ -196,6 +210,8 @@ class _ParticipantGroups extends StatelessWidget {
           _ParticipantGroupRow(
             label: 'Confirmed',
             names: confirmedNames,
+            avatarUrls: confirmedAvatarUrls,
+            avatarFileIds: confirmedAvatarFileIds,
             totalCount: confirmedCount,
           ),
         if (waitlistCount > 0) ...<Widget>[
@@ -203,6 +219,8 @@ class _ParticipantGroups extends StatelessWidget {
           _ParticipantGroupRow(
             label: 'Waitlisted',
             names: waitlistedNames,
+            avatarUrls: waitlistedAvatarUrls,
+            avatarFileIds: waitlistedAvatarFileIds,
             totalCount: waitlistCount,
           ),
         ],
@@ -215,11 +233,15 @@ class _ParticipantGroupRow extends StatelessWidget {
   const _ParticipantGroupRow({
     required this.label,
     required this.names,
+    required this.avatarUrls,
+    required this.avatarFileIds,
     required this.totalCount,
   });
 
   final String label;
   final List<String> names;
+  final List<String?> avatarUrls;
+  final List<String?> avatarFileIds;
   final int totalCount;
 
   static const double _avatarSize = 28;
@@ -248,6 +270,8 @@ class _ParticipantGroupRow extends StatelessWidget {
               width: avatarStripWidth,
               child: SessionAvatarList(
                 names: names,
+                avatarUrls: avatarUrls,
+                avatarFileIds: avatarFileIds,
                 totalCount: totalCount,
                 avatarSize: _avatarSize,
                 gap: _avatarGap,

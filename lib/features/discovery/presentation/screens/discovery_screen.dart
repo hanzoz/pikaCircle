@@ -93,9 +93,19 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
       <String, List<String>>{};
   final Map<String, List<String>> waitlistedNamesBySession =
       <String, List<String>>{};
+  final Map<String, List<String?>> confirmedAvatarsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> confirmedAvatarFileIdsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> waitlistedAvatarsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> waitlistedAvatarFileIdsBySession =
+      <String, List<String?>>{};
   final Map<String, int> joiningCountBySession = <String, int>{};
   final Map<String, int> waitlistCountBySession = <String, int>{};
   final Map<String, String> userNameById = <String, String>{};
+  final Map<String, String> avatarByUserId = <String, String>{};
+  final Map<String, String> avatarFileIdByUserId = <String, String>{};
   final Map<String, String> skillLevelByUserId = <String, String>{};
   final Map<String, double> skillRatingByUserId = <String, double>{};
 
@@ -105,6 +115,14 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
       <String, List<String>>{};
   final Map<String, List<String>> relationWaitlistedNamesBySession =
       <String, List<String>>{};
+  final Map<String, List<String?>> relationAvatarsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> relationAvatarFileIdsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> relationWaitlistedAvatarsBySession =
+      <String, List<String?>>{};
+  final Map<String, List<String?>> relationWaitlistedAvatarFileIdsBySession =
+      <String, List<String?>>{};
 
   try {
     final participantsResponse = await tables.listRows(
@@ -132,8 +150,16 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
 
       final relationUser = data['user_id'];
       String? relationName;
+      String? relationAvatar;
+      String? relationAvatarFileId;
       if (relationUser is Map) {
         relationName = _DiscoverySession.stringValue(relationUser['name']);
+        relationAvatar = _DiscoverySession.stringValue(
+          relationUser['profile_picture_url'],
+        );
+        relationAvatarFileId = _DiscoverySession.stringValue(
+          relationUser['profile_picture_file_id'],
+        );
       }
 
       final status = _DiscoverySession.stringValue(data['status']);
@@ -149,6 +175,14 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
             () => <String>[],
           );
           names.add(relationName);
+          final avatars = relationWaitlistedAvatarsBySession.putIfAbsent(
+            sessionId,
+            () => <String?>[],
+          );
+          avatars.add(relationAvatar);
+          final avatarFileIds = relationWaitlistedAvatarFileIdsBySession
+              .putIfAbsent(sessionId, () => <String?>[]);
+          avatarFileIds.add(relationAvatarFileId);
         }
         continue;
       }
@@ -162,6 +196,16 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
           () => <String>[],
         );
         names.add(relationName);
+        final avatars = relationAvatarsBySession.putIfAbsent(
+          sessionId,
+          () => <String?>[],
+        );
+        avatars.add(relationAvatar);
+        final avatarFileIds = relationAvatarFileIdsBySession.putIfAbsent(
+          sessionId,
+          () => <String?>[],
+        );
+        avatarFileIds.add(relationAvatarFileId);
       }
     }
   } on AppwriteException {
@@ -200,8 +244,37 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
           }
         }
       }
+
+      final avatarUrlById = body['avatarByUserId'];
+      if (avatarUrlById is Map) {
+        for (final entry in avatarUrlById.entries) {
+          final userId = entry.key.toString().trim();
+          final avatar = entry.value?.toString().trim();
+          if (userId.isNotEmpty && avatar != null && avatar.isNotEmpty) {
+            avatarByUserId[userId] = avatar;
+          }
+        }
+      }
+
+      final avatarFileIdMap = body['avatarFileIdByUserId'];
+      if (avatarFileIdMap is Map) {
+        for (final entry in avatarFileIdMap.entries) {
+          final userId = entry.key.toString().trim();
+          final avatarFileId = entry.value?.toString().trim();
+          if (userId.isNotEmpty &&
+              avatarFileId != null &&
+              avatarFileId.isNotEmpty) {
+            avatarFileIdByUserId[userId] = avatarFileId;
+          }
+        }
+      }
     } on AppwriteException {
-      // Legacy fallback when the function is not deployed yet.
+      // Fall through to the direct table backfill below.
+    }
+
+    if (userNameById.length < allUserIds.length ||
+        avatarByUserId.length < allUserIds.length ||
+        avatarFileIdByUserId.length < allUserIds.length) {
       try {
         for (
           var start = 0;
@@ -219,9 +292,21 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
 
           for (final row in userRows.rows) {
             final name = _DiscoverySession.stringValue(row.data['name']);
+            final avatar = _DiscoverySession.stringValue(
+              row.data['profile_picture_url'],
+            );
+            final avatarFileId = _DiscoverySession.stringValue(
+              row.data['profile_picture_file_id'],
+            );
             final userId = rowId(row);
             if (name != null && userId.isNotEmpty) {
               userNameById[userId] = name;
+            }
+            if (avatar != null && userId.isNotEmpty) {
+              avatarByUserId[userId] = avatar;
+            }
+            if (avatarFileId != null && userId.isNotEmpty) {
+              avatarFileIdByUserId[userId] = avatarFileId;
             }
           }
         }
@@ -247,6 +332,21 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
           : confirmedNamesBySession;
       final names = targetMap.putIfAbsent(sessionId, () => <String>[]);
       names.add(participantName);
+
+      final targetAvatarMap = isWaitlisted
+          ? waitlistedAvatarsBySession
+          : confirmedAvatarsBySession;
+      final avatars = targetAvatarMap.putIfAbsent(sessionId, () => <String?>[]);
+      avatars.add(avatarByUserId[userId]);
+
+      final targetAvatarFileIdMap = isWaitlisted
+          ? waitlistedAvatarFileIdsBySession
+          : confirmedAvatarFileIdsBySession;
+      final avatarFileIds = targetAvatarFileIdMap.putIfAbsent(
+        sessionId,
+        () => <String?>[],
+      );
+      avatarFileIds.add(avatarFileIdByUserId[userId]);
     }
 
     for (final entry in relationNamesBySession.entries) {
@@ -254,6 +354,12 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
         continue;
       }
       confirmedNamesBySession[entry.key] = List<String>.from(entry.value);
+      confirmedAvatarsBySession[entry.key] = List<String?>.from(
+        relationAvatarsBySession[entry.key] ?? const <String?>[],
+      );
+      confirmedAvatarFileIdsBySession[entry.key] = List<String?>.from(
+        relationAvatarFileIdsBySession[entry.key] ?? const <String?>[],
+      );
     }
     for (final entry in relationWaitlistedNamesBySession.entries) {
       if ((waitlistedNamesBySession[entry.key] ?? const <String>[])
@@ -261,6 +367,13 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
         continue;
       }
       waitlistedNamesBySession[entry.key] = List<String>.from(entry.value);
+      waitlistedAvatarsBySession[entry.key] = List<String?>.from(
+        relationWaitlistedAvatarsBySession[entry.key] ?? const <String?>[],
+      );
+      waitlistedAvatarFileIdsBySession[entry.key] = List<String?>.from(
+        relationWaitlistedAvatarFileIdsBySession[entry.key] ??
+            const <String?>[],
+      );
     }
 
     if (hostIds.isNotEmpty) {
@@ -301,9 +414,20 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
           row,
           confirmedParticipantNames: confirmedNamesBySession[sessionId],
           waitlistedParticipantNames: waitlistedNamesBySession[sessionId],
+          confirmedParticipantAvatarUrls: confirmedAvatarsBySession[sessionId],
+          confirmedParticipantAvatarFileIds:
+              confirmedAvatarFileIdsBySession[sessionId],
+          waitlistedParticipantAvatarUrls:
+              waitlistedAvatarsBySession[sessionId],
+          waitlistedParticipantAvatarFileIds:
+              waitlistedAvatarFileIdsBySession[sessionId],
           participantCountOverride: joiningCountBySession[sessionId],
           waitlistCountOverride: waitlistCountBySession[sessionId],
           hostNameOverride: hostId == null ? null : userNameById[hostId],
+          hostAvatarOverride: hostId == null ? null : avatarByUserId[hostId],
+          hostAvatarFileIdOverride: hostId == null
+              ? null
+              : avatarFileIdByUserId[hostId],
           hostSkillLevelOverride: hostId == null
               ? null
               : skillLevelByUserId[hostId],

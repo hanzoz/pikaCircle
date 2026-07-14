@@ -155,6 +155,8 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
     ...participantUserIds,
   }.toList(growable: false);
   final userNameById = <String, String>{};
+  final avatarByUserId = <String, String>{};
+  final avatarFileIdByUserId = <String, String>{};
 
   if (allUserIds.isNotEmpty) {
     try {
@@ -183,8 +185,37 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
           }
         }
       }
+
+      final avatarUrlById = body['avatarByUserId'];
+      if (avatarUrlById is Map) {
+        for (final entry in avatarUrlById.entries) {
+          final id = entry.key.toString().trim();
+          final avatar = entry.value?.toString().trim();
+          if (id.isNotEmpty && avatar != null && avatar.isNotEmpty) {
+            avatarByUserId[id] = avatar;
+          }
+        }
+      }
+
+      final avatarFileIdMap = body['avatarFileIdByUserId'];
+      if (avatarFileIdMap is Map) {
+        for (final entry in avatarFileIdMap.entries) {
+          final id = entry.key.toString().trim();
+          final avatarFileId = entry.value?.toString().trim();
+          if (id.isNotEmpty &&
+              avatarFileId != null &&
+              avatarFileId.isNotEmpty) {
+            avatarFileIdByUserId[id] = avatarFileId;
+          }
+        }
+      }
     } on AppwriteException {
-      // Fallback path while function is unavailable.
+      // Fall through to the direct table backfill below.
+    }
+
+    if (userNameById.length < allUserIds.length ||
+        avatarByUserId.length < allUserIds.length ||
+        avatarFileIdByUserId.length < allUserIds.length) {
       try {
         for (
           var start = 0;
@@ -200,8 +231,20 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
           );
           for (final row in userRows.rows) {
             final name = PlaySession.stringValue(row.data['name']);
+            final avatar = PlaySession.stringValue(
+              row.data['profile_picture_url'],
+            );
+            final avatarFileId = PlaySession.stringValue(
+              row.data['profile_picture_file_id'],
+            );
             if (name != null && row.$id.isNotEmpty) {
               userNameById[row.$id] = name;
+            }
+            if (avatar != null && row.$id.isNotEmpty) {
+              avatarByUserId[row.$id] = avatar;
+            }
+            if (avatarFileId != null && row.$id.isNotEmpty) {
+              avatarFileIdByUserId[row.$id] = avatarFileId;
             }
           }
         }
@@ -212,27 +255,50 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
   }
 
   return visibleSessionRows
-      .map(
-        (row) => PlaySession.fromRow(
+      .map((row) {
+        final confirmedNames = <String>[];
+        final confirmedAvatars = <String?>[];
+        final confirmedAvatarFileIds = <String?>[];
+        for (final id in participantIdsBySession[row.$id] ?? const <String>[]) {
+          final name = userNameById[id];
+          if (name == null) continue;
+          confirmedNames.add(name);
+          confirmedAvatars.add(avatarByUserId[id]);
+          confirmedAvatarFileIds.add(avatarFileIdByUserId[id]);
+        }
+
+        final waitlistedNames = <String>[];
+        final waitlistedAvatars = <String?>[];
+        final waitlistedAvatarFileIds = <String?>[];
+        for (final id in waitlistedIdsBySession[row.$id] ?? const <String>[]) {
+          final name = userNameById[id];
+          if (name == null) continue;
+          waitlistedNames.add(name);
+          waitlistedAvatars.add(avatarByUserId[id]);
+          waitlistedAvatarFileIds.add(avatarFileIdByUserId[id]);
+        }
+
+        final hostId = PlaySession.relationId(row.data['host_id']);
+
+        return PlaySession.fromRow(
           row,
-          hostNameOverride:
-              userNameById[PlaySession.relationId(row.data['host_id'])],
-          confirmedParticipantNames:
-              (participantIdsBySession[row.$id] ?? const <String>[])
-                  .map((id) => userNameById[id])
-                  .whereType<String>()
-                  .toList(growable: false),
-          waitlistedParticipantNames:
-              (waitlistedIdsBySession[row.$id] ?? const <String>[])
-                  .map((id) => userNameById[id])
-                  .whereType<String>()
-                  .toList(growable: false),
+          hostNameOverride: hostId == null ? null : userNameById[hostId],
+          hostAvatarOverride: hostId == null ? null : avatarByUserId[hostId],
+          hostAvatarFileIdOverride: hostId == null
+              ? null
+              : avatarFileIdByUserId[hostId],
+          confirmedParticipantNames: confirmedNames,
+          waitlistedParticipantNames: waitlistedNames,
+          confirmedParticipantAvatarUrls: confirmedAvatars,
+          confirmedParticipantAvatarFileIds: confirmedAvatarFileIds,
+          waitlistedParticipantAvatarUrls: waitlistedAvatars,
+          waitlistedParticipantAvatarFileIds: waitlistedAvatarFileIds,
           participantCountOverride: participantCountBySession[row.$id],
           waitlistCountOverride: waitlistCountBySession[row.$id],
           participantStatus:
               participantStatusBySessionId[row.$id] ?? 'confirmed',
-        ),
-      )
+        );
+      })
       .toList(growable: false);
 });
 
@@ -368,6 +434,12 @@ class PlaySession {
     required this.refundWindowLabel,
     required this.confirmedParticipantNames,
     required this.waitlistedParticipantNames,
+    required this.confirmedParticipantAvatarUrls,
+    required this.confirmedParticipantAvatarFileIds,
+    required this.waitlistedParticipantAvatarUrls,
+    required this.waitlistedParticipantAvatarFileIds,
+    required this.hostAvatarUrl,
+    required this.hostAvatarFileId,
     required this.waitlistCount,
   });
 
@@ -375,8 +447,14 @@ class PlaySession {
     models.Row row, {
     required String participantStatus,
     String? hostNameOverride,
+    String? hostAvatarOverride,
+    String? hostAvatarFileIdOverride,
     List<String>? confirmedParticipantNames,
     List<String>? waitlistedParticipantNames,
+    List<String?>? confirmedParticipantAvatarUrls,
+    List<String?>? confirmedParticipantAvatarFileIds,
+    List<String?>? waitlistedParticipantAvatarUrls,
+    List<String?>? waitlistedParticipantAvatarFileIds,
     int? participantCountOverride,
     int? waitlistCountOverride,
   }) {
@@ -426,6 +504,20 @@ class PlaySession {
       waitlistedParticipantNames: List<String>.unmodifiable(
         waitlistedParticipantNames ?? const <String>[],
       ),
+      confirmedParticipantAvatarUrls: List<String?>.unmodifiable(
+        confirmedParticipantAvatarUrls ?? const <String?>[],
+      ),
+      confirmedParticipantAvatarFileIds: List<String?>.unmodifiable(
+        confirmedParticipantAvatarFileIds ?? const <String?>[],
+      ),
+      waitlistedParticipantAvatarUrls: List<String?>.unmodifiable(
+        waitlistedParticipantAvatarUrls ?? const <String?>[],
+      ),
+      waitlistedParticipantAvatarFileIds: List<String?>.unmodifiable(
+        waitlistedParticipantAvatarFileIds ?? const <String?>[],
+      ),
+      hostAvatarUrl: hostAvatarOverride,
+      hostAvatarFileId: hostAvatarFileIdOverride,
       waitlistCount: waitlistCountOverride ?? 0,
     );
   }
@@ -452,6 +544,12 @@ class PlaySession {
   final String refundWindowLabel;
   final List<String> confirmedParticipantNames;
   final List<String> waitlistedParticipantNames;
+  final List<String?> confirmedParticipantAvatarUrls;
+  final List<String?> confirmedParticipantAvatarFileIds;
+  final List<String?> waitlistedParticipantAvatarUrls;
+  final List<String?> waitlistedParticipantAvatarFileIds;
+  final String? hostAvatarUrl;
+  final String? hostAvatarFileId;
   final int waitlistCount;
 
   String get sessionTypeLabel {

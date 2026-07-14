@@ -22,6 +22,12 @@ class _DiscoverySession {
     required this.refundWindowLabel,
     required this.confirmedParticipantNames,
     required this.waitlistedParticipantNames,
+    required this.confirmedParticipantAvatarUrls,
+    required this.confirmedParticipantAvatarFileIds,
+    required this.waitlistedParticipantAvatarUrls,
+    required this.waitlistedParticipantAvatarFileIds,
+    required this.hostAvatarUrl,
+    required this.hostAvatarFileId,
     required this.participantCount,
     required this.waitlistCount,
     required this.maxParticipants,
@@ -31,9 +37,15 @@ class _DiscoverySession {
     models.Row row, {
     List<String>? confirmedParticipantNames,
     List<String>? waitlistedParticipantNames,
+    List<String?>? confirmedParticipantAvatarUrls,
+    List<String?>? confirmedParticipantAvatarFileIds,
+    List<String?>? waitlistedParticipantAvatarUrls,
+    List<String?>? waitlistedParticipantAvatarFileIds,
     int? participantCountOverride,
     int? waitlistCountOverride,
     String? hostNameOverride,
+    String? hostAvatarOverride,
+    String? hostAvatarFileIdOverride,
     String? hostSkillLevelOverride,
     double? hostSkillRatingOverride,
   }) {
@@ -86,6 +98,20 @@ class _DiscoverySession {
     final resolvedWaitlistedNames = waitlistedParticipantNames == null
         ? const <String>[]
         : List<String>.unmodifiable(waitlistedParticipantNames);
+    final resolvedConfirmedAvatars = confirmedParticipantAvatarUrls == null
+        ? const <String?>[]
+        : List<String?>.unmodifiable(confirmedParticipantAvatarUrls);
+    final resolvedConfirmedAvatarFileIds =
+        confirmedParticipantAvatarFileIds == null
+        ? const <String?>[]
+        : List<String?>.unmodifiable(confirmedParticipantAvatarFileIds);
+    final resolvedWaitlistedAvatars = waitlistedParticipantAvatarUrls == null
+        ? const <String?>[]
+        : List<String?>.unmodifiable(waitlistedParticipantAvatarUrls);
+    final resolvedWaitlistedAvatarFileIds =
+        waitlistedParticipantAvatarFileIds == null
+        ? const <String?>[]
+        : List<String?>.unmodifiable(waitlistedParticipantAvatarFileIds);
 
     return _DiscoverySession(
       title: title,
@@ -108,6 +134,12 @@ class _DiscoverySession {
       refundWindowLabel: refundWindowLabel,
       confirmedParticipantNames: resolvedConfirmedNames,
       waitlistedParticipantNames: resolvedWaitlistedNames,
+      confirmedParticipantAvatarUrls: resolvedConfirmedAvatars,
+      confirmedParticipantAvatarFileIds: resolvedConfirmedAvatarFileIds,
+      waitlistedParticipantAvatarUrls: resolvedWaitlistedAvatars,
+      waitlistedParticipantAvatarFileIds: resolvedWaitlistedAvatarFileIds,
+      hostAvatarUrl: hostAvatarOverride,
+      hostAvatarFileId: hostAvatarFileIdOverride,
       participantCount: resolvedParticipantCount,
       waitlistCount: resolvedWaitlistCount,
       maxParticipants: maxParticipants,
@@ -134,6 +166,12 @@ class _DiscoverySession {
   final String refundWindowLabel;
   final List<String> confirmedParticipantNames;
   final List<String> waitlistedParticipantNames;
+  final List<String?> confirmedParticipantAvatarUrls;
+  final List<String?> confirmedParticipantAvatarFileIds;
+  final List<String?> waitlistedParticipantAvatarUrls;
+  final List<String?> waitlistedParticipantAvatarFileIds;
+  final String? hostAvatarUrl;
+  final String? hostAvatarFileId;
   final int participantCount;
   final int waitlistCount;
   final int? maxParticipants;

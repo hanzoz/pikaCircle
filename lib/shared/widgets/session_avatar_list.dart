@@ -1,6 +1,11 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 
 class SessionAvatarList extends StatelessWidget {
   const SessionAvatarList({
@@ -8,6 +13,7 @@ class SessionAvatarList extends StatelessWidget {
     required this.names,
     required this.totalCount,
     this.avatarUrls,
+    this.avatarFileIds,
     this.avatarSize = 100,
     this.gap = 12,
     this.maxVisible,
@@ -19,6 +25,7 @@ class SessionAvatarList extends StatelessWidget {
   final List<String> names;
   final int totalCount;
   final List<String?>? avatarUrls;
+  final List<String?>? avatarFileIds;
   final double avatarSize;
   final double gap;
   final int? maxVisible;
@@ -45,6 +52,9 @@ class SessionAvatarList extends StatelessWidget {
           name: names[i],
           imageUrl: avatarUrls != null && i < avatarUrls!.length
               ? avatarUrls![i]
+              : null,
+          avatarFileId: avatarFileIds != null && i < avatarFileIds!.length
+              ? avatarFileIds![i]
               : null,
           size: avatarSize,
         ),
@@ -92,29 +102,36 @@ class SessionAvatarList extends StatelessWidget {
   }
 }
 
-class SessionAvatar extends StatelessWidget {
+class SessionAvatar extends ConsumerWidget {
   const SessionAvatar({
     super.key,
     required this.name,
     this.imageUrl,
+    this.avatarFileId,
     this.size = 100,
   });
 
   final String name;
   final String? imageUrl;
+  final String? avatarFileId;
   final double size;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final initials = _nameInitials(name);
     final outerRadius = size / 2;
     final innerRadius = (size - 4) / 2;
+    final avatarBucketId = ref.watch(appwriteConfigProvider).avatarBucketId;
+    final storage = ref.watch(appwriteStorageProvider);
 
     return CircleAvatar(
       radius: outerRadius,
       backgroundColor: Theme.of(context).colorScheme.surface,
       child: _AvatarImageOrInitials(
         imageUrl: imageUrl,
+        avatarFileId: avatarFileId,
+        avatarBucketId: avatarBucketId,
+        storage: storage,
         initials: initials,
         innerRadius: innerRadius,
       ),
@@ -139,11 +156,17 @@ String _nameInitials(String? value, {String fallback = 'P'}) {
 class _AvatarImageOrInitials extends StatelessWidget {
   const _AvatarImageOrInitials({
     required this.imageUrl,
+    required this.avatarFileId,
+    required this.avatarBucketId,
+    required this.storage,
     required this.initials,
     required this.innerRadius,
   });
 
   final String? imageUrl;
+  final String? avatarFileId;
+  final String avatarBucketId;
+  final Storage storage;
   final String initials;
   final double innerRadius;
 
@@ -153,7 +176,13 @@ class _AvatarImageOrInitials extends StatelessWidget {
     final hasUrl = normalizedUrl != null && normalizedUrl.isNotEmpty;
 
     if (!hasUrl) {
-      return _InitialsAvatar(innerRadius: innerRadius, initials: initials);
+      return _AvatarFromStorageOrInitials(
+        avatarFileId: avatarFileId,
+        avatarBucketId: avatarBucketId,
+        storage: storage,
+        innerRadius: innerRadius,
+        initials: initials,
+      );
     }
 
     final diameter = innerRadius * 2;
@@ -164,9 +193,62 @@ class _AvatarImageOrInitials extends StatelessWidget {
         height: diameter,
         fit: BoxFit.cover,
         errorBuilder: (_, _, _) {
-          return _InitialsAvatar(innerRadius: innerRadius, initials: initials);
+          return _AvatarFromStorageOrInitials(
+            avatarFileId: avatarFileId,
+            avatarBucketId: avatarBucketId,
+            storage: storage,
+            innerRadius: innerRadius,
+            initials: initials,
+          );
         },
       ),
+    );
+  }
+}
+
+class _AvatarFromStorageOrInitials extends StatelessWidget {
+  const _AvatarFromStorageOrInitials({
+    required this.avatarFileId,
+    required this.avatarBucketId,
+    required this.storage,
+    required this.innerRadius,
+    required this.initials,
+  });
+
+  final String? avatarFileId;
+  final String avatarBucketId;
+  final Storage storage;
+  final double innerRadius;
+  final String initials;
+
+  @override
+  Widget build(BuildContext context) {
+    final normalizedFileId = avatarFileId?.trim();
+    if (normalizedFileId == null || normalizedFileId.isEmpty) {
+      return _InitialsAvatar(innerRadius: innerRadius, initials: initials);
+    }
+
+    return FutureBuilder<Uint8List>(
+      future: storage.getFileView(
+        bucketId: avatarBucketId,
+        fileId: normalizedFileId,
+      ),
+      builder: (context, snapshot) {
+        final bytes = snapshot.data;
+        if (bytes == null || bytes.isEmpty) {
+          return _InitialsAvatar(innerRadius: innerRadius, initials: initials);
+        }
+
+        final diameter = innerRadius * 2;
+        return ClipOval(
+          child: Image.memory(
+            bytes,
+            width: diameter,
+            height: diameter,
+            fit: BoxFit.cover,
+          ),
+        );
+      },
     );
   }
 }
