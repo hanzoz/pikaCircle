@@ -8,136 +8,204 @@ import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/shell/presentation/controllers/shell_controller.dart';
 import 'package:pikacircle/shared/widgets/empty_state_card.dart';
+import 'package:pikacircle/shared/widgets/session_avatar_list.dart';
+import 'package:pikacircle/shared/widgets/session_details_page.dart';
 
 part '../widgets/session_card.dart';
+part '../widgets/session_details_page.dart';
 part '../widgets/session_model.dart';
 
 /// Discovery / "Find" tab — session, venue, and player search.
 ///
 /// Loads published sessions from Appwrite TablesDB and shows them as swipeable
 /// cards.
-final discoverySessionsProvider =
-    FutureProvider.autoDispose<List<_DiscoverySession>>((ref) async {
-      final tables = ref.watch(appwriteTablesDbProvider);
-      final config = ref.watch(appwriteConfigProvider);
+final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySession>>((
+  ref,
+) async {
+  String rowId(models.Row row) {
+    final dataId = _DiscoverySession.stringValue(row.data[r'$id']);
+    if (dataId != null) return dataId;
 
-      final sessionRows = await tables.listRows(
-        databaseId: config.databaseId,
-        tableId: TableIds.sessions,
-        queries: [
-          Query.equal('status', 'published'),
-          Query.orderAsc('starts_at'),
-          Query.limit(40),
-        ],
-      );
+    try {
+      return row.$id;
+    } catch (_) {
+      return '';
+    }
+  }
 
-      if (sessionRows.rows.isEmpty) {
-        return const <_DiscoverySession>[];
-      }
+  final tables = ref.watch(appwriteTablesDbProvider);
+  final config = ref.watch(appwriteConfigProvider);
 
-      final sessionIds = sessionRows.rows
-          .map((row) => row.$id)
-          .where((id) => id.isNotEmpty)
-          .toList(growable: false);
+  final sessionRows = await tables.listRows(
+    databaseId: config.databaseId,
+    tableId: TableIds.sessions,
+    queries: [
+      Query.equal('status', 'published'),
+      Query.orderAsc('starts_at'),
+      Query.limit(40),
+    ],
+  );
 
-      final Map<String, List<String>> confirmedNamesBySession =
-          <String, List<String>>{};
-      final Map<String, List<String>> waitlistedNamesBySession =
-          <String, List<String>>{};
-      final Map<String, int> joiningCountBySession = <String, int>{};
-      final Map<String, int> waitlistCountBySession = <String, int>{};
+  if (sessionRows.rows.isEmpty) {
+    return const <_DiscoverySession>[];
+  }
 
-      try {
-        final participantRows = await tables.listRows(
-          databaseId: config.databaseId,
-          tableId: TableIds.sessionParticipants,
-          queries: [
-            Query.equal('session_id', sessionIds),
-            Query.equal('status', ['confirmed', 'checked_in', 'waitlisted']),
-            Query.limit(500),
-          ],
-        );
+  final sessionIds = sessionRows.rows
+      .map(rowId)
+      .where((id) => id.isNotEmpty)
+      .toList(growable: false);
+  final hostIds = sessionRows.rows
+      .map((row) => _DiscoverySession.relationId(row.data['host_id']))
+      .whereType<String>()
+      .where((id) => id.isNotEmpty)
+      .toSet()
+      .toList(growable: false);
 
-        final userIds = participantRows.rows
-            .map((row) => _DiscoverySession.relationId(row.data['user_id']))
-            .whereType<String>()
-            .where((id) => id.isNotEmpty)
-            .toSet()
-            .toList(growable: false);
+  final Map<String, List<String>> confirmedNamesBySession =
+      <String, List<String>>{};
+  final Map<String, List<String>> waitlistedNamesBySession =
+      <String, List<String>>{};
+  final Map<String, int> joiningCountBySession = <String, int>{};
+  final Map<String, int> waitlistCountBySession = <String, int>{};
+  final Map<String, String> userNameById = <String, String>{};
+  final Map<String, String> skillLevelByUserId = <String, String>{};
+  final Map<String, double> skillRatingByUserId = <String, double>{};
 
-        final Map<String, String> userNameById = <String, String>{};
+  final userIdsFromParticipants = <String>{};
 
-        if (userIds.isNotEmpty) {
-          try {
-            final userRows = await tables.listRows(
-              databaseId: config.databaseId,
-              tableId: TableIds.users,
-              queries: [Query.equal(r'$id', userIds), Query.limit(500)],
-            );
+  try {
+    final participantRows = await tables.listRows(
+      databaseId: config.databaseId,
+      tableId: TableIds.sessionParticipants,
+      queries: [
+        Query.equal('session_id', sessionIds),
+        Query.equal('status', ['confirmed', 'checked_in', 'waitlisted']),
+        Query.limit(500),
+      ],
+    );
 
-            for (final row in userRows.rows) {
-              final name = _DiscoverySession.stringValue(row.data['name']);
-              if (name != null) {
-                userNameById[row.$id] = name;
-              }
-            }
-          } on AppwriteException {
-            // If profile rows are not readable for discovery, keep count-only UI.
-          }
-        }
+    final userIds = participantRows.rows
+        .map((row) => _DiscoverySession.relationId(row.data['user_id']))
+        .whereType<String>()
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    userIdsFromParticipants.addAll(userIds);
 
-        for (final row in participantRows.rows) {
-          final data = row.data;
-          final sessionId = _DiscoverySession.relationId(data['session_id']);
-          if (sessionId == null) continue;
+    for (final row in participantRows.rows) {
+      final data = row.data;
+      final sessionId = _DiscoverySession.relationId(data['session_id']);
+      if (sessionId == null) continue;
 
-          final userId = _DiscoverySession.relationId(data['user_id']);
-          final participantName = userId == null ? null : userNameById[userId];
+      final userId = _DiscoverySession.relationId(data['user_id']);
+      final participantName = userId == null ? null : userNameById[userId];
 
-          final status = _DiscoverySession.stringValue(data['status']);
-          final isWaitlisted = status == 'waitlisted';
+      final status = _DiscoverySession.stringValue(data['status']);
+      final isWaitlisted = status == 'waitlisted';
 
-          if (isWaitlisted) {
-            waitlistCountBySession[sessionId] =
-                (waitlistCountBySession[sessionId] ?? 0) + 1;
+      if (isWaitlisted) {
+        waitlistCountBySession[sessionId] =
+            (waitlistCountBySession[sessionId] ?? 0) + 1;
 
-            if (participantName != null) {
-              final names = waitlistedNamesBySession.putIfAbsent(
-                sessionId,
-                () => <String>[],
-              );
-              names.add(participantName);
-            }
-            continue;
-          }
-
-          joiningCountBySession[sessionId] =
-              (joiningCountBySession[sessionId] ?? 0) + 1;
-
-          if (participantName == null) continue;
-
-          final names = confirmedNamesBySession.putIfAbsent(
+        if (participantName != null) {
+          final names = waitlistedNamesBySession.putIfAbsent(
             sessionId,
             () => <String>[],
           );
           names.add(participantName);
         }
-      } on AppwriteException {
-        // If participants query is blocked/unavailable, fall back to session-only data.
+        continue;
       }
 
-      return sessionRows.rows
-          .map((row) {
-            return _DiscoverySession.fromRow(
-              row,
-              confirmedParticipantNames: confirmedNamesBySession[row.$id],
-              waitlistedParticipantNames: waitlistedNamesBySession[row.$id],
-              participantCountOverride: joiningCountBySession[row.$id],
-              waitlistCountOverride: waitlistCountBySession[row.$id],
-            );
-          })
-          .toList(growable: false);
-    });
+      joiningCountBySession[sessionId] =
+          (joiningCountBySession[sessionId] ?? 0) + 1;
+
+      if (participantName == null) continue;
+
+      final names = confirmedNamesBySession.putIfAbsent(
+        sessionId,
+        () => <String>[],
+      );
+      names.add(participantName);
+    }
+  } on AppwriteException {
+    // If participants query is blocked/unavailable, fall back to session-only data.
+  }
+
+  final allUserIds = <String>{
+    ...hostIds,
+    ...userIdsFromParticipants,
+  }.toList(growable: false);
+
+  if (allUserIds.isNotEmpty) {
+    try {
+      final userRows = await tables.listRows(
+        databaseId: config.databaseId,
+        tableId: TableIds.users,
+        queries: [Query.equal(r'$id', allUserIds), Query.limit(500)],
+      );
+
+      for (final row in userRows.rows) {
+        final name = _DiscoverySession.stringValue(row.data['name']);
+        final userId = rowId(row);
+        if (name != null && userId.isNotEmpty) {
+          userNameById[userId] = name;
+        }
+      }
+    } on AppwriteException {
+      // If user rows are not readable, keep count-only and fallback host labels.
+    }
+
+    if (hostIds.isNotEmpty) {
+      try {
+        final skillRows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.equal('user_id', hostIds), Query.limit(200)],
+        );
+
+        for (final row in skillRows.rows) {
+          final userId = _DiscoverySession.relationId(row.data['user_id']);
+          if (userId == null) continue;
+
+          final level = _DiscoverySession.stringValue(row.data['level']);
+          final rating = _DiscoverySession.doubleValue(
+            row.data['overall_skill_rating'],
+          );
+
+          if (level != null) {
+            skillLevelByUserId[userId] = level;
+          }
+          if (rating != null) {
+            skillRatingByUserId[userId] = rating;
+          }
+        }
+      } on AppwriteException {
+        // Skill table may be unreadable for some users; fallback to session values.
+      }
+    }
+  }
+
+  return sessionRows.rows
+      .map((row) {
+        final sessionId = rowId(row);
+        final hostId = _DiscoverySession.relationId(row.data['host_id']);
+        return _DiscoverySession.fromRow(
+          row,
+          confirmedParticipantNames: confirmedNamesBySession[sessionId],
+          waitlistedParticipantNames: waitlistedNamesBySession[sessionId],
+          participantCountOverride: joiningCountBySession[sessionId],
+          waitlistCountOverride: waitlistCountBySession[sessionId],
+          hostNameOverride: hostId == null ? null : userNameById[hostId],
+          hostSkillLevelOverride: hostId == null
+              ? null
+              : skillLevelByUserId[hostId],
+          hostSkillRatingOverride: hostId == null
+              ? null
+              : skillRatingByUserId[hostId],
+        );
+      })
+      .toList(growable: false);
+});
 
 class DiscoveryScreen extends ConsumerStatefulWidget {
   const DiscoveryScreen({super.key});

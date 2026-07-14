@@ -13,87 +13,100 @@ class _DiscoverySessionCard extends StatelessWidget {
       session.durationLabel,
     );
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Color(0x16000000),
-            blurRadius: 20,
-            offset: Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const _PlaceholderImage(),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    session.title,
-                    style: theme.textTheme.titleLarge,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                _CapacityBadge(
-                  confirmedCount: session.participantCount,
-                  maxParticipants: session.maxParticipants,
-                ),
-              ],
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => _SessionDetailsPage(session: session),
             ),
+          );
+        },
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const <BoxShadow>[
+              BoxShadow(
+                color: Color(0x16000000),
+                blurRadius: 20,
+                offset: Offset(0, 8),
+              ),
+            ],
           ),
-          if (scheduleText != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.schedule_rounded,
-                    size: 16,
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      scheduleText,
-                      style: theme.textTheme.bodySmall?.copyWith(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const _PlaceholderImage(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        session.title,
+                        style: theme.textTheme.titleLarge,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    _CapacityBadge(
+                      confirmedCount: session.participantCount,
+                      maxParticipants: session.maxParticipants,
+                    ),
+                  ],
+                ),
+              ),
+              if (scheduleText != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.schedule_rounded,
+                        size: 16,
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          scheduleText,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                child: Text(
+                  session.excerpt,
+                  style: theme.textTheme.bodyMedium,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-            child: Text(
-              session.excerpt,
-              style: theme.textTheme.bodyMedium,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+                child: _ParticipantGroups(
+                  confirmedNames: session.confirmedParticipantNames,
+                  confirmedCount: session.participantCount,
+                  waitlistedNames: session.waitlistedParticipantNames,
+                  waitlistCount: session.waitlistCount,
+                ),
+              ),
+            ],
           ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
-            child: _ParticipantGroups(
-              confirmedNames: session.confirmedParticipantNames,
-              confirmedCount: session.participantCount,
-              waitlistedNames: session.waitlistedParticipantNames,
-              waitlistCount: session.waitlistCount,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -209,10 +222,8 @@ class _ParticipantGroupRow extends StatelessWidget {
   final List<String> names;
   final int totalCount;
 
-  static const double _avatarRadius = 14;
-  static const double _avatarDiameter = _avatarRadius * 2;
-  static const double _avatarStep = 22;
-  static const double _avatarStripHeight = 28;
+  static const double _avatarSize = 28;
+  static const double _avatarGap = 6;
   static const double _labelWidth = 84;
   static const double _minStripWidth = 68;
 
@@ -227,12 +238,6 @@ class _ParticipantGroupRow extends StatelessWidget {
         );
 
         final maxVisible = _maxAvatarsForWidth(avatarStripWidth);
-        final visibleCount = totalCount < maxVisible ? totalCount : maxVisible;
-        final knownVisible = names.length < visibleCount
-            ? names.length
-            : visibleCount;
-        final hasOverflow = totalCount > visibleCount;
-        final overflowCount = hasOverflow ? totalCount - visibleCount : 0;
 
         return Row(
           children: <Widget>[
@@ -245,26 +250,14 @@ class _ParticipantGroupRow extends StatelessWidget {
             ),
             SizedBox(
               width: avatarStripWidth,
-              height: _avatarStripHeight,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: <Widget>[
-                  for (int i = 0; i < knownVisible; i++)
-                    Positioned(
-                      left: i * _avatarStep,
-                      child: _AvatarChip(name: names[i]),
-                    ),
-                  for (int i = knownVisible; i < visibleCount; i++)
-                    Positioned(
-                      left: i * _avatarStep,
-                      child: const _UnknownAvatarChip(),
-                    ),
-                  if (hasOverflow)
-                    Positioned(
-                      left: (visibleCount - 1) * _avatarStep,
-                      child: _OverflowAvatarChip(count: overflowCount),
-                    ),
-                ],
+              height: _avatarSize,
+              child: SessionAvatarList(
+                names: names,
+                totalCount: totalCount,
+                avatarSize: _avatarSize,
+                gap: _avatarGap,
+                maxVisible: maxVisible,
+                scrollable: false,
               ),
             ),
           ],
@@ -274,91 +267,7 @@ class _ParticipantGroupRow extends StatelessWidget {
   }
 
   int _maxAvatarsForWidth(double width) {
-    if (width <= _avatarDiameter) return 1;
-    return ((width - _avatarDiameter) / _avatarStep).floor() + 1;
-  }
-}
-
-class _AvatarChip extends StatelessWidget {
-  const _AvatarChip({required this.name});
-
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    final initials = _initials(name);
-    return CircleAvatar(
-      radius: 14,
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      child: CircleAvatar(
-        radius: 12,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: Text(
-          initials,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimary,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-  }
-
-  String _initials(String value) {
-    final segments = value
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((String token) => token.isNotEmpty)
-        .toList(growable: false);
-
-    if (segments.isEmpty) return '?';
-    if (segments.length == 1) return segments.first[0].toUpperCase();
-    return '${segments.first[0]}${segments.last[0]}'.toUpperCase();
-  }
-}
-
-class _OverflowAvatarChip extends StatelessWidget {
-  const _OverflowAvatarChip({required this.count});
-
-  final int count;
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 14,
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      child: CircleAvatar(
-        radius: 12,
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-        child: Text(
-          '+$count',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _UnknownAvatarChip extends StatelessWidget {
-  const _UnknownAvatarChip();
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 14,
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      child: CircleAvatar(
-        radius: 12,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-        child: Icon(
-          Icons.person_outline_rounded,
-          size: 14,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        ),
-      ),
-    );
+    if (width <= _avatarSize) return 1;
+    return ((width + _avatarGap) / (_avatarSize + _avatarGap)).floor();
   }
 }

@@ -4,8 +4,22 @@ class _DiscoverySession {
   const _DiscoverySession({
     required this.title,
     required this.excerpt,
+    required this.description,
     required this.scheduleLabel,
+    required this.dateLabel,
+    required this.timeLabel,
     required this.durationLabel,
+    required this.sessionType,
+    required this.skillLevel,
+    required this.sponsorName,
+    required this.hostName,
+    required this.hostSkillLevel,
+    required this.hostSkillRating,
+    required this.venue,
+    required this.location,
+    required this.creditCost,
+    required this.refundAvailable,
+    required this.refundWindowLabel,
     required this.confirmedParticipantNames,
     required this.waitlistedParticipantNames,
     required this.participantCount,
@@ -19,6 +33,9 @@ class _DiscoverySession {
     List<String>? waitlistedParticipantNames,
     int? participantCountOverride,
     int? waitlistCountOverride,
+    String? hostNameOverride,
+    String? hostSkillLevelOverride,
+    double? hostSkillRatingOverride,
   }) {
     final data = row.data;
 
@@ -27,10 +44,32 @@ class _DiscoverySession {
         _formatSessionSchedule(data['starts_at']) ??
         stringValue(data['timeLabel']);
     final durationLabel = _formatSessionDuration(data['session_duration']);
-    final excerpt =
+    final description =
         stringValue(data['description']) ??
         _buildFallbackExcerpt(data) ??
         'Session details will appear soon.';
+    final excerpt = description;
+    final startsAt = _dateTimeValue(data['starts_at']);
+    final dateLabel = startsAt == null ? 'TBA' : _formatDate(startsAt);
+    final timeLabel = startsAt == null
+        ? (stringValue(data['timeLabel']) ?? 'TBA')
+        : _formatTime(startsAt);
+    final sessionType = _formatTokenLabel(data['session_type']) ?? 'Social';
+    final skillLevel =
+        _formatTokenLabel(data['skill_level']) ??
+        _formatTokenLabel(data['skill']) ??
+        'All levels';
+    final sponsorName = stringValue(data['sponsor']) ?? 'No sponsor';
+    final hostName =
+        hostNameOverride ?? stringValue(data['host_name']) ?? 'Host';
+    final hostSkillLevel =
+        _formatTokenLabel(hostSkillLevelOverride) ?? skillLevel;
+    final hostSkillRating = hostSkillRatingOverride;
+    final venue = stringValue(data['venue']) ?? 'Venue TBA';
+    final location = stringValue(data['location']) ?? 'Location TBA';
+    final creditCost = _int(data['credit_cost']) ?? _int(data['credits']) ?? 0;
+    final refundAvailable = _bool(data['refund_available']) ?? false;
+    final refundWindowLabel = _formatRefundWindow(data['refund_window_hours']);
 
     final maxParticipants = _int(data['max_participants']);
     final remainingSlots = _int(data['remainingSlots']);
@@ -51,8 +90,22 @@ class _DiscoverySession {
     return _DiscoverySession(
       title: title,
       excerpt: excerpt,
+      description: description,
       scheduleLabel: scheduleLabel,
+      dateLabel: dateLabel,
+      timeLabel: timeLabel,
       durationLabel: durationLabel,
+      sessionType: sessionType,
+      skillLevel: skillLevel,
+      sponsorName: sponsorName,
+      hostName: hostName,
+      hostSkillLevel: hostSkillLevel,
+      hostSkillRating: hostSkillRating,
+      venue: venue,
+      location: location,
+      creditCost: creditCost,
+      refundAvailable: refundAvailable,
+      refundWindowLabel: refundWindowLabel,
       confirmedParticipantNames: resolvedConfirmedNames,
       waitlistedParticipantNames: resolvedWaitlistedNames,
       participantCount: resolvedParticipantCount,
@@ -63,8 +116,22 @@ class _DiscoverySession {
 
   final String title;
   final String excerpt;
+  final String description;
   final String? scheduleLabel;
+  final String dateLabel;
+  final String timeLabel;
   final String? durationLabel;
+  final String sessionType;
+  final String skillLevel;
+  final String sponsorName;
+  final String hostName;
+  final String hostSkillLevel;
+  final double? hostSkillRating;
+  final String venue;
+  final String location;
+  final int creditCost;
+  final bool refundAvailable;
+  final String refundWindowLabel;
   final List<String> confirmedParticipantNames;
   final List<String> waitlistedParticipantNames;
   final int participantCount;
@@ -110,14 +177,41 @@ class _DiscoverySession {
     return null;
   }
 
-  static String? _formatSessionSchedule(Object? startsAt) {
-    final raw = stringValue(startsAt);
+  static bool? _bool(Object? value) {
+    if (value is bool) return value;
+    if (value is num) return value != 0;
+    if (value is String) {
+      final normalized = value.trim().toLowerCase();
+      if (normalized == 'true' || normalized == '1' || normalized == 'yes') {
+        return true;
+      }
+      if (normalized == 'false' || normalized == '0' || normalized == 'no') {
+        return false;
+      }
+    }
+    return null;
+  }
+
+  static double? doubleValue(Object? value) {
+    if (value is double) return value;
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value.trim());
+    return null;
+  }
+
+  static DateTime? _dateTimeValue(Object? value) {
+    final raw = stringValue(value);
     if (raw == null) return null;
 
     final parsed = DateTime.tryParse(raw);
     if (parsed == null) return null;
+    return parsed.toLocal();
+  }
 
-    final local = parsed.toLocal();
+  static String? _formatSessionSchedule(Object? startsAt) {
+    final local = _dateTimeValue(startsAt);
+    if (local == null) return null;
+
     final dayName = _weekdayName(local.weekday);
     final monthName = _monthName(local.month);
     final hour = local.hour % 12 == 0 ? 12 : local.hour % 12;
@@ -125,6 +219,47 @@ class _DiscoverySession {
     final suffix = local.hour >= 12 ? 'PM' : 'AM';
 
     return '$dayName, ${local.day} $monthName, $hour:$minute $suffix';
+  }
+
+  static String _formatDate(DateTime local) {
+    final dayName = _weekdayName(local.weekday);
+    final monthName = _monthName(local.month);
+    return '$dayName, ${local.day} $monthName ${local.year}';
+  }
+
+  static String _formatTime(DateTime local) {
+    final hour = local.hour % 12 == 0 ? 12 : local.hour % 12;
+    final minute = local.minute.toString().padLeft(2, '0');
+    final suffix = local.hour >= 12 ? 'PM' : 'AM';
+    return '$hour:$minute $suffix';
+  }
+
+  static String? _formatTokenLabel(Object? value) {
+    final raw = stringValue(value);
+    if (raw == null) return null;
+
+    final normalized = raw.trim().toLowerCase().replaceAll('_', ' ');
+    if (normalized.isEmpty) return null;
+
+    return normalized
+        .split(' ')
+        .where((token) => token.isNotEmpty)
+        .map(
+          (token) =>
+              '${token[0].toUpperCase()}${token.length > 1 ? token.substring(1) : ''}',
+        )
+        .join(' ');
+  }
+
+  static String _formatRefundWindow(Object? value) {
+    final hours = _int(value);
+    if (hours == null || hours <= 0) {
+      return 'No refund window';
+    }
+    if (hours == 1) {
+      return '1 hour before start';
+    }
+    return '$hours hours before start';
   }
 
   static String _weekdayName(int weekday) {
