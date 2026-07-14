@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pikacircle/features/sessions/presentation/screens/sessions_screen.dart';
+import 'package:pikacircle/shared/widgets/session_list_header.dart';
 
 class SessionScreenHeader extends StatelessWidget {
   const SessionScreenHeader({
+    super.key,
     required this.selectedDate,
     required this.sessionCount,
   });
@@ -12,33 +14,10 @@ class SessionScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final title = HostedSession.relativeDateTitle(selectedDate);
-    final subtitle = sessionCount == 1 ? '1 session' : '$sessionCount sessions';
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
-        Text(
-          subtitle,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-      ],
+    return SessionListHeader(
+      selectedDate: selectedDate,
+      sessionCount: sessionCount,
+      relativeDateTitle: HostedSession.relativeDateTitle,
     );
   }
 }

@@ -14,7 +14,7 @@ import '../widgets/play_sessions_list.dart';
 /// Provider for the Play tab: sessions where the current user is a confirmed participant.
 /// A host only appears here if they explicitly join their own session as a participant.
 /// Fetches from session_participants table, not from sessions hosted by the user.
-final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>(((
+final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
   ref,
 ) async {
   final userId = ref.watch(currentUserIdProvider);
