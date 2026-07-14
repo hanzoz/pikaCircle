@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +10,7 @@ import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/features/profile/presentation/screens/settings_screen.dart';
+import 'package:pikacircle/features/profile/presentation/widgets/profile_skill_graph_section.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 import 'package:pikacircle/shared/widgets/profile_avatar.dart';
 
@@ -390,6 +391,7 @@ class _ProfileDetails extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
+                    const ProfileSkillGraphSection(),
                     const SizedBox(height: 16),
                   ],
                 ),
