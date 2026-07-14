@@ -69,7 +69,7 @@ class _SelectableDateChip extends StatelessWidget {
     final theme = Theme.of(context);
     const neutralTextColor = Color(0xFF6F7482);
     const selectedTextColor = Color(0xFFFFFFFF);
-    const selectedBackgroundColor = Color.fromARGB(255, 6, 108, 240);
+    final selectedBackgroundColor = theme.colorScheme.secondary;
     final backgroundColor = isSelected ? selectedBackgroundColor : Colors.white;
     final foregroundColor = isSelected ? selectedTextColor : neutralTextColor;
 
@@ -140,9 +140,7 @@ class _SelectableDateChip extends StatelessWidget {
                 child: Text(
                   '$sessionCount',
                   style: theme.textTheme.labelSmall?.copyWith(
-                    color: isSelected
-                        ? const Color.fromARGB(255, 6, 108, 240)
-                        : Colors.white,
+                    color: isSelected ? selectedBackgroundColor : Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

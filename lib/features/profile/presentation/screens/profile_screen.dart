@@ -11,6 +11,7 @@ import 'package:pikacircle/features/profile/domain/entities/account_profile.dart
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/features/profile/presentation/screens/settings_screen.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
+import 'package:pikacircle/shared/widgets/profile_avatar.dart';
 
 /// Read-only account overview: name, email, membership, workflow, and wallet
 /// balance. Renders a bespoke profile layout and reacts to the async profile
@@ -263,12 +264,13 @@ class _ProfileDetails extends StatelessWidget {
                                   width: 2,
                                 ),
                               ),
-                              child: _ProfileAvatarImage(
+                              child: ProfileAvatar(
                                 avatarUrl: avatarUrl,
                                 avatarFileId: avatarFileId,
                                 avatarBucketId: avatarBucketId,
                                 storage: storage,
                                 initials: _initialsFromName(displayName),
+                                size: 102,
                                 textStyle: textTheme.headlineSmall?.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
@@ -396,128 +398,6 @@ class _ProfileDetails extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _ProfileAvatarImage extends StatelessWidget {
-  const _ProfileAvatarImage({
-    required this.avatarUrl,
-    required this.avatarFileId,
-    required this.avatarBucketId,
-    required this.storage,
-    required this.initials,
-    required this.textStyle,
-  });
-
-  final String? avatarUrl;
-  final String? avatarFileId;
-  final String avatarBucketId;
-  final Storage storage;
-  final String initials;
-  final TextStyle? textStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    final resolvedAvatarUrl = avatarUrl?.trim();
-    if (resolvedAvatarUrl != null && resolvedAvatarUrl.isNotEmpty) {
-      return ClipOval(
-        child: Image.network(
-          resolvedAvatarUrl,
-          width: 102,
-          height: 102,
-          fit: BoxFit.cover,
-          errorBuilder: (_, _, _) => _AvatarFromStorageOrFallback(
-            avatarFileId: avatarFileId,
-            avatarBucketId: avatarBucketId,
-            storage: storage,
-            initials: initials,
-            textStyle: textStyle,
-          ),
-        ),
-      );
-    }
-
-    return _AvatarFromStorageOrFallback(
-      avatarFileId: avatarFileId,
-      avatarBucketId: avatarBucketId,
-      storage: storage,
-      initials: initials,
-      textStyle: textStyle,
-    );
-  }
-}
-
-class _AvatarFromStorageOrFallback extends StatelessWidget {
-  const _AvatarFromStorageOrFallback({
-    required this.avatarFileId,
-    required this.avatarBucketId,
-    required this.storage,
-    required this.initials,
-    required this.textStyle,
-  });
-
-  final String? avatarFileId;
-  final String avatarBucketId;
-  final Storage storage;
-  final String initials;
-  final TextStyle? textStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    final normalizedFileId = avatarFileId?.trim();
-    if (normalizedFileId == null || normalizedFileId.isEmpty) {
-      return _AvatarInitialsFallback(initials: initials, textStyle: textStyle);
-    }
-
-    return FutureBuilder<Uint8List>(
-      future: storage.getFileView(
-        bucketId: avatarBucketId,
-        fileId: normalizedFileId,
-      ),
-      builder: (context, snapshot) {
-        final bytes = snapshot.data;
-        if (bytes == null || bytes.isEmpty) {
-          return _AvatarInitialsFallback(
-            initials: initials,
-            textStyle: textStyle,
-          );
-        }
-
-        return ClipOval(
-          child: Image.memory(
-            bytes,
-            width: 102,
-            height: 102,
-            fit: BoxFit.cover,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _AvatarInitialsFallback extends StatelessWidget {
-  const _AvatarInitialsFallback({
-    required this.initials,
-    required this.textStyle,
-  });
-
-  final String initials;
-  final TextStyle? textStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: [Color(0xFFBBCFF1), Color(0xFF96B9E6)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Center(child: Text(initials, style: textStyle)),
     );
   }
 }
