@@ -129,7 +129,7 @@ class SessionDetailsPage extends StatelessWidget {
                     width: double.infinity,
                     child: Text(
                       data.title,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.w800,
                         color: const Color(0xFF1D2230),
@@ -141,7 +141,7 @@ class SessionDetailsPage extends StatelessWidget {
                     width: double.infinity,
                     child: Text(
                       data.description,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: const Color(0xFFCC4A57),
                       ),
@@ -191,21 +191,27 @@ class SessionDetailsPage extends StatelessWidget {
                     child: SessionAvatarList(
                       names: data.confirmedParticipantNames,
                       totalCount: data.confirmedParticipantCount,
-                      avatarSize: 50,
+                      avatarSize: 60,
                       gap: 12,
+                      wrap: true,
+                      scrollable: false,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  const _SectionTitle(title: 'Waitlisted participants'),
-                  const SizedBox(height: 8),
-                  _SectionCard(
-                    child: SessionAvatarList(
-                      names: data.waitlistedParticipantNames,
-                      totalCount: data.waitlistCount,
-                      avatarSize: 50,
-                      gap: 12,
+                  if (data.waitlistCount > 0) ...<Widget>[
+                    const SizedBox(height: 12),
+                    const _SectionTitle(title: 'Waitlisted participants'),
+                    const SizedBox(height: 8),
+                    _SectionCard(
+                      child: SessionAvatarList(
+                        names: data.waitlistedParticipantNames,
+                        totalCount: data.waitlistCount,
+                        avatarSize: 60,
+                        gap: 12,
+                        wrap: true,
+                        scrollable: false,
+                      ),
                     ),
-                  ),
+                  ],
                   const SizedBox(height: 14),
                   const _SectionTitle(title: 'Meet your host'),
                   const SizedBox(height: 8),

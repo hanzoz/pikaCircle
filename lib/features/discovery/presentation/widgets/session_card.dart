@@ -225,19 +225,15 @@ class _ParticipantGroupRow extends StatelessWidget {
   static const double _avatarSize = 28;
   static const double _avatarGap = 6;
   static const double _labelWidth = 84;
-  static const double _minStripWidth = 68;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final availableWidth = constraints.maxWidth;
-        final avatarStripWidth = (availableWidth - _labelWidth).clamp(
-          _minStripWidth,
-          availableWidth,
-        );
-
-        final maxVisible = _maxAvatarsForWidth(avatarStripWidth);
+        final avatarStripWidth = (availableWidth - _labelWidth)
+            .clamp(0.0, availableWidth)
+            .toDouble();
 
         return Row(
           children: <Widget>[
@@ -250,24 +246,18 @@ class _ParticipantGroupRow extends StatelessWidget {
             ),
             SizedBox(
               width: avatarStripWidth,
-              height: _avatarSize,
               child: SessionAvatarList(
                 names: names,
                 totalCount: totalCount,
                 avatarSize: _avatarSize,
                 gap: _avatarGap,
-                maxVisible: maxVisible,
                 scrollable: false,
+                wrap: true,
               ),
             ),
           ],
         );
       },
     );
-  }
-
-  int _maxAvatarsForWidth(double width) {
-    if (width <= _avatarSize) return 1;
-    return ((width + _avatarGap) / (_avatarSize + _avatarGap)).floor();
   }
 }

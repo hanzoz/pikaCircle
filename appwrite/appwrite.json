@@ -42,6 +42,27 @@
       "commands": "npm install",
       "ignore": "node_modules\n.tmp",
       "path": "./functions/session-join"
+    },
+    {
+      "$id": "user-public-profiles",
+      "name": "user-public-profiles",
+      "enabled": true,
+      "logging": true,
+      "runtime": "node-20.0",
+      "buildSpecification": "s-1vcpu-512mb",
+      "runtimeSpecification": "s-1vcpu-512mb",
+      "deploymentRetention": 7,
+      "execute": [
+        "users"
+      ],
+      "scopes": [],
+      "events": [],
+      "schedule": "",
+      "timeout": 15,
+      "entrypoint": "src/main.js",
+      "commands": "npm install",
+      "ignore": "node_modules\n.tmp",
+      "path": "./functions/user-public-profiles"
     }
   ]
 }

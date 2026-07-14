@@ -29,7 +29,10 @@ abstract final class Env {
   static String get avatarBucketId => _require('APPWRITE_AVATAR_BUCKET_ID');
   static String get announcementBucketId =>
       _require('APPWRITE_ANNOUNCEMENT_BUCKET_ID');
-  static String get profileFunctionId => _require('APPWRITE_PROFILE_FUNCTION_ID');
+  static String get profileFunctionId =>
+      _require('APPWRITE_PROFILE_FUNCTION_ID');
   static String get sessionJoinFunctionId =>
       _require('APPWRITE_SESSION_JOIN_FUNCTION_ID');
+  static String get userPublicProfilesFunctionId =>
+      _require('APPWRITE_USER_PUBLIC_PROFILES_FUNCTION_ID');
 }

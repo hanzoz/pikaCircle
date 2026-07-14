@@ -14,6 +14,7 @@ class AppwriteConfig {
     required this.announcementBucketId,
     required this.profileFunctionId,
     required this.sessionJoinFunctionId,
+    required this.userPublicProfilesFunctionId,
   });
 
   factory AppwriteConfig.fromEnv() {
@@ -25,6 +26,7 @@ class AppwriteConfig {
       announcementBucketId: Env.announcementBucketId,
       profileFunctionId: Env.profileFunctionId,
       sessionJoinFunctionId: Env.sessionJoinFunctionId,
+      userPublicProfilesFunctionId: Env.userPublicProfilesFunctionId,
     );
   }
 
@@ -35,6 +37,7 @@ class AppwriteConfig {
   final String announcementBucketId;
   final String profileFunctionId;
   final String sessionJoinFunctionId;
+  final String userPublicProfilesFunctionId;
 
   /// The custom URL scheme the OAuth deep-link callback returns to.
   ///
@@ -49,10 +52,12 @@ class AppwriteConfig {
 
   /// Deep-link the OAuth flow redirects to on success. The `userId`/`secret`
   /// query params are parsed from the callback to create the session.
-  String get oauthSuccessUrl => '$oauthCallbackScheme://$oauthCallbackPath/success';
+  String get oauthSuccessUrl =>
+      '$oauthCallbackScheme://$oauthCallbackPath/success';
 
   /// Deep-link the OAuth flow redirects to on failure.
-  String get oauthFailureUrl => '$oauthCallbackScheme://$oauthCallbackPath/failure';
+  String get oauthFailureUrl =>
+      '$oauthCallbackScheme://$oauthCallbackPath/failure';
 
   Uri get _endpointUri => Uri.parse(endpoint);
 

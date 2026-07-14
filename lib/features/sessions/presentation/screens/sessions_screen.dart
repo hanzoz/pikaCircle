@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/enums.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,12 +21,15 @@ import '../widgets/session_screen_header.dart';
 final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
   ref,
 ) async {
+  const int maxIdsPerQuery = 100;
+
   final userId = ref.watch(currentUserIdProvider);
   if (userId == null || userId.isEmpty) {
     return const <HostedSession>[];
   }
 
   final tables = ref.watch(appwriteTablesDbProvider);
+  final functions = ref.watch(appwriteFunctionsProvider);
   final config = ref.watch(appwriteConfigProvider);
 
   /// Query sessions table: user must be the appointed host (host_id = userId)
@@ -42,17 +48,152 @@ final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
     return const <HostedSession>[];
   }
 
+  final sessionIds = sessionRows.rows
+      .map((row) => row.$id)
+      .where((id) => id.isNotEmpty)
+      .toList(growable: false);
+
+  final hostIds = sessionRows.rows
+      .map((row) => HostedSession.relationId(row.data['host_id']))
+      .whereType<String>()
+      .where((id) => id.isNotEmpty)
+      .toSet();
+
+  final participantIdsBySession = <String, List<String>>{};
+  final waitlistedIdsBySession = <String, List<String>>{};
+  final participantCountBySession = <String, int>{};
+  final waitlistCountBySession = <String, int>{};
+  final participantUserIds = <String>{};
+
+  try {
+    final rosterRows = await tables.listRows(
+      databaseId: config.databaseId,
+      tableId: TableIds.sessionParticipants,
+      queries: [
+        Query.equal('session_id', sessionIds),
+        Query.equal('status', ['confirmed', 'checked_in', 'waitlisted']),
+        Query.limit(500),
+      ],
+    );
+
+    for (final row in rosterRows.rows) {
+      final data = row.data;
+      final sessionId = HostedSession.relationId(data['session_id']);
+      if (sessionId == null) continue;
+
+      final participantUserId = HostedSession.relationId(data['user_id']);
+      if (participantUserId != null) {
+        participantUserIds.add(participantUserId);
+      }
+
+      final isWaitlisted =
+          HostedSession.stringValue(data['status']) == 'waitlisted';
+      final targetCounts = isWaitlisted
+          ? waitlistCountBySession
+          : participantCountBySession;
+      targetCounts[sessionId] = (targetCounts[sessionId] ?? 0) + 1;
+
+      if (participantUserId == null) continue;
+      final targetMap = isWaitlisted
+          ? waitlistedIdsBySession
+          : participantIdsBySession;
+      final ids = targetMap.putIfAbsent(sessionId, () => <String>[]);
+      ids.add(participantUserId);
+    }
+  } on AppwriteException {
+    // Keep list usable with count-only session data.
+  }
+
+  final allUserIds = <String>{
+    ...hostIds,
+    ...participantUserIds,
+  }.toList(growable: false);
+  final userNameById = <String, String>{};
+
+  if (allUserIds.isNotEmpty) {
+    try {
+      final execution = await functions.createExecution(
+        functionId: config.userPublicProfilesFunctionId,
+        body: jsonEncode(<String, Object?>{'userIds': allUserIds}),
+        method: ExecutionMethod.pOST,
+        headers: const {'content-type': 'application/json'},
+      );
+
+      final body = _decodeExecutionBody(execution.responseBody);
+      if (execution.responseStatusCode >= 400) {
+        final message =
+            body['error']?.toString() ??
+            'Could not load participant display names.';
+        throw AppwriteException(message, execution.responseStatusCode);
+      }
+
+      final namesByUserId = body['namesByUserId'];
+      if (namesByUserId is Map) {
+        for (final entry in namesByUserId.entries) {
+          final id = entry.key.toString().trim();
+          final name = entry.value?.toString().trim();
+          if (id.isNotEmpty && name != null && name.isNotEmpty) {
+            userNameById[id] = name;
+          }
+        }
+      }
+    } on AppwriteException {
+      // Fallback path while function is unavailable.
+      try {
+        for (
+          var start = 0;
+          start < allUserIds.length;
+          start += maxIdsPerQuery
+        ) {
+          final end = (start + maxIdsPerQuery).clamp(0, allUserIds.length);
+          final batch = allUserIds.sublist(start, end);
+          final userRows = await tables.listRows(
+            databaseId: config.databaseId,
+            tableId: TableIds.users,
+            queries: [Query.equal(r'$id', batch), Query.limit(maxIdsPerQuery)],
+          );
+          for (final row in userRows.rows) {
+            final name = HostedSession.stringValue(row.data['name']);
+            if (name != null && row.$id.isNotEmpty) {
+              userNameById[row.$id] = name;
+            }
+          }
+        }
+      } on AppwriteException {
+        // Keep UI functional with roster counts only.
+      }
+    }
+  }
+
   return sessionRows.rows
-      .map((row) => HostedSession.fromRow(row))
+      .map(
+        (row) => HostedSession.fromRow(
+          row,
+          hostNameOverride:
+              userNameById[HostedSession.relationId(row.data['host_id'])],
+          confirmedParticipantNames:
+              (participantIdsBySession[row.$id] ?? const <String>[])
+                  .map((id) => userNameById[id])
+                  .whereType<String>()
+                  .toList(growable: false),
+          waitlistedParticipantNames:
+              (waitlistedIdsBySession[row.$id] ?? const <String>[])
+                  .map((id) => userNameById[id])
+                  .whereType<String>()
+                  .toList(growable: false),
+          participantCountOverride: participantCountBySession[row.$id],
+          waitlistCountOverride: waitlistCountBySession[row.$id],
+        ),
+      )
       .toList(growable: false);
 });
 
 /// Sessions tab for hosts showing their created/hosted sessions.
-/// 
+///
 /// Key distinction from Play tab:
 /// - **Play tab**: Sessions where the user is a confirmed participant (joined others' sessions)
 /// - **Sessions tab**: Sessions where the user is the appointed host (owns/manages sessions)
-/// 
+///
 /// Hosts see only sessions where they are the appointed host (host_id = user_id).
 /// To play in a session, a host must join separately via the Play tab.
 class SessionsScreen extends ConsumerStatefulWidget {
@@ -165,6 +306,7 @@ class _SessionsScreenState extends ConsumerState<SessionsScreen> {
 
 class HostedSession {
   const HostedSession({
+    required this.id,
     required this.startsAt,
     required this.title,
     required this.excerpt,
@@ -176,9 +318,26 @@ class HostedSession {
     required this.sessionStatus,
     required this.participantCount,
     required this.maxParticipants,
+    required this.hostName,
+    required this.venue,
+    required this.location,
+    required this.sponsorName,
+    required this.creditCost,
+    required this.refundAvailable,
+    required this.refundWindowLabel,
+    required this.confirmedParticipantNames,
+    required this.waitlistedParticipantNames,
+    required this.waitlistCount,
   });
 
-  factory HostedSession.fromRow(models.Row row) {
+  factory HostedSession.fromRow(
+    models.Row row, {
+    String? hostNameOverride,
+    List<String>? confirmedParticipantNames,
+    List<String>? waitlistedParticipantNames,
+    int? participantCountOverride,
+    int? waitlistCountOverride,
+  }) {
     final data = row.data;
     final startsAt = _dateTime(data['starts_at']);
     final title = stringValue(data['title']) ?? 'Untitled session';
@@ -197,6 +356,7 @@ class HostedSession {
         : (maxParticipants - remainingSlots).clamp(0, maxParticipants);
 
     return HostedSession(
+      id: row.$id,
       startsAt: startsAt,
       title: title,
       excerpt: excerpt,
@@ -208,11 +368,26 @@ class HostedSession {
       skillLevel:
           stringValue(data['skill_level']) ?? stringValue(data['skill']),
       sessionStatus: stringValue(data['status']) ?? 'published',
-      participantCount: participantCount,
+      participantCount: participantCountOverride ?? participantCount,
       maxParticipants: maxParticipants,
+      hostName: hostNameOverride ?? 'Host',
+      venue: stringValue(data['venue']) ?? 'Venue TBA',
+      location: stringValue(data['location']) ?? 'Location TBA',
+      sponsorName: stringValue(data['sponsor']) ?? 'No sponsor',
+      creditCost: _int(data['credit_cost']) ?? 0,
+      refundAvailable: _bool(data['refund_available']) ?? false,
+      refundWindowLabel: _formatRefundWindow(data['refund_window_hours']),
+      confirmedParticipantNames: List<String>.unmodifiable(
+        confirmedParticipantNames ?? const <String>[],
+      ),
+      waitlistedParticipantNames: List<String>.unmodifiable(
+        waitlistedParticipantNames ?? const <String>[],
+      ),
+      waitlistCount: waitlistCountOverride ?? 0,
     );
   }
 
+  final String id;
   final DateTime? startsAt;
   final String title;
   final String excerpt;
@@ -224,6 +399,16 @@ class HostedSession {
   final String sessionStatus;
   final int? participantCount;
   final int? maxParticipants;
+  final String hostName;
+  final String venue;
+  final String location;
+  final String sponsorName;
+  final int creditCost;
+  final bool refundAvailable;
+  final String refundWindowLabel;
+  final List<String> confirmedParticipantNames;
+  final List<String> waitlistedParticipantNames;
+  final int waitlistCount;
 
   String get sessionTypeLabel {
     final raw = sessionType;
@@ -371,6 +556,21 @@ class HostedSession {
     return null;
   }
 
+  static bool? _bool(Object? value) {
+    if (value is bool) return value;
+    if (value is num) return value != 0;
+    if (value is String) {
+      final normalized = value.trim().toLowerCase();
+      if (normalized == 'true' || normalized == '1' || normalized == 'yes') {
+        return true;
+      }
+      if (normalized == 'false' || normalized == '0' || normalized == 'no') {
+        return false;
+      }
+    }
+    return null;
+  }
+
   static DateTime? _dateTime(Object? value) {
     final raw = stringValue(value);
     if (raw == null) return null;
@@ -443,6 +643,12 @@ class HostedSession {
     return '${hours}h ${remainderMinutes}m';
   }
 
+  static String _formatRefundWindow(Object? value) {
+    final hours = _int(value);
+    if (hours == null || hours <= 0) return 'No refund info';
+    return '$hours hours before start';
+  }
+
   static String _titleCaseWords(String value) {
     return value
         .trim()
@@ -454,4 +660,11 @@ class HostedSession {
         })
         .join(' ');
   }
+}
+
+Map<String, dynamic> _decodeExecutionBody(String responseBody) {
+  if (responseBody.isEmpty) return const {};
+  final decoded = jsonDecode(responseBody);
+  if (decoded is Map<String, dynamic>) return decoded;
+  return const {};
 }

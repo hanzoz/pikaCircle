@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/enums.dart' show ExecutionMethod;
 import 'package:appwrite/models.dart' as models;
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -22,6 +25,8 @@ part '../widgets/session_model.dart';
 final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySession>>((
   ref,
 ) async {
+  const int maxIdsPerQuery = 100;
+
   String rowId(models.Row row) {
     final dataId = _DiscoverySession.stringValue(row.data[r'$id']);
     if (dataId != null) return dataId;
@@ -34,6 +39,7 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
   }
 
   final tables = ref.watch(appwriteTablesDbProvider);
+  final functions = ref.watch(appwriteFunctionsProvider);
   final config = ref.watch(appwriteConfigProvider);
 
   final sessionRows = await tables.listRows(
@@ -72,9 +78,14 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
   final Map<String, double> skillRatingByUserId = <String, double>{};
 
   final userIdsFromParticipants = <String>{};
+  var participantRows = const <models.Row>[];
+  final Map<String, List<String>> relationNamesBySession =
+      <String, List<String>>{};
+  final Map<String, List<String>> relationWaitlistedNamesBySession =
+      <String, List<String>>{};
 
   try {
-    final participantRows = await tables.listRows(
+    final participantsResponse = await tables.listRows(
       databaseId: config.databaseId,
       tableId: TableIds.sessionParticipants,
       queries: [
@@ -83,21 +94,25 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
         Query.limit(500),
       ],
     );
+    participantRows = participantsResponse.rows;
 
-    final userIds = participantRows.rows
+    final userIds = participantRows
         .map((row) => _DiscoverySession.relationId(row.data['user_id']))
         .whereType<String>()
         .where((id) => id.isNotEmpty)
         .toSet();
     userIdsFromParticipants.addAll(userIds);
 
-    for (final row in participantRows.rows) {
+    for (final row in participantRows) {
       final data = row.data;
       final sessionId = _DiscoverySession.relationId(data['session_id']);
       if (sessionId == null) continue;
 
-      final userId = _DiscoverySession.relationId(data['user_id']);
-      final participantName = userId == null ? null : userNameById[userId];
+      final relationUser = data['user_id'];
+      String? relationName;
+      if (relationUser is Map) {
+        relationName = _DiscoverySession.stringValue(relationUser['name']);
+      }
 
       final status = _DiscoverySession.stringValue(data['status']);
       final isWaitlisted = status == 'waitlisted';
@@ -106,12 +121,12 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
         waitlistCountBySession[sessionId] =
             (waitlistCountBySession[sessionId] ?? 0) + 1;
 
-        if (participantName != null) {
-          final names = waitlistedNamesBySession.putIfAbsent(
+        if (relationName != null) {
+          final names = relationWaitlistedNamesBySession.putIfAbsent(
             sessionId,
             () => <String>[],
           );
-          names.add(participantName);
+          names.add(relationName);
         }
         continue;
       }
@@ -119,13 +134,13 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
       joiningCountBySession[sessionId] =
           (joiningCountBySession[sessionId] ?? 0) + 1;
 
-      if (participantName == null) continue;
-
-      final names = confirmedNamesBySession.putIfAbsent(
-        sessionId,
-        () => <String>[],
-      );
-      names.add(participantName);
+      if (relationName != null) {
+        final names = relationNamesBySession.putIfAbsent(
+          sessionId,
+          () => <String>[],
+        );
+        names.add(relationName);
+      }
     }
   } on AppwriteException {
     // If participants query is blocked/unavailable, fall back to session-only data.
@@ -138,21 +153,92 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
 
   if (allUserIds.isNotEmpty) {
     try {
-      final userRows = await tables.listRows(
-        databaseId: config.databaseId,
-        tableId: TableIds.users,
-        queries: [Query.equal(r'$id', allUserIds), Query.limit(500)],
+      final execution = await functions.createExecution(
+        functionId: config.userPublicProfilesFunctionId,
+        body: jsonEncode(<String, Object?>{'userIds': allUserIds}),
+        method: ExecutionMethod.pOST,
+        headers: const {'content-type': 'application/json'},
       );
 
-      for (final row in userRows.rows) {
-        final name = _DiscoverySession.stringValue(row.data['name']);
-        final userId = rowId(row);
-        if (name != null && userId.isNotEmpty) {
-          userNameById[userId] = name;
+      final body = _decodeExecutionBody(execution.responseBody);
+      if (execution.responseStatusCode >= 400) {
+        final message =
+            body['error']?.toString() ??
+            'Could not load participant display names.';
+        throw AppwriteException(message, execution.responseStatusCode);
+      }
+
+      final namesByUserId = body['namesByUserId'];
+      if (namesByUserId is Map) {
+        for (final entry in namesByUserId.entries) {
+          final userId = entry.key.toString().trim();
+          final name = entry.value?.toString().trim();
+          if (userId.isNotEmpty && name != null && name.isNotEmpty) {
+            userNameById[userId] = name;
+          }
         }
       }
     } on AppwriteException {
-      // If user rows are not readable, keep count-only and fallback host labels.
+      // Legacy fallback when the function is not deployed yet.
+      try {
+        for (
+          var start = 0;
+          start < allUserIds.length;
+          start += maxIdsPerQuery
+        ) {
+          final end = (start + maxIdsPerQuery).clamp(0, allUserIds.length);
+          final batch = allUserIds.sublist(start, end);
+
+          final userRows = await tables.listRows(
+            databaseId: config.databaseId,
+            tableId: TableIds.users,
+            queries: [Query.equal(r'$id', batch), Query.limit(maxIdsPerQuery)],
+          );
+
+          for (final row in userRows.rows) {
+            final name = _DiscoverySession.stringValue(row.data['name']);
+            final userId = rowId(row);
+            if (name != null && userId.isNotEmpty) {
+              userNameById[userId] = name;
+            }
+          }
+        }
+      } on AppwriteException {
+        // If user rows are not readable, keep count-only and relation-name fallback.
+      }
+    }
+
+    for (final row in participantRows) {
+      final data = row.data;
+      final sessionId = _DiscoverySession.relationId(data['session_id']);
+      if (sessionId == null) continue;
+
+      final userId = _DiscoverySession.relationId(data['user_id']);
+      final participantName = userId == null ? null : userNameById[userId];
+      if (participantName == null) continue;
+
+      final status = _DiscoverySession.stringValue(data['status']);
+      final isWaitlisted = status == 'waitlisted';
+
+      final targetMap = isWaitlisted
+          ? waitlistedNamesBySession
+          : confirmedNamesBySession;
+      final names = targetMap.putIfAbsent(sessionId, () => <String>[]);
+      names.add(participantName);
+    }
+
+    for (final entry in relationNamesBySession.entries) {
+      if ((confirmedNamesBySession[entry.key] ?? const <String>[]).isNotEmpty) {
+        continue;
+      }
+      confirmedNamesBySession[entry.key] = List<String>.from(entry.value);
+    }
+    for (final entry in relationWaitlistedNamesBySession.entries) {
+      if ((waitlistedNamesBySession[entry.key] ?? const <String>[])
+          .isNotEmpty) {
+        continue;
+      }
+      waitlistedNamesBySession[entry.key] = List<String>.from(entry.value);
     }
 
     if (hostIds.isNotEmpty) {
@@ -206,6 +292,13 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
       })
       .toList(growable: false);
 });
+
+Map<String, dynamic> _decodeExecutionBody(String responseBody) {
+  if (responseBody.isEmpty) return const {};
+  final decoded = jsonDecode(responseBody);
+  if (decoded is Map<String, dynamic>) return decoded;
+  return const {};
+}
 
 class DiscoveryScreen extends ConsumerStatefulWidget {
   const DiscoveryScreen({super.key});

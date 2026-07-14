@@ -1,0 +1,12 @@
+{
+  "name": "pikacircle-user-public-profiles",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test src/*.test.js"
+  },
+  "dependencies": {
+    "node-appwrite": "22.1.3"
+  }
+}

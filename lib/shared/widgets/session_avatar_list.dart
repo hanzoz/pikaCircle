@@ -12,6 +12,7 @@ class SessionAvatarList extends StatelessWidget {
     this.gap = 12,
     this.maxVisible,
     this.scrollable = true,
+    this.wrap = false,
     this.emptyLabel = 'None',
   });
 
@@ -22,6 +23,7 @@ class SessionAvatarList extends StatelessWidget {
   final double gap;
   final int? maxVisible;
   final bool scrollable;
+  final bool wrap;
   final String emptyLabel;
 
   @override
@@ -47,10 +49,17 @@ class SessionAvatarList extends StatelessWidget {
           size: avatarSize,
         ),
       for (int i = knownVisible; i < visibleCount; i++)
-        _UnknownSessionAvatar(size: avatarSize),
+        _UnknownSessionAvatar(
+          size: avatarSize,
+          name: i < names.length ? names[i] : null,
+        ),
       if (overflowCount > 0)
         _OverflowSessionAvatar(count: overflowCount, size: avatarSize),
     ];
+
+    if (wrap) {
+      return Wrap(spacing: gap, runSpacing: gap, children: children);
+    }
 
     final row = Row(
       mainAxisSize: MainAxisSize.min,
@@ -97,7 +106,7 @@ class SessionAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final initials = _initials(name);
+    final initials = _nameInitials(name);
     final outerRadius = size / 2;
     final innerRadius = (size - 4) / 2;
 
@@ -111,18 +120,20 @@ class SessionAvatar extends StatelessWidget {
       ),
     );
   }
+}
 
-  String _initials(String value) {
-    final segments = value
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((String token) => token.isNotEmpty)
-        .toList(growable: false);
+String _nameInitials(String? value, {String fallback = 'P'}) {
+  if (value == null) return fallback;
 
-    if (segments.isEmpty) return '?';
-    if (segments.length == 1) return segments.first[0].toUpperCase();
-    return '${segments.first[0]}${segments.last[0]}'.toUpperCase();
-  }
+  final segments = value
+      .trim()
+      .split(RegExp(r'\s+'))
+      .where((String token) => token.isNotEmpty)
+      .toList(growable: false);
+
+  if (segments.isEmpty) return fallback;
+  if (segments.length == 1) return segments.first[0].toUpperCase();
+  return '${segments.first[0]}${segments.last[0]}'.toUpperCase();
 }
 
 class _AvatarImageOrInitials extends StatelessWidget {
@@ -212,12 +223,14 @@ class _OverflowSessionAvatar extends StatelessWidget {
 }
 
 class _UnknownSessionAvatar extends StatelessWidget {
-  const _UnknownSessionAvatar({required this.size});
+  const _UnknownSessionAvatar({required this.size, this.name});
 
   final double size;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
+    final initials = _nameInitials(name);
     final outerRadius = size / 2;
     final innerRadius = (size - 4) / 2;
 
@@ -227,10 +240,12 @@ class _UnknownSessionAvatar extends StatelessWidget {
       child: CircleAvatar(
         radius: innerRadius,
         backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-        child: Icon(
-          Icons.person_outline_rounded,
-          size: size * 0.45,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
+        child: Text(
+          initials,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
