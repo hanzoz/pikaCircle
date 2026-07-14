@@ -36,6 +36,7 @@ class _MainShellState extends ConsumerState<MainShell> {
 
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
+  int? _searchReturnIndex;
 
   @override
   void initState() {
@@ -114,16 +115,58 @@ class _MainShellState extends ConsumerState<MainShell> {
   }
 
   void _setSearchActive(bool active) {
+    final shell = ref.read(shellControllerProvider);
+    final workflow = ref.read(currentWorkflowProvider);
+    final isHost = workflow == AppWorkflow.host;
+    final findPageIndex = isHost ? _findPageIndex : _findPageIndex - 1;
+
+    if (active && shell.selectedIndex != findPageIndex) {
+      _searchReturnIndex = shell.selectedIndex;
+    }
+
     ref
         .read(shellControllerProvider.notifier)
-        .setSearchActive(active, findPageIndex: _findPageIndex);
+        .setSearchActive(
+          active,
+          findPageIndex: findPageIndex,
+          homeIndex: _searchReturnIndex ?? 0,
+        );
     if (active) {
       _searchFocusNode.requestFocus();
     } else {
       _searchController.clear();
       ref.read(shellControllerProvider.notifier).setSearchQuery('');
       _searchFocusNode.unfocus();
+      _searchReturnIndex = null;
     }
+  }
+
+  void _restoreSearchOriginTab() {
+    final returnIndex = _searchReturnIndex;
+    if (returnIndex == null) {
+      _setSearchActive(false);
+      return;
+    }
+
+    _searchController.clear();
+    ref.read(shellControllerProvider.notifier).setSearchQuery('');
+    _searchFocusNode.unfocus();
+    _searchReturnIndex = null;
+    ref.read(shellControllerProvider.notifier).selectPrimaryTab(returnIndex);
+  }
+
+  IconData _iconForBodyTabIndex(bool isHost, int index) {
+    final tabIcons = <IconData>[
+      _tabs[0].activeIcon,
+      _tabs[1].activeIcon,
+      if (isHost) _tabs[2].activeIcon,
+      _tabs[3].activeIcon,
+      _tabs[4].activeIcon,
+    ];
+    if (index < 0 || index >= tabIcons.length) {
+      return _tabs[0].activeIcon;
+    }
+    return tabIcons[index];
   }
 
   void _selectPrimaryTab(int index) {
@@ -162,6 +205,10 @@ class _MainShellState extends ConsumerState<MainShell> {
     }
     visibleTabs.add(_tabs[3]); // Wallet
     final maxVisibleIndex = visibleTabs.length - 1;
+    final collapsedIcon = _iconForBodyTabIndex(
+      isHost,
+      _searchReturnIndex ?? shell.selectedIndex,
+    );
 
     return GlassScaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -211,7 +258,11 @@ class _MainShellState extends ConsumerState<MainShell> {
           focusNode: _searchFocusNode,
           autoFocusOnExpand: true,
           collapsedTabWidth: 54,
-          collapsedLogoBuilder: (_) => const Icon(Icons.layers_rounded),
+          collapsedLogoBuilder: (_) => IconButton(
+            onPressed: _restoreSearchOriginTab,
+            icon: Icon(collapsedIcon),
+            tooltip: 'Back to previous tab',
+          ),
           searchIcon: const Icon(Icons.search_rounded),
           textInputAction: TextInputAction.search,
           onSearchToggle: _setSearchActive,
