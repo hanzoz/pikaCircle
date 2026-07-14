@@ -59,54 +59,40 @@ class SessionDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final topInset = MediaQuery.paddingOf(context).top;
+    final appBarHeight = topInset + 44;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9FA),
+      extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          color: const Color(0xFFF9F9FA),
-          child: SafeArea(
-            bottom: false,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SizedBox(
-                height: 44,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    PikaLeadingButton(
-                      leading: PikaAppBarLeading.back,
-                      initials: 'P',
-                      onTap: () => Navigator.of(context).maybePop(),
-                    ),
-                    PikaNavButton(
-                      icon: CupertinoIcons.share,
-                      onTap: () async {
-                        final shareText =
-                            '${data.title}\n${data.dateLabel} at ${data.timeLabel}\n${data.venue}, ${data.location}';
-                        await Clipboard.setData(ClipboardData(text: shareText));
+        preferredSize: Size.fromHeight(appBarHeight),
+        child: PikaAppBar(
+          leading: PikaAppBarLeading.back,
+          initials: 'P',
+          trailing: PikaNavButton(
+            icon: CupertinoIcons.share,
+            onTap: () async {
+              final shareText =
+                  '${data.title}\n${data.dateLabel} at ${data.timeLabel}\n${data.venue}, ${data.location}';
+              await Clipboard.setData(ClipboardData(text: shareText));
 
-                        if (!context.mounted) return;
+              if (!context.mounted) return;
 
-                        final snackBar = const SnackBar(
-                          content: Text('Session details copied for sharing'),
-                        );
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(snackBar);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+              final snackBar = const SnackBar(
+                content: Text('Session details copied for sharing'),
+              );
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(snackBar);
+            },
           ),
         ),
       ),
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+          padding: EdgeInsets.fromLTRB(16, appBarHeight + 8, 16, 24),
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: const Color(0xFFF9F9FA),

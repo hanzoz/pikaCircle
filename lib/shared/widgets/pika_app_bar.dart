@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +25,7 @@ class PikaAppBar extends StatelessWidget {
     this.onSettingsTap,
     this.onNotificationTap,
     this.onLeadingTap,
+    this.trailing,
     this.safeArea = true,
   });
 
@@ -56,6 +58,11 @@ class PikaAppBar extends StatelessWidget {
   /// Defaults to [Navigator.maybePop] for [PikaAppBarLeading.back].
   final VoidCallback? onLeadingTap;
 
+  /// Optional custom trailing widget.
+  ///
+  /// When provided, this replaces the default settings/bell cluster.
+  final Widget? trailing;
+
   /// Wraps the bar in a [SafeArea] (top only). Defaults to true.
   final bool safeArea;
 
@@ -84,16 +91,20 @@ class PikaAppBar extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (onSettingsTap != null)
+                if (trailing != null)
+                  trailing!
+                else ...[
+                  if (onSettingsTap != null)
+                    PikaNavButton(
+                      icon: CupertinoIcons.gear,
+                      onTap: onSettingsTap,
+                    ),
+                  if (onSettingsTap != null) const SizedBox(width: 10),
                   PikaNavButton(
-                    icon: CupertinoIcons.gear,
-                    onTap: onSettingsTap,
+                    icon: CupertinoIcons.bell,
+                    onTap: onNotificationTap,
                   ),
-                if (onSettingsTap != null) const SizedBox(width: 10),
-                PikaNavButton(
-                  icon: CupertinoIcons.bell,
-                  onTap: onNotificationTap,
-                ),
+                ],
               ],
             ),
           ],
@@ -119,20 +130,9 @@ class PikaNavButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: _GlassPill(
         height: 44,
         width: 44,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x15000000),
-              blurRadius: 14,
-              offset: Offset(0, 8),
-            ),
-          ],
-        ),
         child: Icon(icon, size: 22, color: const Color(0xFF1D2230)),
       ),
     );
@@ -163,20 +163,9 @@ class PikaLeadingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: _GlassPill(
         height: 44,
         width: 44,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x15000000),
-              blurRadius: 14,
-              offset: Offset(0, 8),
-            ),
-          ],
-        ),
         child: leading == PikaAppBarLeading.back
             ? const Icon(
                 CupertinoIcons.chevron_left,
@@ -190,6 +179,45 @@ class PikaLeadingButton extends StatelessWidget {
                 avatarBucketId: avatarBucketId,
                 storage: storage,
               ),
+      ),
+    );
+  }
+}
+
+class _GlassPill extends StatelessWidget {
+  const _GlassPill({required this.child, this.height = 44, this.width = 44});
+
+  final Widget child;
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    final radius = BorderRadius.circular(height / 2);
+    return ClipRRect(
+      borderRadius: radius,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.18),
+            borderRadius: radius,
+            border: Border.all(
+              color: Colors.white.withValues(alpha: 0.28),
+              width: 1,
+            ),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x12000000),
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Center(child: child),
+        ),
       ),
     );
   }
