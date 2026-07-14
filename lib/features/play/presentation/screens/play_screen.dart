@@ -157,6 +157,8 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
   final userNameById = <String, String>{};
   final avatarByUserId = <String, String>{};
   final avatarFileIdByUserId = <String, String>{};
+  final skillLevelByUserId = <String, String>{};
+  final skillRatingByUserId = <String, double>{};
 
   if (allUserIds.isNotEmpty) {
     try {
@@ -252,6 +254,35 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
         // Keep UI functional with roster counts only.
       }
     }
+
+    if (hostIds.isNotEmpty) {
+      try {
+        final skillRows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.equal('user_id', hostIds.toList()), Query.limit(200)],
+        );
+
+        for (final row in skillRows.rows) {
+          final userId = PlaySession.relationId(row.data['user_id']);
+          if (userId == null) continue;
+
+          final level = PlaySession.stringValue(row.data['level']);
+          final rating = PlaySession.doubleValue(
+            row.data['overall_skill_rating'],
+          );
+
+          if (level != null) {
+            skillLevelByUserId[userId] = level;
+          }
+          if (rating != null) {
+            skillRatingByUserId[userId] = rating;
+          }
+        }
+      } on AppwriteException {
+        // Skill data is optional; keep the rest of the session payload usable.
+      }
+    }
   }
 
   return visibleSessionRows
@@ -287,6 +318,12 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
           hostAvatarFileIdOverride: hostId == null
               ? null
               : avatarFileIdByUserId[hostId],
+          hostSkillLevelOverride: hostId == null
+              ? null
+              : skillLevelByUserId[hostId],
+          hostSkillRatingOverride: hostId == null
+              ? null
+              : skillRatingByUserId[hostId],
           confirmedParticipantNames: confirmedNames,
           waitlistedParticipantNames: waitlistedNames,
           confirmedParticipantAvatarUrls: confirmedAvatars,
@@ -440,6 +477,8 @@ class PlaySession {
     required this.waitlistedParticipantAvatarFileIds,
     required this.hostAvatarUrl,
     required this.hostAvatarFileId,
+    required this.hostSkillLevel,
+    required this.hostSkillRating,
     required this.waitlistCount,
   });
 
@@ -449,6 +488,8 @@ class PlaySession {
     String? hostNameOverride,
     String? hostAvatarOverride,
     String? hostAvatarFileIdOverride,
+    String? hostSkillLevelOverride,
+    double? hostSkillRatingOverride,
     List<String>? confirmedParticipantNames,
     List<String>? waitlistedParticipantNames,
     List<String?>? confirmedParticipantAvatarUrls,
@@ -491,7 +532,7 @@ class PlaySession {
       sessionStatus: stringValue(data['status']) ?? 'published',
       participantCount: participantCountOverride ?? participantCount,
       maxParticipants: maxParticipants,
-      hostName: hostNameOverride ?? 'Host',
+      hostName: hostNameOverride ?? stringValue(data['host_name']) ?? 'Host',
       venue: stringValue(data['venue']) ?? 'Venue TBA',
       location: stringValue(data['location']) ?? 'Location TBA',
       sponsorName: stringValue(data['sponsor']) ?? 'No sponsor',
@@ -518,6 +559,12 @@ class PlaySession {
       ),
       hostAvatarUrl: hostAvatarOverride,
       hostAvatarFileId: hostAvatarFileIdOverride,
+      hostSkillLevel:
+          hostSkillLevelOverride ??
+          stringValue(data['host_skill_level']) ??
+          stringValue(data['skill_level']) ??
+          stringValue(data['skill']),
+      hostSkillRating: hostSkillRatingOverride,
       waitlistCount: waitlistCountOverride ?? 0,
     );
   }
@@ -550,6 +597,8 @@ class PlaySession {
   final List<String?> waitlistedParticipantAvatarFileIds;
   final String? hostAvatarUrl;
   final String? hostAvatarFileId;
+  final String? hostSkillLevel;
+  final double? hostSkillRating;
   final int waitlistCount;
 
   String get sessionTypeLabel {
@@ -560,6 +609,12 @@ class PlaySession {
 
   String get skillLevelLabel {
     final raw = skillLevel;
+    if (raw == null || raw.isEmpty) return 'All Levels';
+    return _titleCaseWords(raw);
+  }
+
+  String get hostSkillLevelLabel {
+    final raw = hostSkillLevel;
     if (raw == null || raw.isEmpty) return 'All Levels';
     return _titleCaseWords(raw);
   }
@@ -711,6 +766,13 @@ class PlaySession {
     if (value is int) return value;
     if (value is num) return value.toInt();
     if (value is String) return int.tryParse(value.trim());
+    return null;
+  }
+
+  static double? doubleValue(Object? value) {
+    if (value is double) return value;
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value.trim());
     return null;
   }
 
