@@ -61,6 +61,7 @@ class SessionDetailsPage extends StatelessWidget {
     final theme = Theme.of(context);
     final topInset = MediaQuery.paddingOf(context).top;
     final appBarHeight = topInset + 44;
+    final sponsorName = data.sponsorName.trim();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9FA),
@@ -152,10 +153,11 @@ class SessionDetailsPage extends StatelessWidget {
                           label: 'Skill level',
                           value: data.skillLevel,
                         ),
-                        _DetailItem(
-                          label: 'Session sponsored by',
-                          value: data.sponsorName,
-                        ),
+                        if (sponsorName.isNotEmpty)
+                          _DetailItem(
+                            label: 'Sponsored by',
+                            value: sponsorName,
+                          ),
                       ],
                     ),
                   ),
