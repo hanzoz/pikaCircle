@@ -26,6 +26,7 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
   ref,
 ) async {
   const int maxIdsPerQuery = 100;
+  final now = DateTime.now();
 
   String rowId(models.Row row) {
     final dataId = _DiscoverySession.stringValue(row.data[r'$id']);
@@ -52,15 +53,36 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
     ],
   );
 
-  if (sessionRows.rows.isEmpty) {
+  final visibleSessionRows = sessionRows.rows
+      .where((row) {
+        final startsAt = _DiscoverySession._dateTimeValue(
+          row.data['starts_at'],
+        );
+        if (startsAt == null) {
+          return false;
+        }
+
+        final durationMinutes = _DiscoverySession._int(
+          row.data['session_duration'],
+        );
+        if (durationMinutes == null || durationMinutes <= 0) {
+          return startsAt.isAfter(now);
+        }
+
+        final endsAt = startsAt.add(Duration(minutes: durationMinutes));
+        return endsAt.isAfter(now);
+      })
+      .toList(growable: false);
+
+  if (visibleSessionRows.isEmpty) {
     return const <_DiscoverySession>[];
   }
 
-  final sessionIds = sessionRows.rows
+  final sessionIds = visibleSessionRows
       .map(rowId)
       .where((id) => id.isNotEmpty)
       .toList(growable: false);
-  final hostIds = sessionRows.rows
+  final hostIds = visibleSessionRows
       .map((row) => _DiscoverySession.relationId(row.data['host_id']))
       .whereType<String>()
       .where((id) => id.isNotEmpty)
@@ -271,7 +293,7 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
     }
   }
 
-  return sessionRows.rows
+  return visibleSessionRows
       .map((row) {
         final sessionId = rowId(row);
         final hostId = _DiscoverySession.relationId(row.data['host_id']);

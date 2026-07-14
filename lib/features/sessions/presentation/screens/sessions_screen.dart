@@ -22,6 +22,7 @@ final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
   ref,
 ) async {
   const int maxIdsPerQuery = 100;
+  final now = DateTime.now();
 
   final userId = ref.watch(currentUserIdProvider);
   if (userId == null || userId.isEmpty) {
@@ -44,16 +45,35 @@ final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
     ],
   );
 
-  if (sessionRows.rows.isEmpty) {
+  final visibleSessionRows = sessionRows.rows
+      .where((row) {
+        final startsAt = HostedSession._dateTime(row.data['starts_at']);
+        if (startsAt == null) {
+          return false;
+        }
+
+        final durationMinutes = HostedSession._int(
+          row.data['session_duration'],
+        );
+        if (durationMinutes == null || durationMinutes <= 0) {
+          return startsAt.isAfter(now);
+        }
+
+        final endsAt = startsAt.add(Duration(minutes: durationMinutes));
+        return endsAt.isAfter(now);
+      })
+      .toList(growable: false);
+
+  if (visibleSessionRows.isEmpty) {
     return const <HostedSession>[];
   }
 
-  final sessionIds = sessionRows.rows
+  final sessionIds = visibleSessionRows
       .map((row) => row.$id)
       .where((id) => id.isNotEmpty)
       .toList(growable: false);
 
-  final hostIds = sessionRows.rows
+  final hostIds = visibleSessionRows
       .map((row) => HostedSession.relationId(row.data['host_id']))
       .whereType<String>()
       .where((id) => id.isNotEmpty)
@@ -165,7 +185,7 @@ final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
     }
   }
 
-  return sessionRows.rows
+  return visibleSessionRows
       .map(
         (row) => HostedSession.fromRow(
           row,

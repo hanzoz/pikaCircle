@@ -21,6 +21,7 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
   ref,
 ) async {
   const int maxIdsPerQuery = 100;
+  final now = DateTime.now();
 
   final userId = ref.watch(currentUserIdProvider);
   if (userId == null || userId.isEmpty) {
@@ -72,11 +73,33 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
     ],
   );
 
-  if (sessionRows.rows.isEmpty) {
+  final visibleSessionRows = sessionRows.rows
+      .where((row) {
+        final startsAt = PlaySession._dateTime(row.data['starts_at']);
+        if (startsAt == null) {
+          return false;
+        }
+
+        final durationMinutes = PlaySession._int(row.data['session_duration']);
+        if (durationMinutes == null || durationMinutes <= 0) {
+          return startsAt.isAfter(now);
+        }
+
+        final endsAt = startsAt.add(Duration(minutes: durationMinutes));
+        return endsAt.isAfter(now);
+      })
+      .toList(growable: false);
+
+  if (visibleSessionRows.isEmpty) {
     return const <PlaySession>[];
   }
 
-  final hostIds = sessionRows.rows
+  final visibleSessionIds = visibleSessionRows
+      .map((row) => row.$id)
+      .where((id) => id.isNotEmpty)
+      .toList(growable: false);
+
+  final hostIds = visibleSessionRows
       .map((row) => PlaySession.relationId(row.data['host_id']))
       .whereType<String>()
       .where((id) => id.isNotEmpty)
@@ -93,7 +116,7 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
       databaseId: config.databaseId,
       tableId: TableIds.sessionParticipants,
       queries: [
-        Query.equal('session_id', sessionIds),
+        Query.equal('session_id', visibleSessionIds),
         Query.equal('status', ['confirmed', 'checked_in', 'waitlisted']),
         Query.limit(500),
       ],
@@ -188,7 +211,7 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
     }
   }
 
-  return sessionRows.rows
+  return visibleSessionRows
       .map(
         (row) => PlaySession.fromRow(
           row,
