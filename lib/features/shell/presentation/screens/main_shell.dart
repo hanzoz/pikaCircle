@@ -6,6 +6,7 @@ import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/features/discovery/presentation/screens/discovery_screen.dart';
 import 'package:pikacircle/features/home/presentation/screens/home_screen.dart';
+import 'package:pikacircle/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:pikacircle/features/play/presentation/screens/play_screen.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
@@ -14,7 +15,6 @@ import 'package:pikacircle/features/sessions/presentation/screens/sessions_scree
 import 'package:pikacircle/features/shell/presentation/controllers/shell_controller.dart';
 import 'package:pikacircle/features/shell/presentation/widgets/tab_config.dart';
 import 'package:pikacircle/features/wallet/presentation/screens/wallet_screen.dart';
-import 'package:pikacircle/shared/widgets/placeholder_page.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 /// The authenticated app shell: glass app bar, searchable bottom navigation,
@@ -106,13 +106,7 @@ class _MainShellState extends ConsumerState<MainShell> {
 
   void _openNotifications() {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => const PlaceholderPage(
-          title: 'Notifications',
-          message: 'Your notifications will appear here.',
-          icon: Icons.notifications_rounded,
-        ),
-      ),
+      MaterialPageRoute<void>(builder: (_) => const NotificationsScreen()),
     );
   }
 
