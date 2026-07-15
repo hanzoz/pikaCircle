@@ -340,7 +340,9 @@ final playSessionsProvider = FutureProvider.autoDispose<List<PlaySession>>((
 });
 
 class PlayScreen extends ConsumerStatefulWidget {
-  const PlayScreen({super.key});
+  const PlayScreen({super.key, this.resetToTodaySignal = 0});
+
+  final int resetToTodaySignal;
 
   @override
   ConsumerState<PlayScreen> createState() => _PlayScreenState();
@@ -348,6 +350,16 @@ class PlayScreen extends ConsumerStatefulWidget {
 
 class _PlayScreenState extends ConsumerState<PlayScreen> {
   DateTime? _selectedDate;
+
+  @override
+  void didUpdateWidget(covariant PlayScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.resetToTodaySignal != oldWidget.resetToTodaySignal) {
+      setState(() {
+        _selectedDate = PlaySession.dateOnly(DateTime.now());
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -414,7 +426,22 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
                 },
               ),
               const SizedBox(height: 28),
-              PlaySessionsList(sessions: filteredSessions),
+              if (filteredSessions.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Center(
+                    child: Text(
+                      'No session today',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF6F7482),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                PlaySessionsList(sessions: filteredSessions),
             ],
           ),
         ),
@@ -685,6 +712,13 @@ class PlaySession {
       if (seen.add(key)) {
         dates.add(date);
       }
+    }
+
+    // Keep today's chip selectable even when there are no sessions today.
+    final today = dateOnly(DateTime.now());
+    final todayKey = '${today.year}-${today.month}-${today.day}';
+    if (seen.add(todayKey)) {
+      dates.add(today);
     }
 
     dates.sort((a, b) => a.compareTo(b));

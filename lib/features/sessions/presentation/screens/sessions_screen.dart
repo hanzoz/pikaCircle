@@ -320,7 +320,9 @@ final hostedSessionsProvider = FutureProvider.autoDispose<List<HostedSession>>((
 /// Hosts see only sessions where they are the appointed host (host_id = user_id).
 /// To play in a session, a host must join separately via the Play tab.
 class SessionsScreen extends ConsumerStatefulWidget {
-  const SessionsScreen({super.key});
+  const SessionsScreen({super.key, this.resetToTodaySignal = 0});
+
+  final int resetToTodaySignal;
 
   @override
   ConsumerState<SessionsScreen> createState() => _SessionsScreenState();
@@ -328,6 +330,16 @@ class SessionsScreen extends ConsumerStatefulWidget {
 
 class _SessionsScreenState extends ConsumerState<SessionsScreen> {
   DateTime? _selectedDate;
+
+  @override
+  void didUpdateWidget(covariant SessionsScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.resetToTodaySignal != oldWidget.resetToTodaySignal) {
+      setState(() {
+        _selectedDate = HostedSession.dateOnly(DateTime.now());
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -394,7 +406,22 @@ class _SessionsScreenState extends ConsumerState<SessionsScreen> {
                 },
               ),
               const SizedBox(height: 28),
-              HostedSessionsList(sessions: filteredSessions),
+              if (filteredSessions.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Center(
+                    child: Text(
+                      'No session today',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF6F7482),
+                      ),
+                    ),
+                  ),
+                )
+              else
+                HostedSessionsList(sessions: filteredSessions),
             ],
           ),
         ),
@@ -645,6 +672,13 @@ class HostedSession {
       if (seen.add(key)) {
         dates.add(date);
       }
+    }
+
+    // Keep today's chip selectable even when there are no sessions today.
+    final today = dateOnly(DateTime.now());
+    final todayKey = '${today.year}-${today.month}-${today.day}';
+    if (seen.add(todayKey)) {
+      dates.add(today);
     }
 
     dates.sort((a, b) => a.compareTo(b));

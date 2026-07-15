@@ -37,6 +37,8 @@ class _MainShellState extends ConsumerState<MainShell> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
   int? _searchReturnIndex;
+  int _playResetToTodaySignal = 0;
+  int _sessionsResetToTodaySignal = 0;
 
   @override
   void initState() {
@@ -170,6 +172,18 @@ class _MainShellState extends ConsumerState<MainShell> {
   }
 
   void _selectPrimaryTab(int index) {
+    final workflow = ref.read(currentWorkflowProvider);
+    final isHost = workflow == AppWorkflow.host;
+    if (index == 1) {
+      setState(() {
+        _playResetToTodaySignal++;
+      });
+    }
+    if (isHost && index == 2) {
+      setState(() {
+        _sessionsResetToTodaySignal++;
+      });
+    }
     ref.read(shellControllerProvider.notifier).selectPrimaryTab(index);
     _searchFocusNode.unfocus();
   }
@@ -273,8 +287,11 @@ class _MainShellState extends ConsumerState<MainShell> {
         index: shell.selectedIndex,
         children: [
           const HomeScreen(), // 0
-          const PlayScreen(), // 1
-          if (isHost) const SessionsScreen(), // 2 (host-only)
+          PlayScreen(resetToTodaySignal: _playResetToTodaySignal), // 1
+          if (isHost)
+            SessionsScreen(
+              resetToTodaySignal: _sessionsResetToTodaySignal,
+            ), // 2 (host-only)
           const WalletScreen(), // 2 or 3
           const DiscoveryScreen(),
         ],
