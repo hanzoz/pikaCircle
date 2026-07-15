@@ -406,6 +406,49 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
     }
   }
 
+  // Participant rosters are owner-only readable, so a browsing user cannot read
+  // other people's session_participants rows directly. Resolve the public
+  // roster (names + avatars) through the admin-key roster function and let it
+  // authoritatively populate the confirmed/waitlisted maps and counts. Setting
+  // the counts to the resolved roster lengths also prevents phantom placeholder
+  // avatars that a derived participant count would otherwise produce.
+  try {
+    final execution = await functions.createExecution(
+      functionId: config.sessionPublicRosterFunctionId,
+      body: jsonEncode(<String, Object?>{'sessionIds': sessionIds}),
+      method: ExecutionMethod.pOST,
+      headers: const {'content-type': 'application/json'},
+    );
+
+    final body = _decodeExecutionBody(execution.responseBody);
+    if (execution.responseStatusCode < 400) {
+      final rosterBySession = body['rosterBySession'];
+      if (rosterBySession is Map) {
+        for (final entry in rosterBySession.entries) {
+          final sessionId = entry.key.toString().trim();
+          final roster = entry.value;
+          if (sessionId.isEmpty || roster is! Map) continue;
+
+          final confirmed = _rosterEntries(roster['confirmed']);
+          final waitlisted = _rosterEntries(roster['waitlisted']);
+
+          confirmedNamesBySession[sessionId] = confirmed.names;
+          confirmedAvatarsBySession[sessionId] = confirmed.avatarUrls;
+          confirmedAvatarFileIdsBySession[sessionId] = confirmed.avatarFileIds;
+          joiningCountBySession[sessionId] = confirmed.names.length;
+
+          waitlistedNamesBySession[sessionId] = waitlisted.names;
+          waitlistedAvatarsBySession[sessionId] = waitlisted.avatarUrls;
+          waitlistedAvatarFileIdsBySession[sessionId] =
+              waitlisted.avatarFileIds;
+          waitlistCountBySession[sessionId] = waitlisted.names.length;
+        }
+      }
+    }
+  } on AppwriteException {
+    // Roster unavailable; fall back to whatever the direct queries resolved.
+  }
+
   return visibleSessionRows
       .map((row) {
         final sessionId = rowId(row);
@@ -444,6 +487,27 @@ Map<String, dynamic> _decodeExecutionBody(String responseBody) {
   final decoded = jsonDecode(responseBody);
   if (decoded is Map<String, dynamic>) return decoded;
   return const {};
+}
+
+/// Parses a roster array (`confirmed`/`waitlisted`) from the session roster
+/// function into aligned name/avatar-url/avatar-file-id lists. Each entry
+/// contributes exactly one slot so the avatar list never renders phantom
+/// placeholders. A missing name falls back to an empty string (initials blank);
+/// the avatar image still renders from its URL or file id when present.
+({List<String> names, List<String?> avatarUrls, List<String?> avatarFileIds})
+_rosterEntries(Object? value) {
+  final names = <String>[];
+  final avatarUrls = <String?>[];
+  final avatarFileIds = <String?>[];
+  if (value is List) {
+    for (final item in value) {
+      if (item is! Map) continue;
+      names.add(_DiscoverySession.stringValue(item['name']) ?? '');
+      avatarUrls.add(_DiscoverySession.stringValue(item['avatarUrl']));
+      avatarFileIds.add(_DiscoverySession.stringValue(item['avatarFileId']));
+    }
+  }
+  return (names: names, avatarUrls: avatarUrls, avatarFileIds: avatarFileIds);
 }
 
 class DiscoveryScreen extends ConsumerStatefulWidget {

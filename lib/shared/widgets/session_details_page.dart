@@ -64,9 +64,18 @@ class SessionDetailsData {
 }
 
 class SessionDetailsPage extends StatelessWidget {
-  const SessionDetailsPage({super.key, required this.data});
+  const SessionDetailsPage({
+    super.key,
+    required this.data,
+    this.onRequestToJoin,
+    this.footerButtonText = 'Request to Join',
+    this.showFooter = true,
+  });
 
   final SessionDetailsData data;
+  final VoidCallback? onRequestToJoin;
+  final String footerButtonText;
+  final bool showFooter;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +87,12 @@ class SessionDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9FA),
       extendBodyBehindAppBar: true,
+      bottomNavigationBar: showFooter
+          ? _RequestToJoinFooter(
+              onTap: onRequestToJoin ?? () {},
+              buttonText: footerButtonText,
+            )
+          : null,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(appBarHeight),
         child: PikaAppBar(
@@ -383,6 +398,46 @@ class _HostCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _RequestToJoinFooter extends StatelessWidget {
+  const _RequestToJoinFooter({required this.onTap, required this.buttonText});
+
+  final VoidCallback onTap;
+  final String buttonText;
+
+  @override
+  Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(top: BorderSide(color: Color(0xFFF0F1F5))),
+      ),
+      padding: EdgeInsets.fromLTRB(16, 12, 16, 12 + bottomInset),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FilledButton(
+            onPressed: onTap,
+            style: FilledButton.styleFrom(
+              backgroundColor: const Color(0xFF1D2230),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            ),
+            child: Text(
+              buttonText,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
       ),
     );
   }

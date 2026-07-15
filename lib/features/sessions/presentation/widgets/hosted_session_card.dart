@@ -17,7 +17,8 @@ class HostedSessionCard extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (_) => SessionDetailsPage(data: _toCommonData()),
+              builder: (_) =>
+                  SessionDetailsPage(data: _toCommonData(), showFooter: false),
             ),
           );
         },

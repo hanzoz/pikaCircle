@@ -62,6 +62,27 @@
         "path": "./functions/user-public-profiles"
     },
     {
+        "$id": "session-public-roster",
+        "name": "session-public-roster",
+        "enabled": true,
+        "logging": true,
+        "runtime": "node-20.0",
+        "buildSpecification": "s-1vcpu-512mb",
+        "runtimeSpecification": "s-1vcpu-512mb",
+        "deploymentRetention": 7,
+        "execute": [
+            "users"
+        ],
+        "scopes": [],
+        "events": [],
+        "schedule": "",
+        "timeout": 15,
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "ignore": "node_modules\n.tmp",
+        "path": "./functions/session-public-roster"
+    },
+    {
         "$id": "user-provision",
         "name": "user-provision",
         "enabled": true,

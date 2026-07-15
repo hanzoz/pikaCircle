@@ -15,6 +15,7 @@ class AppwriteConfig {
     required this.profileFunctionId,
     required this.sessionJoinFunctionId,
     required this.userPublicProfilesFunctionId,
+    required this.sessionPublicRosterFunctionId,
   });
 
   factory AppwriteConfig.fromEnv() {
@@ -27,6 +28,7 @@ class AppwriteConfig {
       profileFunctionId: Env.profileFunctionId,
       sessionJoinFunctionId: Env.sessionJoinFunctionId,
       userPublicProfilesFunctionId: Env.userPublicProfilesFunctionId,
+      sessionPublicRosterFunctionId: Env.sessionPublicRosterFunctionId,
     );
   }
 
@@ -38,6 +40,7 @@ class AppwriteConfig {
   final String profileFunctionId;
   final String sessionJoinFunctionId;
   final String userPublicProfilesFunctionId;
+  final String sessionPublicRosterFunctionId;
 
   /// The custom URL scheme the OAuth deep-link callback returns to.
   ///

@@ -35,4 +35,6 @@ abstract final class Env {
       _require('APPWRITE_SESSION_JOIN_FUNCTION_ID');
   static String get userPublicProfilesFunctionId =>
       _require('APPWRITE_USER_PUBLIC_PROFILES_FUNCTION_ID');
+  static String get sessionPublicRosterFunctionId =>
+      _require('APPWRITE_SESSION_PUBLIC_ROSTER_FUNCTION_ID');
 }

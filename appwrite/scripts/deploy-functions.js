@@ -147,7 +147,19 @@ async function setVariables(def) {
 async function main() {
   if (!env.APPWRITE_API_KEY) throw new Error('APPWRITE_API_KEY missing from .env');
 
-  for (const def of FUNCTIONS) {
+  // Optional CLI filter: `node deploy-functions.js <id> [<id> ...]` deploys only
+  // the named functions. With no args, all functions in the manifest deploy.
+  const only = process.argv.slice(2);
+  const targets = only.length
+    ? FUNCTIONS.filter((d) => only.includes(d.$id))
+    : FUNCTIONS;
+  if (only.length && targets.length !== only.length) {
+    const found = new Set(targets.map((d) => d.$id));
+    const missing = only.filter((id) => !found.has(id));
+    throw new Error(`Unknown function id(s): ${missing.join(', ')}`);
+  }
+
+  for (const def of targets) {
     console.log(`\n== ${def.$id} ==`);
     await ensureFunction(def);
     await setVariables(def);   // set vars before deploy so the build/runtime sees them
