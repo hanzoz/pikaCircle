@@ -317,7 +317,7 @@
     "tableId": "skills",
     "rows": [
       {
-        "ref": "skill_nadia_admin",
+        "ref": "nadia_admin",
         "userRef": "nadia_admin",
         "data": {
           "level": "intermediate",
@@ -331,7 +331,7 @@
         }
       },
       {
-        "ref": "skill_maya_host",
+        "ref": "maya_host",
         "userRef": "maya_host",
         "data": {
           "level": "intermediate",
@@ -345,7 +345,7 @@
         }
       },
       {
-        "ref": "skill_adrian_host",
+        "ref": "adrian_host",
         "userRef": "adrian_host",
         "data": {
           "level": "competitive",
@@ -359,7 +359,7 @@
         }
       },
       {
-        "ref": "skill_alicia_player",
+        "ref": "alicia_player",
         "userRef": "alicia_player",
         "data": {
           "level": "intermediate",
@@ -373,7 +373,7 @@
         }
       },
       {
-        "ref": "skill_raymond_player",
+        "ref": "raymond_player",
         "userRef": "raymond_player",
         "data": {
           "level": "intermediate",
@@ -387,7 +387,7 @@
         }
       },
       {
-        "ref": "skill_hannah_player",
+        "ref": "hannah_player",
         "userRef": "hannah_player",
         "data": {
           "level": "competitive",
@@ -401,21 +401,21 @@
         }
       },
       {
-        "ref": "skill_ken_player",
+        "ref": "ken_player",
         "userRef": "ken_player",
         "data": {
           "level": "beginner",
           "serve": 2.1,
           "return": 2.2,
           "offense": 2.1,
-          "defense": 2.0,
+          "defense": 2,
           "agility": 2.3000000000000003,
           "consistency": 2.1,
           "overall_skill_rating": 2.1
         }
       },
       {
-        "ref": "skill_isha_player",
+        "ref": "isha_player",
         "userRef": "isha_player",
         "data": {
           "level": "intermediate",
@@ -429,7 +429,7 @@
         }
       },
       {
-        "ref": "skill_jon_player",
+        "ref": "jon_player",
         "userRef": "jon_player",
         "data": {
           "level": "intermediate",
@@ -443,14 +443,14 @@
         }
       },
       {
-        "ref": "skill_sara_player",
+        "ref": "sara_player",
         "userRef": "sara_player",
         "data": {
           "level": "beginner",
           "serve": 2.1,
           "return": 2.2,
           "offense": 2.1,
-          "defense": 2.0,
+          "defense": 2,
           "agility": 2.3000000000000003,
           "consistency": 2.1,
           "overall_skill_rating": 2.1
@@ -462,200 +462,200 @@
     "tableId": "wallet",
     "rows": [
       {
-        "ref": "wallet_nadia_admin",
+        "ref": "nadia_admin",
         "userRef": "nadia_admin",
         "data": {
           "free_credits": 4,
-          "free_credits_decimal": 4.0,
+          "free_credits_decimal": 4,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 40,
-          "paid_credits_decimal": 40.0,
+          "paid_credits_decimal": 40,
           "remarks": "Demo wallet.",
           "freeCredits": 4,
-          "freeCredits_decimal": 4.0,
+          "freeCredits_decimal": 4,
           "paidCredits": 40,
-          "paidCredits_decimal": 40.0,
+          "paidCredits_decimal": 40,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 4
         }
       },
       {
-        "ref": "wallet_maya_host",
+        "ref": "maya_host",
         "userRef": "maya_host",
         "data": {
           "free_credits": 2,
-          "free_credits_decimal": 2.0,
+          "free_credits_decimal": 2,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 18,
-          "paid_credits_decimal": 18.0,
+          "paid_credits_decimal": 18,
           "remarks": "Demo wallet.",
           "freeCredits": 2,
-          "freeCredits_decimal": 2.0,
+          "freeCredits_decimal": 2,
           "paidCredits": 18,
-          "paidCredits_decimal": 18.0,
+          "paidCredits_decimal": 18,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 2
         }
       },
       {
-        "ref": "wallet_adrian_host",
+        "ref": "adrian_host",
         "userRef": "adrian_host",
         "data": {
           "free_credits": 1,
-          "free_credits_decimal": 1.0,
+          "free_credits_decimal": 1,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 24,
-          "paid_credits_decimal": 24.0,
+          "paid_credits_decimal": 24,
           "remarks": "Demo wallet.",
           "freeCredits": 1,
-          "freeCredits_decimal": 1.0,
+          "freeCredits_decimal": 1,
           "paidCredits": 24,
-          "paidCredits_decimal": 24.0,
+          "paidCredits_decimal": 24,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 1
         }
       },
       {
-        "ref": "wallet_alicia_player",
+        "ref": "alicia_player",
         "userRef": "alicia_player",
         "data": {
           "free_credits": 0,
-          "free_credits_decimal": 0.0,
+          "free_credits_decimal": 0,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 16,
-          "paid_credits_decimal": 16.0,
+          "paid_credits_decimal": 16,
           "remarks": "Demo wallet.",
           "freeCredits": 0,
-          "freeCredits_decimal": 0.0,
+          "freeCredits_decimal": 0,
           "paidCredits": 16,
-          "paidCredits_decimal": 16.0,
+          "paidCredits_decimal": 16,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 0
         }
       },
       {
-        "ref": "wallet_raymond_player",
+        "ref": "raymond_player",
         "userRef": "raymond_player",
         "data": {
           "free_credits": 2,
-          "free_credits_decimal": 2.0,
+          "free_credits_decimal": 2,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 8,
-          "paid_credits_decimal": 8.0,
+          "paid_credits_decimal": 8,
           "remarks": "Demo wallet.",
           "freeCredits": 2,
-          "freeCredits_decimal": 2.0,
+          "freeCredits_decimal": 2,
           "paidCredits": 8,
-          "paidCredits_decimal": 8.0,
+          "paidCredits_decimal": 8,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 2
         }
       },
       {
-        "ref": "wallet_hannah_player",
+        "ref": "hannah_player",
         "userRef": "hannah_player",
         "data": {
           "free_credits": 0,
-          "free_credits_decimal": 0.0,
+          "free_credits_decimal": 0,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 30,
-          "paid_credits_decimal": 30.0,
+          "paid_credits_decimal": 30,
           "remarks": "Demo wallet.",
           "freeCredits": 0,
-          "freeCredits_decimal": 0.0,
+          "freeCredits_decimal": 0,
           "paidCredits": 30,
-          "paidCredits_decimal": 30.0,
+          "paidCredits_decimal": 30,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 0
         }
       },
       {
-        "ref": "wallet_ken_player",
+        "ref": "ken_player",
         "userRef": "ken_player",
         "data": {
           "free_credits": 4,
-          "free_credits_decimal": 4.0,
+          "free_credits_decimal": 4,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 2,
-          "paid_credits_decimal": 2.0,
+          "paid_credits_decimal": 2,
           "remarks": "Demo wallet.",
           "freeCredits": 4,
-          "freeCredits_decimal": 4.0,
+          "freeCredits_decimal": 4,
           "paidCredits": 2,
-          "paidCredits_decimal": 2.0,
+          "paidCredits_decimal": 2,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 4
         }
       },
       {
-        "ref": "wallet_isha_player",
+        "ref": "isha_player",
         "userRef": "isha_player",
         "data": {
           "free_credits": 1,
-          "free_credits_decimal": 1.0,
+          "free_credits_decimal": 1,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 12,
-          "paid_credits_decimal": 12.0,
+          "paid_credits_decimal": 12,
           "remarks": "Demo wallet.",
           "freeCredits": 1,
-          "freeCredits_decimal": 1.0,
+          "freeCredits_decimal": 1,
           "paidCredits": 12,
-          "paidCredits_decimal": 12.0,
+          "paidCredits_decimal": 12,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 1
         }
       },
       {
-        "ref": "wallet_jon_player",
+        "ref": "jon_player",
         "userRef": "jon_player",
         "data": {
           "free_credits": 3,
-          "free_credits_decimal": 3.0,
+          "free_credits_decimal": 3,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 6,
-          "paid_credits_decimal": 6.0,
+          "paid_credits_decimal": 6,
           "remarks": "Demo wallet.",
           "freeCredits": 3,
-          "freeCredits_decimal": 3.0,
+          "freeCredits_decimal": 3,
           "paidCredits": 6,
-          "paidCredits_decimal": 6.0,
+          "paidCredits_decimal": 6,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 3
         }
       },
       {
-        "ref": "wallet_sara_player",
+        "ref": "sara_player",
         "userRef": "sara_player",
         "data": {
           "free_credits": 5,
-          "free_credits_decimal": 5.0,
+          "free_credits_decimal": 5,
           "free_credits_expiry_date": "2026-07-01T00:00:00.000Z",
           "reset_countdown": "20 days",
           "paid_credits": 0,
-          "paid_credits_decimal": 0.0,
+          "paid_credits_decimal": 0,
           "remarks": "Demo wallet.",
           "freeCredits": 5,
-          "freeCredits_decimal": 5.0,
+          "freeCredits_decimal": 5,
           "paidCredits": 0,
-          "paidCredits_decimal": 0.0,
+          "paidCredits_decimal": 0,
           "resetCountdown": "20 days",
           "note": "Seed data for wallet UI.",
           "freeCreditsExpiring": 5
@@ -1106,7 +1106,7 @@
       {
         "ref": "fav_adrian_pxp",
         "userRef": "adrian_host",
-        "venueRef": "The PxP Pickleball Club",
+        "venueRef": "the_pxp_pickleball_club",
         "data": {
           "sort_order": 1,
           "created_at": "2026-06-11T00:00:00.000Z"
@@ -1115,7 +1115,7 @@
       {
         "ref": "fav_alicia_p3",
         "userRef": "alicia_player",
-        "venueRef": "P3 Courts",
+        "venueRef": "p3_courts",
         "data": {
           "sort_order": 1,
           "created_at": "2026-06-11T00:00:00.000Z"
@@ -1261,7 +1261,7 @@
       {
         "ref": "hosted_pxp_dupr",
         "hostRef": "adrian_host",
-        "venueRef": "The PxP Pickleball Club",
+        "venueRef": "the_pxp_pickleball_club",
         "sponsorRef": "joola",
         "scoreFormatRef": "side_out",
         "data": {
@@ -1298,7 +1298,7 @@
       {
         "ref": "hosted_p3_clinic",
         "hostRef": "maya_host",
-        "venueRef": "P3 Courts",
+        "venueRef": "p3_courts",
         "sponsorRef": "crbn",
         "scoreFormatRef": "side_out",
         "data": {
@@ -1330,6 +1330,1586 @@
           "remainingSlots": 0,
           "timeOfDay": "Morning",
           "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "open_bangsar_beginner",
+        "venueRef": "bangsar_pickleball",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Beginner Social Dinks",
+          "description": "Relaxed beginner-friendly open play, all welcome.",
+          "starts_at": "2026-06-20T09:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "48",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Bangsar Pickleball",
+          "timeLabel": "Sat 20 Jun, 9:00 AM",
+          "skill": "Beginner",
+          "location": "Kuala Lumpur",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 9,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "hosted_dinkbox_singles_ladder",
+        "hostRef": "adrian_host",
+        "venueRef": "dinkbox",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Singles Showdown Ladder",
+          "description": "Fast-paced singles ladder for competitive players.",
+          "starts_at": "2026-06-22T12:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "other",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "singles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Dinkbox",
+          "timeLabel": "Mon 22 Jun, 8:30 PM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 4,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "hosted_pjcentral_league",
+        "hostRef": "maya_host",
+        "venueRef": "pj_pickleball_central",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Wednesday Night League - Week 3",
+          "description": "Ongoing intermediate league night, in progress.",
+          "starts_at": "2026-06-17T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "in_progress",
+          "scoring_mode": "manual",
+          "score_status": "recording",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "PJ Pickleball Central",
+          "timeLabel": "Wed 17 Jun, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 1,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "hosted_urban_draft",
+        "hostRef": "maya_host",
+        "venueRef": "urban_pickleball_club",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Sunrise Drills (Draft)",
+          "description": "Unpublished draft session still being set up by the host.",
+          "starts_at": "2026-07-02T00:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "60",
+          "status": "draft",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Urban Pickleball Club",
+          "timeLabel": "Thu 2 Jul, 8:30 AM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 6,
+          "timeOfDay": "Morning",
+          "sponsor": null
+        }
+      },
+      {
+        "ref": "hosted_subang_cancelled",
+        "hostRef": "adrian_host",
+        "venueRef": "pickle_kingdom_subang",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Rainy Day Rally (Cancelled)",
+          "description": "Cancelled due to venue flooding; refunds issued.",
+          "starts_at": "2026-06-18T11:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "12",
+          "session_type": "social",
+          "session_duration": "90",
+          "status": "cancelled",
+          "cancelled_at": "2026-06-17T15:00:00.000Z",
+          "cancellation_reason": "Venue closed due to flooding.",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Pickle Kingdom Subang",
+          "timeLabel": "Thu 18 Jun, 7:00 PM",
+          "skill": "Intermediate",
+          "location": "Subang Jaya",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 0,
+          "timeOfDay": "Evening",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "jul_dinkkl_social",
+        "venueRef": "dink_realm_kl",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Beginner Dinks & Chill",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-07-16T01:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Dink Realm KL",
+          "timeLabel": "Thu 16 Jul, 9:00 AM",
+          "skill": "Beginner",
+          "location": "Kuala Lumpur",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 8,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_sphere_drills",
+        "venueRef": "pickle_sphere",
+        "hostRef": "maya_host",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Third-Shot Drills Lab",
+          "description": "Hosted drills session (Intermediate).",
+          "starts_at": "2026-07-17T11:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Pickle Sphere",
+          "timeLabel": "Fri 17 Jul, 7:30 PM",
+          "skill": "Intermediate",
+          "location": "Subang Jaya",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 3,
+          "timeOfDay": "Evening",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "jul_gravity_dupr",
+        "venueRef": "gravity_x_pickleball_damansara",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "DUPR Rated Doubles",
+          "description": "Hosted dupr session (Competitive).",
+          "starts_at": "2026-07-19T02:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "dupr",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 21,
+          "number_of_games": "5",
+          "win_by": "2",
+          "venue": "Gravity X Pickleball (Damansara)",
+          "timeLabel": "Sun 19 Jul, 10:00 AM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 2,
+          "timeOfDay": "Morning",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "jul_genesis_league",
+        "venueRef": "pj_genesis",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Midweek League Night",
+          "description": "Hosted league session (Intermediate).",
+          "starts_at": "2026-07-22T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "PJ Genesis",
+          "timeLabel": "Wed 22 Jul, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 5,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_dinkbros_social",
+        "venueRef": "dink_bros",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "After-Work Open Play",
+          "description": "Open social session (Intermediate).",
+          "starts_at": "2026-07-23T10:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Dink Bros",
+          "timeLabel": "Thu 23 Jul, 6:30 PM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 10,
+          "timeOfDay": "Evening",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "jul_golden_class",
+        "venueRef": "golden_pickleball",
+        "hostRef": "maya_host",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Pickleball 101 Clinic",
+          "description": "Hosted class session (Beginner).",
+          "starts_at": "2026-07-25T01:30:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Golden Pickleball",
+          "timeLabel": "Sat 25 Jul, 9:30 AM",
+          "skill": "Beginner",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 6,
+          "timeOfDay": "Morning",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "jul_dynamic_singles",
+        "venueRef": "pickle_dynamic",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Singles Grind Session",
+          "description": "Hosted other session (Competitive).",
+          "starts_at": "2026-07-26T03:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "other",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "singles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Pickle Dynamic",
+          "timeLabel": "Sun 26 Jul, 11:00 AM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 4,
+          "timeOfDay": "Morning",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "jul_onehub_social",
+        "venueRef": "one_sports_hub",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Sunrise Social Rally",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-07-29T11:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "One Sports Hub",
+          "timeLabel": "Wed 29 Jul, 7:00 PM",
+          "skill": "Beginner",
+          "location": "Shah Alam",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 9,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_karisma_drills",
+        "venueRef": "karisma_selangor",
+        "hostRef": "maya_host",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Reset & Dink Workshop",
+          "description": "Hosted drills session (Intermediate).",
+          "starts_at": "2026-07-31T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Karisma Selangor",
+          "timeLabel": "Fri 31 Jul, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Shah Alam",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 3,
+          "timeOfDay": "Evening",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "aug_masters_dupr",
+        "venueRef": "pickle_masters",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Competitive DUPR Ladder",
+          "description": "Hosted dupr session (Competitive).",
+          "starts_at": "2026-08-05T11:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "dupr",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 21,
+          "number_of_games": "5",
+          "win_by": "2",
+          "venue": "Pickle Masters",
+          "timeLabel": "Wed 5 Aug, 7:30 PM",
+          "skill": "Competitive",
+          "location": "Puchong",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 2,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "aug_sunsuria_social",
+        "venueRef": "sunsuria_forum_pickleball",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Casual Evening Rally",
+          "description": "Open social session (Intermediate).",
+          "starts_at": "2026-08-06T10:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Sunsuria Forum Pickleball",
+          "timeLabel": "Thu 6 Aug, 6:00 PM",
+          "skill": "Intermediate",
+          "location": "Subang Jaya",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 11,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_wangsa_class",
+        "venueRef": "wangsa_walk_pickleball",
+        "hostRef": "maya_host",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Beginner Bootcamp",
+          "description": "Hosted class session (Beginner).",
+          "starts_at": "2026-08-08T01:30:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Wangsa Walk Pickleball",
+          "timeLabel": "Sat 8 Aug, 9:30 AM",
+          "skill": "Beginner",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 7,
+          "timeOfDay": "Morning",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "aug_ccdinks_league",
+        "venueRef": "the_cc_dinks",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Sunday League Showdown",
+          "description": "Hosted league session (Intermediate).",
+          "starts_at": "2026-08-09T03:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "The C&C Dinks",
+          "timeLabel": "Sun 9 Aug, 11:00 AM",
+          "skill": "Intermediate",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 4,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_paradise_drills",
+        "venueRef": "pickle_paradise",
+        "hostRef": "adrian_host",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Advanced Footwork Drills",
+          "description": "Hosted drills session (Competitive).",
+          "starts_at": "2026-08-12T12:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Pickle Paradise",
+          "timeLabel": "Wed 12 Aug, 8:00 PM",
+          "skill": "Competitive",
+          "location": "Puchong",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 5,
+          "timeOfDay": "Evening",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "aug_dinkin_social",
+        "venueRef": "dinkin_pickleball_centre",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Friday Night Open Play",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-08-14T11:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Dinkin Pickleball Centre",
+          "timeLabel": "Fri 14 Aug, 7:00 PM",
+          "skill": "Beginner",
+          "location": "Petaling Jaya",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 10,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "aug_empire_singles",
+        "venueRef": "empire_damansara_pickleball_club",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Singles Battle Royale",
+          "description": "Hosted other session (Competitive).",
+          "starts_at": "2026-08-16T02:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "other",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "singles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Empire Damansara Pickleball Club",
+          "timeLabel": "Sun 16 Aug, 10:00 AM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 3,
+          "timeOfDay": "Morning",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "aug_urbanspin_league",
+        "venueRef": "urbanspin_kl",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Urban League Night",
+          "description": "Hosted league session (Intermediate).",
+          "starts_at": "2026-08-19T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Urbanspin KL",
+          "timeLabel": "Wed 19 Aug, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 6,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_picklechill_social",
+        "venueRef": "pickle_chill",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Chill & Play Social",
+          "description": "Open social session (Intermediate).",
+          "starts_at": "2026-08-21T10:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Pickle & Chill",
+          "timeLabel": "Fri 21 Aug, 6:30 PM",
+          "skill": "Intermediate",
+          "location": "Subang Jaya",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 12,
+          "timeOfDay": "Evening",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "jul_dinkkl_evening",
+        "venueRef": "dink_bros",
+        "hostRef": "maya_host",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Evening Drills Lab",
+          "description": "Hosted drills session (Intermediate).",
+          "starts_at": "2026-07-16T11:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Dink Bros",
+          "timeLabel": "Thu 16 Jul, 7:00 PM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 3,
+          "timeOfDay": "Evening",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "jul_sphere_morning",
+        "venueRef": "pickle_sphere_sunway",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Morning Beginner Social",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-07-17T01:30:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Pickle Sphere Sunway",
+          "timeLabel": "Fri 17 Jul, 9:30 AM",
+          "skill": "Beginner",
+          "location": "Subang Jaya",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 10,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_gravity_afternoon",
+        "venueRef": "spicy_pickleball_sunway",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Afternoon Open Rally",
+          "description": "Open social session (Intermediate).",
+          "starts_at": "2026-07-19T07:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Spicy Pickleball Sunway",
+          "timeLabel": "Sun 19 Jul, 3:00 PM",
+          "skill": "Intermediate",
+          "location": "Subang Jaya",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 8,
+          "timeOfDay": "Afternoon",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "jul_genesis_morning",
+        "venueRef": "pj_pickleball_central",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Sunrise Beginner Clinic",
+          "description": "Hosted class session (Beginner).",
+          "starts_at": "2026-07-22T01:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "PJ Pickleball Central",
+          "timeLabel": "Wed 22 Jul, 9:00 AM",
+          "skill": "Beginner",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 6,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_dinkbros_morning",
+        "venueRef": "golden_pickleball",
+        "hostRef": "adrian_host",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Competitive Morning Drills",
+          "description": "Hosted drills session (Competitive).",
+          "starts_at": "2026-07-23T02:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Golden Pickleball",
+          "timeLabel": "Thu 23 Jul, 10:00 AM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 4,
+          "timeOfDay": "Morning",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "jul_golden_evening",
+        "venueRef": "pickle_dynamic",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Night DUPR Ladder",
+          "description": "Hosted dupr session (Competitive).",
+          "starts_at": "2026-07-25T11:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "dupr",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 21,
+          "number_of_games": "5",
+          "win_by": "2",
+          "venue": "Pickle Dynamic",
+          "timeLabel": "Sat 25 Jul, 7:30 PM",
+          "skill": "Competitive",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 2,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "jul_dynamic_evening",
+        "venueRef": "urbanspin_kl",
+        "hostRef": "maya_host",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "League Night Doubles",
+          "description": "Hosted league session (Intermediate).",
+          "starts_at": "2026-07-26T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Urbanspin KL",
+          "timeLabel": "Sun 26 Jul, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 5,
+          "timeOfDay": "Evening",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "jul_onehub_morning",
+        "venueRef": "karisma_selangor",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Weekday Morning Social",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-07-29T01:30:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Karisma Selangor",
+          "timeLabel": "Wed 29 Jul, 9:30 AM",
+          "skill": "Beginner",
+          "location": "Shah Alam",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 11,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "jul_karisma_afternoon",
+        "venueRef": "one_sports_hub",
+        "hostRef": "maya_host",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Midday Reset Drills",
+          "description": "Hosted drills session (Intermediate).",
+          "starts_at": "2026-07-31T06:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "One Sports Hub",
+          "timeLabel": "Fri 31 Jul, 2:30 PM",
+          "skill": "Intermediate",
+          "location": "Shah Alam",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 4,
+          "timeOfDay": "Afternoon",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "aug_dinkcentral_evening",
+        "venueRef": "wangsa_walk_pickleball",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Evening Social Rally",
+          "description": "Hosted social session (Intermediate).",
+          "starts_at": "2026-08-02T11:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Wangsa Walk Pickleball",
+          "timeLabel": "Sun 2 Aug, 7:00 PM",
+          "skill": "Intermediate",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 9,
+          "timeOfDay": "Evening",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_masters_morning",
+        "venueRef": "pickle_paradise",
+        "hostRef": "maya_host",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Beginner Morning Bootcamp",
+          "description": "Hosted class session (Beginner).",
+          "starts_at": "2026-08-05T01:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Pickle Paradise",
+          "timeLabel": "Wed 5 Aug, 9:00 AM",
+          "skill": "Beginner",
+          "location": "Puchong",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 7,
+          "timeOfDay": "Morning",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "aug_sunsuria_morning",
+        "venueRef": "pickle_sphere",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Competitive Footwork Drills",
+          "description": "Hosted drills session (Competitive).",
+          "starts_at": "2026-08-06T02:00:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Pickle Sphere",
+          "timeLabel": "Thu 6 Aug, 10:00 AM",
+          "skill": "Competitive",
+          "location": "Subang Jaya",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 5,
+          "timeOfDay": "Morning",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "aug_wangsa_evening",
+        "venueRef": "dink_central",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Prime-Time DUPR",
+          "description": "Hosted dupr session (Competitive).",
+          "starts_at": "2026-08-08T11:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 4,
+          "privacy": false,
+          "credit_cost": 5,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "dupr",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 21,
+          "number_of_games": "5",
+          "win_by": "2",
+          "venue": "Dink Central",
+          "timeLabel": "Sat 8 Aug, 7:30 PM",
+          "skill": "Competitive",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 5,
+          "remainingSlots": 2,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "aug_ccdinks_evening",
+        "venueRef": "the_cc_dinks",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Late Night Open Play",
+          "description": "Open social session (Intermediate).",
+          "starts_at": "2026-08-09T12:00:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "The C&C Dinks",
+          "timeLabel": "Sun 9 Aug, 8:00 PM",
+          "skill": "Intermediate",
+          "location": "Petaling Jaya",
+          "hosted": false,
+          "credits": 2,
+          "remainingSlots": 10,
+          "timeOfDay": "Evening",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "aug_paradise_morning",
+        "venueRef": "pickle_masters",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Morning League Session",
+          "description": "Hosted league session (Intermediate).",
+          "starts_at": "2026-08-12T01:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 3,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "league",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Pickle Masters",
+          "timeLabel": "Wed 12 Aug, 9:30 AM",
+          "skill": "Intermediate",
+          "location": "Puchong",
+          "hosted": true,
+          "credits": 3,
+          "remainingSlots": 6,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_empire_evening",
+        "venueRef": "gravity_x_pickleball_shah_alam",
+        "sponsorRef": "crbn",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Sunset Social Dinks",
+          "description": "Open social session (Beginner).",
+          "starts_at": "2026-08-16T11:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 12,
+          "privacy": false,
+          "credit_cost": 1,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "60",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Gravity X Pickleball (Shah Alam)",
+          "timeLabel": "Sun 16 Aug, 7:00 PM",
+          "skill": "Beginner",
+          "location": "Shah Alam",
+          "hosted": false,
+          "credits": 1,
+          "remainingSlots": 9,
+          "timeOfDay": "Evening",
+          "sponsor": "CRBN Pickleball"
+        }
+      },
+      {
+        "ref": "aug_urbanspin_morning",
+        "venueRef": "dink_realm_cheras",
+        "hostRef": "maya_host",
+        "sponsorRef": "sypik",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Beginner Morning Class",
+          "description": "Hosted class session (Beginner).",
+          "starts_at": "2026-08-19T01:00:00.000Z",
+          "skill_level": "beginner",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "class",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Dink Realm Cheras",
+          "timeLabel": "Wed 19 Aug, 9:00 AM",
+          "skill": "Beginner",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 7,
+          "timeOfDay": "Morning",
+          "sponsor": "Sypik"
+        }
+      },
+      {
+        "ref": "aug_goodminton_evening",
+        "venueRef": "goodminton",
+        "hostRef": "adrian_host",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Evening Advanced Drills",
+          "description": "Hosted drills session (Competitive).",
+          "starts_at": "2026-08-23T11:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "120",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Goodminton",
+          "timeLabel": "Sun 23 Aug, 7:30 PM",
+          "skill": "Competitive",
+          "location": "Shah Alam",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 4,
+          "timeOfDay": "Evening",
+          "sponsor": "Joola"
+        }
+      },
+      {
+        "ref": "jul_dinkbox_afternoon",
+        "hostRef": "maya_host",
+        "venueRef": "dinkbox",
+        "sponsorRef": "selkirk",
+        "scoreFormatRef": "rally",
+        "data": {
+          "title": "Afternoon Doubles Meetup",
+          "description": "Hosted afternoon doubles social (Intermediate).",
+          "starts_at": "2026-07-22T06:30:00.000Z",
+          "skill_level": "intermediate",
+          "max_participants": 8,
+          "privacy": false,
+          "credit_cost": 2,
+          "auto_approve": true,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "social",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "none",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 11,
+          "number_of_games": "1",
+          "win_by": "2",
+          "venue": "Dinkbox",
+          "timeLabel": "Wed 22 Jul, 2:30 PM",
+          "skill": "Intermediate",
+          "location": "Petaling Jaya",
+          "hosted": true,
+          "credits": 2,
+          "remainingSlots": 5,
+          "timeOfDay": "Afternoon",
+          "sponsor": "Selkirk"
+        }
+      },
+      {
+        "ref": "jul_urban_night",
+        "hostRef": "adrian_host",
+        "venueRef": "urban_pickleball_club",
+        "sponsorRef": "joola",
+        "scoreFormatRef": "side_out",
+        "data": {
+          "title": "Night Owl Rally",
+          "description": "Hosted late-night competitive doubles.",
+          "starts_at": "2026-07-22T13:30:00.000Z",
+          "skill_level": "competitive",
+          "max_participants": 6,
+          "privacy": false,
+          "credit_cost": 4,
+          "auto_approve": false,
+          "refund_available": true,
+          "refund_window_hours": "24",
+          "session_type": "drills",
+          "session_duration": "90",
+          "status": "published",
+          "scoring_mode": "manual",
+          "score_status": "not_started",
+          "match_format": "doubles",
+          "winning_score": 15,
+          "number_of_games": "3",
+          "win_by": "2",
+          "venue": "Urban Pickleball Club",
+          "timeLabel": "Wed 22 Jul, 9:30 PM",
+          "skill": "Competitive",
+          "location": "Kuala Lumpur",
+          "hosted": true,
+          "credits": 4,
+          "remainingSlots": 3,
+          "timeOfDay": "Night",
+          "sponsor": "Joola"
         }
       }
     ]
@@ -1505,6 +3085,1702 @@
           "joined_at": "2026-06-10T01:00:00.000Z",
           "status_updated_at": "2026-06-10T01:05:00.000Z",
           "confirmed_at": "2026-06-10T01:05:00.000Z"
+        }
+      },
+      {
+        "ref": "p_open_bangsar_beginner_ken",
+        "sessionRef": "open_bangsar_beginner",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_open_bangsar_beginner_sara",
+        "sessionRef": "open_bangsar_beginner",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_open_bangsar_beginner_jon",
+        "sessionRef": "open_bangsar_beginner",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_dinkbox_singles_ladder_adri",
+        "sessionRef": "hosted_dinkbox_singles_ladder",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_dinkbox_singles_ladder_hann",
+        "sessionRef": "hosted_dinkbox_singles_ladder",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_dinkbox_singles_ladder_raym",
+        "sessionRef": "hosted_dinkbox_singles_ladder",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_maya",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "checked_in",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_alicia",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_raymond",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_isha",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_jon",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_pjcentral_league_hannah",
+        "sessionRef": "hosted_pjcentral_league",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "checked_in",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_urban_draft_maya",
+        "sessionRef": "hosted_urban_draft",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_subang_cancelled_adrian",
+        "sessionRef": "hosted_subang_cancelled",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_hosted_subang_cancelled_alicia",
+        "sessionRef": "hosted_subang_cancelled",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "cant_go",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "cancelled_at": "2026-06-15T02:00:00.000Z",
+          "status_note": "Session cancelled; credits refunded."
+        }
+      },
+      {
+        "ref": "p_hosted_subang_cancelled_raymond",
+        "sessionRef": "hosted_subang_cancelled",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "cant_go",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "cancelled_at": "2026-06-15T02:00:00.000Z",
+          "status_note": "Session cancelled; credits refunded."
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_social_ken",
+        "sessionRef": "jul_dinkkl_social",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_social_sara",
+        "sessionRef": "jul_dinkkl_social",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_social_jon",
+        "sessionRef": "jul_dinkkl_social",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_social_alicia",
+        "sessionRef": "jul_dinkkl_social",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_drills_maya",
+        "sessionRef": "jul_sphere_drills",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_drills_alicia",
+        "sessionRef": "jul_sphere_drills",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_drills_raymond",
+        "sessionRef": "jul_sphere_drills",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_drills_isha",
+        "sessionRef": "jul_sphere_drills",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_dupr_adrian",
+        "sessionRef": "jul_gravity_dupr",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_dupr_hannah",
+        "sessionRef": "jul_gravity_dupr",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_dupr_raymond",
+        "sessionRef": "jul_gravity_dupr",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_dupr_isha",
+        "sessionRef": "jul_gravity_dupr",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "waitlisted",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "waitlisted_at": "2026-06-15T02:00:00.000Z",
+          "waitlist_position": 1
+        }
+      },
+      {
+        "ref": "p_jul_genesis_league_maya",
+        "sessionRef": "jul_genesis_league",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_league_alicia",
+        "sessionRef": "jul_genesis_league",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_league_raymond",
+        "sessionRef": "jul_genesis_league",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_league_isha",
+        "sessionRef": "jul_genesis_league",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbros_social_alicia",
+        "sessionRef": "jul_dinkbros_social",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbros_social_raymond",
+        "sessionRef": "jul_dinkbros_social",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_class_maya",
+        "sessionRef": "jul_golden_class",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_class_ken",
+        "sessionRef": "jul_golden_class",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_class_sara",
+        "sessionRef": "jul_golden_class",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_singles_adrian",
+        "sessionRef": "jul_dynamic_singles",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_singles_hannah",
+        "sessionRef": "jul_dynamic_singles",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_singles_raymond",
+        "sessionRef": "jul_dynamic_singles",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_onehub_social_ken",
+        "sessionRef": "jul_onehub_social",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_onehub_social_sara",
+        "sessionRef": "jul_onehub_social",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_onehub_social_jon",
+        "sessionRef": "jul_onehub_social",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_drills_maya",
+        "sessionRef": "jul_karisma_drills",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_drills_alicia",
+        "sessionRef": "jul_karisma_drills",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_drills_raymond",
+        "sessionRef": "jul_karisma_drills",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_drills_isha",
+        "sessionRef": "jul_karisma_drills",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_dupr_adrian",
+        "sessionRef": "aug_masters_dupr",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_dupr_hannah",
+        "sessionRef": "aug_masters_dupr",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_dupr_raymond",
+        "sessionRef": "aug_masters_dupr",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_dupr_isha",
+        "sessionRef": "aug_masters_dupr",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "waitlisted",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "waitlisted_at": "2026-06-15T02:00:00.000Z",
+          "waitlist_position": 1
+        }
+      },
+      {
+        "ref": "p_aug_sunsuria_social_alicia",
+        "sessionRef": "aug_sunsuria_social",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_class_maya",
+        "sessionRef": "aug_wangsa_class",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_class_ken",
+        "sessionRef": "aug_wangsa_class",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_league_maya",
+        "sessionRef": "aug_ccdinks_league",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_league_alicia",
+        "sessionRef": "aug_ccdinks_league",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_league_raymond",
+        "sessionRef": "aug_ccdinks_league",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_league_isha",
+        "sessionRef": "aug_ccdinks_league",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_league_jon",
+        "sessionRef": "aug_ccdinks_league",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_paradise_drills_adrian",
+        "sessionRef": "aug_paradise_drills",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_paradise_drills_hannah",
+        "sessionRef": "aug_paradise_drills",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkin_social_ken",
+        "sessionRef": "aug_dinkin_social",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkin_social_sara",
+        "sessionRef": "aug_dinkin_social",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_singles_adrian",
+        "sessionRef": "aug_empire_singles",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_singles_hannah",
+        "sessionRef": "aug_empire_singles",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_singles_raymond",
+        "sessionRef": "aug_empire_singles",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_singles_isha",
+        "sessionRef": "aug_empire_singles",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_urbanspin_league_maya",
+        "sessionRef": "aug_urbanspin_league",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_urbanspin_league_alicia",
+        "sessionRef": "aug_urbanspin_league",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_urbanspin_league_raymond",
+        "sessionRef": "aug_urbanspin_league",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_evening_maya",
+        "sessionRef": "jul_dinkkl_evening",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_evening_alicia",
+        "sessionRef": "jul_dinkkl_evening",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_evening_raymond",
+        "sessionRef": "jul_dinkkl_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkkl_evening_isha",
+        "sessionRef": "jul_dinkkl_evening",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_morning_ken",
+        "sessionRef": "jul_sphere_morning",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_sphere_morning_sara",
+        "sessionRef": "jul_sphere_morning",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_afternoon_alicia",
+        "sessionRef": "jul_gravity_afternoon",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_afternoon_raymond",
+        "sessionRef": "jul_gravity_afternoon",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_afternoon_isha",
+        "sessionRef": "jul_gravity_afternoon",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_gravity_afternoon_jon",
+        "sessionRef": "jul_gravity_afternoon",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_morning_maya",
+        "sessionRef": "jul_genesis_morning",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_morning_ken",
+        "sessionRef": "jul_genesis_morning",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_genesis_morning_sara",
+        "sessionRef": "jul_genesis_morning",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbros_morning_adrian",
+        "sessionRef": "jul_dinkbros_morning",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbros_morning_hannah",
+        "sessionRef": "jul_dinkbros_morning",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbros_morning_raymond",
+        "sessionRef": "jul_dinkbros_morning",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_evening_adrian",
+        "sessionRef": "jul_golden_evening",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_evening_hannah",
+        "sessionRef": "jul_golden_evening",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_evening_raymond",
+        "sessionRef": "jul_golden_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_golden_evening_isha",
+        "sessionRef": "jul_golden_evening",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "waitlisted",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "waitlisted_at": "2026-06-15T02:00:00.000Z",
+          "waitlist_position": 1
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_evening_maya",
+        "sessionRef": "jul_dynamic_evening",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_evening_alicia",
+        "sessionRef": "jul_dynamic_evening",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_evening_raymond",
+        "sessionRef": "jul_dynamic_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dynamic_evening_isha",
+        "sessionRef": "jul_dynamic_evening",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_onehub_morning_ken",
+        "sessionRef": "jul_onehub_morning",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_afternoon_maya",
+        "sessionRef": "jul_karisma_afternoon",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_afternoon_alicia",
+        "sessionRef": "jul_karisma_afternoon",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_karisma_afternoon_raymond",
+        "sessionRef": "jul_karisma_afternoon",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkcentral_evening_maya",
+        "sessionRef": "aug_dinkcentral_evening",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkcentral_evening_alicia",
+        "sessionRef": "aug_dinkcentral_evening",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkcentral_evening_raymond",
+        "sessionRef": "aug_dinkcentral_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_dinkcentral_evening_isha",
+        "sessionRef": "aug_dinkcentral_evening",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_morning_maya",
+        "sessionRef": "aug_masters_morning",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_masters_morning_ken",
+        "sessionRef": "aug_masters_morning",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_sunsuria_morning_adrian",
+        "sessionRef": "aug_sunsuria_morning",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_sunsuria_morning_hannah",
+        "sessionRef": "aug_sunsuria_morning",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_evening_adrian",
+        "sessionRef": "aug_wangsa_evening",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_evening_hannah",
+        "sessionRef": "aug_wangsa_evening",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_evening_raymond",
+        "sessionRef": "aug_wangsa_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 5,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_wangsa_evening_isha",
+        "sessionRef": "aug_wangsa_evening",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "waitlisted",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "waitlisted_at": "2026-06-15T02:00:00.000Z",
+          "waitlist_position": 1
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_evening_alicia",
+        "sessionRef": "aug_ccdinks_evening",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_ccdinks_evening_raymond",
+        "sessionRef": "aug_ccdinks_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_paradise_morning_maya",
+        "sessionRef": "aug_paradise_morning",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_paradise_morning_alicia",
+        "sessionRef": "aug_paradise_morning",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_paradise_morning_raymond",
+        "sessionRef": "aug_paradise_morning",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 3,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_urbanspin_morning_maya",
+        "sessionRef": "aug_urbanspin_morning",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_urbanspin_morning_ken",
+        "sessionRef": "aug_urbanspin_morning",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_goodminton_evening_adrian",
+        "sessionRef": "aug_goodminton_evening",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_goodminton_evening_hannah",
+        "sessionRef": "aug_goodminton_evening",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_goodminton_evening_raymond",
+        "sessionRef": "aug_goodminton_evening",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_evening_ken",
+        "sessionRef": "aug_empire_evening",
+        "userRef": "ken_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_evening_sara",
+        "sessionRef": "aug_empire_evening",
+        "userRef": "sara_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_aug_empire_evening_jon",
+        "sessionRef": "aug_empire_evening",
+        "userRef": "jon_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 1,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbox_afternoon_maya",
+        "sessionRef": "jul_dinkbox_afternoon",
+        "userRef": "maya_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbox_afternoon_adrian",
+        "sessionRef": "jul_dinkbox_afternoon",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbox_afternoon_alicia",
+        "sessionRef": "jul_dinkbox_afternoon",
+        "userRef": "alicia_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_dinkbox_afternoon_isha",
+        "sessionRef": "jul_dinkbox_afternoon",
+        "userRef": "isha_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 2,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_urban_night_adrian",
+        "sessionRef": "jul_urban_night",
+        "userRef": "adrian_host",
+        "data": {
+          "role": "host",
+          "status": "confirmed",
+          "credits_charged": 0,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_urban_night_hannah",
+        "sessionRef": "jul_urban_night",
+        "userRef": "hannah_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
+        }
+      },
+      {
+        "ref": "p_jul_urban_night_raymond",
+        "sessionRef": "jul_urban_night",
+        "userRef": "raymond_player",
+        "data": {
+          "role": "player",
+          "status": "confirmed",
+          "credits_charged": 4,
+          "joined_at": "2026-06-15T02:00:00.000Z",
+          "confirmed_at": "2026-06-15T02:00:00.000Z",
+          "status_updated_at": "2026-06-15T02:00:00.000Z"
         }
       }
     ]
@@ -1783,7 +5059,7 @@
           "wins": 2,
           "losses": 0,
           "draws": 0,
-          "win_rate": 1.0,
+          "win_rate": 1,
           "last_game_at": "2026-06-14T12:05:00.000Z",
           "updated_at": "2026-06-14T12:10:00.000Z"
         }
@@ -1833,7 +5109,7 @@
         "penaltyRuleRef": "default_no_show_block",
         "created_by_user_ref": "nadia_admin",
         "data": {
-      "restriction_type": "join_block",
+          "restriction_type": "join_block",
           "status": "active",
           "starts_at": "2026-06-07T02:30:00.000Z",
           "ends_at": "2026-07-07T02:30:00.000Z",
@@ -1888,7 +5164,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -2,
-          "credits_delta_decimal": -2.0,
+          "credits_delta_decimal": -2,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1902,7 +5178,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -2,
-          "credits_delta_decimal": -2.0,
+          "credits_delta_decimal": -2,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1916,7 +5192,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1930,7 +5206,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1944,7 +5220,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1958,7 +5234,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -5,
-          "credits_delta_decimal": -5.0,
+          "credits_delta_decimal": -5,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1972,7 +5248,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -1986,7 +5262,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -2000,7 +5276,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": -4,
-          "credits_delta_decimal": -4.0,
+          "credits_delta_decimal": -4,
           "transaction_date": "2026-06-10T02:00:00.000Z",
           "remarks": "Demo session charge."
         }
@@ -2013,7 +5289,7 @@
           "amount": 0,
           "currency": "CREDITS",
           "credits_delta": 3,
-          "credits_delta_decimal": 3.0,
+          "credits_delta_decimal": 3,
           "transaction_date": "2026-06-11T00:00:00.000Z",
           "remarks": "reward_referral_qualified"
         }
