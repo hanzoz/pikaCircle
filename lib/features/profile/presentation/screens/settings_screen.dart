@@ -6,7 +6,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:pikacircle/app/router/routes.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:pikacircle/shared/widgets/placeholder_page.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -24,19 +23,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void initState() {
     super.initState();
     _packageInfoFuture = PackageInfo.fromPlatform();
-  }
-
-  Future<void> _openPlaceholder({
-    required String title,
-    required String message,
-    required IconData icon,
-  }) {
-    return Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) =>
-            PlaceholderPage(title: title, message: message, icon: icon),
-      ),
-    );
   }
 
   Future<void> _logOut() async {
@@ -140,14 +126,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                                               CupertinoIcons.person_alt_circle,
                                           title: 'Edit Profile',
                                           subtitle:
-                                              'Update your name, username, and avatar.',
-                                          onTap: () => _openPlaceholder(
-                                            title: 'Edit Profile',
-                                            message:
-                                                'Profile editing will be available here.',
-                                            icon: CupertinoIcons
-                                                .person_crop_circle,
-                                          ),
+                                              'Update your name, username, and more.',
+                                          onTap: () =>
+                                              context.push(Routes.editProfile),
                                         ),
                                         const Divider(
                                           height: 1,
@@ -159,28 +140,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                                           title: 'Preferences',
                                           subtitle:
                                               'Notification and app preferences.',
-                                          onTap: () => _openPlaceholder(
-                                            title: 'Preferences',
-                                            message:
-                                                'App preferences will live here.',
-                                            icon: CupertinoIcons.gear,
-                                          ),
-                                        ),
-                                        const Divider(
-                                          height: 1,
-                                          color: Color(0xFFEBEDF2),
-                                        ),
-                                        _SettingsMenuTile(
-                                          icon: CupertinoIcons.location,
-                                          title: 'Locations',
-                                          subtitle:
-                                              'Saved courts, venues, and nearby places.',
-                                          onTap: () => _openPlaceholder(
-                                            title: 'Locations',
-                                            message:
-                                                'Saved locations will be managed here.',
-                                            icon: CupertinoIcons.location_solid,
-                                          ),
+                                          onTap: () =>
+                                              context.push(Routes.preferences),
                                         ),
                                       ],
                                     ),

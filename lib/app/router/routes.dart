@@ -4,4 +4,6 @@ abstract final class Routes {
   /// login / forgot-password sub-steps), all driven by one screen.
   static const String onboarding = '/onboarding';
   static const String shell = '/';
+  static const String editProfile = '/edit-profile';
+  static const String preferences = '/preferences';
 }

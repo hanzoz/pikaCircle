@@ -6,6 +6,8 @@ import 'package:pikacircle/app/router/routes.dart';
 import 'package:pikacircle/features/auth/domain/entities/auth_state.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pikacircle/features/onboarding/presentation/screens/onboarding_flow_screen.dart';
+import 'package:pikacircle/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:pikacircle/features/profile/presentation/screens/preferences_screen.dart';
 import 'package:pikacircle/features/shell/presentation/screens/main_shell.dart';
 
 /// Bridges a Riverpod provider to [GoRouter.refreshListenable] so navigation
@@ -45,6 +47,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.shell,
         builder: (context, state) => const MainShell(),
+        routes: [
+          GoRoute(
+            path: 'edit-profile',
+            builder: (context, state) => const EditProfileScreen(),
+          ),
+          GoRoute(
+            path: 'preferences',
+            builder: (context, state) => const PreferencesScreen(),
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.onboarding,
