@@ -13,6 +13,7 @@ import 'package:pikacircle/features/profile/data/profile_cache_providers.dart';
 import 'package:pikacircle/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/app_workflow.dart';
+import 'package:pikacircle/features/profile/domain/entities/profile_edit_data.dart';
 import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 import 'package:pikacircle/features/profile/domain/repositories/profile_repository.dart';
 
@@ -184,6 +185,31 @@ class ProfileController extends AsyncNotifier<AccountProfile?> {
       },
     );
   }
+
+  /// Saves the full Edit Profile aggregate via the profile-upsert function.
+  ///
+  /// [payload] is the nested aggregate the function expects (snake_case
+  /// `profile`, `play_preferences`, `favourite_venues`, `sports_backgrounds`).
+  ///
+  /// Returns `null` on success. On success also invalidates
+  /// [profileEditDataProvider] (so the edit form re-reads fresh data) and
+  /// calls [reload] (so the AccountProfile Tier 1 fields refresh). On failure
+  /// returns the [Failure]. Returns an [UnauthorizedFailure] when there is no
+  /// signed-in user.
+  Future<Failure?> saveEditData(Map<String, Object?> payload) async {
+    final userId = ref.read(currentUserIdProvider);
+    if (userId == null) {
+      return const UnauthorizedFailure();
+    }
+
+    final result = await _repo.saveEditData(userId: userId, payload: payload);
+
+    return result.fold((failure) => failure, (_) async {
+      ref.invalidate(profileEditDataProvider);
+      await reload();
+      return null;
+    });
+  }
 }
 
 /// The app-wide profile controller.
@@ -201,3 +227,22 @@ final currentWorkflowProvider = Provider<AppWorkflow>(
       ref.watch(profileControllerProvider).value?.workflow ??
       AppWorkflow.player,
 );
+
+/// Loads the full [ProfileEditData] aggregate for the signed-in user.
+///
+/// Reads [currentUserIdProvider] and calls
+/// `ProfileRepository.loadEditData`. Throws the [Failure] on error (surfaced
+/// as an [AsyncError]) and throws an [UnauthorizedFailure] when signed out,
+/// mirroring the fold-and-throw pattern used elsewhere in this file.
+final profileEditDataProvider = FutureProvider.autoDispose<ProfileEditData>((
+  ref,
+) async {
+  final userId = ref.watch(currentUserIdProvider);
+  if (userId == null) {
+    throw const UnauthorizedFailure();
+  }
+
+  final repo = ref.watch(profileRepositoryProvider);
+  final result = await repo.loadEditData(userId);
+  return result.fold((failure) => throw failure, (data) => data);
+});

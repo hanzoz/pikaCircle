@@ -19,6 +19,13 @@ abstract final class TableIds {
   static const String venues = 'venues';
   static const String sponsors = 'sponsors';
   static const String announcements = 'announcements';
+  static const String sports = 'sports';
+  static const String playFormats = 'play_formats';
+
+  // Play preferences & backgrounds
+  static const String userPlayPreferences = 'user_play_preferences';
+  static const String userFavouriteVenues = 'user_favourite_venues';
+  static const String userSportsBackgrounds = 'user_sports_backgrounds';
 
   // Wallet / commerce
   static const String creditPacks = 'credit_packs';

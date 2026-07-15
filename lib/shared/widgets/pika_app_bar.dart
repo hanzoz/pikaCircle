@@ -12,7 +12,7 @@ import 'package:pikacircle/shared/widgets/profile_avatar.dart';
 /// - [PikaAppBarLeading.back] — chevron back button (e.g. profile page).
 /// - [PikaAppBarLeading.profile] — avatar/profile button (e.g. home page).
 ///
-/// The right side always shows a notification bell button.
+/// The right side can show settings and/or notification actions.
 /// Wrap in a [SafeArea] at the call site or set [safeArea] to true.
 class PikaAppBar extends StatelessWidget {
   const PikaAppBar({
@@ -27,6 +27,7 @@ class PikaAppBar extends StatelessWidget {
     this.onNotificationTap,
     this.onLeadingTap,
     this.trailing,
+    this.showNotificationButton = false,
     this.safeArea = true,
   });
 
@@ -64,6 +65,9 @@ class PikaAppBar extends StatelessWidget {
   /// When provided, this replaces the default settings/bell cluster.
   final Widget? trailing;
 
+  /// Whether to render the default notification bell button.
+  final bool showNotificationButton;
+
   /// Wraps the bar in a [SafeArea] (top only). Defaults to true.
   final bool safeArea;
 
@@ -100,11 +104,13 @@ class PikaAppBar extends StatelessWidget {
                       icon: CupertinoIcons.gear,
                       onTap: onSettingsTap,
                     ),
-                  if (onSettingsTap != null) const SizedBox(width: 10),
-                  PikaNavButton(
-                    icon: CupertinoIcons.bell,
-                    onTap: onNotificationTap,
-                  ),
+                  if (onSettingsTap != null && showNotificationButton)
+                    const SizedBox(width: 10),
+                  if (showNotificationButton)
+                    PikaNavButton(
+                      icon: CupertinoIcons.bell,
+                      onTap: onNotificationTap,
+                    ),
                 ],
               ],
             ),
@@ -173,7 +179,7 @@ class PikaLeadingButton extends StatelessWidget {
                 size: 20,
                 color: Color(0xFF1D2230),
               )
-              : ProfileAvatar(
+            : ProfileAvatar(
                 initials: initials,
                 avatarUrl: avatarUrl,
                 avatarFileId: avatarFileId,
@@ -223,4 +229,3 @@ class _GlassPill extends StatelessWidget {
     );
   }
 }
-

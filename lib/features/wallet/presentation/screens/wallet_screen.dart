@@ -53,7 +53,11 @@ class _WalletScreenState extends ConsumerState<WalletScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const PikaAppBar(leading: PikaAppBarLeading.back, initials: 'P'),
+            const PikaAppBar(
+              leading: PikaAppBarLeading.back,
+              initials: 'P',
+              showNotificationButton: true,
+            ),
             Expanded(
               child: Align(
                 alignment: Alignment.topCenter,

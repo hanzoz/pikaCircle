@@ -12,7 +12,7 @@ import 'package:pikacircle/features/profile/domain/entities/wallet.dart';
 abstract final class AccountProfileCache {
   /// The current cache schema version. Bump when the shape changes so older
   /// entries are rejected by [fromJson].
-  static const int _version = 3;
+  static const int _version = 4;
 
   /// Serializes [p] into a plain JSON-encodable map.
   static Map<String, dynamic> toJson(AccountProfile p) {
@@ -31,6 +31,14 @@ abstract final class AccountProfileCache {
         'job_title': user.jobTitle,
         'job_title_verified': user.jobTitleVerified,
         'linkedin_profile_url': user.linkedinProfileUrl,
+        'phone_number': user.phoneNumber,
+        'company': user.company,
+        'industry': user.industry,
+        'salary_range': user.salaryRange,
+        'location_label': user.locationLabel,
+        'location_city': user.locationCity,
+        'location_state': user.locationState,
+        'location_country': user.locationCountry,
         'profile_picture_file_id': user.profilePictureFileId,
         'profile_picture_url': user.profilePictureUrl,
         'membership_level_id': user.membershipLevelId,
@@ -70,6 +78,14 @@ abstract final class AccountProfileCache {
       jobTitle: _string(userJson['job_title']),
       jobTitleVerified: _bool(userJson['job_title_verified']),
       linkedinProfileUrl: _string(userJson['linkedin_profile_url']),
+      phoneNumber: _string(userJson['phone_number']),
+      company: _string(userJson['company']),
+      industry: _string(userJson['industry']),
+      salaryRange: _string(userJson['salary_range']),
+      locationLabel: _string(userJson['location_label']),
+      locationCity: _string(userJson['location_city']),
+      locationState: _string(userJson['location_state']),
+      locationCountry: _string(userJson['location_country']),
       profilePictureFileId: _string(userJson['profile_picture_file_id']),
       profilePictureUrl: _string(userJson['profile_picture_url']),
       membershipLevelId: _string(userJson['membership_level_id']),

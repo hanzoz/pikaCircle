@@ -1,5 +1,6 @@
 import 'package:pikacircle/core/result/result.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/profile_edit_data.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
 
@@ -36,4 +37,18 @@ abstract class ProfileRepository {
   /// Checks whether [username] is available via the profile-upsert function,
   /// returning the normalized form and (when unavailable) a reason.
   Future<Result<UsernameAvailability>> checkUsername(String username);
+
+  /// Loads the full [ProfileEditData] aggregate for [userId]: the user row
+  /// plus play preferences, favourite venues, sports backgrounds, and the
+  /// venue/sport/format catalog options for dropdowns.
+  Future<Result<ProfileEditData>> loadEditData(String userId);
+
+  /// Saves the Edit Profile aggregate via the profile-upsert function.
+  ///
+  /// [payload] is the nested aggregate the function expects (snake_case
+  /// `profile`, `play_preferences`, `favourite_venues`, `sports_backgrounds`).
+  Future<Result<void>> saveEditData({
+    required String userId,
+    required Map<String, Object?> payload,
+  });
 }

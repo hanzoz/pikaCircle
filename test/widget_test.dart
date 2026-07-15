@@ -11,6 +11,7 @@ import 'package:pikacircle/features/auth/domain/repositories/auth_repository.dar
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pikacircle/features/profile/data/profile_cache_providers.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
+import 'package:pikacircle/features/profile/domain/entities/profile_edit_data.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_profile.dart';
 import 'package:pikacircle/features/profile/domain/entities/user_role.dart';
 import 'package:pikacircle/features/profile/domain/entities/username_availability.dart';
@@ -85,6 +86,16 @@ class _FakeProfileRepository implements ProfileRepository {
   @override
   Future<Result<UsernameAvailability>> checkUsername(String username) async =>
       Right(UsernameAvailability(available: true, normalized: username));
+
+  @override
+  Future<Result<ProfileEditData>> loadEditData(String userId) async =>
+      Right(ProfileEditData(user: _profile.user));
+
+  @override
+  Future<Result<void>> saveEditData({
+    required String userId,
+    required Map<String, Object?> payload,
+  }) async => const Right(null);
 }
 
 void main() {

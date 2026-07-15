@@ -18,6 +18,14 @@ class UserProfile {
     this.jobTitle,
     this.jobTitleVerified = false,
     this.linkedinProfileUrl,
+    this.phoneNumber,
+    this.company,
+    this.industry,
+    this.salaryRange,
+    this.locationLabel,
+    this.locationCity,
+    this.locationState,
+    this.locationCountry,
     this.profilePictureFileId,
     this.profilePictureUrl,
     this.membershipLevelId,
@@ -36,6 +44,14 @@ class UserProfile {
   final String? jobTitle;
   final bool jobTitleVerified;
   final String? linkedinProfileUrl;
+  final String? phoneNumber;
+  final String? company;
+  final String? industry;
+  final String? salaryRange;
+  final String? locationLabel;
+  final String? locationCity;
+  final String? locationState;
+  final String? locationCountry;
   final String? profilePictureFileId;
   final String? profilePictureUrl;
   final String? membershipLevelId;
@@ -66,6 +82,14 @@ class UserProfile {
         other.jobTitle == jobTitle &&
         other.jobTitleVerified == jobTitleVerified &&
         other.linkedinProfileUrl == linkedinProfileUrl &&
+        other.phoneNumber == phoneNumber &&
+        other.company == company &&
+        other.industry == industry &&
+        other.salaryRange == salaryRange &&
+        other.locationLabel == locationLabel &&
+        other.locationCity == locationCity &&
+        other.locationState == locationState &&
+        other.locationCountry == locationCountry &&
         other.profilePictureFileId == profilePictureFileId &&
         other.profilePictureUrl == profilePictureUrl &&
         other.membershipLevelId == membershipLevelId &&
@@ -74,7 +98,7 @@ class UserProfile {
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     id,
     name,
     email,
@@ -85,12 +109,20 @@ class UserProfile {
     jobTitle,
     jobTitleVerified,
     linkedinProfileUrl,
+    phoneNumber,
+    company,
+    industry,
+    salaryRange,
+    locationLabel,
+    locationCity,
+    locationState,
+    locationCountry,
     profilePictureFileId,
     profilePictureUrl,
     membershipLevelId,
     membershipLevelName,
     Object.hashAll(roles),
-  );
+  ]);
 
   @override
   String toString() =>

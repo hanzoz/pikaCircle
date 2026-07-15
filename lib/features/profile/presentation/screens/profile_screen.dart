@@ -237,6 +237,7 @@ class _ProfileDetails extends StatelessWidget {
           leading: PikaAppBarLeading.back,
           initials: _initialsFromName(displayName),
           onSettingsTap: () => _openSettings(context),
+          showNotificationButton: true,
         ),
         Expanded(
           child: Center(

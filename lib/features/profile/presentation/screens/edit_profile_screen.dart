@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:pikacircle/features/profile/domain/entities/profile_edit_data.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 
@@ -13,6 +14,48 @@ class EditProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
+  // --- Enum label <-> wire mappings (display labels, send wire values) ---
+  static const Map<String, String> _genderLabelToWire = {
+    'Male': 'male',
+    'Female': 'female',
+    'Non-binary': 'non_binary',
+  };
+
+  static const Map<String, String> _salaryLabelToWire = {
+    'Below 3k': 'below_3k',
+    '3k – 6k': '3k_6k',
+    '6k – 10k': '6k_10k',
+    '10k – 20k': '10k_20k',
+    '20k+': '20k_plus',
+    'Prefer not to say': 'prefer_not_to_say',
+  };
+
+  // Preferred days: display Monday..Sunday, wire monday..sunday.
+  static const List<String> _dayLabels = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+
+  // Preferred time slots: display Morning.., wire morning..
+  static const List<String> _timeLabels = [
+    'Morning',
+    'Afternoon',
+    'Evening',
+    'Night',
+  ];
+
+  // Sport level: display Beginner.., wire beginner..
+  static const List<String> _levelLabels = [
+    'Beginner',
+    'Intermediate',
+    'Competitive',
+  ];
+
   late final TextEditingController _nameController;
   late final TextEditingController _usernameController;
   late final TextEditingController _bioController;
@@ -21,21 +64,23 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   late final TextEditingController _linkedInController;
   late final TextEditingController _companyController;
   late final TextEditingController _industryController;
+  late final TextEditingController _locationController;
 
   DateTime? _dateOfBirth;
-  String? _selectedGender;
-  String? _selectedLocation;
-  String? _selectedFavoriteVenue;
-  Set<String> _selectedPlayDays = {};
-  String? _selectedPlayTime;
-  String? _selectedFormat;
-  String? _selectedSalaryRange;
-  Map<String, String> _sportSkills = {}; // {sport: skillLevel}
+  String? _selectedGender; // wire value
+  String? _selectedSalaryRange; // wire value
+
+  final Set<String> _selectedPlayDays = {}; // wire values monday..sunday
+  final Set<String> _selectedPlayTimes = {}; // wire values morning..night
+  final Set<String> _selectedFormatIds = {}; // play_format ids
+  final List<String> _selectedVenueIds = []; // ordered venue ids
+  final Map<String, String> _sportLevels = {}; // {sportId: wire level}
 
   bool _checkingUsername = false;
   bool _saving = false;
   String? _usernameError;
   String? _lastValidatedUsername;
+  bool _populated = false;
 
   @override
   void initState() {
@@ -48,7 +93,58 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     _linkedInController = TextEditingController();
     _companyController = TextEditingController();
     _industryController = TextEditingController();
+    _locationController = TextEditingController();
     _usernameController.addListener(_handleUsernameChanged);
+  }
+
+  /// Populates all controllers and selection state from the loaded
+  /// [ProfileEditData]. Runs once, guarded by [_populated].
+  void _populateFromEditData(ProfileEditData data) {
+    _populated = true;
+    final user = data.user;
+
+    _nameController.text = user.name;
+    _usernameController.text = user.username ?? '';
+    _bioController.text = user.bio ?? '';
+    _jobTitleController.text = user.jobTitle ?? '';
+    _linkedInController.text = user.linkedinProfileUrl ?? '';
+    _phoneController.text = user.phoneNumber ?? '';
+    _companyController.text = user.company ?? '';
+    _industryController.text = user.industry ?? '';
+    _locationController.text = user.locationLabel ?? '';
+
+    if (user.dateOfBirth != null) {
+      _dateOfBirth = DateTime.tryParse(user.dateOfBirth!);
+    }
+    _selectedGender = user.gender;
+    _selectedSalaryRange = user.salaryRange;
+
+    // Set last validated username to avoid re-checking unchanged value.
+    if (user.username != null && user.username!.isNotEmpty) {
+      _lastValidatedUsername = user.username;
+    }
+
+    // Play preferences.
+    final prefs = data.playPreferences;
+    if (prefs != null) {
+      _selectedPlayDays.addAll(prefs.preferredDays);
+      _selectedPlayTimes.addAll(prefs.preferredTimeSlots);
+      _selectedFormatIds.addAll(prefs.preferredFormatIds);
+    }
+
+    // Favourite venues, ordered by sort_order.
+    final favourites = [...data.favouriteVenues]
+      ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+    _selectedVenueIds
+      ..clear()
+      ..addAll(favourites.map((f) => f.venueId));
+
+    // Sports backgrounds -> {sportId: level} for those with a level set.
+    for (final bg in data.sportsBackgrounds) {
+      if (bg.level != null && bg.level!.isNotEmpty) {
+        _sportLevels[bg.sportId] = bg.level!;
+      }
+    }
   }
 
   @override
@@ -62,6 +158,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     _linkedInController.dispose();
     _companyController.dispose();
     _industryController.dispose();
+    _locationController.dispose();
     super.dispose();
   }
 
@@ -156,6 +253,19 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     );
   }
 
+  String? _trimToNull(TextEditingController controller) {
+    final text = controller.text.trim();
+    return text.isEmpty ? null : text;
+  }
+
+  String? _formattedDateOfBirth() {
+    final dob = _dateOfBirth;
+    if (dob == null) return null;
+    return '${dob.year.toString().padLeft(4, '0')}-'
+        '${dob.month.toString().padLeft(2, '0')}-'
+        '${dob.day.toString().padLeft(2, '0')}';
+  }
+
   Future<void> _onSavePressed() async {
     if (_saving || _checkingUsername) return;
 
@@ -168,58 +278,172 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       return;
     }
 
+    final payload = <String, Object?>{
+      'profile': <String, Object?>{
+        'name': _nameController.text.trim(),
+        'username': _normalizeUsername(_usernameController.text),
+        'bio': _trimToNull(_bioController),
+        'job_title': _trimToNull(_jobTitleController),
+        'linkedin_profile_url': _trimToNull(_linkedInController),
+        'gender': _selectedGender,
+        'date_of_birth': _formattedDateOfBirth(),
+        'phone_number': _trimToNull(_phoneController),
+        'company': _trimToNull(_companyController),
+        'industry': _trimToNull(_industryController),
+        'salary_range': _selectedSalaryRange,
+        'location_label': _trimToNull(_locationController),
+      },
+      'play_preferences': <String, Object?>{
+        'preferred_time_slots': _selectedPlayTimes.toList(),
+        'preferred_days': _selectedPlayDays.toList(),
+        'preferred_format_ids': _selectedFormatIds.toList(),
+        'notes': null,
+      },
+      'favourite_venues': <Map<String, Object?>>[
+        for (var i = 0; i < _selectedVenueIds.length; i++)
+          {'venue_id': _selectedVenueIds[i], 'sort_order': i},
+      ],
+      'sports_backgrounds': <Map<String, Object?>>[
+        for (final entry in _sportLevels.entries)
+          {
+            'sport_id': entry.key,
+            'level': entry.value,
+            'is_primary': false,
+            'years_played': null,
+            'notes': null,
+          },
+      ],
+    };
+
+    final failure = await ref
+        .read(profileControllerProvider.notifier)
+        .saveEditData(payload);
+
+    if (!mounted) return;
+
+    if (failure != null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(failure.message)));
+      setState(() => _saving = false);
+      return;
+    }
+
     setState(() => _saving = false);
     Navigator.pop(context);
   }
 
   void _selectDate() async {
+    var pendingDate = _dateOfBirth ?? DateTime.now();
     await showCupertinoModalPopup(
       context: context,
       builder: (context) => Container(
-        height: 250,
+        height: 300,
         color: CupertinoColors.systemBackground,
-        child: CupertinoDatePicker(
-          initialDateTime: _dateOfBirth ?? DateTime.now(),
-          minimumYear: 1950,
-          maximumYear: DateTime.now().year,
-          mode: CupertinoDatePickerMode.date,
-          onDateTimeChanged: (DateTime picked) {
-            setState(() => _dateOfBirth = picked);
-          },
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () {
+                      setState(() => _dateOfBirth = pendingDate);
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Confirm'),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            Expanded(
+              child: CupertinoDatePicker(
+                initialDateTime: pendingDate,
+                minimumYear: 1950,
+                maximumYear: DateTime.now().year,
+                mode: CupertinoDatePickerMode.date,
+                onDateTimeChanged: (DateTime picked) {
+                  pendingDate = picked;
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  void _togglePlayDay(String day) {
+  void _toggleInSet(Set<String> set, String value) {
     setState(() {
-      if (_selectedPlayDays.contains(day)) {
-        _selectedPlayDays.remove(day);
+      if (set.contains(value)) {
+        set.remove(value);
       } else {
-        _selectedPlayDays.add(day);
+        set.add(value);
       }
     });
   }
 
-  void _showSportSkillDialog(String sport) {
-    final levels = ['Beginner', 'Intermediate', 'Advanced'];
+  void _showSportLevelPicker(String sportId) {
+    final currentWire = _sportLevels[sportId];
+    final initialIndex = currentWire == null
+        ? 0
+        : _levelLabels.indexWhere((l) => l.toLowerCase() == currentWire);
+    var pendingIndex = initialIndex < 0 ? 0 : initialIndex;
     showCupertinoModalPopup(
       context: context,
       builder: (context) => Container(
-        height: 250,
+        height: 300,
         color: CupertinoColors.systemBackground,
-        child: CupertinoPicker(
-          itemExtent: 32,
-          scrollController: FixedExtentScrollController(
-            initialItem: _sportSkills[sport] != null
-                ? levels.indexOf(_sportSkills[sport]!)
-                : 0,
-          ),
-          onSelectedItemChanged: (index) {
-            setState(() => _sportSkills[sport] = levels[index]);
-            Navigator.pop(context);
-          },
-          children: levels.map((level) => Center(child: Text(level))).toList(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () {
+                      setState(
+                        () => _sportLevels[sportId] = _levelLabels[pendingIndex]
+                            .toLowerCase(),
+                      );
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Confirm'),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1, color: Color(0xFFF0F1F5)),
+            Expanded(
+              child: CupertinoPicker(
+                itemExtent: 32,
+                scrollController: FixedExtentScrollController(
+                  initialItem: pendingIndex,
+                ),
+                onSelectedItemChanged: (index) {
+                  pendingIndex = index;
+                },
+                children: _levelLabels
+                    .map((level) => Center(child: Text(level)))
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -227,8 +451,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
+    final editDataAsync = ref.watch(profileEditDataProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9FA),
@@ -237,294 +460,403 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         child: const PikaAppBar(leading: PikaAppBarLeading.back, initials: 'P'),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Edit Profile',
-                style: textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF1D2230),
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Keep your profile up to date',
-                style: textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF6F7482),
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Basic Information Section
-              _SectionCard(
-                title: 'Basic Information',
-                children: [
-                  _buildTextField('Name', _nameController),
-                  const SizedBox(height: 12),
-                  _buildTextField(
-                    'Username',
-                    _usernameController,
-                    onEditingComplete: () =>
-                        _validateUsername(showFeedback: false),
-                    errorText: _usernameError,
-                    suffix: _checkingUsername
-                        ? const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8),
-                            child: CupertinoActivityIndicator(),
-                          )
-                        : null,
-                  ),
-                  const SizedBox(height: 12),
-                  _buildDateField('Date of Birth', _dateOfBirth, _selectDate),
-                  const SizedBox(height: 12),
-                  _buildDropdown(
-                    'Gender',
-                    _selectedGender,
-                    ['Male', 'Female', 'Other', 'Prefer not to say'],
-                    (value) => setState(() => _selectedGender = value),
-                  ),
-                  const SizedBox(height: 12),
-                  _buildTextField('Phone Number', _phoneController),
-                  const SizedBox(height: 12),
-                  _buildTextField(
-                    'Bio',
-                    _bioController,
-                    maxLines: 4,
-                    hint: 'Tell us about yourself',
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              // Location & Preferences Section
-              _SectionCard(
-                title: 'Location & Venues',
-                children: [
-                  _buildDropdown(
-                    'Location',
-                    _selectedLocation,
-                    ['San Francisco, CA', 'New York, NY', 'Los Angeles, CA'],
-                    (value) => setState(() => _selectedLocation = value),
-                  ),
-                  const SizedBox(height: 12),
-                  _buildDropdown(
-                    'Favorite Venue',
-                    _selectedFavoriteVenue,
-                    ['Court 1', 'Court 2', 'Court 3'],
-                    (value) => setState(() => _selectedFavoriteVenue = value),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              // Play Preferences Section
-              _SectionCard(
-                title: 'Play Preferences',
-                children: [
-                  Text(
-                    'Preferred Days',
-                    style: textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF1D2230),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final day in [
-                        'Monday',
-                        'Tuesday',
-                        'Wednesday',
-                        'Thursday',
-                        'Friday',
-                        'Saturday',
-                        'Sunday',
-                      ])
-                        FilterChip(
-                          label: Text(day),
-                          selected: _selectedPlayDays.contains(day),
-                          onSelected: (_) => _togglePlayDay(day),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Preferred Time',
-                    style: textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF1D2230),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final time in ['Morning', 'Afternoon', 'Night'])
-                        FilterChip(
-                          label: Text(time),
-                          selected: _selectedPlayTime == time,
-                          onSelected: (_) =>
-                              setState(() => _selectedPlayTime = time),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Preferred Format',
-                    style: textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF1D2230),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final format in [
-                        'Singles',
-                        'Doubles',
-                        'Mixed Doubles',
-                      ])
-                        FilterChip(
-                          label: Text(format),
-                          selected: _selectedFormat == format,
-                          onSelected: (_) =>
-                              setState(() => _selectedFormat = format),
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              // Professional Information Section
-              _SectionCard(
-                title: 'Professional Information',
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildTextField(
-                          'Job Title',
-                          _jobTitleController,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Tooltip(
-                          message: 'LinkedIn verified badge',
-                          child: const Icon(
-                            CupertinoIcons.checkmark_seal_fill,
-                            color: Color(0xFF0A66C2),
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  _buildTextField('LinkedIn Profile', _linkedInController),
-                  const SizedBox(height: 12),
-                  _buildTextField('Company', _companyController),
-                  const SizedBox(height: 12),
-                  _buildTextField('Industry', _industryController),
-                  const SizedBox(height: 12),
-                  _buildDropdown(
-                    'Salary Range',
-                    _selectedSalaryRange,
-                    [
-                      '\$0 - \$50k',
-                      '\$50k - \$100k',
-                      '\$100k - \$150k',
-                      '\$150k+',
-                      'Prefer not to say',
-                    ],
-                    (value) => setState(() => _selectedSalaryRange = value),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              // Sports Background Section
-              _SectionCard(
-                title: 'Sports Background',
-                children: [
-                  for (final sport in [
-                    'Pickleball',
-                    'Tennis',
-                    'Badminton',
-                    'Table Tennis',
-                    'Squash',
-                    'Padel',
-                  ])
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Material(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(12),
-                          onTap: () => _showSportSkillDialog(sport),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 12,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  sport,
-                                  style: textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  _sportSkills[sport] ?? 'Select level',
-                                  style: textTheme.bodyMedium?.copyWith(
-                                    color: _sportSkills[sport] != null
-                                        ? const Color(0xFF1D2230)
-                                        : const Color(0xFF6F7482),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              // Save Button
-              SizedBox(
-                width: double.infinity,
-                child: CupertinoButton(
-                  onPressed: _saving || _checkingUsername
-                      ? null
-                      : _onSavePressed,
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(12),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  child: _saving
-                      ? const CupertinoActivityIndicator(color: Colors.white)
-                      : const Text(
-                          'Save Changes',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                ),
-              ),
-              const SizedBox(height: 32),
-            ],
-          ),
+        child: editDataAsync.when(
+          loading: () => const Center(child: CupertinoActivityIndicator()),
+          error: (error, _) => _buildErrorState(context),
+          data: (data) {
+            if (!_populated) {
+              _populateFromEditData(data);
+            }
+            return _buildForm(context, data);
+          },
         ),
       ),
+    );
+  }
+
+  Widget _buildErrorState(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              CupertinoIcons.exclamationmark_triangle,
+              size: 40,
+              color: Color(0xFFC63A3A),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Could not load your profile',
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF1D2230),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Please check your connection and try again.',
+              textAlign: TextAlign.center,
+              style: textTheme.bodyMedium?.copyWith(
+                color: const Color(0xFF6F7482),
+              ),
+            ),
+            const SizedBox(height: 16),
+            CupertinoButton(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(12),
+              onPressed: () => ref.invalidate(profileEditDataProvider),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildForm(BuildContext context, ProfileEditData data) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Edit Profile',
+            style: textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.w800,
+              color: const Color(0xFF1D2230),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Keep your profile up to date',
+            style: textTheme.bodyMedium?.copyWith(
+              color: const Color(0xFF6F7482),
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Basic Information Section
+          _SectionCard(
+            title: 'Basic Information',
+            children: [
+              _buildTextField('Name', _nameController),
+              const SizedBox(height: 12),
+              _buildTextField(
+                'Username',
+                _usernameController,
+                onEditingComplete: () => _validateUsername(showFeedback: false),
+                errorText: _usernameError,
+                suffix: _checkingUsername
+                    ? const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: CupertinoActivityIndicator(),
+                      )
+                    : null,
+              ),
+              const SizedBox(height: 12),
+              _buildDateField('Date of Birth', _dateOfBirth, _selectDate),
+              const SizedBox(height: 12),
+              _buildDropdown(
+                'Gender',
+                _labelForWire(_genderLabelToWire, _selectedGender),
+                _genderLabelToWire.keys.toList(),
+                (label) => setState(
+                  () => _selectedGender = label == null
+                      ? null
+                      : _genderLabelToWire[label],
+                ),
+              ),
+              const SizedBox(height: 12),
+              _buildTextField('Phone Number', _phoneController),
+              const SizedBox(height: 12),
+              _buildTextField(
+                'Bio',
+                _bioController,
+                maxLines: 4,
+                hint: 'Tell us about yourself',
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Location & Venues Section
+          _SectionCard(
+            title: 'Location & Venues',
+            children: [
+              _buildTextField(
+                'Location',
+                _locationController,
+                hint: 'e.g. San Francisco, CA',
+              ),
+              const SizedBox(height: 12),
+              if (data.venueOptions.isEmpty)
+                Text(
+                  'No venues available',
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF6F7482),
+                  ),
+                )
+              else
+                _buildDropdown(
+                  'Favorite Venue',
+                  _venueLabelFor(
+                    _selectedVenueIds.isEmpty ? null : _selectedVenueIds.first,
+                    data,
+                  ),
+                  [for (final venue in data.venueOptions) venue.name],
+                  (venueName) {
+                    final selectedVenueId = _venueIdFor(venueName, data);
+                    setState(() {
+                      _selectedVenueIds
+                        ..clear()
+                        ..addAll(
+                          selectedVenueId == null ? [] : [selectedVenueId],
+                        );
+                    });
+                  },
+                ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Play Preferences Section
+          _SectionCard(
+            title: 'Play Preferences',
+            children: [
+              _buildChipGroup(
+                context,
+                title: 'Preferred Days',
+                options: [
+                  for (final label in _dayLabels)
+                    _ChipOption(id: label.toLowerCase(), label: label),
+                ],
+                isSelected: _selectedPlayDays.contains,
+                onToggle: (wire) => _toggleInSet(_selectedPlayDays, wire),
+              ),
+              const SizedBox(height: 12),
+              _buildChipGroup(
+                context,
+                title: 'Preferred Time',
+                options: [
+                  for (final label in _timeLabels)
+                    _ChipOption(id: label.toLowerCase(), label: label),
+                ],
+                isSelected: _selectedPlayTimes.contains,
+                onToggle: (wire) => _toggleInSet(_selectedPlayTimes, wire),
+              ),
+              const SizedBox(height: 12),
+              _buildChipGroup(
+                context,
+                title: 'Preferred Format',
+                options: [
+                  for (final format in data.formatOptions)
+                    _ChipOption(id: format.id, label: format.displayName),
+                ],
+                isSelected: (id) => _selectedFormatIds.contains(id),
+                onToggle: (id) => _toggleInSet(_selectedFormatIds, id),
+                emptyText: 'No formats available',
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Professional Information Section
+          _SectionCard(
+            title: 'Professional Information',
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildTextField('Job Title', _jobTitleController),
+                  ),
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Tooltip(
+                      message: 'LinkedIn verified badge',
+                      child: const Icon(
+                        CupertinoIcons.checkmark_seal_fill,
+                        color: Color(0xFF0A66C2),
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              _buildTextField('LinkedIn Profile', _linkedInController),
+              const SizedBox(height: 12),
+              _buildTextField('Company', _companyController),
+              const SizedBox(height: 12),
+              _buildTextField('Industry', _industryController),
+              const SizedBox(height: 12),
+              _buildDropdown(
+                'Salary Range',
+                _labelForWire(_salaryLabelToWire, _selectedSalaryRange),
+                _salaryLabelToWire.keys.toList(),
+                (label) => setState(
+                  () => _selectedSalaryRange = label == null
+                      ? null
+                      : _salaryLabelToWire[label],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Sports Background Section
+          _SectionCard(
+            title: 'Sports Background',
+            children: [
+              if (data.sportOptions.isEmpty)
+                Text(
+                  'No sports available',
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF6F7482),
+                  ),
+                ),
+              for (final sport in data.sportOptions)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Material(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => _showSportLevelPicker(sport.id),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              sport.displayName,
+                              style: textTheme.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              _levelLabelFor(_sportLevels[sport.id]) ??
+                                  'Select level',
+                              style: textTheme.bodyMedium?.copyWith(
+                                color: _sportLevels[sport.id] != null
+                                    ? const Color(0xFF1D2230)
+                                    : const Color(0xFF6F7482),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Save Button
+          SizedBox(
+            width: double.infinity,
+            child: CupertinoButton(
+              onPressed: _saving || _checkingUsername ? null : _onSavePressed,
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(12),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: _saving
+                  ? const CupertinoActivityIndicator(color: Colors.white)
+                  : const Text(
+                      'Save Changes',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  /// Reverse-maps a stored [wire] value to its display label using [labelToWire].
+  String? _labelForWire(Map<String, String> labelToWire, String? wire) {
+    if (wire == null) return null;
+    for (final entry in labelToWire.entries) {
+      if (entry.value == wire) return entry.key;
+    }
+    return null;
+  }
+
+  /// Maps a wire level (beginner/intermediate/competitive) to its display label.
+  String? _levelLabelFor(String? wire) {
+    if (wire == null) return null;
+    for (final label in _levelLabels) {
+      if (label.toLowerCase() == wire) return label;
+    }
+    return null;
+  }
+
+  String? _venueLabelFor(String? venueId, ProfileEditData data) {
+    if (venueId == null) return null;
+    for (final venue in data.venueOptions) {
+      if (venue.id == venueId) return venue.name;
+    }
+    return null;
+  }
+
+  String? _venueIdFor(String? venueName, ProfileEditData data) {
+    if (venueName == null) return null;
+    for (final venue in data.venueOptions) {
+      if (venue.name == venueName) return venue.id;
+    }
+    return null;
+  }
+
+  Widget _buildChipGroup(
+    BuildContext context, {
+    required String title,
+    required List<_ChipOption> options,
+    required bool Function(String id) isSelected,
+    required void Function(String id) onToggle,
+    String? emptyText,
+  }) {
+    final textTheme = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF1D2230),
+          ),
+        ),
+        const SizedBox(height: 8),
+        if (options.isEmpty && emptyText != null)
+          Text(
+            emptyText,
+            style: textTheme.bodyMedium?.copyWith(
+              color: const Color(0xFF6F7482),
+            ),
+          )
+        else
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final option in options)
+                FilterChip(
+                  label: Text(option.label),
+                  selected: isSelected(option.id),
+                  onSelected: (_) => onToggle(option.id),
+                ),
+            ],
+          ),
+      ],
     );
   }
 
@@ -608,7 +940,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               children: [
                 Text(
                   selectedDate != null
-                      ? '${selectedDate.month}/${selectedDate.day}/${selectedDate.year}'
+                      ? _formatDateAsDayMonthYear(selectedDate)
                       : 'Select date',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
@@ -619,6 +951,26 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         ),
       ],
     );
+  }
+
+  String _formatDateAsDayMonthYear(DateTime date) {
+    const monthAbbreviations = <String>[
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    final day = date.day.toString().padLeft(2, '0');
+    final month = monthAbbreviations[date.month - 1];
+    return '$day $month ${date.year}';
   }
 
   Widget _buildDropdown(
@@ -672,29 +1024,70 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     required String? selectedValue,
     required Function(String?) onChanged,
   }) {
+    if (options.isEmpty) return;
+
+    final initialIndex = selectedValue != null
+        ? options.indexOf(selectedValue)
+        : 0;
+    var pendingIndex = initialIndex < 0 ? 0 : initialIndex;
+
     showCupertinoModalPopup(
       context: context,
       builder: (context) => Container(
-        height: 250,
+        height: 300,
         color: CupertinoColors.systemBackground,
-        child: CupertinoPicker(
-          itemExtent: 32,
-          scrollController: FixedExtentScrollController(
-            initialItem: selectedValue != null
-                ? options.indexOf(selectedValue)
-                : 0,
-          ),
-          onSelectedItemChanged: (index) {
-            onChanged(options[index]);
-            Navigator.pop(context);
-          },
-          children: options
-              .map((option) => Center(child: Text(option)))
-              .toList(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    onPressed: () {
+                      onChanged(options[pendingIndex]);
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Confirm'),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1, color: Color(0xFFF0F1F5)),
+            Expanded(
+              child: CupertinoPicker(
+                itemExtent: 32,
+                scrollController: FixedExtentScrollController(
+                  initialItem: pendingIndex,
+                ),
+                onSelectedItemChanged: (index) {
+                  pendingIndex = index;
+                },
+                children: options
+                    .map((option) => Center(child: Text(option)))
+                    .toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+/// A selectable chip option with a stable [id] (wire value or entity id) and a
+/// human-readable [label].
+class _ChipOption {
+  const _ChipOption({required this.id, required this.label});
+
+  final String id;
+  final String label;
 }
 
 class _SectionCard extends StatelessWidget {

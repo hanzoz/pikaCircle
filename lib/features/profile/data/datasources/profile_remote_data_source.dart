@@ -152,6 +152,108 @@ class ProfileRemoteDataSource {
         .toString();
   }
 
+  /// Fetches the caller's `user_play_preferences` row, or `null` when it does
+  /// not exist yet. Tries a direct [TablesDB.getRow] by row id first (the
+  /// preferences row id typically matches the user id), and on a 404 falls
+  /// back to a `listRows` filtered by `user_id`. Rethrows other Appwrite
+  /// errors.
+  Future<models.Row?> getPlayPreferences(String userId) async {
+    try {
+      return await _tables.getRow(
+        databaseId: _config.databaseId,
+        tableId: TableIds.userPlayPreferences,
+        rowId: userId,
+      );
+    } on AppwriteException catch (e) {
+      if (e.code != 404) rethrow;
+    }
+
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.userPlayPreferences,
+      queries: [Query.equal('user_id', userId), Query.limit(1)],
+    );
+    return list.rows.isEmpty ? null : list.rows.first;
+  }
+
+  /// Lists the caller's `user_favourite_venues` rows.
+  Future<List<models.Row>> listFavouriteVenues(String userId) async {
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.userFavouriteVenues,
+      queries: [Query.equal('user_id', userId), Query.limit(200)],
+    );
+    return list.rows;
+  }
+
+  /// Lists the caller's `user_sports_backgrounds` rows.
+  Future<List<models.Row>> listSportsBackgrounds(String userId) async {
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.userSportsBackgrounds,
+      queries: [Query.equal('user_id', userId), Query.limit(200)],
+    );
+    return list.rows;
+  }
+
+  /// Reads the `venues` catalog for dropdown options.
+  Future<List<models.Row>> listVenues() async {
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.venues,
+      queries: [Query.limit(200)],
+    );
+    return list.rows;
+  }
+
+  /// Reads the `sports` catalog for dropdown options.
+  Future<List<models.Row>> listSports() async {
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.sports,
+      queries: [Query.limit(200)],
+    );
+    return list.rows;
+  }
+
+  /// Reads the `play_formats` catalog for dropdown options.
+  Future<List<models.Row>> listPlayFormats() async {
+    final list = await _tables.listRows(
+      databaseId: _config.databaseId,
+      tableId: TableIds.playFormats,
+      queries: [Query.limit(200)],
+    );
+    return list.rows;
+  }
+
+  /// Calls the `profile-upsert` function with a nested aggregate [payload]
+  /// covering the user's profile fields plus play preferences, favourite
+  /// venues, and sports backgrounds. POSTs the JSON payload; the caller's user
+  /// id is injected server-side via the `x-appwrite-user-id` header.
+  ///
+  /// Returns the decoded success map. Throws an [AppwriteException] carrying
+  /// the function's `error` message and status code when the response status
+  /// is >= 400.
+  Future<Map<String, dynamic>> upsertProfileAggregate(
+    Map<String, Object?> payload,
+  ) async {
+    final execution = await _functions.createExecution(
+      functionId: _config.profileFunctionId,
+      body: jsonEncode(payload),
+      method: ExecutionMethod.pOST,
+      headers: const {'content-type': 'application/json'},
+    );
+
+    final body = _decodeBody(execution.responseBody);
+
+    if (execution.responseStatusCode >= 400) {
+      final message = body['error']?.toString() ?? 'Profile update failed';
+      throw AppwriteException(message, execution.responseStatusCode);
+    }
+
+    return body;
+  }
+
   /// Decodes the function response body into a JSON map, tolerating an empty
   /// or non-object body.
   Map<String, dynamic> _decodeBody(String responseBody) {
