@@ -16,6 +16,7 @@ class SessionAvatarList extends StatelessWidget {
     this.avatarFileIds,
     this.avatarSize = 100,
     this.gap = 12,
+    this.overlap,
     this.maxVisible,
     this.scrollable = true,
     this.wrap = false,
@@ -28,6 +29,7 @@ class SessionAvatarList extends StatelessWidget {
   final List<String?>? avatarFileIds;
   final double avatarSize;
   final double gap;
+  final double? overlap;
   final int? maxVisible;
   final bool scrollable;
   final bool wrap;
@@ -67,6 +69,15 @@ class SessionAvatarList extends StatelessWidget {
         _OverflowSessionAvatar(count: overflowCount, size: avatarSize),
     ];
 
+    final stackOverlap = overlap;
+    if (stackOverlap != null && stackOverlap > 0) {
+      return _StackedSessionAvatars(
+        children: children,
+        size: avatarSize,
+        overlap: stackOverlap,
+      );
+    }
+
     if (wrap) {
       return Wrap(spacing: gap, runSpacing: gap, children: children);
     }
@@ -99,6 +110,40 @@ class SessionAvatarList extends StatelessWidget {
       }
     }
     return result;
+  }
+}
+
+class _StackedSessionAvatars extends StatelessWidget {
+  const _StackedSessionAvatars({
+    required this.children,
+    required this.size,
+    required this.overlap,
+  });
+
+  final List<Widget> children;
+  final double size;
+  final double overlap;
+
+  @override
+  Widget build(BuildContext context) {
+    if (children.isEmpty) {
+      return SizedBox(height: size);
+    }
+
+    final step = (size - overlap).clamp(0.0, size);
+    final width = size + (children.length - 1) * step;
+
+    return SizedBox(
+      width: width,
+      height: size,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: <Widget>[
+          for (int i = 0; i < children.length; i++)
+            Positioned(left: i * step, child: children[i]),
+        ],
+      ),
+    );
   }
 }
 

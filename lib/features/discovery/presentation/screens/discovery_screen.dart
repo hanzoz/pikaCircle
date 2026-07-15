@@ -18,6 +18,8 @@ part '../widgets/session_card.dart';
 part '../widgets/session_details_page.dart';
 part '../widgets/session_model.dart';
 
+enum _SessionTimeFilter { morning, afternoon, night }
+
 /// Discovery / "Find" tab — session, venue, and player search.
 ///
 /// Loads published sessions from Appwrite TablesDB and shows them as swipeable
@@ -466,6 +468,7 @@ final discoverySessionsProvider = FutureProvider.autoDispose<List<_DiscoverySess
               waitlistedAvatarFileIdsBySession[sessionId],
           participantCountOverride: joiningCountBySession[sessionId],
           waitlistCountOverride: waitlistCountBySession[sessionId],
+          hasHostId: hostId != null,
           hostNameOverride: hostId == null ? null : userNameById[hostId],
           hostAvatarOverride: hostId == null ? null : avatarByUserId[hostId],
           hostAvatarFileIdOverride: hostId == null
@@ -519,6 +522,12 @@ class DiscoveryScreen extends ConsumerStatefulWidget {
 
 class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
   late final CardSwiperController _swiperController;
+  final Set<_SessionTimeFilter> _selectedTimeFilters = <_SessionTimeFilter>{
+    _SessionTimeFilter.morning,
+    _SessionTimeFilter.afternoon,
+    _SessionTimeFilter.night,
+  };
+  bool _notFullOnly = false;
 
   @override
   void initState() {
@@ -561,74 +570,138 @@ class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
       );
     }
 
-    final filteredSessions = _filterSessionsByTitle(sessions, searchQuery);
+    final filteredSessions = _filterSessions(
+      sessions,
+      searchQuery,
+      _selectedTimeFilters,
+      _notFullOnly,
+    );
 
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final availableWidth = constraints.maxWidth - 32;
-        final availableHeight = constraints.maxHeight - 32;
-        final swiperWidth = availableWidth > 420 ? 420.0 : availableWidth;
-        final swiperHeight = availableHeight > 620 ? 620.0 : availableHeight;
-
-        return Center(
-          child: SizedBox(
-            width: swiperWidth,
-            height: swiperHeight,
-            child: filteredSessions.isNotEmpty
-                ? CardSwiper(
-                    controller: _swiperController,
-                    cardsCount: filteredSessions.length,
-                    numberOfCardsDisplayed: filteredSessions.length < 3
-                        ? filteredSessions.length
-                        : 3,
-                    padding: const EdgeInsets.fromLTRB(14, 12, 14, 96),
-                    scale: 0.93,
-                    backCardOffset: const Offset(0, 26),
-                    allowedSwipeDirection:
-                        const AllowedSwipeDirection.symmetric(
-                          horizontal: true,
-                          vertical: false,
-                        ),
-                    cardBuilder:
-                        (
-                          BuildContext context,
-                          int index,
-                          int horizontalThresholdPercentage,
-                          int verticalThresholdPercentage,
-                        ) {
-                          return _DiscoverySessionCard(
-                            session: filteredSessions[index],
-                          );
-                        },
-                  )
-                : const Padding(
-                    padding: EdgeInsets.fromLTRB(16, 16, 16, 96),
-                    child: EmptyStateCard(
-                      title: 'No matching sessions',
-                      message:
-                          'Try a different title keyword to find sessions.',
-                      icon: Icons.search_off_rounded,
-                    ),
-                  ),
+    return SafeArea(
+      top: true,
+      bottom: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 80, 16, 10),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: FilledButton.tonalIcon(
+                onPressed: _openFiltersSheet,
+                icon: const Icon(Icons.tune_rounded),
+                label: Text(_hasActiveFilters ? 'Filters' : 'Filter'),
+              ),
+            ),
           ),
-        );
-      },
+          Expanded(
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                final availableWidth = constraints.maxWidth - 32;
+                final availableHeight = constraints.maxHeight - 32;
+                final swiperWidth = availableWidth > 420
+                    ? 420.0
+                    : availableWidth;
+                final swiperHeight = availableHeight > 540
+                    ? 540.0
+                    : availableHeight;
+
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    width: swiperWidth,
+                    height: swiperHeight,
+                    child: filteredSessions.isNotEmpty
+                        ? CardSwiper(
+                            controller: _swiperController,
+                            cardsCount: filteredSessions.length,
+                            numberOfCardsDisplayed: filteredSessions.length < 3
+                                ? filteredSessions.length
+                                : 3,
+                            padding: const EdgeInsets.fromLTRB(14, 12, 14, 96),
+                            scale: 0.93,
+                            backCardOffset: const Offset(0, 26),
+                            allowedSwipeDirection:
+                                const AllowedSwipeDirection.symmetric(
+                                  horizontal: true,
+                                  vertical: false,
+                                ),
+                            cardBuilder:
+                                (
+                                  BuildContext context,
+                                  int index,
+                                  int horizontalThresholdPercentage,
+                                  int verticalThresholdPercentage,
+                                ) {
+                                  return _DiscoverySessionCard(
+                                    session: filteredSessions[index],
+                                  );
+                                },
+                          )
+                        : const Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 16, 96),
+                            child: EmptyStateCard(
+                              title: 'No matching sessions',
+                              message:
+                                  'Try a different title keyword or time filter.',
+                              icon: Icons.search_off_rounded,
+                            ),
+                          ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  List<_DiscoverySession> _filterSessionsByTitle(
+  List<_DiscoverySession> _filterSessions(
     List<_DiscoverySession> sessions,
     String query,
+    Set<_SessionTimeFilter> timeFilters,
+    bool notFullOnly,
   ) {
     final normalizedQuery = _normalizeSearchText(query);
-    if (normalizedQuery.isEmpty) return sessions;
-
     return sessions
         .where((_DiscoverySession session) {
-          final normalizedTitle = _normalizeSearchText(session.title);
-          return _titleMatchesQuery(normalizedTitle, normalizedQuery);
+          final matchesTitle =
+              normalizedQuery.isEmpty ||
+              _titleMatchesQuery(
+                _normalizeSearchText(session.title),
+                normalizedQuery,
+              );
+          final matchesTime = _matchesTimeFilter(session, timeFilters);
+          final matchesStatus = !notFullOnly || _matchesNotFull(session);
+          return matchesTitle && matchesTime && matchesStatus;
         })
         .toList(growable: false);
+  }
+
+  bool _matchesNotFull(_DiscoverySession session) {
+    final maxParticipants = session.maxParticipants;
+    if (maxParticipants == null) return true;
+    return session.participantCount < maxParticipants;
+  }
+
+  bool _matchesTimeFilter(
+    _DiscoverySession session,
+    Set<_SessionTimeFilter> filters,
+  ) {
+    final startsAt = session.startsAt;
+    if (startsAt == null) return false;
+
+    if (filters.isEmpty) return true;
+
+    final hour = startsAt.hour;
+    final isMorning = hour >= 5 && hour < 12;
+    final isAfternoon = hour >= 12 && hour < 17;
+    final isNight = hour >= 17 || hour < 5;
+
+    return (filters.contains(_SessionTimeFilter.morning) && isMorning) ||
+        (filters.contains(_SessionTimeFilter.afternoon) && isAfternoon) ||
+        (filters.contains(_SessionTimeFilter.night) && isNight);
   }
 
   bool _titleMatchesQuery(String normalizedTitle, String normalizedQuery) {
@@ -661,5 +734,181 @@ class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
         .replaceAll(RegExp(r'[^a-z0-9\\s]'), ' ')
         .replaceAll(RegExp(r'\\s+'), ' ')
         .trim();
+  }
+
+  bool get _hasActiveFilters =>
+      _selectedTimeFilters.length != _SessionTimeFilter.values.length ||
+      _notFullOnly;
+
+  void _openFiltersSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        final tempTimeFilters = <_SessionTimeFilter>{..._selectedTimeFilters};
+        var tempNotFullOnly = _notFullOnly;
+
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setModalState) {
+            void toggleTimeFilter(_SessionTimeFilter filter) {
+              setModalState(() {
+                if (tempTimeFilters.contains(filter)) {
+                  tempTimeFilters.remove(filter);
+                } else {
+                  tempTimeFilters.add(filter);
+                }
+              });
+            }
+
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Filter sessions',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Time',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: <Widget>[
+                        _TimeFilterChip(
+                          label: 'Morning',
+                          selected: tempTimeFilters.contains(
+                            _SessionTimeFilter.morning,
+                          ),
+                          onSelected: () {
+                            toggleTimeFilter(_SessionTimeFilter.morning);
+                          },
+                        ),
+                        _TimeFilterChip(
+                          label: 'Afternoon',
+                          selected: tempTimeFilters.contains(
+                            _SessionTimeFilter.afternoon,
+                          ),
+                          onSelected: () {
+                            toggleTimeFilter(_SessionTimeFilter.afternoon);
+                          },
+                        ),
+                        _TimeFilterChip(
+                          label: 'Evening',
+                          selected: tempTimeFilters.contains(
+                            _SessionTimeFilter.night,
+                          ),
+                          onSelected: () {
+                            toggleTimeFilter(_SessionTimeFilter.night);
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Status',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: <Widget>[
+                        _TimeFilterChip(
+                          label: 'Not full',
+                          selected: tempNotFullOnly,
+                          onSelected: () {
+                            setModalState(() {
+                              tempNotFullOnly = !tempNotFullOnly;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text('Cancel'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: FilledButton(
+                            onPressed: () {
+                              setState(() {
+                                _selectedTimeFilters
+                                  ..clear()
+                                  ..addAll(
+                                    tempTimeFilters.isEmpty
+                                        ? _SessionTimeFilter.values
+                                        : tempTimeFilters,
+                                  );
+                                _notFullOnly = tempNotFullOnly;
+                              });
+                              ref.invalidate(discoverySessionsProvider);
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Confirm'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _TimeFilterChip extends StatelessWidget {
+  const _TimeFilterChip({
+    required this.label,
+    required this.selected,
+    required this.onSelected,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return FilterChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (_) => onSelected(),
+      showCheckmark: false,
+      backgroundColor: colorScheme.surface,
+      selectedColor: colorScheme.primaryContainer,
+      side: BorderSide(
+        color: selected ? colorScheme.primary : colorScheme.outlineVariant,
+      ),
+      labelStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+        color: selected
+            ? colorScheme.onPrimaryContainer
+            : colorScheme.onSurfaceVariant,
+        fontWeight: FontWeight.w700,
+      ),
+    );
   }
 }

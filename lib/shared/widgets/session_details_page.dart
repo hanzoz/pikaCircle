@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 import 'package:pikacircle/shared/widgets/session_avatar_list.dart';
@@ -98,22 +98,9 @@ class SessionDetailsPage extends StatelessWidget {
         child: PikaAppBar(
           leading: PikaAppBarLeading.back,
           initials: 'P',
-          trailing: PikaNavButton(
-            icon: CupertinoIcons.share,
-            onTap: () async {
-              final shareText =
-                  '${data.title}\n${data.dateLabel} at ${data.timeLabel}\n${data.venue}, ${data.location}';
-              await Clipboard.setData(ClipboardData(text: shareText));
-
-              if (!context.mounted) return;
-
-              final snackBar = const SnackBar(
-                content: Text('Session details copied for sharing'),
-              );
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(snackBar);
-            },
+          trailing: _SessionShareButton(
+            shareText:
+                '${data.title}\n${data.dateLabel} at ${data.timeLabel}\n${data.venue}, ${data.location}',
           ),
         ),
       ),
@@ -399,6 +386,41 @@ class _HostCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SessionShareButton extends StatelessWidget {
+  const _SessionShareButton({required this.shareText});
+
+  final String shareText;
+
+  @override
+  Widget build(BuildContext context) {
+    final platform = Theme.of(context).platform;
+
+    if (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS) {
+      return CupertinoButton(
+        padding: EdgeInsets.zero,
+        minSize: 44,
+        onPressed: () async {
+          await SharePlus.instance.share(ShareParams(text: shareText));
+        },
+        child: const Icon(
+          CupertinoIcons.share,
+          size: 22,
+          color: Color(0xFF1D2230),
+        ),
+      );
+    }
+
+    return IconButton(
+      onPressed: () async {
+        await SharePlus.instance.share(ShareParams(text: shareText));
+      },
+      icon: const Icon(Icons.share_rounded, size: 22),
+      color: const Color(0xFF1D2230),
+      tooltip: 'Share session',
     );
   }
 }

@@ -18,6 +18,7 @@ class _DiscoverySessionCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
           Navigator.of(context).push(
             MaterialPageRoute<void>(
               builder: (_) => _SessionDetailsPage(session: session),
@@ -39,7 +40,6 @@ class _DiscoverySessionCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const _PlaceholderImage(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
                 child: Row(
@@ -58,6 +58,17 @@ class _DiscoverySessionCard extends StatelessWidget {
                       confirmedCount: session.participantCount,
                       maxParticipants: session.maxParticipants,
                     ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: <Widget>[
+                    _SessionTypeChip(label: _sessionTypeLabel),
+                    _SkillLevelChip(label: session.skillLevel),
                   ],
                 ),
               ),
@@ -86,28 +97,81 @@ class _DiscoverySessionCard extends StatelessWidget {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                child: Text(
-                  session.excerpt,
-                  style: theme.textTheme.bodyMedium,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.place_rounded,
+                          size: 16,
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            session.venue,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (_shouldShowSponsorBlock) ...<Widget>[
+                      const SizedBox(height: 12),
+                      Text(
+                        'Sponsored by',
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        session.sponsorName,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ],
                 ),
               ),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
-                child: _ParticipantGroups(
-                  confirmedNames: session.confirmedParticipantNames,
-                  confirmedAvatarUrls: session.confirmedParticipantAvatarUrls,
-                  confirmedAvatarFileIds:
-                      session.confirmedParticipantAvatarFileIds,
-                  confirmedCount: session.participantCount,
-                  waitlistedNames: session.waitlistedParticipantNames,
-                  waitlistedAvatarUrls: session.waitlistedParticipantAvatarUrls,
-                  waitlistedAvatarFileIds:
-                      session.waitlistedParticipantAvatarFileIds,
-                  waitlistCount: session.waitlistCount,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    if (_shouldShowHostRow) ...<Widget>[
+                      _HostRow(
+                        hostName: session.hostName,
+                        hostAvatarUrl: session.hostAvatarUrl,
+                        hostAvatarFileId: session.hostAvatarFileId,
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                    _ParticipantGroups(
+                      confirmedNames: session.confirmedParticipantNames,
+                      confirmedAvatarUrls:
+                          session.confirmedParticipantAvatarUrls,
+                      confirmedAvatarFileIds:
+                          session.confirmedParticipantAvatarFileIds,
+                      confirmedCount: session.participantCount,
+                      waitlistedNames: session.waitlistedParticipantNames,
+                      waitlistedAvatarUrls:
+                          session.waitlistedParticipantAvatarUrls,
+                      waitlistedAvatarFileIds:
+                          session.waitlistedParticipantAvatarFileIds,
+                      waitlistCount: session.waitlistCount,
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -118,27 +182,30 @@ class _DiscoverySessionCard extends StatelessWidget {
   }
 }
 
-class _PlaceholderImage extends StatelessWidget {
-  const _PlaceholderImage();
+extension on _DiscoverySessionCard {
+  String get _sessionTypeLabel =>
+      session.hasHostId ? 'Hosted Session' : 'Open Play';
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: <Color>[Color(0xFF92A5FF), Color(0xFF64D8CB)],
-          ),
-        ),
-        child: const Center(
-          child: Icon(Icons.image_outlined, color: Colors.white, size: 44),
-        ),
-      ),
-    );
+extension on _DiscoverySessionCard {
+  bool get _shouldShowSponsorBlock {
+    final sponsorName = session.sponsorName.trim();
+    return sponsorName.isNotEmpty && sponsorName.toLowerCase() != 'no sponsor';
+  }
+
+  bool get _shouldShowHostRow {
+    final sessionType = session.sessionType.trim().toLowerCase();
+    final isOpenPlay = sessionType == 'open play';
+    if (!isOpenPlay) return true;
+
+    final hasHostName =
+        session.hostName.trim().isNotEmpty &&
+        session.hostName.trim().toLowerCase() != 'pikacircle';
+    final hasHostAvatar =
+        (session.hostAvatarUrl?.trim().isNotEmpty ?? false) ||
+        (session.hostAvatarFileId?.trim().isNotEmpty ?? false);
+
+    return hasHostName || hasHostAvatar;
   }
 }
 
@@ -169,6 +236,123 @@ class _CapacityBadge extends StatelessWidget {
           context,
         ).textTheme.labelMedium?.copyWith(color: Colors.white),
       ),
+    );
+  }
+}
+
+class _SessionTypeChip extends StatelessWidget {
+  const _SessionTypeChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(
+              Icons.sports_tennis_rounded,
+              size: 16,
+              color: colorScheme.onTertiaryContainer,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: colorScheme.onTertiaryContainer,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SkillLevelChip extends StatelessWidget {
+  const _SkillLevelChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(
+              Icons.bolt_rounded,
+              size: 16,
+              color: colorScheme.onSecondaryContainer,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: colorScheme.onSecondaryContainer,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _HostRow extends StatelessWidget {
+  const _HostRow({
+    required this.hostName,
+    required this.hostAvatarUrl,
+    required this.hostAvatarFileId,
+  });
+
+  final String hostName;
+  final String? hostAvatarUrl;
+  final String? hostAvatarFileId;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Row(
+      children: <Widget>[
+        SessionAvatar(
+          name: hostName,
+          imageUrl: hostAvatarUrl,
+          avatarFileId: hostAvatarFileId,
+          size: 28,
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            hostName,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -275,8 +459,9 @@ class _ParticipantGroupRow extends StatelessWidget {
                 totalCount: totalCount,
                 avatarSize: _avatarSize,
                 gap: _avatarGap,
+                overlap: 10,
                 scrollable: false,
-                wrap: true,
+                wrap: false,
               ),
             ),
           ],

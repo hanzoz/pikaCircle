@@ -9,10 +9,12 @@ class _DiscoverySession {
     required this.dateLabel,
     required this.timeLabel,
     required this.durationLabel,
+    required this.startsAt,
     required this.sessionType,
     required this.skillLevel,
     required this.sponsorName,
     required this.hostName,
+    required this.hasHostId,
     required this.hostSkillLevel,
     required this.hostSkillRating,
     required this.venue,
@@ -44,6 +46,7 @@ class _DiscoverySession {
     int? participantCountOverride,
     int? waitlistCountOverride,
     String? hostNameOverride,
+    required bool hasHostId,
     String? hostAvatarOverride,
     String? hostAvatarFileIdOverride,
     String? hostSkillLevelOverride,
@@ -73,7 +76,7 @@ class _DiscoverySession {
         'All levels';
     final sponsorName = stringValue(data['sponsor']) ?? 'No sponsor';
     final hostName =
-        hostNameOverride ?? stringValue(data['host_name']) ?? 'Host';
+        hostNameOverride ?? stringValue(data['host_name']) ?? 'PikaCircle';
     final hostSkillLevel =
         _formatTokenLabel(hostSkillLevelOverride) ?? skillLevel;
     final hostSkillRating = hostSkillRatingOverride;
@@ -121,10 +124,12 @@ class _DiscoverySession {
       dateLabel: dateLabel,
       timeLabel: timeLabel,
       durationLabel: durationLabel,
+      startsAt: startsAt,
       sessionType: sessionType,
       skillLevel: skillLevel,
       sponsorName: sponsorName,
       hostName: hostName,
+      hasHostId: hasHostId,
       hostSkillLevel: hostSkillLevel,
       hostSkillRating: hostSkillRating,
       venue: venue,
@@ -153,10 +158,12 @@ class _DiscoverySession {
   final String dateLabel;
   final String timeLabel;
   final String? durationLabel;
+  final DateTime? startsAt;
   final String sessionType;
   final String skillLevel;
   final String sponsorName;
   final String hostName;
+  final bool hasHostId;
   final String hostSkillLevel;
   final double? hostSkillRating;
   final String venue;

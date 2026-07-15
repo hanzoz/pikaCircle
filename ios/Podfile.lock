@@ -8,6 +8,8 @@ PODS:
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
+  - share_plus (0.0.1):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -17,6 +19,7 @@ DEPENDENCIES:
   - flutter_web_auth_2 (from `.symlinks/plugins/flutter_web_auth_2/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
@@ -30,6 +33,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -39,6 +44,7 @@ SPEC CHECKSUMS:
   flutter_web_auth_2: 646fc9df97a01c59e5eea99b237da2c6360f8439
   image_picker_ios: e0ece4aa2a75771a7de3fa735d26d90817041326
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
+  share_plus: 50da8cb520a8f0f65671c6c6a99b3617ed10a58a
   url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
 PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
