@@ -11,6 +11,7 @@ class UserProfile {
     required this.id,
     required this.name,
     required this.email,
+    this.skillLevel,
     this.username,
     this.dateOfBirth,
     this.gender,
@@ -37,6 +38,7 @@ class UserProfile {
   final String id;
   final String name;
   final String email;
+  final String? skillLevel;
   final String? username;
   final String? dateOfBirth;
   final String? gender;
@@ -75,6 +77,7 @@ class UserProfile {
         other.id == id &&
         other.name == name &&
         other.email == email &&
+        other.skillLevel == skillLevel &&
         other.username == username &&
         other.dateOfBirth == dateOfBirth &&
         other.gender == gender &&
@@ -102,6 +105,7 @@ class UserProfile {
     id,
     name,
     email,
+    skillLevel,
     username,
     dateOfBirth,
     gender,
@@ -127,7 +131,7 @@ class UserProfile {
   @override
   String toString() =>
       'UserProfile(id: $id, name: $name, email: $email, '
-      'username: $username, roles: $roles)';
+      'skillLevel: $skillLevel, username: $username, roles: $roles)';
 }
 
 /// Order-sensitive list equality used for value comparison of [UserRole] lists.

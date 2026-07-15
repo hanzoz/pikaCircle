@@ -2,9 +2,79 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:appwrite/appwrite.dart';
+
+import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
+import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/profile/domain/entities/profile_edit_data.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
+
+final _editProfileSkillLevelProvider = FutureProvider.autoDispose
+    .family<String?, String>((ref, userId) async {
+      if (userId.trim().isEmpty) return null;
+
+      final tables = ref.watch(appwriteTablesDbProvider);
+      final config = ref.watch(appwriteConfigProvider);
+
+      String? relationId(Object? value) {
+        if (value is Map) {
+          final relationValue = value[r'$id'];
+          final relation = relationValue?.toString().trim();
+          return relation == null || relation.isEmpty ? null : relation;
+        }
+        final normalized = value?.toString().trim();
+        if (normalized == null || normalized.isEmpty) return null;
+        return normalized;
+      }
+
+      String? parseLevel(Map<String, dynamic> data) {
+        final raw = data['level']?.toString().trim();
+        if (raw == null || raw.isEmpty) return null;
+        return raw;
+      }
+
+      try {
+        final rows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.equal('user_id', userId), Query.limit(1)],
+        );
+        if (rows.rows.isNotEmpty) {
+          return parseLevel(rows.rows.first.data);
+        }
+
+        for (final rowId in <String>[userId, 'skill_$userId']) {
+          try {
+            final row = await tables.getRow(
+              databaseId: config.databaseId,
+              tableId: TableIds.skills,
+              rowId: rowId,
+            );
+            return parseLevel(row.data);
+          } on AppwriteException catch (fallbackError) {
+            if (fallbackError.code != 404) rethrow;
+          }
+        }
+
+        final scanRows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.limit(200)],
+        );
+        for (final row in scanRows.rows) {
+          final relatedUserId = relationId(row.data['user_id']);
+          if (relatedUserId == userId || row.$id == userId) {
+            return parseLevel(row.data);
+          }
+        }
+
+        return null;
+      } on AppwriteException catch (e) {
+        if (e.code == 404) return null;
+        rethrow;
+      }
+    });
 
 class EditProfileScreen extends ConsumerStatefulWidget {
   const EditProfileScreen({super.key});
@@ -67,6 +137,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   late final TextEditingController _locationController;
 
   DateTime? _dateOfBirth;
+  String? _selectedSkillLevel; // wire value
   String? _selectedGender; // wire value
   String? _selectedSalaryRange; // wire value
 
@@ -75,6 +146,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   final Set<String> _selectedFormatIds = {}; // play_format ids
   final List<String> _selectedVenueIds = []; // ordered venue ids
   final Map<String, String> _sportLevels = {}; // {sportId: wire level}
+  final Set<String> _pickleballSportIds =
+      {}; // excluded from sports backgrounds
 
   bool _checkingUsername = false;
   bool _saving = false;
@@ -116,8 +189,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     if (user.dateOfBirth != null) {
       _dateOfBirth = DateTime.tryParse(user.dateOfBirth!);
     }
+    _selectedSkillLevel = _normalizeSkillLevel(user.skillLevel);
     _selectedGender = user.gender;
     _selectedSalaryRange = user.salaryRange;
+
+    _pickleballSportIds
+      ..clear()
+      ..addAll(
+        data.sportOptions
+            .where((sport) => _isPickleballSportName(sport.displayName))
+            .map((sport) => sport.id),
+      );
 
     // Set last validated username to avoid re-checking unchanged value.
     if (user.username != null && user.username!.isNotEmpty) {
@@ -141,6 +223,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
 
     // Sports backgrounds -> {sportId: level} for those with a level set.
     for (final bg in data.sportsBackgrounds) {
+      if (_pickleballSportIds.contains(bg.sportId)) {
+        continue;
+      }
       if (bg.level != null && bg.level!.isNotEmpty) {
         _sportLevels[bg.sportId] = bg.level!;
       }
@@ -282,6 +367,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       'profile': <String, Object?>{
         'name': _nameController.text.trim(),
         'username': _normalizeUsername(_usernameController.text),
+        'skill_level': _selectedSkillLevel,
         'bio': _trimToNull(_bioController),
         'job_title': _trimToNull(_jobTitleController),
         'linkedin_profile_url': _trimToNull(_linkedInController),
@@ -305,13 +391,14 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       ],
       'sports_backgrounds': <Map<String, Object?>>[
         for (final entry in _sportLevels.entries)
-          {
-            'sport_id': entry.key,
-            'level': entry.value,
-            'is_primary': false,
-            'years_played': null,
-            'notes': null,
-          },
+          if (!_pickleballSportIds.contains(entry.key))
+            {
+              'sport_id': entry.key,
+              'level': entry.value,
+              'is_primary': false,
+              'years_played': null,
+              'notes': null,
+            },
       ],
     };
 
@@ -363,7 +450,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                 ],
               ),
             ),
-            const Divider(height: 1),
+            const Divider(height: 1, color: Color(0xFFF0F1F5)),
             Expanded(
               child: CupertinoDatePicker(
                 initialDateTime: pendingDate,
@@ -464,8 +551,20 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
           loading: () => const Center(child: CupertinoActivityIndicator()),
           error: (error, _) => _buildErrorState(context),
           data: (data) {
+            final fallbackSkillLevelAsync = ref.watch(
+              _editProfileSkillLevelProvider(data.user.id),
+            );
             if (!_populated) {
               _populateFromEditData(data);
+            }
+            final fallbackSkillLevel = _normalizeSkillLevel(
+              fallbackSkillLevelAsync.value,
+            );
+            if (_selectedSkillLevel == null && fallbackSkillLevel != null) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted || _selectedSkillLevel != null) return;
+                setState(() => _selectedSkillLevel = fallbackSkillLevel);
+              });
             }
             return _buildForm(context, data);
           },
@@ -519,6 +618,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   Widget _buildForm(BuildContext context, ProfileEditData data) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+    final filteredSportOptions = data.sportOptions
+        .where((sport) => !_isPickleballSportName(sport.displayName))
+        .toList(growable: false);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -560,6 +662,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
               ),
               const SizedBox(height: 12),
               _buildDateField('Date of Birth', _dateOfBirth, _selectDate),
+              const SizedBox(height: 12),
+              _buildSingleSelectChipGroup(
+                context,
+                title: 'Skill Level',
+                options: [
+                  for (final label in _levelLabels)
+                    _ChipOption(id: label.toLowerCase(), label: label),
+                ],
+                selectedId: _selectedSkillLevel,
+                onSelect: (id) => setState(() => _selectedSkillLevel = id),
+              ),
               const SizedBox(height: 12),
               _buildDropdown(
                 'Gender',
@@ -707,16 +820,16 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
           const SizedBox(height: 14),
           // Sports Background Section
           _SectionCard(
-            title: 'Sports Background',
+            title: 'Other Sports Background',
             children: [
-              if (data.sportOptions.isEmpty)
+              if (filteredSportOptions.isEmpty)
                 Text(
-                  'No sports available',
+                  'No additional sports available',
                   style: textTheme.bodyMedium?.copyWith(
                     color: const Color(0xFF6F7482),
                   ),
                 ),
-              for (final sport in data.sportOptions)
+              for (final sport in filteredSportOptions)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Material(
@@ -800,6 +913,16 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     return null;
   }
 
+  String? _normalizeSkillLevel(String? value) {
+    final normalized = value?.trim().toLowerCase();
+    if (normalized == null || normalized.isEmpty) return null;
+    for (final label in _levelLabels) {
+      final wire = label.toLowerCase();
+      if (wire == normalized) return wire;
+    }
+    return null;
+  }
+
   String? _venueLabelFor(String? venueId, ProfileEditData data) {
     if (venueId == null) return null;
     for (final venue in data.venueOptions) {
@@ -814,6 +937,11 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       if (venue.name == venueName) return venue.id;
     }
     return null;
+  }
+
+  bool _isPickleballSportName(String name) {
+    final normalized = name.trim().toLowerCase();
+    return normalized.contains('pickleball');
   }
 
   Widget _buildChipGroup(
@@ -853,6 +981,50 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   label: Text(option.label),
                   selected: isSelected(option.id),
                   onSelected: (_) => onToggle(option.id),
+                ),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Widget _buildSingleSelectChipGroup(
+    BuildContext context, {
+    required String title,
+    required List<_ChipOption> options,
+    required String? selectedId,
+    required void Function(String id) onSelect,
+    String? emptyText,
+  }) {
+    final textTheme = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF1D2230),
+          ),
+        ),
+        const SizedBox(height: 8),
+        if (options.isEmpty && emptyText != null)
+          Text(
+            emptyText,
+            style: textTheme.bodyMedium?.copyWith(
+              color: const Color(0xFF6F7482),
+            ),
+          )
+        else
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final option in options)
+                FilterChip(
+                  label: Text(option.label),
+                  selected: selectedId == option.id,
+                  onSelected: (_) => onSelect(option.id),
                 ),
             ],
           ),

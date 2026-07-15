@@ -7,12 +7,79 @@ import 'package:image_picker/image_picker.dart';
 import 'package:appwrite/appwrite.dart';
 
 import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
+import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/profile/domain/entities/account_profile.dart';
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/features/profile/presentation/screens/settings_screen.dart';
 import 'package:pikacircle/features/profile/presentation/widgets/profile_skill_graph_section.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 import 'package:pikacircle/shared/widgets/profile_avatar.dart';
+
+final _profileSkillLevelProvider = FutureProvider.autoDispose
+    .family<String?, String>((ref, userId) async {
+      if (userId.trim().isEmpty) return null;
+
+      final tables = ref.watch(appwriteTablesDbProvider);
+      final config = ref.watch(appwriteConfigProvider);
+
+      String? relationId(Object? value) {
+        if (value is Map) {
+          final relationValue = value[r'$id'];
+          final relation = relationValue?.toString().trim();
+          return relation == null || relation.isEmpty ? null : relation;
+        }
+        final normalized = value?.toString().trim();
+        if (normalized == null || normalized.isEmpty) return null;
+        return normalized;
+      }
+
+      String? parseLevel(Map<String, dynamic> data) {
+        final raw = data['level']?.toString().trim();
+        if (raw == null || raw.isEmpty) return null;
+        return raw;
+      }
+
+      try {
+        final rows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.equal('user_id', userId), Query.limit(1)],
+        );
+        if (rows.rows.isNotEmpty) {
+          return parseLevel(rows.rows.first.data);
+        }
+
+        for (final rowId in <String>[userId, 'skill_$userId']) {
+          try {
+            final row = await tables.getRow(
+              databaseId: config.databaseId,
+              tableId: TableIds.skills,
+              rowId: rowId,
+            );
+            return parseLevel(row.data);
+          } on AppwriteException catch (fallbackError) {
+            if (fallbackError.code != 404) rethrow;
+          }
+        }
+
+        final scanRows = await tables.listRows(
+          databaseId: config.databaseId,
+          tableId: TableIds.skills,
+          queries: [Query.limit(200)],
+        );
+        for (final row in scanRows.rows) {
+          final relatedUserId = relationId(row.data['user_id']);
+          if (relatedUserId == userId || row.$id == userId) {
+            return parseLevel(row.data);
+          }
+        }
+
+        return null;
+      } on AppwriteException catch (e) {
+        if (e.code == 404) return null;
+        rethrow;
+      }
+    });
 
 /// Read-only account overview: name, email, membership, workflow, and wallet
 /// balance. Renders a bespoke profile layout and reacts to the async profile
@@ -197,7 +264,7 @@ class _ProfileMessage extends StatelessWidget {
 }
 
 /// The loaded profile body: identity header plus a details card.
-class _ProfileDetails extends StatelessWidget {
+class _ProfileDetails extends ConsumerWidget {
   const _ProfileDetails({
     required this.profile,
     required this.avatarUrl,
@@ -217,7 +284,7 @@ class _ProfileDetails extends StatelessWidget {
   final VoidCallback onAvatarTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
 
     final user = profile.user;
@@ -227,6 +294,12 @@ class _ProfileDetails extends StatelessWidget {
         : user.email.isNotEmpty
         ? '@${user.email.split('@').first}'
         : '@pikacircle';
+    final skillLevelState = ref.watch(_profileSkillLevelProvider(user.id));
+    final skillLevelLabel = skillLevelState.when(
+      data: _formatSkillLevel,
+      loading: () => 'Loading...',
+      error: (_, _) => 'Not set',
+    );
     final membershipName = user.membershipLevelName ?? 'bronze';
     final hasPremium = membershipName.toLowerCase() != 'bronze';
 
@@ -353,6 +426,14 @@ class _ProfileDetails extends StatelessWidget {
                                         color: const Color(0xFF6F7482),
                                       ),
                                     ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      'Skill level: $skillLevelLabel',
+                                      style: textTheme.labelLarge?.copyWith(
+                                        color: const Color(0xFF355AB7),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -414,6 +495,17 @@ void _openSettings(BuildContext context) {
 String _capitalize(String value) {
   if (value.isEmpty) return value;
   return value[0].toUpperCase() + value.substring(1).toLowerCase();
+}
+
+String _formatSkillLevel(String? value) {
+  if (value == null || value.isEmpty) return 'Not set';
+  final normalized = value.replaceAll('_', ' ').trim();
+  if (normalized.isEmpty) return 'Not set';
+
+  final parts = normalized.split(RegExp(r'\s+'));
+  return parts
+      .map((part) => part[0].toUpperCase() + part.substring(1).toLowerCase())
+      .join(' ');
 }
 
 String _initialsFromName(String name) {
