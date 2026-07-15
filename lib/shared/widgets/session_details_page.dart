@@ -425,7 +425,7 @@ class _RequestToJoinFooter extends StatelessWidget {
           FilledButton(
             onPressed: onTap,
             style: FilledButton.styleFrom(
-              backgroundColor: const Color(0xFF1D2230),
+              backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -434,7 +434,10 @@ class _RequestToJoinFooter extends StatelessWidget {
             ),
             child: Text(
               buttonText,
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
           ),
         ],

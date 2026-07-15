@@ -506,14 +506,17 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                   onPressed: _saving || _checkingUsername
                       ? null
                       : _onSavePressed,
-                  color: const Color(0xFF1D2230),
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(12),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   child: _saving
                       ? const CupertinoActivityIndicator(color: Colors.white)
                       : const Text(
                           'Save Changes',
-                          style: TextStyle(fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
                 ),
               ),
