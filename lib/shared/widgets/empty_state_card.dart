@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
+import 'package:pikacircle/shared/widgets/fold_aware_pane.dart';
+
 /// A centered glass card with an icon, title, and message.
 ///
 /// Extracted from the former `EmptyTabPage` in `main.dart` so any feature can
@@ -27,36 +29,34 @@ class EmptyStateCard extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(24, 32, 24, bottomPadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GlassCard(
-                    padding: const EdgeInsets.all(26),
-                    child: Icon(icon, size: 40, color: colorScheme.primary),
+        return FoldAwarePane(
+          maxWidth: 420,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(24, 32, 24, bottomPadding),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GlassCard(
+                  padding: const EdgeInsets.all(26),
+                  child: Icon(icon, size: 40, color: colorScheme.primary),
+                ),
+                const SizedBox(height: 28),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
                   ),
-                  const SizedBox(height: 28),
-                  Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

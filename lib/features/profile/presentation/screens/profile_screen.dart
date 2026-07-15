@@ -12,6 +12,7 @@ import 'package:pikacircle/features/profile/domain/entities/account_profile.dart
 import 'package:pikacircle/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:pikacircle/features/profile/presentation/screens/settings_screen.dart';
 import 'package:pikacircle/features/profile/presentation/widgets/profile_skill_graph_section.dart';
+import 'package:pikacircle/shared/widgets/fold_aware_pane.dart';
 import 'package:pikacircle/shared/widgets/pika_app_bar.dart';
 import 'package:pikacircle/shared/widgets/profile_avatar.dart';
 
@@ -224,39 +225,37 @@ class _ProfileMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(22),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x25000000),
-                      blurRadius: 24,
-                      offset: Offset(0, 10),
-                    ),
-                  ],
-                ),
-                child: Icon(icon, size: 44, color: const Color(0xFF2F3340)),
+    return FoldAwarePane(
+      maxWidth: 420,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(22),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x25000000),
+                    blurRadius: 24,
+                    offset: Offset(0, 10),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              Text(
-                message,
-                textAlign: TextAlign.center,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyLarge?.copyWith(color: const Color(0xFF606676)),
-              ),
-            ],
-          ),
+              child: Icon(icon, size: 44, color: const Color(0xFF2F3340)),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              message,
+              textAlign: TextAlign.center,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: const Color(0xFF606676)),
+            ),
+          ],
         ),
       ),
     );
@@ -313,170 +312,168 @@ class _ProfileDetails extends ConsumerWidget {
           showNotificationButton: true,
         ),
         Expanded(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 420),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 18),
-                    Center(
-                      child: GestureDetector(
-                        onTap: uploadingAvatar ? null : onAvatarTap,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: 114,
-                              height: 114,
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xFFE8EEF9),
-                                  width: 2,
-                                ),
-                              ),
-                              child: ProfileAvatar(
-                                avatarUrl: avatarUrl,
-                                avatarFileId: avatarFileId,
-                                avatarBucketId: avatarBucketId,
-                                storage: storage,
-                                initials: _initialsFromName(displayName),
-                                size: 102,
-                                textStyle: textTheme.headlineSmall?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                ),
+          child: FoldAwarePane(
+            maxWidth: 420,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 18),
+                  Center(
+                    child: GestureDetector(
+                      onTap: uploadingAvatar ? null : onAvatarTap,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 114,
+                            height: 114,
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: const Color(0xFFE8EEF9),
+                                width: 2,
                               ),
                             ),
-                            Positioned(
-                              right: 2,
-                              bottom: 2,
-                              child: Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF23262D),
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 1.5,
-                                  ),
+                            child: ProfileAvatar(
+                              avatarUrl: avatarUrl,
+                              avatarFileId: avatarFileId,
+                              avatarBucketId: avatarBucketId,
+                              storage: storage,
+                              initials: _initialsFromName(displayName),
+                              size: 102,
+                              textStyle: textTheme.headlineSmall?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 2,
+                            bottom: 2,
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF23262D),
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 1.5,
                                 ),
-                                child: uploadingAvatar
-                                    ? const Padding(
-                                        padding: EdgeInsets.all(7),
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                Colors.white,
-                                              ),
-                                        ),
-                                      )
-                                    : const Icon(
-                                        CupertinoIcons.camera_fill,
-                                        size: 15,
-                                        color: Colors.white,
+                              ),
+                              child: uploadingAvatar
+                                  ? const Padding(
+                                      padding: EdgeInsets.all(7),
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                              Colors.white,
+                                            ),
                                       ),
+                                    )
+                                  : const Icon(
+                                      CupertinoIcons.camera_fill,
+                                      size: 15,
+                                      color: Colors.white,
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9F9FA),
+                      borderRadius: BorderRadius.circular(28),
+                      border: Border.all(color: const Color(0xFFF0F1F5)),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 28,
+                          offset: Offset(0, 14),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    displayName,
+                                    style: textTheme.titleLarge?.copyWith(
+                                      color: const Color(0xFF1D2230),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    username,
+                                    style: textTheme.bodyMedium?.copyWith(
+                                      color: const Color(0xFF6F7482),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    'Skill level: $skillLevelLabel',
+                                    style: textTheme.labelLarge?.copyWith(
+                                      color: const Color(0xFF355AB7),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 7,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF23262D),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    hasPremium
+                                        ? CupertinoIcons.star_fill
+                                        : CupertinoIcons.star,
+                                    color: Colors.white,
+                                    size: 13,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    _capitalize(membershipName),
+                                    style: textTheme.labelLarge?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                    const SizedBox(height: 14),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF9F9FA),
-                        borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: const Color(0xFFF0F1F5)),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 28,
-                            offset: Offset(0, 14),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      displayName,
-                                      style: textTheme.titleLarge?.copyWith(
-                                        color: const Color(0xFF1D2230),
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      username,
-                                      style: textTheme.bodyMedium?.copyWith(
-                                        color: const Color(0xFF6F7482),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      'Skill level: $skillLevelLabel',
-                                      style: textTheme.labelLarge?.copyWith(
-                                        color: const Color(0xFF355AB7),
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 7,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF23262D),
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      hasPremium
-                                          ? CupertinoIcons.star_fill
-                                          : CupertinoIcons.star,
-                                      color: Colors.white,
-                                      size: 13,
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      _capitalize(membershipName),
-                                      style: textTheme.labelLarge?.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    const ProfileSkillGraphSection(),
-                    const SizedBox(height: 16),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 12),
+                  const ProfileSkillGraphSection(),
+                  const SizedBox(height: 16),
+                ],
               ),
             ),
           ),

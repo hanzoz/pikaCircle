@@ -10,6 +10,7 @@ import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pikacircle/shared/widgets/empty_state_card.dart';
+import 'package:pikacircle/shared/widgets/fold_aware_pane.dart';
 import '../widgets/hosted_sessions_list.dart';
 import '../widgets/session_date_chips.dart';
 import '../widgets/session_screen_header.dart';
@@ -383,47 +384,44 @@ class _SessionsScreenState extends ConsumerState<SessionsScreen> {
         ref.invalidate(hostedSessionsProvider);
         await ref.read(hostedSessionsProvider.future);
       },
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 520),
-          child: ListView(
-            padding: EdgeInsets.fromLTRB(20, topContentPadding, 20, 120),
-            children: [
-              SessionScreenHeader(
-                selectedDate: selectedDate,
-                sessionCount: filteredSessions.length,
-              ),
-              const SizedBox(height: 18),
-              SessionDateChips(
-                availableDates: availableDates,
-                sessionCountByDate: sessionCountByDate,
-                selectedDate: selectedDate,
-                onDateSelected: (date) {
-                  setState(() {
-                    _selectedDate = date;
-                  });
-                },
-              ),
-              const SizedBox(height: 28),
-              if (filteredSessions.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 40),
-                  child: Center(
-                    child: Text(
-                      'No session today',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF6F7482),
-                      ),
+      child: FoldAwarePane(
+        maxWidth: 520,
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(20, topContentPadding, 20, 120),
+          children: [
+            SessionScreenHeader(
+              selectedDate: selectedDate,
+              sessionCount: filteredSessions.length,
+            ),
+            const SizedBox(height: 18),
+            SessionDateChips(
+              availableDates: availableDates,
+              sessionCountByDate: sessionCountByDate,
+              selectedDate: selectedDate,
+              onDateSelected: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+            ),
+            const SizedBox(height: 28),
+            if (filteredSessions.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 40),
+                child: Center(
+                  child: Text(
+                    'No session today',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF6F7482),
                     ),
                   ),
-                )
-              else
-                HostedSessionsList(sessions: filteredSessions),
-            ],
-          ),
+                ),
+              )
+            else
+              HostedSessionsList(sessions: filteredSessions),
+          ],
         ),
       ),
     );

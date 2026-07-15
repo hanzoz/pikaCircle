@@ -84,6 +84,8 @@ class EditProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
+  static const double _maxFormWidth = 720;
+
   // --- Enum label <-> wire mappings (display labels, send wire values) ---
   static const Map<String, String> _genderLabelToWire = {
     'Male': 'male',
@@ -621,277 +623,330 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
     final filteredSportOptions = data.sportOptions
         .where((sport) => !_isPickleballSportName(sport.displayName))
         .toList(growable: false);
+    final paneLayout = _resolveFoldPaneLayout(context);
+    final formWidth = paneLayout.width < _maxFormWidth
+        ? paneLayout.width
+        : _maxFormWidth;
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Edit Profile',
-            style: textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w800,
-              color: const Color(0xFF1D2230),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Keep your profile up to date',
-            style: textTheme.bodyMedium?.copyWith(
-              color: const Color(0xFF6F7482),
-            ),
-          ),
-          const SizedBox(height: 20),
-          // Basic Information Section
-          _SectionCard(
-            title: 'Basic Information',
+    return Align(
+      alignment: paneLayout.alignment,
+      child: SizedBox(
+        width: formWidth,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildTextField('Name', _nameController),
-              const SizedBox(height: 12),
-              _buildTextField(
-                'Username',
-                _usernameController,
-                onEditingComplete: () => _validateUsername(showFeedback: false),
-                errorText: _usernameError,
-                suffix: _checkingUsername
-                    ? const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: CupertinoActivityIndicator(),
-                      )
-                    : null,
-              ),
-              const SizedBox(height: 12),
-              _buildDateField('Date of Birth', _dateOfBirth, _selectDate),
-              const SizedBox(height: 12),
-              _buildSingleSelectChipGroup(
-                context,
-                title: 'Skill Level',
-                options: [
-                  for (final label in _levelLabels)
-                    _ChipOption(id: label.toLowerCase(), label: label),
-                ],
-                selectedId: _selectedSkillLevel,
-                onSelect: (id) => setState(() => _selectedSkillLevel = id),
-              ),
-              const SizedBox(height: 12),
-              _buildDropdown(
-                'Gender',
-                _labelForWire(_genderLabelToWire, _selectedGender),
-                _genderLabelToWire.keys.toList(),
-                (label) => setState(
-                  () => _selectedGender = label == null
-                      ? null
-                      : _genderLabelToWire[label],
+              Text(
+                'Edit Profile',
+                style: textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: const Color(0xFF1D2230),
                 ),
               ),
-              const SizedBox(height: 12),
-              _buildTextField('Phone Number', _phoneController),
-              const SizedBox(height: 12),
-              _buildTextField(
-                'Bio',
-                _bioController,
-                maxLines: 4,
-                hint: 'Tell us about yourself',
-              ),
-            ],
-          ),
-          const SizedBox(height: 14),
-          // Location & Venues Section
-          _SectionCard(
-            title: 'Location & Venues',
-            children: [
-              _buildTextField(
-                'Location',
-                _locationController,
-                hint: 'e.g. San Francisco, CA',
-              ),
-              const SizedBox(height: 12),
-              if (data.venueOptions.isEmpty)
-                Text(
-                  'No venues available',
-                  style: textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF6F7482),
-                  ),
-                )
-              else
-                _buildDropdown(
-                  'Favorite Venue',
-                  _venueLabelFor(
-                    _selectedVenueIds.isEmpty ? null : _selectedVenueIds.first,
-                    data,
-                  ),
-                  [for (final venue in data.venueOptions) venue.name],
-                  (venueName) {
-                    final selectedVenueId = _venueIdFor(venueName, data);
-                    setState(() {
-                      _selectedVenueIds
-                        ..clear()
-                        ..addAll(
-                          selectedVenueId == null ? [] : [selectedVenueId],
-                        );
-                    });
-                  },
+              const SizedBox(height: 4),
+              Text(
+                'Keep your profile up to date',
+                style: textTheme.bodyMedium?.copyWith(
+                  color: const Color(0xFF6F7482),
                 ),
-            ],
-          ),
-          const SizedBox(height: 14),
-          // Play Preferences Section
-          _SectionCard(
-            title: 'Play Preferences',
-            children: [
-              _buildChipGroup(
-                context,
-                title: 'Preferred Days',
-                options: [
-                  for (final label in _dayLabels)
-                    _ChipOption(id: label.toLowerCase(), label: label),
-                ],
-                isSelected: _selectedPlayDays.contains,
-                onToggle: (wire) => _toggleInSet(_selectedPlayDays, wire),
               ),
-              const SizedBox(height: 12),
-              _buildChipGroup(
-                context,
-                title: 'Preferred Time',
-                options: [
-                  for (final label in _timeLabels)
-                    _ChipOption(id: label.toLowerCase(), label: label),
-                ],
-                isSelected: _selectedPlayTimes.contains,
-                onToggle: (wire) => _toggleInSet(_selectedPlayTimes, wire),
-              ),
-              const SizedBox(height: 12),
-              _buildChipGroup(
-                context,
-                title: 'Preferred Format',
-                options: [
-                  for (final format in data.formatOptions)
-                    _ChipOption(id: format.id, label: format.displayName),
-                ],
-                isSelected: (id) => _selectedFormatIds.contains(id),
-                onToggle: (id) => _toggleInSet(_selectedFormatIds, id),
-                emptyText: 'No formats available',
-              ),
-            ],
-          ),
-          const SizedBox(height: 14),
-          // Professional Information Section
-          _SectionCard(
-            title: 'Professional Information',
-            children: [
-              Row(
+              const SizedBox(height: 20),
+              // Basic Information Section
+              _SectionCard(
+                title: 'Basic Information',
                 children: [
-                  Expanded(
-                    child: _buildTextField('Job Title', _jobTitleController),
+                  _buildTextField('Name', _nameController),
+                  const SizedBox(height: 12),
+                  _buildTextField(
+                    'Username',
+                    _usernameController,
+                    onEditingComplete: () =>
+                        _validateUsername(showFeedback: false),
+                    errorText: _usernameError,
+                    suffix: _checkingUsername
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            child: CupertinoActivityIndicator(),
+                          )
+                        : null,
                   ),
-                  const SizedBox(width: 8),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Tooltip(
-                      message: 'LinkedIn verified badge',
-                      child: const Icon(
-                        CupertinoIcons.checkmark_seal_fill,
-                        color: Color(0xFF0A66C2),
-                        size: 20,
+                  const SizedBox(height: 12),
+                  _buildDateField('Date of Birth', _dateOfBirth, _selectDate),
+                  const SizedBox(height: 12),
+                  _buildSingleSelectChipGroup(
+                    context,
+                    title: 'Skill Level',
+                    options: [
+                      for (final label in _levelLabels)
+                        _ChipOption(id: label.toLowerCase(), label: label),
+                    ],
+                    selectedId: _selectedSkillLevel,
+                    onSelect: (id) => setState(() => _selectedSkillLevel = id),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildDropdown(
+                    'Gender',
+                    _labelForWire(_genderLabelToWire, _selectedGender),
+                    _genderLabelToWire.keys.toList(),
+                    (label) => setState(
+                      () => _selectedGender = label == null
+                          ? null
+                          : _genderLabelToWire[label],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildTextField('Phone Number', _phoneController),
+                  const SizedBox(height: 12),
+                  _buildTextField(
+                    'Bio',
+                    _bioController,
+                    maxLines: 4,
+                    hint: 'Tell us about yourself',
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              // Location & Venues Section
+              _SectionCard(
+                title: 'Location & Venues',
+                children: [
+                  _buildTextField(
+                    'Location',
+                    _locationController,
+                    hint: 'e.g. San Francisco, CA',
+                  ),
+                  const SizedBox(height: 12),
+                  if (data.venueOptions.isEmpty)
+                    Text(
+                      'No venues available',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6F7482),
                       ),
+                    )
+                  else
+                    _buildDropdown(
+                      'Favorite Venue',
+                      _venueLabelFor(
+                        _selectedVenueIds.isEmpty
+                            ? null
+                            : _selectedVenueIds.first,
+                        data,
+                      ),
+                      [for (final venue in data.venueOptions) venue.name],
+                      (venueName) {
+                        final selectedVenueId = _venueIdFor(venueName, data);
+                        setState(() {
+                          _selectedVenueIds
+                            ..clear()
+                            ..addAll(
+                              selectedVenueId == null ? [] : [selectedVenueId],
+                            );
+                        });
+                      },
+                    ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              // Play Preferences Section
+              _SectionCard(
+                title: 'Play Preferences',
+                children: [
+                  _buildChipGroup(
+                    context,
+                    title: 'Preferred Days',
+                    options: [
+                      for (final label in _dayLabels)
+                        _ChipOption(id: label.toLowerCase(), label: label),
+                    ],
+                    isSelected: _selectedPlayDays.contains,
+                    onToggle: (wire) => _toggleInSet(_selectedPlayDays, wire),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildChipGroup(
+                    context,
+                    title: 'Preferred Time',
+                    options: [
+                      for (final label in _timeLabels)
+                        _ChipOption(id: label.toLowerCase(), label: label),
+                    ],
+                    isSelected: _selectedPlayTimes.contains,
+                    onToggle: (wire) => _toggleInSet(_selectedPlayTimes, wire),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildChipGroup(
+                    context,
+                    title: 'Preferred Format',
+                    options: [
+                      for (final format in data.formatOptions)
+                        _ChipOption(id: format.id, label: format.displayName),
+                    ],
+                    isSelected: (id) => _selectedFormatIds.contains(id),
+                    onToggle: (id) => _toggleInSet(_selectedFormatIds, id),
+                    emptyText: 'No formats available',
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              // Professional Information Section
+              _SectionCard(
+                title: 'Professional Information',
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildTextField(
+                          'Job Title',
+                          _jobTitleController,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Tooltip(
+                          message: 'LinkedIn verified badge',
+                          child: const Icon(
+                            CupertinoIcons.checkmark_seal_fill,
+                            color: Color(0xFF0A66C2),
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  _buildTextField('LinkedIn Profile', _linkedInController),
+                  const SizedBox(height: 12),
+                  _buildTextField('Company', _companyController),
+                  const SizedBox(height: 12),
+                  _buildTextField('Industry', _industryController),
+                  const SizedBox(height: 12),
+                  _buildDropdown(
+                    'Salary Range',
+                    _labelForWire(_salaryLabelToWire, _selectedSalaryRange),
+                    _salaryLabelToWire.keys.toList(),
+                    (label) => setState(
+                      () => _selectedSalaryRange = label == null
+                          ? null
+                          : _salaryLabelToWire[label],
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              _buildTextField('LinkedIn Profile', _linkedInController),
-              const SizedBox(height: 12),
-              _buildTextField('Company', _companyController),
-              const SizedBox(height: 12),
-              _buildTextField('Industry', _industryController),
-              const SizedBox(height: 12),
-              _buildDropdown(
-                'Salary Range',
-                _labelForWire(_salaryLabelToWire, _selectedSalaryRange),
-                _salaryLabelToWire.keys.toList(),
-                (label) => setState(
-                  () => _selectedSalaryRange = label == null
+              const SizedBox(height: 14),
+              // Sports Background Section
+              _SectionCard(
+                title: 'Other Sports Background',
+                children: [
+                  if (filteredSportOptions.isEmpty)
+                    Text(
+                      'No additional sports available',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6F7482),
+                      ),
+                    ),
+                  for (final sport in filteredSportOptions)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Material(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () => _showSportLevelPicker(sport.id),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  sport.displayName,
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  _levelLabelFor(_sportLevels[sport.id]) ??
+                                      'Select level',
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: _sportLevels[sport.id] != null
+                                        ? const Color(0xFF1D2230)
+                                        : const Color(0xFF6F7482),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              // Save Button
+              SizedBox(
+                width: double.infinity,
+                child: CupertinoButton(
+                  onPressed: _saving || _checkingUsername
                       ? null
-                      : _salaryLabelToWire[label],
+                      : _onSavePressed,
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(12),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  child: _saving
+                      ? const CupertinoActivityIndicator(color: Colors.white)
+                      : const Text(
+                          'Save Changes',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
                 ),
               ),
+              const SizedBox(height: 32),
             ],
           ),
-          const SizedBox(height: 14),
-          // Sports Background Section
-          _SectionCard(
-            title: 'Other Sports Background',
-            children: [
-              if (filteredSportOptions.isEmpty)
-                Text(
-                  'No additional sports available',
-                  style: textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF6F7482),
-                  ),
-                ),
-              for (final sport in filteredSportOptions)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Material(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(12),
-                      onTap: () => _showSportLevelPicker(sport.id),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 12,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              sport.displayName,
-                              style: textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              _levelLabelFor(_sportLevels[sport.id]) ??
-                                  'Select level',
-                              style: textTheme.bodyMedium?.copyWith(
-                                color: _sportLevels[sport.id] != null
-                                    ? const Color(0xFF1D2230)
-                                    : const Color(0xFF6F7482),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          // Save Button
-          SizedBox(
-            width: double.infinity,
-            child: CupertinoButton(
-              onPressed: _saving || _checkingUsername ? null : _onSavePressed,
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(12),
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              child: _saving
-                  ? const CupertinoActivityIndicator(color: Colors.white)
-                  : const Text(
-                      'Save Changes',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-            ),
-          ),
-          const SizedBox(height: 32),
-        ],
+        ),
       ),
+    );
+  }
+
+  _FoldPaneLayout _resolveFoldPaneLayout(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenSize = mediaQuery.size;
+    final displayFeatures = mediaQuery.displayFeatures;
+    final verticalFold = displayFeatures.where((feature) {
+      final typeName = feature.type.toString().toLowerCase();
+      final isFoldOrHinge =
+          typeName.contains('fold') || typeName.contains('hinge');
+      if (!isFoldOrHinge) {
+        return false;
+      }
+      final bounds = feature.bounds;
+      if (bounds.width <= 0) return false;
+      // Vertical folds split the screen into left/right panes.
+      return bounds.height >= (screenSize.height * 0.8);
+    });
+
+    if (verticalFold.isEmpty) {
+      return _FoldPaneLayout(
+        width: screenSize.width,
+        alignment: Alignment.topCenter,
+      );
+    }
+
+    final hingeBounds = verticalFold.first.bounds;
+    final leftPaneWidth = hingeBounds.left;
+    final rightPaneWidth = screenSize.width - hingeBounds.right;
+    final useRightPane = rightPaneWidth > leftPaneWidth;
+
+    return _FoldPaneLayout(
+      width: useRightPane ? rightPaneWidth : leftPaneWidth,
+      alignment: useRightPane ? Alignment.topRight : Alignment.topLeft,
     );
   }
 
@@ -1260,6 +1315,13 @@ class _ChipOption {
 
   final String id;
   final String label;
+}
+
+class _FoldPaneLayout {
+  const _FoldPaneLayout({required this.width, required this.alignment});
+
+  final double width;
+  final Alignment alignment;
 }
 
 class _SectionCard extends StatelessWidget {

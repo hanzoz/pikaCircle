@@ -11,6 +11,7 @@ import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/shell/presentation/controllers/shell_controller.dart';
 import 'package:pikacircle/shared/widgets/empty_state_card.dart';
+import 'package:pikacircle/shared/widgets/fold_aware_pane.dart';
 import 'package:pikacircle/shared/widgets/session_avatar_list.dart';
 import 'package:pikacircle/shared/widgets/session_details_page.dart';
 
@@ -580,79 +581,88 @@ class _DiscoveryScreenState extends ConsumerState<DiscoveryScreen> {
     return SafeArea(
       top: true,
       bottom: false,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 80, 16, 10),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: FilledButton.tonalIcon(
-                onPressed: _openFiltersSheet,
-                icon: const Icon(Icons.tune_rounded),
-                label: Text(_hasActiveFilters ? 'Filters' : 'Filter'),
+      child: FoldAwarePane(
+        maxWidth: 520,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 80, 16, 10),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: FilledButton.tonalIcon(
+                  onPressed: _openFiltersSheet,
+                  icon: const Icon(Icons.tune_rounded),
+                  label: Text(_hasActiveFilters ? 'Filters' : 'Filter'),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                final availableWidth = constraints.maxWidth - 32;
-                final availableHeight = constraints.maxHeight - 32;
-                final swiperWidth = availableWidth > 420
-                    ? 420.0
-                    : availableWidth;
-                final swiperHeight = availableHeight > 540
-                    ? 540.0
-                    : availableHeight;
+            Expanded(
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  final availableWidth = constraints.maxWidth - 32;
+                  final availableHeight = constraints.maxHeight - 32;
+                  final swiperWidth = availableWidth > 420
+                      ? 420.0
+                      : availableWidth;
+                  final swiperHeight = availableHeight > 540
+                      ? 540.0
+                      : availableHeight;
 
-                return Align(
-                  alignment: Alignment.topCenter,
-                  child: SizedBox(
-                    width: swiperWidth,
-                    height: swiperHeight,
-                    child: filteredSessions.isNotEmpty
-                        ? CardSwiper(
-                            controller: _swiperController,
-                            cardsCount: filteredSessions.length,
-                            numberOfCardsDisplayed: filteredSessions.length < 3
-                                ? filteredSessions.length
-                                : 3,
-                            padding: const EdgeInsets.fromLTRB(14, 12, 14, 96),
-                            scale: 0.93,
-                            backCardOffset: const Offset(0, 26),
-                            allowedSwipeDirection:
-                                const AllowedSwipeDirection.symmetric(
-                                  horizontal: true,
-                                  vertical: false,
-                                ),
-                            cardBuilder:
-                                (
-                                  BuildContext context,
-                                  int index,
-                                  int horizontalThresholdPercentage,
-                                  int verticalThresholdPercentage,
-                                ) {
-                                  return _DiscoverySessionCard(
-                                    session: filteredSessions[index],
-                                  );
-                                },
-                          )
-                        : const Padding(
-                            padding: EdgeInsets.fromLTRB(16, 16, 16, 96),
-                            child: EmptyStateCard(
-                              title: 'No matching sessions',
-                              message:
-                                  'Try a different title keyword or time filter.',
-                              icon: Icons.search_off_rounded,
+                  return Align(
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                      width: swiperWidth,
+                      height: swiperHeight,
+                      child: filteredSessions.isNotEmpty
+                          ? CardSwiper(
+                              controller: _swiperController,
+                              cardsCount: filteredSessions.length,
+                              numberOfCardsDisplayed:
+                                  filteredSessions.length < 3
+                                  ? filteredSessions.length
+                                  : 3,
+                              padding: const EdgeInsets.fromLTRB(
+                                14,
+                                12,
+                                14,
+                                96,
+                              ),
+                              scale: 0.93,
+                              backCardOffset: const Offset(0, 26),
+                              allowedSwipeDirection:
+                                  const AllowedSwipeDirection.symmetric(
+                                    horizontal: true,
+                                    vertical: false,
+                                  ),
+                              cardBuilder:
+                                  (
+                                    BuildContext context,
+                                    int index,
+                                    int horizontalThresholdPercentage,
+                                    int verticalThresholdPercentage,
+                                  ) {
+                                    return _DiscoverySessionCard(
+                                      session: filteredSessions[index],
+                                    );
+                                  },
+                            )
+                          : const Padding(
+                              padding: EdgeInsets.fromLTRB(16, 16, 16, 96),
+                              child: EmptyStateCard(
+                                title: 'No matching sessions',
+                                message:
+                                    'Try a different title keyword or time filter.',
+                                icon: Icons.search_off_rounded,
+                              ),
                             ),
-                          ),
-                  ),
-                );
-              },
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

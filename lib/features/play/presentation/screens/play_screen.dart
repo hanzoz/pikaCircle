@@ -10,6 +10,7 @@ import 'package:pikacircle/core/appwrite/appwrite_providers.dart';
 import 'package:pikacircle/core/constants/table_ids.dart';
 import 'package:pikacircle/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pikacircle/shared/widgets/empty_state_card.dart';
+import 'package:pikacircle/shared/widgets/fold_aware_pane.dart';
 import '../widgets/play_date_chips.dart';
 import '../widgets/play_screen_header.dart';
 import '../widgets/play_sessions_list.dart';
@@ -403,47 +404,44 @@ class _PlayScreenState extends ConsumerState<PlayScreen> {
         ref.invalidate(playSessionsProvider);
         await ref.read(playSessionsProvider.future);
       },
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 520),
-          child: ListView(
-            padding: EdgeInsets.fromLTRB(20, topContentPadding, 20, 120),
-            children: [
-              PlayScreenHeader(
-                selectedDate: selectedDate,
-                sessionCount: filteredSessions.length,
-              ),
-              const SizedBox(height: 18),
-              PlayDateChips(
-                availableDates: availableDates,
-                sessionCountByDate: sessionCountByDate,
-                selectedDate: selectedDate,
-                onDateSelected: (date) {
-                  setState(() {
-                    _selectedDate = date;
-                  });
-                },
-              ),
-              const SizedBox(height: 28),
-              if (filteredSessions.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 40),
-                  child: Center(
-                    child: Text(
-                      'No session today',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF6F7482),
-                      ),
+      child: FoldAwarePane(
+        maxWidth: 520,
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(20, topContentPadding, 20, 120),
+          children: [
+            PlayScreenHeader(
+              selectedDate: selectedDate,
+              sessionCount: filteredSessions.length,
+            ),
+            const SizedBox(height: 18),
+            PlayDateChips(
+              availableDates: availableDates,
+              sessionCountByDate: sessionCountByDate,
+              selectedDate: selectedDate,
+              onDateSelected: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+            ),
+            const SizedBox(height: 28),
+            if (filteredSessions.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 40),
+                child: Center(
+                  child: Text(
+                    'No session today',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF6F7482),
                     ),
                   ),
-                )
-              else
-                PlaySessionsList(sessions: filteredSessions),
-            ],
-          ),
+                ),
+              )
+            else
+              PlaySessionsList(sessions: filteredSessions),
+          ],
         ),
       ),
     );
