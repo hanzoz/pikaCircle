@@ -139,6 +139,13 @@ class ProfileSkillGraphSection extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  IconButton(
+                    onPressed: () => _showSkillLegendBottomSheet(context),
+                    tooltip: 'Skill graph legend',
+                    icon: const Icon(Icons.info_outline, size: 20),
+                    color: const Color(0xFF6F7482),
+                    visualDensity: VisualDensity.compact,
+                  ),
                   if (skillGraph.overallSkillRating != null)
                     Text(
                       'Overall ${skillGraph.overallSkillRating!.toStringAsFixed(1)}',
@@ -182,6 +189,165 @@ class ProfileSkillGraphSection extends ConsumerWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _SkillLegendItem {
+  const _SkillLegendItem({
+    required this.abbreviation,
+    required this.title,
+    required this.description,
+  });
+
+  final String abbreviation;
+  final String title;
+  final String description;
+}
+
+const _skillLegendItems = <_SkillLegendItem>[
+  _SkillLegendItem(
+    abbreviation: 'SRV',
+    title: 'Serve',
+    description:
+        'How effectively you start points through serve quality, fault control, and pressure created on the return.',
+  ),
+  _SkillLegendItem(
+    abbreviation: 'RET',
+    title: 'Return',
+    description:
+        'How well you neutralize serves using return quality, lower return errors, and limiting the opponent\'s third-shot attack.',
+  ),
+  _SkillLegendItem(
+    abbreviation: 'OFF',
+    title: 'Offense',
+    description:
+        'How effectively you create and finish attacks, including speed-ups, aggressive shot quality, and offensive rally outcomes.',
+  ),
+  _SkillLegendItem(
+    abbreviation: 'DEF',
+    title: 'Defense',
+    description:
+        'How reliably you absorb pressure with resets, recover position, and turn defensive rallies back to neutral or advantage.',
+  ),
+  _SkillLegendItem(
+    abbreviation: 'AGI',
+    title: 'Agility',
+    description:
+        'How efficiently you move, transition, and stay balanced through points, including kitchen-line and court-coverage movement.',
+  ),
+  _SkillLegendItem(
+    abbreviation: 'CON',
+    title: 'Consistency',
+    description:
+        'How repeatable your execution is over rallies, measured by fault control, shot stability, and sustained decision quality.',
+  ),
+];
+
+void _showSkillLegendBottomSheet(BuildContext context) {
+  showModalBottomSheet<void>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    backgroundColor: Colors.white,
+    builder: (_) => const _SkillGraphLegendSheet(),
+  );
+}
+
+class _SkillGraphLegendSheet extends StatelessWidget {
+  const _SkillGraphLegendSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Skill graph legend',
+                style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF1D2230),
+                ),
+              ),
+              const SizedBox(height: 16),
+              for (final item in _skillLegendItems) ...[
+                _SkillLegendRow(item: item),
+                const SizedBox(height: 12),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SkillLegendRow extends StatelessWidget {
+  const _SkillLegendRow({required this.item});
+
+  final _SkillLegendItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF7F8FB),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFFE6E8EF)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFEAF3FF),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              item.abbreviation,
+              style: textTheme.labelLarge?.copyWith(
+                color: const Color(0xFF0A66C2),
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.title,
+                  style: textTheme.titleSmall?.copyWith(
+                    color: const Color(0xFF1D2230),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  item.description,
+                  style: textTheme.bodySmall?.copyWith(
+                    color: const Color(0xFF4D5260),
+                    height: 1.35,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
