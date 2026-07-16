@@ -804,7 +804,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Tooltip(
-                          message: 'LinkedIn verified badge',
+                          message: 'LinkedIn verified',
+                          triggerMode: TooltipTriggerMode.tap,
                           child: const Icon(
                             CupertinoIcons.checkmark_seal_fill,
                             color: Color(0xFF0A66C2),
